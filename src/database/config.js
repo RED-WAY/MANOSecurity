@@ -1,71 +1,76 @@
-var mysql = require("mysql2");
-var sql = require('mssql');
+const mysql = require("mysql2");
+const sql = require("mssql");
 
-// CONEXÃO DO SQL SERVER - AZURE (NUVEM)
-var sqlServerConfig = {
-    server: "svr-acquatec-grupo7.database.windows.net",
-    database: "acquatec",
-    user: "admin-acquatec-7",
-    password: "#Gfgrupo7",
-    pool: {
-        max: 10,
-        min: 0,
-        idleTimeoutMillis: 30000
-    },
-    options: {
-        encrypt: true, // for azure
-    }
-}
-
-// CONEXÃO DO MYSQL WORKBENCH (LOCAL)
-var mySqlConfig = {
-    host: "localhost",
-    database: "acquatec",
-    user: "root",
-    password: "#Gf52900796881",
+// SQL SERVER - AZURE (CLOUD)
+const sqlServerConfig = {
+  server: "NAME.database.windows.net",
+  database: "DATABASE_NAME",
+  user: "ADMIN-USER",
+  password: "PASSWORD",
+  pool: {
+    max: 10,
+    min: 0,
+    idleTimeoutMillis: 30000,
+  },
+  options: {
+    encrypt: true,
+  },
 };
 
-function executar(instrucao) {
-    // VERIFICA A VARIÁVEL DE AMBIENTE SETADA EM app.js
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        return new Promise(function (resolve, reject) {
-            sql.connect(sqlServerConfig).then(function () {
-                return sql.query(instrucao);
-            }).then(function (resultados) {
-                console.log(resultados);
-                resolve(resultados.recordset);
-            }).catch(function (erro) {
-                reject(erro);
-                console.log('ERRO: ', erro);
-            });
-            sql.on('error', function (erro) {
-                return ("ERRO NO SQL SERVER (Azure): ", erro);
-            });
+// MYSQL WORKBENCH (LOCAL)
+const mySqlConfig = {
+  host: "localhost",
+  database: "DATABASE_NAME",
+  user: "root",
+  password: "#Gf52900796881",
+};
+
+function executeQuery(modelQuery) {
+  if (process.env.ENV == "production") {
+    return new Promise(function (resolve, reject) {
+      sql
+        .connect(sqlServerConfig)
+        .then(function () {
+          return sql.query(modelQuery);
+        })
+        .then(function (results) {
+          console.log(results);
+          resolve(results.recordset);
+        })
+        .catch(function (error) {
+          reject(error);
+          console.log("ERROR: ", error);
         });
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        return new Promise(function (resolve, reject) {
-            var conexao = mysql.createConnection(mySqlConfig);
-            conexao.connect();
-            conexao.query(instrucao, function (erro, resultados) {
-                conexao.end();
-                if (erro) {
-                    reject(erro);
-                }
-                console.log(resultados);
-                resolve(resultados);
-            });
-            conexao.on('error', function (erro) {
-                return ("ERRO NO MySQL WORKBENCH (Local): ", erro.sqlMessage);
-            });
-        });
-    } else {
-        return new Promise(function (resolve, reject) {
-            console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-            reject("AMBIENTE NÃO CONFIGURADO EM app.js")
-        });
-    }
+      sql.on("error", function (error) {
+        return "SQL SERVER - AZURE ERROR: ", error;
+      });
+    });
+  } else if (process.env.ENV == "development") {
+    return new Promise(function (resolve, reject) {
+      const connection = mysql.createConnection(mySqlConfig);
+      connection.connect();
+      connection.query(modelQuery, function (error, results) {
+        connection.end();
+        if (error) {
+          reject(error);
+        }
+        console.log(results);
+        resolve(results);
+      });
+      connection.on("error", function (error) {
+        return "MySQL - WORKBENCH ERROR: ", error.sqlMessage;
+      });
+    });
+  } else {
+    return new Promise(function (resolve, reject) {
+      console.log(
+        "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"
+      );
+      reject("ENVIRONMENT NOT CONFIGURED AT: app.js");
+    });
+  }
 }
 
 module.exports = {
-    executar
-}
+  executeQuery,
+};

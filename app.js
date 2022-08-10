@@ -1,17 +1,18 @@
-// process.env.AMBIENTE_PROCESSO = "desenvolvimento";
-process.env.AMBIENTE_PROCESSO = "producao";
+require('dotenv').config();
+// CHOOSE ENVIRONMENT
+process.env.ENV = "development";
+// process.env.ENV = "production";
 
-var express = require("express");
-var cors = require("cors");
-var path = require("path");
-var PORTA = 3333;
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const PORT = process.env.PORT;
 
-var app = express();
+const app = express();
 
-var indexRouter = require("./src/routes/index");
-var usuarioRouter = require("./src/routes/usuarios");
-var avisosRouter = require("./src/routes/avisos");
-var medidasRouter = require("./src/routes/medidas");
+const indexRouter = require("./src/routes/index");
+const userRouter = require("./src/routes/users");
+// ADD ROUTES HERE
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,14 +21,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
-app.use("/usuarios", usuarioRouter);
-app.use("/avisos", avisosRouter);
-app.use("/medidas", medidasRouter)
+app.use("/users", userRouter);
+// ADD ROUTES HERE TOO
 
-app.listen(PORTA, function () {
-    console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
-    Você está rodando sua aplicação em Ambiente de ${process.env.AMBIENTE_PROCESSO} \n
-    \t\tSe "desenvolvimento", você está se conectando ao banco LOCAL (MySQL Workbench). \n
-    \t\tSe "producao", você está se conectando ao banco REMOTO (SQL Server em nuvem Azure) \n
-    \t\t\t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'`);
+app.listen(PORT, function () {
+    console.log(`Server running at: http://localhost:${PORT} \n
+    Application at ${process.env.ENV} proccess mode \n
+    \t\tIf "development" => connected to local database (MySQL - Workbench). \n
+    \t\tIf "production" => connected to remote database (SQL Server - Azure) \n
+    \t\t\t\tTo SWITCH ENVIRONMENT, comment or uncomment the first 2 lines at: app.js`);
 });
