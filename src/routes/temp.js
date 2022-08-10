@@ -23,7 +23,7 @@ router.post("/publish/:idParam", function (req, res) {
   controller.publishController(req, res);
 });
 
-router.put("/edit/:id", function (req, res) {
+router.put("/edit/:idParam", function (req, res) {
   controller.editController(req, res);
 });
 
