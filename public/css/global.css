@@ -71,9 +71,21 @@ nav ul {
 .wrapper-buttons {
   width: 40%;
   background-color: green;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 }
 
-header
+button {
+ background: transparent;
+ width: 12em;
+ height: 3.5em;
+ font-size: 1rem;
+ color: var(--B);
+ border: .1rem solid var(--B);
+ border-radius: 1em;
+ cursor: pointer; 
+}
 
 #menu_icon {
   display: flex;
