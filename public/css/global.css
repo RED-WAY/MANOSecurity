@@ -11,6 +11,10 @@
   transition: all 0.1s;
 }
 
+body {
+  user-select: none;
+}
+
 h1 {
   font-size: 2em;
 }
@@ -41,6 +45,7 @@ header {
   height: 8rem;
 }
 
+/* LOGO */
 .wrapper-logo {
   width: 60%;
   background-color: blue;
@@ -52,6 +57,7 @@ header {
   height: 100%;
 }
 
+/* NAVBAR */
 nav {
   width: 65%;
   background-color: yellow;
@@ -65,28 +71,72 @@ nav ul {
   justify-content: space-between;
   align-items: center;
   font-weight: 700;
-  color: var(--B);
 }
 
+header a {
+  padding: 0 2%;
+  height: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--B);
+  cursor: pointer;
+}
+
+header a:hover {
+  height: 6em;
+  margin-bottom: .6em;
+}
+header a::before {
+  content: "";
+  width: 0.15em;
+  height: 0;
+  margin: .2em;
+  background-color: var(--B);
+  transition: height 0.3s ease-out;
+}
+header a:hover::before {
+  height: 1em;
+}
+
+/* BUTTONS */
 .wrapper-buttons {
   width: 40%;
   background-color: green;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
 }
 
 button {
- background: transparent;
- width: 12em;
- height: 3.5em;
- font-size: 1rem;
- color: var(--B);
- border: .1rem solid var(--B);
- border-radius: 1em;
- cursor: pointer; 
+  background: transparent;
+  width: 12rem;
+  height: 3.5rem;
+  font-size: 1rem;
+  color: var(--B);
+  border: 0.1rem solid var(--B);
+  border-radius: 1em;
+  cursor: pointer;
+  outline: none;
+  transition: all .4s, font-size 1s;
+}
+header button:hover {
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: var(--Btrans);
+  border-width: 0;
 }
 
-#menu_icon {
+#menu_icon,
+#menu_icon:default {
+  color: var(--B);
+  font-size: 3.5em;
+  padding: .2em .2em;
   display: flex;
+  cursor: pointer;
+  border-radius: 100%;
+  transition: background-color 0.3s ease-out;
+}
+#menu_icon:hover,
+#menu_icon:active {
+  background-color: var(--Blight);
 }

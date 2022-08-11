@@ -18,17 +18,27 @@
     <header>
       <div class="container">
         <div class="wrapper-logo">
-          <img src="https://via.placeholder.com/100" alt="MAN.OS" />
+          <img
+            src="https://via.placeholder.com/100"
+            alt="MAN.OS"
+            draggable="false"
+          />
         </div>
         <nav>
           <ul>
-            <li>Empresarial</li>
-            <li>Pessoal</li>
-            <li>Lista Negra</li>
+            <a href="#">
+              <li>Empresarial</li>
+            </a>
+            <a href="#">
+              <li>Pessoal</li>
+            </a>
+            <a href="#">
+              <li>Lista Negra</li>
+            </a>
           </ul>
         </nav>
         <div class="wrapper-buttons">
-          <button>ACESSAR</button>
+          <button onclick="loginCard()">ACESSAR</button>
           <ion-icon name="menu-outline" id="menu_icon"></ion-icon>
         </div>
       </div>
