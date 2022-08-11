@@ -1,6 +1,6 @@
-CREATE DATABASE Man_OSecurity;
+CREATE DATABASE MANOSecurity;
 
-USE Man_OSecurity;
+USE MANOSecurity;
 
 /* MySQL - WORKBENCH */
 
