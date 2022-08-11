@@ -40,9 +40,28 @@ a {
   background-color: red;
 }
 
+.popup-aside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: var(--Btrans);
+  opacity: 0;
+  transition: opacity .5s;
+  pointer-events: none;
+}
+
+/* HEADER */
 header {
   width: 100%;
   height: 8rem;
+  position: fixed;
+  z-index: 5;
 }
 
 /* LOGO */
@@ -107,7 +126,7 @@ header a:hover::before {
   align-items: center;
 }
 
-button {
+button, input[type*="button"] {
   background: transparent;
   width: 12rem;
   height: 3.5rem;
