@@ -126,7 +126,7 @@ header a:hover::before {
   align-items: center;
 }
 
-button, input[type*="button"] {
+button {
   background: transparent;
   width: 12rem;
   height: 3.5rem;

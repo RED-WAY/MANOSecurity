@@ -36,7 +36,8 @@ function entrar() {
 
                 setTimeout(function () {
                     console.log("LOGIN EFETUADO COM SUCESSO");
-                }, 1000);
+                    hideLogin();                    
+                }, 500);
 
             });
 

@@ -38,21 +38,45 @@
           </ul>
         </nav>
         <div class="wrapper-buttons">
-          <button type="button" onclick="showLogin()">ACESSAR</button>
+          <button type="button" onclick="showSignup()">ACESSAR</button>
           <ion-icon name="menu-outline" id="menu_icon"></ion-icon>
         </div>
       </div>
     </header>
 
-
+    <!-- LOGIN CARD -->
     <aside class="popup-aside" id="aside_login">
-      <div id="login_card">
+      <div class="form-card" id="login_card">
         <form>
-          <input type="button" onclick="AQUI_PEDRALHA()" value="Entrar">
+          <label for="email">E-mail</label>
+          <input name="username" id="input_email" type="email" />
+          <label for="password">Senha</label>
+          <input name="password" id="input_password" type="password" />
+          <input type="button" onclick="AQUI_PEDRALHA()" value="Entrar" />
         </form>
       </div>
     </aside>
 
+    <!-- SIGNUP CARD -->
+    <aside class="popup-aside" id="aside_signup">
+      <div class="form-card" id="signup_card">
+        <form>
+          <label for="email">E-mail</label>
+          <input name="username" id="input_email" type="email" />
+          <label for="username">Nome</label>
+          <input name="username" id="input_username" type="text" />
+          <label for="password">Senha</label>
+          <input name="password" id="input_password" type="password" />
+          <label for="password_confirm">Confirmar Senha</label>
+          <input
+            name="password_confirm"
+            id="input_password_confirm"
+            type="password"
+          />
+          <input type="button" onclick="AQUI_PEDRALHA()" value="Cadastrar" />
+        </form>
+      </div>
+    </aside>
 
     <!-- IONICONS IMPORT -->
     <script

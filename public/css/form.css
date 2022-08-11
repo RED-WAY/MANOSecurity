@@ -1,0 +1,10 @@
+.form-card {
+  width: 10rem;
+  height: 20rem;
+  position: fixed;
+  background-color: red;
+  z-index: 15;
+}
+
+#login_card {
+}

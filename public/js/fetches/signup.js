@@ -34,7 +34,9 @@ function cadastrar() {
       if (resposta.ok) {
         setTimeout(() => {
           console.log("CADASTRO REALIZADO COM SUCESSO");
-        }, "2000");
+          hideSignup();
+          showLogin();
+        }, 500);
 
       } else {
         throw "Houve um erro ao tentar realizar o cadastro!";

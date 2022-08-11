@@ -1,16 +1,10 @@
-function opacityPointer(element) {
+function opacityPointer(element, option) {
   el = document.querySelector(element);
-  let opacity = el.style.opacity;
-
-  if (opacity === "0" || opacity === '') {
+  if (option === "show") {
     el.style.opacity = 1;
     el.style.pointerEvents = "all";
   } else {
     el.style.opacity = 0;
     el.style.pointerEvents = "none";
   }
-}
-
-function test(event) {
-    console.log("aaaa");
 }
