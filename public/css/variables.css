@@ -1,5 +1,9 @@
 :root {
   --B: #1e1e1e;
-  --Btrans: #1e1e1eAA;
-  --Blight: #1e1e1e15;
+  --Btrans1: #1e1e1eAA;
+  --Btrans2: #1e1e1e15;
+  --R: #E4032B;
+  --Rdark: #8E000C;
+
+  --border1: .25em solid var(--R);
 }

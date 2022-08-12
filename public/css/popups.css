@@ -1,0 +1,71 @@
+.form-card {
+  width: 25rem;
+  padding: 2em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: var(--Btrans1);
+  z-index: 15;
+  border-radius: .3em;
+}
+
+.form-card h1 {
+  color: #fff;
+}
+.form-card form {
+  width: 80%;
+  padding: 1em 0;
+  gap: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end !important;
+}
+.form-card button {
+  max-width: 40%;
+  height: 2.5rem;
+  color: #fff;
+  background-color: var(--Rdark);
+  border-color: var(--Rdark);
+
+}
+.form-card button:hover {
+  background-color: var(--R);
+  border-color: var(--R);
+  max-width: 42%;
+}
+
+.form__input {
+  width: 14em;
+  height: 4em;
+  display: flex;
+  flex-direction: column;
+}
+.form__input label {
+  color: #fff;
+}
+.form__input input {
+  width: 100%;
+  height: 60%;
+  padding: 1em 1em;
+  border-radius: .4em;
+  border: none;
+  box-shadow: .2em .2em .2em var(--Rdark);
+  outline: none;
+  transition: box-shadow 0.5s;  
+}
+.form__input input:focus {
+  box-shadow: .3em .3em .2em var(--R);
+}
+
+.close-form {
+  position: absolute;
+  top: .3em;
+  right: .3em;
+  color: #fff;
+  font-size: 2em;
+}
+.close-form:hover {
+  color: var(--R);
+}

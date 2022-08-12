@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700;900&display=swap");
 
 @import "./variables.css";
+@import "./global.addons.css";
 
 * {
   margin: 0 auto;
@@ -9,6 +10,7 @@
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   transition: all 0.1s;
+  caret-color: var(--R);
 }
 
 body {
@@ -32,16 +34,25 @@ a {
   font-size: 1em;
 }
 
+*::selection {
+  background-color: var(--R);
+  color: #fff;
+}
+
 .container {
   width: 90%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  background-color: red;
+}
+
+.invisible {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .popup-aside {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -50,10 +61,8 @@ a {
   top: 0;
   left: 0;
   z-index: 10;
-  background-color: var(--Btrans);
-  opacity: 0;
-  transition: opacity .5s;
-  pointer-events: none;
+  background-color: var(--Btrans1);
+  transition: opacity 0.5s;
 }
 
 /* HEADER */
@@ -67,7 +76,6 @@ header {
 /* LOGO */
 .wrapper-logo {
   width: 60%;
-  background-color: blue;
   display: flex;
   justify-content: center;
 }
@@ -79,7 +87,6 @@ header {
 /* NAVBAR */
 nav {
   width: 65%;
-  background-color: yellow;
   display: none;
 }
 
@@ -104,14 +111,14 @@ header a {
 
 header a:hover {
   height: 6em;
-  margin-bottom: .6em;
+  margin-bottom: 0.6em;
 }
 header a::before {
   content: "";
   width: 0.15em;
   height: 0;
-  margin: .2em;
-  background-color: var(--B);
+  margin: 0.2em;
+  background-color: var(--Rdark);
   transition: height 0.3s ease-out;
 }
 header a:hover::before {
@@ -121,14 +128,14 @@ header a:hover::before {
 /* BUTTONS */
 .wrapper-buttons {
   width: 40%;
-  background-color: green;
   display: flex;
   align-items: center;
 }
 
 button {
   background: transparent;
-  width: 12rem;
+  max-width: 300px;
+  width: 14rem;
   height: 3.5rem;
   font-size: 1rem;
   color: var(--B);
@@ -136,12 +143,12 @@ button {
   border-radius: 1em;
   cursor: pointer;
   outline: none;
-  transition: all .4s, font-size 1s;
+  transition: all 0.4s, font-size 1s;
 }
 header button:hover {
   font-size: 1.1rem;
   color: #fff;
-  background-color: var(--Btrans);
+  background-color: var(--Btrans1);
   border-width: 0;
 }
 
@@ -149,7 +156,7 @@ header button:hover {
 #menu_icon:default {
   color: var(--B);
   font-size: 3.5em;
-  padding: .2em .2em;
+  padding: 0.2em 0.2em;
   display: flex;
   cursor: pointer;
   border-radius: 100%;
@@ -157,5 +164,5 @@ header button:hover {
 }
 #menu_icon:hover,
 #menu_icon:active {
-  background-color: var(--Blight);
+  background-color: var(--Btrans2);
 }
