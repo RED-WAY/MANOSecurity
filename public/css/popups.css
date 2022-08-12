@@ -1,5 +1,5 @@
 .form-card {
-  width: 25rem;
+  width: 32rem;
   padding: 2em 0;
   display: flex;
   flex-direction: column;
@@ -8,19 +8,18 @@
   position: fixed;
   background-color: var(--Btrans1);
   z-index: 15;
-  border-radius: .3em;
+  border-radius: 0.3em;
 }
 
 .form-card h1 {
   color: #fff;
 }
 .form-card form {
-  width: 80%;
+  width: 70%;
   padding: 1em 0;
   gap: 2em;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end !important;
 }
 .form-card button {
   max-width: 40%;
@@ -28,17 +27,33 @@
   color: #fff;
   background-color: var(--Rdark);
   border-color: var(--Rdark);
-
 }
 .form-card button:hover {
+  max-width: 42%;
   background-color: var(--R);
   border-color: var(--R);
-  max-width: 42%;
+  box-shadow: 0 0 .5em var(--Rlight);
+}
+.form-card h3 {
+  font-size: 0.9rem;
+  color: #fff;
+  font-weight: 400;
+}
+h3 span {
+  color: var(--R);
+  font-weight: 1000;
+  cursor: pointer;
+  transition: letter-spacing .4s, color 0.4s, text-shadow 0.6s;
+}
+h3 span:hover {
+  letter-spacing: .05em;
+  color: var(--Rlight);
+  text-shadow: 0 0 .1em var(--Rlight);
 }
 
 .form__input {
-  width: 14em;
-  height: 4em;
+  width: 100%;
+  height: 5em;
   display: flex;
   flex-direction: column;
 }
@@ -49,23 +64,28 @@
   width: 100%;
   height: 60%;
   padding: 1em 1em;
-  border-radius: .4em;
+  font-size: 1rem;
+  color: var(--B);
+  border-radius: 0.4em;
   border: none;
-  box-shadow: .2em .2em .2em var(--Rdark);
+  box-shadow: 0.2em 0.2em 0.2em var(--Rdark);
   outline: none;
-  transition: box-shadow 0.5s;  
+  transition: box-shadow 0.5s;
 }
 .form__input input:focus {
-  box-shadow: .3em .3em .2em var(--R);
+  box-shadow: 0.3em 0.3em 0.2em var(--R);
 }
 
 .close-form {
-  position: absolute;
-  top: .3em;
-  right: .3em;
-  color: #fff;
   font-size: 2em;
+  position: absolute;
+  top: 0.3em;
+  right: 0.3em;
+  color: #fff;
 }
 .close-form:hover {
+  font-size: 2.6em;
+  top: 0.1em;
+  right: 0.1em;
   color: var(--R);
 }

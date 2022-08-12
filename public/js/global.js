@@ -6,11 +6,17 @@ function displayAfterStart() {
     el.style.display = "flex";
   });
 }
-
 // setup
 setTimeout(() => {
   displayAfterStart();
 }, 500);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    hideLogin();
+    hideSignup();
+  }
+});
 
 // change visibility of elements with OPACITY and POINTER-EVENTS
 function opacityPointer(element, option) {
