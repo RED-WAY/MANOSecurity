@@ -60,7 +60,7 @@
           </div>
           <button
             type="button"
-            onclick="AQUI_PEDRALHA()"
+            onclick="logIn()"
             onmouseenter="borderChange(this)"
             onmouseleave="resetBorder(this)"
           >
@@ -86,15 +86,15 @@
         <form>
           <div class="form__input">
             <label for="email">E-mail</label>
-            <input name="email" id="signup_email" type="email" />
+            <input  id="signup_email" type="text" />
           </div>
           <div class="form__input">
             <label for="username">Nome</label>
-            <input name="username" id="signup_username" type="text" />
+            <input  id="signup_username" type="text" />
           </div>
           <div class="form__input">
             <label for="password">Senha</label>
-            <input name="password" id="signup_password" type="password" />
+            <input id="signup_password" type="password" />
           </div>
           <div class="form__input">
             <label for="password_confirm">Confirmar Senha</label>
@@ -106,7 +106,7 @@
           </div>
           <button
             type="button"
-            onclick="AQUI_PEDRALHA()"
+            onclick="signUp()"
             onmouseenter="borderChange(this)"
             onmouseleave="resetBorder(this)"
           >
@@ -136,8 +136,10 @@
     ></script>
   </body>
 </html>
-
+  
 <script src="./js/global.js"></script>
+<script src="./js/fetches/signup.js"></script>
+<script src="./js/fetches/login.js"></script>
 <script src="./js/global.addons.js"></script>
 <script src="./js/pagesJS/index.js"></script>
 <script src="./js/test.js"></script>

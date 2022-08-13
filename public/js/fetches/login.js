@@ -1,17 +1,21 @@
-function entrar() {
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
+function logIn() {
+    var emailVar = login_email.value;
+    var senhaVar = login_password.value;
 
     if (emailVar == "" || senhaVar == "") {
         return false;
     }
-    else {
-    }
+    else if(emailVar.indexOf('@') == -1) {  
+
+           return false;
+
+            }else{
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
 
-    fetch("/usuarios/autenticar", {
+    fetch("/users/logIn", {
+
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -55,4 +59,6 @@ function entrar() {
     })
 
     return false;
+}
+
 }

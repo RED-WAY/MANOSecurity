@@ -1,18 +1,19 @@
-const express = require("express");
-const router = express.Router();
+var express = require("express");
+var router = express.Router();
 
-const userController = require("../controllers/userController");
+var userController = require("../controllers/userController");
+
 
 router.get("/list", function (req, res) {
     userController.list(req, res);
 });
 
-router.post("/signup", function (req, res) {
-    userController.signup(req, res);
-})
+router.post("/signUp", function (req, res) {
+    userController.signUp(req, res);
+});
 
-router.post("/login", function (req, res) {
-    userController.login(req, res);
+router.post("/logIn", function (req, res) {
+    userController.logIn(req, res);
 });
 
 module.exports = router;

@@ -20,9 +20,9 @@ const sqlServerConfig = {
 // MYSQL WORKBENCH (LOCAL)
 const mySqlConfig = {
   host: "localhost",
-  database: "DATABASE_NAME",
+  database: "MANOSecurity",
   user: "root",
-  password: "#Gf52900796881",
+  password: "#Gf52455690865",
 };
 
 function executeQuery(modelQuery) {

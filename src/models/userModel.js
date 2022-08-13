@@ -12,41 +12,41 @@ function listModel() {
   return database.executeQuery(dbQuery);
 }
 
-function loginModel(emailModel, passwordModel) {
+function logIn(emailModel, passwordModel) {
   console.log(
     "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
     emailModel,
-    "password"
+    passwordModel
   );
   const dbQuery = `
         SELECT * 
-          FROM (--TABLE--) 
-            WHERE (--emailColumn--) = '${emailModel}' 
-              AND (--passwordColumn--) = '${passwordModel}';
+          FROM user
+            WHERE userEmail = '${emailModel}' 
+              AND userPassword; = '${passwordModel}';
             `;
               // AND (--passwordColumn--) = AES_ENCRYPT('${passwordModel}', '${encrypter}');
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
 
-function signupModel(usernameModel, emailModel, passwordModel) {
+function signUp(usernameModel, emailModel, passwordModel) {
   console.log(
     "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function signupModel():",
     usernameModel,
     emailModel,
-    "password"
+    passwordModel
   );
 
-  const dbQuery = `
-        INSERT INTO (--TABLE--) ((--usernameColumn--), (--emailColumn--), (--passwordColumn--)) VALUES 
+  var instrucao = `
+        INSERT INTO user (userName, userEmail, userPassword) VALUES 
           ('${usernameModel}', '${emailModel}', AES_ENCRYPT('${passwordModel}', '${encrypter}'));
     `;
-  console.log("Executing SQL query: \n" + dbQuery);
-  return database.executeQuery(dbQuery);
+  console.log("Executing SQL query: \n" + instrucao);
+  return database.executeQuery(instrucao);
 }
 
 module.exports = {
   listModel,
-  loginModel,
-  signupModel,
+  logIn,
+  signUp,
 };
