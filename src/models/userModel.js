@@ -22,7 +22,7 @@ function logIn(emailModel, passwordModel) {
         SELECT * 
           FROM user
             WHERE userEmail = '${emailModel}' 
-              AND userPassword; = '${passwordModel}';
+              AND userPassword = '${passwordModel}';
             `;
               // AND (--passwordColumn--) = AES_ENCRYPT('${passwordModel}', '${encrypter}');
   console.log("Executing SQL query: \n" + dbQuery);
@@ -37,12 +37,12 @@ function signUp(usernameModel, emailModel, passwordModel) {
     passwordModel
   );
 
-  var instrucao = `
+  const dbQuery = `
         INSERT INTO user (userName, userEmail, userPassword) VALUES 
-          ('${usernameModel}', '${emailModel}', AES_ENCRYPT('${passwordModel}', '${encrypter}'));
+          ('${usernameModel}', '${emailModel}', '${passwordModel}');
     `;
-  console.log("Executing SQL query: \n" + instrucao);
-  return database.executeQuery(instrucao);
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
 }
 
 module.exports = {

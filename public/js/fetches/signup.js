@@ -1,34 +1,29 @@
 function signUp() {
-  var nomeVar = signup_username.value;
-  var emailVar = signup_email.value;
-  var senhaVar = signup_password.value;
-  var confirmacaoSenhaVar = signup_password_confirm.value;
+  const usernameVar = signup_username.value;
+  const emailVar = signup_email.value;
+  const passwordVar = signup_password.value;
+  const confirmPasswordVar = signup_password_confirm.value;
 
   if (
-    nomeVar == "" ||
+    usernameVar == "" ||
     emailVar == "" ||
-    senhaVar == "" ||
-    confirmacaoSenhaVar == ""
+    passwordVar == "" ||
+    confirmPasswordVar == ""
   ) {
-
     return false;
   } else {
-
-
     // SEND CONFIRMED INPUTS
-    
     fetch("/users/signUp", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-        body: JSON.stringify({
-
-          nomeServer: nomeVar,
-          emailServer: emailVar,
-          senhaServer: senhaVar
-      })
-  })
+      body: JSON.stringify({
+        usernameServer: usernameVar,
+        emailServer: emailVar,
+        passwordServer: passwordVar,
+      }),
+    })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
@@ -38,7 +33,6 @@ function signUp() {
             hideSignup();
             showLogin();
           }, 500);
-
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
@@ -49,5 +43,4 @@ function signUp() {
 
     return false;
   }
-
 }
