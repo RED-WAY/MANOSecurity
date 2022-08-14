@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>MAN.OS</title>
+    <title>man.OS</title>
 
     <script src="./js/session.js"></script>
 
@@ -27,20 +27,28 @@
         </div>
         <nav>
           <ul>
-            <a href="#">
+            <a href="#" tabindex="1">
               <li>Empresarial</li>
             </a>
-            <a href="#">
+            <a href="#" tabindex="2">
               <li>Pessoal</li>
             </a>
-            <a href="#">
+            <a href="#" tabindex="3">
               <li>Lista Negra</li>
             </a>
           </ul>
         </nav>
         <div class="wrapper-buttons">
-          <button type="button" onclick="showSignup()">ACESSAR</button>
-          <ion-icon name="menu-outline" id="menu_icon" />
+          <button
+            type="button"
+            onclick="showLogin()"
+            onmouseenter="borderChange(this)"
+            onmouseleave="resetBorder(this)"
+            tabindex="4"
+          >
+            ACESSAR
+          </button>
+          <ion-icon name="menu-outline" id="menu_icon" tabindex="4" />
         </div>
       </div>
     </header>
@@ -49,32 +57,39 @@
     <aside class="popup-aside invisible" id="aside_login">
       <div class="form-card" id="login_card">
         <h1>Acessar</h1>
-        <form>
+        <form id="form_login">
           <div class="form__input">
             <label for="email">E-mail</label>
-            <input name="email" id="login_email" type="email" />
+            <input name="email" id="login_email" type="email" tabindex="5" />
           </div>
           <div class="form__input">
             <label for="password">Senha</label>
-            <input name="password" id="login_password" type="password" />
+            <input
+              name="password"
+              id="login_password"
+              type="password"
+              tabindex="6"
+            />
           </div>
-          <button
-            type="button"
-            onclick="AQUI_PEDRALHA()"
-            onmouseenter="borderChange(this)"
-            onmouseleave="resetBorder(this)"
-          >
+          <button type="button" onclick="AQUI_PEDRALHA()" tabindex="7">
             ENTRAR
           </button>
         </form>
         <h3>
           Ainda não se cadastrou? Seja um
-          <span onclick="hideLogin(), showSignup()">MANO!</span>
+          <span
+            onclick="hideLogin(), showSignup()"
+            onkeypress="hideLogin(), showSignup()"
+            tabindex="8"
+            >MANO!</span
+          >
         </h3>
         <ion-icon
           name="close-outline"
           class="close-form"
           onclick="hideLogin()"
+          onkeypress="hideLogin()"
+          tabindex="9"
         />
       </div>
     </aside>
@@ -83,18 +98,28 @@
     <aside class="popup-aside invisible" id="aside_signup">
       <div class="form-card" id="signup_card">
         <h1>Cadastrar</h1>
-        <form>
+        <form id="form_signup">
           <div class="form__input">
             <label for="email">E-mail</label>
-            <input name="email" id="signup_email" type="email" />
+            <input name="email" id="signup_email" type="email" tabindex="5" />
           </div>
           <div class="form__input">
             <label for="username">Nome</label>
-            <input name="username" id="signup_username" type="text" />
+            <input
+              name="username"
+              id="signup_username"
+              type="text"
+              tabindex="6"
+            />
           </div>
           <div class="form__input">
             <label for="password">Senha</label>
-            <input name="password" id="signup_password" type="password" />
+            <input
+              name="password"
+              id="signup_password"
+              type="password"
+              tabindex="7"
+            />
           </div>
           <div class="form__input">
             <label for="password_confirm">Confirmar Senha</label>
@@ -102,29 +127,35 @@
               name="password_confirm"
               id="signup_password_confirm"
               type="password"
+              tabindex="8"
             />
           </div>
-          <button
-            type="button"
-            onclick="AQUI_PEDRALHA()"
-            onmouseenter="borderChange(this)"
-            onmouseleave="resetBorder(this)"
-          >
+          <button type="button" onclick="AQUI_PEDRALHA()" tabindex="9">
             CADASTRAR
           </button>
         </form>
         <h3>
           Já possui uma conta?
-          <span onclick="hideSignup(), showLogin()">Entre agora!</span>
+          <span
+            onclick="hideSignup(), showLogin()"
+            onkeypress="hideSignup(), showLogin()"
+            tabindex="10"
+            >Entre agora!</span
+          >
         </h3>
         <ion-icon
           name="close-outline"
           class="close-form"
           onclick="hideSignup()"
+          onkeypress="hideSignup()"
+          tabindex="11"
         />
       </div>
     </aside>
 
+    <!-- THEME CHANGER -->
+    <input type="checkbox" alt="Change theme" id="theme_changer">
+    <label for="theme_changer"></label>
     <!-- IONICONS IMPORT -->
     <script
       type="module"
@@ -140,4 +171,5 @@
 <script src="./js/global.js"></script>
 <script src="./js/global.addons.js"></script>
 <script src="./js/pagesJS/index.js"></script>
+<script src="./js/themes.js"></script>
 <script src="./js/test.js"></script>

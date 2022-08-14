@@ -10,11 +10,13 @@
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   transition: all 0.1s;
-  caret-color: var(--R);
+  caret-color: #e4032b;
+  outline: none;
 }
 
 body {
   user-select: none;
+  background-color: var(--back1);
 }
 
 h1 {
@@ -35,7 +37,7 @@ a {
 }
 
 *::selection {
-  background-color: var(--R);
+  background-color: #e4032b;
   color: #fff;
 }
 
@@ -61,7 +63,7 @@ a {
   top: 0;
   left: 0;
   z-index: 10;
-  background-color: var(--Btrans1);
+  background-color: var(--bla-trans1);
   transition: opacity 0.5s;
 }
 
@@ -105,11 +107,12 @@ header a {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--B);
+  color: var(--bla);
   cursor: pointer;
 }
 
-header a:hover {
+header a:hover,
+header a:focus {
   height: 6em;
   margin-bottom: 0.6em;
 }
@@ -118,10 +121,11 @@ header a::before {
   width: 0.15em;
   height: 0;
   margin: 0.2em;
-  background-color: var(--Rdark);
+  background-color: var(--red-dark);
   transition: height 0.3s ease-out;
 }
-header a:hover::before {
+header a:hover::before,
+header a:focus::before {
   height: 1em;
 }
 
@@ -138,23 +142,24 @@ button {
   width: 14rem;
   height: 3.5rem;
   font-size: 1rem;
-  color: var(--B);
-  border: 0.1rem solid var(--B);
+  color: var(--bla);
+  border: 0.1rem solid var(--bla);
   border-radius: 1em;
   cursor: pointer;
   outline: none;
   transition: all 0.4s, font-size 1s;
 }
-header button:hover {
+header button:hover,
+header button:focus {
   font-size: 1.1rem;
-  color: #fff;
-  background-color: var(--Btrans1);
+  color: var(--font1);
+  background-color: var(--bla-trans1);
   border-width: 0;
 }
 
 #menu_icon,
 #menu_icon:default {
-  color: var(--B);
+  color: var(--bla);
   font-size: 3.5em;
   padding: 0.2em 0.2em;
   display: flex;
@@ -164,5 +169,36 @@ header button:hover {
 }
 #menu_icon:hover,
 #menu_icon:active {
-  background-color: var(--Btrans2);
+  background-color: var(--bla-trans2);
+}
+
+#theme_changer {
+  opacity: 0;
+  width: 8em;
+  height: 8em;
+  position: fixed;
+  bottom: -4vh;
+  left: -2vw;
+  z-index: 15;
+  cursor: pointer;
+}
+#theme_changer + label {
+  background-image: url("../assets/imgs/day_night.png");
+  background-size: 100%;
+  width: 8em;
+  height: 8em;
+  position: fixed;
+  bottom: -8vh;
+  left: -4vw;
+  z-index: 15;
+  cursor: pointer;
+  rotate: 0;
+  transition: rotate 0.8s, bottom 0.4s, left 0.4s;
+}
+#theme_changer:checked + label {
+  rotate: -180deg;
+}
+#theme_changer + label:hover {
+  bottom: -7.5vh;
+  left: -3.75vw;
 }
