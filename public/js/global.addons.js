@@ -1,3 +1,12 @@
+// THEME CHANGING
+const themeTrigger = document.querySelector("#theme_changer");
+// change theme at checkbox change
+themeTrigger.addEventListener("change", function () {
+  let theme = this.checked ? "dark" : "light";
+  document.documentElement.setAttribute("data-theme", theme);
+});
+
+
 // RANDOMIZE CORNERS
 const radiusCorners = [
   "top--left",
