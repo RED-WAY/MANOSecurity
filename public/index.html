@@ -25,7 +25,7 @@
             draggable="false"
           />
         </div>
-        <nav>
+        <nav class="menu-nav">
           <ul>
             <a href="#" tabindex="1">
               <li>Empresarial</li>
@@ -53,6 +53,8 @@
             name="menu-outline"
             id="menu_icon"
             title="Abrir menu"
+            onclick="showMenu()"
+            onkeypress="showMenu()"
             tabindex="4"
           />
         </div>
@@ -159,6 +161,31 @@
           onkeypress="hideSignup()"
           title="Fechar tela"
           tabindex="11"
+        />
+      </div>
+    </aside>
+
+    <!-- MENU CARD -->
+    <aside class="popup-aside invisible" id="aside_menu">
+      <div class="menu-nav hamburguer">
+        <ul>
+          <a href="#" tabindex="1" id="menu_first_item">
+            <li>Empresarial</li>
+          </a>
+          <a href="#" tabindex="2">
+            <li>Pessoal</li>
+          </a>
+          <a href="#" tabindex="3">
+            <li>Lista Negra</li>
+          </a>
+        </ul>
+        <ion-icon
+          name="close-outline"
+          class="close-form"
+          onclick="hideMenu()"
+          onkeypress="hideMenu()"
+          title="Fechar tela"
+          tabindex="4"
         />
       </div>
     </aside>

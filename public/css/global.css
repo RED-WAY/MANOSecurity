@@ -17,6 +17,7 @@
 body {
   user-select: none;
   background-color: var(--back1);
+  transition: background-color 0.5s;
 }
 
 h1 {
@@ -92,7 +93,7 @@ nav {
   display: none;
 }
 
-nav ul {
+.menu-nav ul {
   width: 100%;
   list-style: none;
   display: flex;
@@ -101,7 +102,7 @@ nav ul {
   font-weight: 700;
 }
 
-header a {
+.menu-nav a {
   padding: 0 2%;
   height: 4em;
   display: flex;
@@ -111,12 +112,12 @@ header a {
   cursor: pointer;
 }
 
-header a:hover,
-header a:focus {
+.menu-nav a:hover,
+.menu-nav a:focus {
   height: 6em;
   margin-bottom: 0.6em;
 }
-header a::before {
+.menu-nav a::before {
   content: "";
   width: 0.15em;
   height: 0;
@@ -124,8 +125,8 @@ header a::before {
   background-color: var(--red-dark);
   transition: height 0.3s ease-out;
 }
-header a:hover::before,
-header a:focus::before {
+.menu-nav a:hover::before,
+.menu-nav a:focus::before {
   height: 1em;
 }
 
@@ -168,6 +169,7 @@ header button:focus {
   transition: background-color 0.3s ease-out;
 }
 #menu_icon:hover,
+#menu_icon:focus,
 #menu_icon:active {
   background-color: var(--trans3);
 }

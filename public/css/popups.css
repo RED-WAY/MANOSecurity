@@ -1,4 +1,5 @@
-.form-card {
+.form-card,
+.hamburguer {
   font-size: 2rem;
   width: 100vw;
   height: 100vh;
@@ -11,7 +12,7 @@
   background-color: var(--card1);
   z-index: 15;
   border-radius: 0em;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, background-color 0.5s;
   overflow: auto;
 }
 
@@ -93,11 +94,40 @@ h3 span:focus {
   position: absolute;
   top: 0.3em;
   right: 0.3em;
-  color: var(--font1);
+  color: var(--bla);
 }
-.close-form:hover, .close-form:focus {
+.close-form:hover,
+.close-form:focus {
   font-size: 2.6em;
   top: 0.1em;
   right: 0.1em;
   color: var(--red);
+}
+
+.hamburguer ul,
+.hamburguer a {
+  width: 90%;
+  flex-direction: column;
+  margin: 0.5em;
+  transition: background-color 0.5s ease-out;
+}
+.hamburguer a:active {
+  background-color: var(--trans3);
+}
+.hamburguer a::before {
+  content: none;
+}
+.hamburguer a::after {
+  content: "";
+  width: 10%;
+  height: 0.1em;
+  margin: 0.2em;
+  background-color: var(--red-dark);
+  transition: height 0.3s ease-out, width 0.3s ease-out;
+}
+.hamburguer a:hover::after,
+.hamburguer a:focus::after {
+  width: 30%;
+  height: 0.2em;
+  color: var(--font2);
 }

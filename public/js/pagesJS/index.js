@@ -31,3 +31,13 @@ function hideSignup() {
     aside_signup.style.display = "none";
   }, 200);
 }
+// ----------------
+// display menu aside
+function showMenu() {
+  opacityPointer("#aside_menu", "show");
+  document.querySelector('#menu_first_item').focus();
+}
+// hide menu aside
+function hideMenu() {
+  opacityPointer("#aside_menu", "hide");
+}
