@@ -56,9 +56,9 @@ function logIn(req, res) {
 }
 
 function signUp(req, res) {
-  var usernameController = req.body.usernameServer;
-  var emailController = req.body.emailServer;
-  var passwordController = req.body.passwordServer;
+  const usernameController = req.body.usernameServer;
+  const emailController = req.body.emailServer;
+  const passwordController = req.body.passwordServer;
 
   if (usernameController == undefined) {
     res.status(400).send("UsernameController is undefined!");

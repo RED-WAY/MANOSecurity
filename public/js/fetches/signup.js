@@ -24,21 +24,21 @@ function signUp() {
         passwordServer: passwordVar,
       }),
     })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+      .then(function (result) {
+        console.log("resposta: ", result);
 
-        if (resposta.ok) {
+        if (result.ok) {
           setTimeout(() => {
             console.log("CADASTRO REALIZADO COM SUCESSO");
             hideSignup();
             showLogin();
           }, 500);
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          throw "There was an error while signing up!";
         }
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+      .catch((error) => {
+        console.log(error);
       });
 
     return false;

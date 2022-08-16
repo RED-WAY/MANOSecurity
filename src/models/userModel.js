@@ -1,5 +1,5 @@
 const database = require("../database/config");
-// const encrypter = process.env.AES_ENCRYPT;
+const encrypter = process.env.AES_ENCRYPT;
 
 function listModel() {
   console.log(
@@ -22,9 +22,8 @@ function logIn(emailModel, passwordModel) {
         SELECT * 
           FROM user
             WHERE userEmail = '${emailModel}' 
-              AND userPassword = '${passwordModel}';
+              AND userPassword = AES_ENCRYPT('${passwordModel}', '${encrypter}');
             `;
-              // AND (--passwordColumn--) = AES_ENCRYPT('${passwordModel}', '${encrypter}');
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
@@ -39,7 +38,7 @@ function signUp(usernameModel, emailModel, passwordModel) {
 
   const dbQuery = `
         INSERT INTO user (userName, userEmail, userPassword) VALUES 
-          ('${usernameModel}', '${emailModel}', '${passwordModel}');
+          ('${usernameModel}', '${emailModel}', AES_ENCRYPT('${passwordModel}', '${encrypter}'));
     `;
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);

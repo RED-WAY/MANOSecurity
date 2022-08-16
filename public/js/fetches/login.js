@@ -20,19 +20,17 @@ function logIn() {
         passwordServer: passwordVar,
       }),
     })
-      .then(function (resposta) {
-        console.log("AT THEN OF logIn()!");
+      .then(function (result) {
+        if (result.ok) {
+          console.log(result);
 
-        if (resposta.ok) {
-          console.log(resposta);
-
-          resposta.json().then((json) => {
+          result.json().then((json) => {
             console.log(json);
             console.log(JSON.stringify(json));
 
-            sessionStorage.EMAIL_USUARIO = json.email;
-            sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.id;
+            sessionStorage.EMAIL_USER = json.userEmail;
+            sessionStorage.NOME_USER = json.userName;
+            sessionStorage.ID_USER = json.idUser;
 
             setTimeout(function () {
               console.log("LOGIN EFETUADO COM SUCESSO");
@@ -40,15 +38,13 @@ function logIn() {
             }, 500);
           });
         } else {
-          console.log("Houve um erro ao tentar realizar o login!");
-
-          resposta.text().then((texto) => {
-            console.error(texto);
+          result.text().then((err) => {
+            console.error(err);
           });
         }
       })
-      .catch(function (erro) {
-        console.log(erro);
+      .catch((error) => {
+        console.log(error);
       });
 
     return false;
