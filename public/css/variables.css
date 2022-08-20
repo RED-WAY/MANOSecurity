@@ -9,6 +9,7 @@ html[data-theme="light"] {
   --red-dark: #8e000c;
   --red-light: #ff3256;
   --white: #fff;
+  --black: #222;
   --font1: #1e1e1e;
   --font2: #fff;
 
@@ -27,6 +28,7 @@ html[data-theme="dark"] {
   --red-dark: #b1000f;
   --red-light: #ff4a6b;
   --white: #fff;
+  --black: #222;
   --font1: #fff;
   --font2: #1e1e1e;
 
