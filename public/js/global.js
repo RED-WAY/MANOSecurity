@@ -11,6 +11,8 @@ setTimeout(() => {
   displayAfterStart();
 }, 500);
 
+
+// exit form with "escape" key
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     hideLogin();

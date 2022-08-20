@@ -1,10 +1,34 @@
-:root {
-  --B: #1e1e1e;
-  --Btrans1: #1e1e1eAA;
-  --Btrans2: #1e1e1e15;
-  --R: #E4032B;
-  --Rdark: #8E000C;
-  --Rlight: #ff3256;
+html[data-theme="light"] {
+  --back1: #e6e6e6;
+  --bla: #1e1e1e;
+  --trans1: #1e1e1eaa;
+  --trans2: #1e1e1ed6;
+  --trans3: #1e1e1e15;
+  --card1: #d6d6d6;
+  --red: #e4032b;
+  --red-dark: #8e000c;
+  --red-light: #ff3256;
+  --white: #fff;
+  --font1: #1e1e1e;
+  --font2: #fff;
 
-  --border1: .25em solid var(--R);
+  --border1: 0.25em solid var(--R);
+  
+}
+
+html[data-theme="dark"] {
+  --back1: #262626;
+  --bla: #eeeeee;
+  --trans1: #eeeeeeaa;
+  --trans2: #1e1e1ed6;
+  --trans3: #1e1e1e15;
+  --card1: #161616;
+  --red: #eb002b;
+  --red-dark: #b1000f;
+  --red-light: #ff4a6b;
+  --white: #fff;
+  --font1: #fff;
+  --font2: #1e1e1e;
+
+  --border1: 0.25em solid var(--R);
 }

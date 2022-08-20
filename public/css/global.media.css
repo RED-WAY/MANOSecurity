@@ -21,10 +21,16 @@ html {
     display: none;
   }
   .wrapper-logo {
-    width: 20%
+    width: 20%;
   }
   .wrapper-buttons {
     width: 15%;
+  }
+  #theme_changer {
+    width: 8vw;
+    height: 17vh;
+    bottom: -8vh;
+    left: -4vw;
   }
 }
 @media (min-width: 1025px) {

@@ -10,11 +10,14 @@
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   transition: all 0.1s;
-  caret-color: var(--R);
+  caret-color: #e4032b;
+  outline: none;
 }
 
 body {
   user-select: none;
+  background-color: var(--back1);
+  transition: background-color 0.5s;
 }
 
 h1 {
@@ -35,7 +38,7 @@ a {
 }
 
 *::selection {
-  background-color: var(--R);
+  background-color: #e4032b;
   color: #fff;
 }
 
@@ -61,7 +64,7 @@ a {
   top: 0;
   left: 0;
   z-index: 10;
-  background-color: var(--Btrans1);
+  background-color: var(--trans2);
   transition: opacity 0.5s;
 }
 
@@ -78,10 +81,18 @@ header {
   width: 60%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.wrapper-logo img {
-  height: 100%;
+.wrapper-logo div {
+  width: 60%;
+  height: 80%;
+  background: url("../assets/imgs/manosTitle.png") no-repeat center;
+  background-size: contain;
+}
+
+.to-Invert {
+  filter: invert(1);
 }
 
 /* NAVBAR */
@@ -90,7 +101,7 @@ nav {
   display: none;
 }
 
-nav ul {
+.menu-nav ul {
   width: 100%;
   list-style: none;
   display: flex;
@@ -99,29 +110,31 @@ nav ul {
   font-weight: 700;
 }
 
-header a {
+.menu-nav a {
   padding: 0 2%;
   height: 4em;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--B);
+  color: var(--bla);
   cursor: pointer;
 }
 
-header a:hover {
+.menu-nav a:hover,
+.menu-nav a:focus {
   height: 6em;
   margin-bottom: 0.6em;
 }
-header a::before {
+.menu-nav a::before {
   content: "";
   width: 0.15em;
   height: 0;
   margin: 0.2em;
-  background-color: var(--Rdark);
+  background-color: var(--red-dark);
   transition: height 0.3s ease-out;
 }
-header a:hover::before {
+.menu-nav a:hover::before,
+.menu-nav a:focus::before {
   height: 1em;
 }
 
@@ -138,23 +151,24 @@ button {
   width: 14rem;
   height: 3.5rem;
   font-size: 1rem;
-  color: var(--B);
-  border: 0.1rem solid var(--B);
+  color: var(--font1);
+  border: 0.1rem solid var(--bla);
   border-radius: 1em;
   cursor: pointer;
   outline: none;
   transition: all 0.4s, font-size 1s;
 }
-header button:hover {
+header button:hover,
+header button:focus {
   font-size: 1.1rem;
-  color: #fff;
-  background-color: var(--Btrans1);
+  color: var(--font2);
+  background-color: var(--trans1);
   border-width: 0;
 }
 
 #menu_icon,
 #menu_icon:default {
-  color: var(--B);
+  color: var(--bla);
   font-size: 3.5em;
   padding: 0.2em 0.2em;
   display: flex;
@@ -163,6 +177,40 @@ header button:hover {
   transition: background-color 0.3s ease-out;
 }
 #menu_icon:hover,
+#menu_icon:focus,
 #menu_icon:active {
-  background-color: var(--Btrans2);
+  background-color: var(--trans3);
+}
+
+#theme_changer {
+  opacity: 0;
+  width: 8vw;
+  height: 17vh;
+  bottom: -8vh;
+  left: -4vw;
+  position: fixed;
+  z-index: 15;
+  cursor: pointer;
+}
+#theme_changer + label {
+  background-image: url("../assets/imgs/day_night.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 8vw;
+  height: 17vh;
+  bottom: -8vh;
+  left: -4vw;
+  position: fixed;
+  z-index: 15;
+  cursor: pointer;
+  rotate: 0;
+  transition: rotate 0.8s, bottom 0.4s, left 0.4s;
+}
+#theme_changer:checked + label {
+  rotate: -180deg;
+}
+#theme_changer + label:hover {
+  bottom: -7.5vh;
+  left: -3.75vw;
 }
