@@ -81,10 +81,18 @@ header {
   width: 60%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.wrapper-logo img {
-  height: 100%;
+.wrapper-logo div {
+  width: 60%;
+  height: 80%;
+  background: url("../assets/imgs/manosTitle.png") no-repeat center;
+  background-size: contain;
+}
+
+.to-Invert {
+  filter: invert(1);
 }
 
 /* NAVBAR */

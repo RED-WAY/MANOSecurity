@@ -4,8 +4,10 @@ const themeTrigger = document.querySelector("#theme_changer");
 themeTrigger.addEventListener("change", function () {
   let theme = this.checked ? "dark" : "light";
   document.documentElement.setAttribute("data-theme", theme);
+  for (let element of document.getElementsByClassName("to-invert")) {
+    element.style.filter = `invert(${this.checked ? "1" : "0"})`;
+  }
 });
-
 
 // RANDOMIZE CORNERS
 const radiusCorners = [
@@ -20,7 +22,7 @@ function borderChange(element) {
   element.classList.add(radiusCorners[randomNumber]);
   radiusCorners.push(radiusCorners[randomNumber]);
 }
-// reset corners to original config 
+// reset corners to original config
 function resetBorder(element) {
   element.classList.remove(radiusCorners.at(-1));
   radiusCorners.pop();

@@ -13,6 +13,7 @@ html[data-theme="light"] {
   --font2: #fff;
 
   --border1: 0.25em solid var(--R);
+  
 }
 
 html[data-theme="dark"] {
