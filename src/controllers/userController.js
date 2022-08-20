@@ -1,4 +1,4 @@
-const userModel = require("../models/userModel");
+var userModel = require("../models/userModel");
 
 function listController(req, res) {
   userModel
@@ -20,7 +20,7 @@ function listController(req, res) {
     });
 }
 
-function loginController(req, res) {
+function logIn(req, res) {
   const emailController = req.body.emailServer;
   const passwordController = req.body.passwordServer;
 
@@ -30,7 +30,7 @@ function loginController(req, res) {
     res.status(400).send("Password is undefined!");
   } else {
     userModel
-      .loginModel(emailController, passwordController)
+      .logIn(emailController, passwordController)
       .then(function (result) {
         console.log(`\nResults found: ${result.length}`);
         console.log(`Results: ${JSON.stringify(result)}`);
@@ -55,10 +55,10 @@ function loginController(req, res) {
   }
 }
 
-function signupController(req, res) {
-  var usernameController = req.body.usernameServer;
-  var emailController = req.body.emailServer;
-  var passwordController = req.body.passwordServer;
+function signUp(req, res) {
+  const usernameController = req.body.usernameServer;
+  const emailController = req.body.emailServer;
+  const passwordController = req.body.passwordServer;
 
   if (usernameController == undefined) {
     res.status(400).send("UsernameController is undefined!");
@@ -67,10 +67,10 @@ function signupController(req, res) {
   } else if (passwordController == undefined) {
     res.status(400).send("PasswordController is undefined!");
   } else {
-    userModel
-      .signupModel(usernameController, emailController, passwordController)
+    userModel.signUp(usernameController, emailController, passwordController)
       .then(function (result) {
         res.json(result);
+        console.log('estou aqui')
       })
       .catch(function (error) {
         console.log(error);
@@ -85,6 +85,6 @@ function signupController(req, res) {
 
 module.exports = {
   listController,
-  loginController,
-  signupController,
+  logIn,
+  signUp,
 };

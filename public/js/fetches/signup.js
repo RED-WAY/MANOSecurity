@@ -1,50 +1,46 @@
-function cadastrar() {
-  var nomeVar = nome_input.value;
-  var emailVar = email_input.value;
-  var senhaVar = senha_input.value;
-  var confirmacaoSenhaVar = confirmacao_senha_input.value;
+function signUp() {
+  const usernameVar = signup_username.value;
+  const emailVar = signup_email.value;
+  const passwordVar = signup_password.value;
+  const confirmPasswordVar = signup_password_confirm.value;
 
   if (
-    nomeVar == "" ||
+    usernameVar == "" ||
     emailVar == "" ||
-    senhaVar == "" ||
-    confirmacaoSenhaVar == ""
+    passwordVar == "" ||
+    confirmPasswordVar == ""
   ) {
-    
     return false;
   } else {
-    
-  }
-
-  // SEND CONFIRMED INPUTS
-  fetch("/usuarios/cadastrar", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      nomeServer: nomeVar,
-      emailServer: emailVar,
-      senhaServer: senhaVar,
-    }),
-  })
-    .then(function (resposta) {
-      console.log("resposta: ", resposta);
-
-      if (resposta.ok) {
-        setTimeout(() => {
-          console.log("CADASTRO REALIZADO COM SUCESSO");
-          hideSignup();
-          showLogin();
-        }, 500);
-
-      } else {
-        throw "Houve um erro ao tentar realizar o cadastro!";
-      }
+    // SEND CONFIRMED INPUTS
+    fetch("/users/signUp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        usernameServer: usernameVar,
+        emailServer: emailVar,
+        passwordServer: passwordVar,
+      }),
     })
-    .catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
-    });
+      .then(function (result) {
+        console.log("resposta: ", result);
 
-  return false;
+        if (result.ok) {
+          setTimeout(() => {
+            console.log("CADASTRO REALIZADO COM SUCESSO");
+            hideSignup();
+            showLogin();
+          }, 500);
+        } else {
+          throw "There was an error while signing up!";
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return false;
+  }
 }

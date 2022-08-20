@@ -8,20 +8,21 @@ const cors = require("cors");
 const path = require("path");
 const PORT = process.env.PORT;
 
-const app = express();
+var app = express();
 
-const indexRouter = require("./src/routes/index");
-const userRouter = require("./src/routes/users");
+var indexRouter = require("./src/routes/index");
+var userRouter = require("./src/routes/users");
 // ADD ROUTES HERE
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "/public/")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
 app.use("/", indexRouter);
-app.use("/users", userRouter);
+app.use("/users", userRouter)
+
 // ADD ROUTES HERE TOO
 
 app.listen(PORT, function () {

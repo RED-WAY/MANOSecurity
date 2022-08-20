@@ -75,7 +75,13 @@
               tabindex="6"
             />
           </div>
-          <button type="button" onclick="AQUI_PEDRALHA()" tabindex="7">
+          <button
+            type="button"
+            onclick="logIn()"
+            onmouseenter="borderChange(this)"
+            onmouseleave="resetBorder(this)"
+            tabindex="7"
+          >
             ENTRAR
           </button>
         </form>
@@ -136,7 +142,14 @@
               tabindex="8"
             />
           </div>
-          <button type="button" onclick="AQUI_PEDRALHA()" tabindex="9">
+          <button type="button" onclick="AQUI_PEDRALHA()" >
+          <button
+            type="button"
+            onclick="signUp()"
+            onmouseenter="borderChange(this)"
+            onmouseleave="resetBorder(this)"
+            tabindex="9"
+          >
             CADASTRAR
           </button>
         </form>
@@ -205,8 +218,10 @@
     ></script>
   </body>
 </html>
-
+  
 <script src="./js/global.js"></script>
+<script src="./js/fetches/signup.js"></script>
+<script src="./js/fetches/login.js"></script>
 <script src="./js/global.addons.js"></script>
 <script src="./js/pagesJS/index.js"></script>
 <script src="./js/test.js"></script>
