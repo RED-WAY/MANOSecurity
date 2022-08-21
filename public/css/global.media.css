@@ -21,7 +21,7 @@ html {
     display: none;
   }
   .wrapper-logo {
-    width: 20%;
+    display: none;
   }
   .wrapper-buttons {
     width: 15%;

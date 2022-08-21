@@ -16,11 +16,22 @@ section {
 }
 .section-start__primary {
   height: 60%;
-  background-color: var(--back1);
-  transition: background 0.3s;
+}
+.section-start__primary::before {
+  content: "";
+  background: url("../assets/gifs/bannerGif1.gif") no-repeat center;
+  background-size: cover;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  filter: var(--invert) opacity(0.4) blur(2px);
+  image-rendering: pixelated;
+  transition: filter 0.3s;
 }
 .section-start__primary div {
-  margin-top: 13em;
+  margin-top: 28em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,8 +50,17 @@ section {
   transition: all 1s;
 }
 .section-start__second {
+  height: 40%;
+}
+.section-start__second::before {
+  content: "";
   background: url("../assets/gifs/backgroundGlitch.gif") repeat center;
   background-size: 1% 100%;
+  z-index: -1;
+  width: 100%;
   height: 40%;
-  /* background-color: red; */
+  position: absolute;
+  display: block;
+  filter: var(--invert);
+  transition: filter 0.3s;
 }

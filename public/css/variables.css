@@ -14,6 +14,7 @@ html[data-theme="light"] {
   --font2: #fff;
 
   --border1: 0.25em solid var(--R);
+  --invert: invert(0);
 }
 
 html[data-theme="dark"] {
@@ -32,4 +33,5 @@ html[data-theme="dark"] {
   --font2: #1e1e1e;
 
   --border1: 0.25em solid var(--R);
+  --invert: invert(1);
 }
