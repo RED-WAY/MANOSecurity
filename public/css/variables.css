@@ -1,5 +1,5 @@
 html[data-theme="light"] {
-  --back1: #e6e6e6;
+  --back1: #fafafa;
   --bla: #1e1e1e;
   --trans1: #1e1e1eaa;
   --trans2: #1e1e1ed6;
@@ -14,11 +14,10 @@ html[data-theme="light"] {
   --font2: #fff;
 
   --border1: 0.25em solid var(--R);
-  
 }
 
 html[data-theme="dark"] {
-  --back1: #262626;
+  --back1: #111;
   --bla: #eeeeee;
   --trans1: #eeeeeeaa;
   --trans2: #1e1e1ed6;

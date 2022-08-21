@@ -1,1 +1,46 @@
 @import "./popups.css";
+
+section {
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+.section-start {
+}
+.section-start__primary,
+.section-start__second {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section-start__primary {
+  height: 60%;
+  background-color: var(--back1);
+  transition: background 0.3s;
+}
+.section-start__primary div {
+  margin-top: 13em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section-start__primary div div {
+  width: 31em;
+  height: 29em;
+  margin-top: 0;
+  position: absolute;
+  border: 0.15em solid var(--font1);
+  clip-path: polygon(0 0, 0 100%, 87% 100%, 100% 88%, 100% 0);
+  transition: border 0.6s;
+}
+.section-start__primary img {
+  width: 30em;
+  transition: all 1s;
+}
+.section-start__second {
+  background: url("../assets/gifs/backgroundGlitch.gif") repeat center;
+  background-size: 1% 100%;
+  height: 40%;
+  /* background-color: red; */
+}
