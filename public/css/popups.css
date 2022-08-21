@@ -9,7 +9,7 @@
   justify-content: space-evenly;
   align-items: center;
   position: fixed;
-  background-color: var(--card1);
+  background-image: var(--card-gradient);
   z-index: 15;
   border-radius: 0em;
   transition: opacity 0.2s, background-color 0.5s;
@@ -35,7 +35,7 @@
   color: var(--white);
   background-color: var(--red-dark);
   border-color: var(--red-dark);
-  border-radius: 0.2rem;
+  border-radius: 0.1rem;
 }
 .form-card button:hover,
 .form-card button:focus {
@@ -80,14 +80,14 @@ h3 span:focus {
   font-size: 0.8em;
   color: var(--black);
   background-color: var(--white);
-  border-radius: 0.4em;
+  border-radius: 0.05em;
   border: none;
-  box-shadow: 0.2em 0.2em 0.2em var(--red-dark);
+  box-shadow: 0.1em 0.1em 0.1em var(--red-dark);
   outline: none;
   transition: box-shadow 0.5s;
 }
 .form__input input:focus {
-  box-shadow: 0.3em 0.3em 0.2em var(--red);
+  box-shadow: 0.2em 0.2em 0.2em var(--red);
 }
 
 .close-form {

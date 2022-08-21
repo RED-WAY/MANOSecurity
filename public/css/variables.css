@@ -1,37 +1,44 @@
+html {
+  --white: #fff;
+  --black: #222;
+  --border1: 0.25em solid var(--red);
+  --card-gradient: linear-gradient(to bottom, var(--card1), var(--card1-trans));
+}
+
 html[data-theme="light"] {
   --back1: #fafafa;
+  --back2: #fff;
   --bla: #1e1e1e;
   --trans1: #1e1e1eaa;
   --trans2: #1e1e1ed6;
   --trans3: #1e1e1e15;
   --card1: #d6d6d6;
+  --card1-trans: #d6d6d6dd;
   --red: #e4032b;
+  --red-alt: #ed1440;
   --red-dark: #8e000c;
   --red-light: #ff3256;
-  --white: #fff;
-  --black: #222;
   --font1: #1e1e1e;
   --font2: #fff;
 
-  --border1: 0.25em solid var(--R);
   --invert: invert(0);
 }
 
 html[data-theme="dark"] {
   --back1: #111;
+  --back2: #000;
   --bla: #eeeeee;
   --trans1: #eeeeeeaa;
   --trans2: #1e1e1ed6;
   --trans3: #1e1e1e15;
-  --card1: #161616;
+  --card1: #202020;
+  --card1-trans: #202020dd;
   --red: #eb002b;
+  --red-alt: #ed1440;
   --red-dark: #b1000f;
   --red-light: #ff4a6b;
-  --white: #fff;
-  --black: #222;
   --font1: #fff;
   --font2: #1e1e1e;
 
-  --border1: 0.25em solid var(--R);
   --invert: invert(1);
 }

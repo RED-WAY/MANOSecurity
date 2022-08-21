@@ -26,13 +26,13 @@
         <nav class="menu-nav">
           <ul>
             <a href="#" tabindex="1">
-              <li>Empresarial</li>
+              <li>Objetivo</li>
             </a>
             <a href="#" tabindex="2">
-              <li>Pessoal</li>
+              <li>Valores</li>
             </a>
             <a href="#" tabindex="3">
-              <li>Lista Negra</li>
+              <li>REDWAY</li>
             </a>
           </ul>
         </nav>
@@ -58,6 +58,31 @@
         </div>
       </div>
     </header>
+
+    <!-- MENU CARD -->
+    <aside class="popup-aside invisible" id="aside_menu">
+      <div class="menu-nav hamburguer">
+        <ul>
+          <a href="#" tabindex="1" id="menu_first_item">
+            <li>Objetivo</li>
+          </a>
+          <a href="#" tabindex="2">
+            <li>Valores</li>
+          </a>
+          <a href="#" tabindex="3">
+            <li>REDWAY</li>
+          </a>
+        </ul>
+        <ion-icon
+          name="close-outline"
+          class="close-form"
+          onclick="hideMenu()"
+          onkeypress="hideMenu()"
+          title="Fechar tela"
+          tabindex="4"
+        />
+      </div>
+    </aside>
 
     <!-- LOGIN CARD -->
     <aside class="popup-aside invisible" id="aside_login">
@@ -175,48 +200,58 @@
       </div>
     </aside>
 
-    <!-- MENU CARD -->
-    <aside class="popup-aside invisible" id="aside_menu">
-      <div class="menu-nav hamburguer">
-        <ul>
-          <a href="#" tabindex="1" id="menu_first_item">
-            <li>Empresarial</li>
-          </a>
-          <a href="#" tabindex="2">
-            <li>Pessoal</li>
-          </a>
-          <a href="#" tabindex="3">
-            <li>Lista Negra</li>
-          </a>
-        </ul>
-        <ion-icon
-          name="close-outline"
-          class="close-form"
-          onclick="hideMenu()"
-          onkeypress="hideMenu()"
-          title="Fechar tela"
-          tabindex="4"
-        />
-      </div>
-    </aside>
-
     <section class="section-start">
       <div class="section-start__primary">
         <div>
-          <img src="assets/gifs/manosGlitch.gif" alt="man.OS ProcessKiller" class="to-invert" />
-          <div></div>
+          <img
+            src="assets/gifs/manosGlitch.gif"
+            alt="man.OS ProcessKiller"
+            class="to-invert"
+          />
+          <div class="border-manos"></div>
         </div>
       </div>
       <div class="section-start__second">
-        <!-- <div> -->
-          <div class="menu-nav">
-            <ul>
-              <li>Point 1</li>
-              <li>Point 2</li>
-              <li>Point 3</li>
-            </ul>
-          </div>
-        <!-- </div> -->
+        <div class="menu-nav nav-cards">
+          <ul>
+            <li>
+              <div class="card-info">
+                <img src="https://via.placeholder.com/80" alt="" />
+                <h3>SUBTITLE</h3>
+                <h2>Title</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+                  perspiciatis molestias nemo distinctio aut sed facere magni
+                  incidunt ex in!
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="card-info">
+                <img src="https://via.placeholder.com/80" alt="" />
+                <h3>SUBTITLE</h3>
+                <h2>Title</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+                  perspiciatis molestias nemo distinctio aut sed facere magni
+                  incidunt ex in!
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="card-info">
+                <img src="https://via.placeholder.com/80" alt="" />
+                <h3>SUBTITLE</h3>
+                <h2>Title</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+                  perspiciatis molestias nemo distinctio aut sed facere magni
+                  incidunt ex in!
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
