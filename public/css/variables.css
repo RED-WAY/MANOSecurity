@@ -1,6 +1,9 @@
 html {
   --white: #fff;
   --black: #222;
+  --gray: #888;
+  --gray-dark: #5e5e5e;
+  --gray-light: #aaa;
   --border1: 0.25em solid var(--red);
   --card-gradient: linear-gradient(to bottom, var(--card1), var(--card1-trans));
 }
@@ -12,7 +15,7 @@ html[data-theme="light"] {
   --trans1: #1e1e1eaa;
   --trans2: #1e1e1ed6;
   --trans3: #1e1e1e15;
-  --card1: #d6d6d6;
+  --card1: #ebebeb;
   --card1-trans: #d6d6d6dd;
   --red: #e4032b;
   --red-alt: #ed1440;
@@ -20,6 +23,7 @@ html[data-theme="light"] {
   --red-light: #ff3256;
   --font1: #1e1e1e;
   --font2: #fff;
+  --font-gray: #747474;
 
   --invert: invert(0);
 }
@@ -39,6 +43,7 @@ html[data-theme="dark"] {
   --red-light: #ff4a6b;
   --font1: #fff;
   --font2: #1e1e1e;
+  --font-gray: #919191;
 
   --invert: invert(1);
 }

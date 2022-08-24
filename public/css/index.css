@@ -1,9 +1,18 @@
 @import "./popups.css";
 
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
 section {
   width: 100vw;
   height: 100vh;
   z-index: 0;
+  scroll-snap-align: center;
+}
+:has(section[class="section-start"]) {
+  background-color: var(--red);
 }
 
 /* HOME SECTION */
@@ -44,7 +53,7 @@ section {
 }
 
 .section-start__primary img {
-  width: 80vw;
+  width: 100vw;
   transition: all 1s;
 }
 
@@ -67,12 +76,13 @@ section {
 /* cards */
 .nav-cards {
   width: 90%;
-  height: 5em;
+  height: 6em;
 }
 .nav-cards ul {
   width: 80vw;
-  gap: 3em;
+  gap: 18em;
   overflow-y: auto;
+  scroll-snap-type: x mandatory;
 }
 
 .card-info {
@@ -80,21 +90,32 @@ section {
   height: 10em;
   max-height: 180px;
   font-size: 1.5rem;
+  align-items: center;
+  padding-right: 0.5em;
   display: grid;
   grid-template-areas:
     "image sub"
     "image title"
     "image content";
   grid-template-columns: 48% auto;
-  align-items: center;
-  background-color: red;
-  padding-right: 0.5em;
+  clip-path: polygon(85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%, 0 0);
+  background-color: var(--card1);
+  transition: border 0.3s;
+  scroll-snap-align: center;
+}
+.card-info:hover {
+  border: 0.3em solid var(--red-alt);
+}
+.card-info:hover img {
+  width: 10em;
 }
 
 .card-info img {
   grid-area: image;
   width: 9em;
+  max-width: 200px;
   padding: 1em;
+  margin-left: -15%;
 }
 
 .card-info h3 {
@@ -104,13 +125,17 @@ section {
   align-self: end;
   text-align: left;
   font-size: 0.6em;
+  color: var(--font1);
   text-transform: uppercase;
 }
 
 .card-info h2 {
   grid-area: title;
   width: 100%;
+  max-height: 75px;
+  overflow-y: clip;
   font-size: 1em;
+  color: var(--font1);
   text-align: left;
   align-self: flex-start;
 }
@@ -122,20 +147,21 @@ section {
   margin-bottom: 1em;
   padding-right: 0.1em;
   align-self: self-start;
+  color: var(--font1);
   font-size: 1em;
   font-weight: 400;
   overflow-y: auto;
   overflow-x: hidden;
 }
 .card-info p::-webkit-scrollbar {
-  width: 10px;
+  width: 4px;
 }
 .card-info p::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--white);
 }
 .card-info p::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--gray);
 }
 .card-info p::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--red-alt);
 }
