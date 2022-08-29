@@ -11,12 +11,29 @@ setTimeout(() => {
   displayAfterStart();
 }, 500);
 
+// display menu aside
+function showMenu() {
+  opacityPointer("#aside_menu", "show");
+  document.querySelector("#menu_first_item").focus();
+}
+// hide menu aside
+function hideMenu() {
+  opacityPointer("#aside_menu", "hide");
+}
 
 // exit form with "escape" key
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
+  if (
+    document.querySelector(".section-start") !== null &&
+    event.key === "Escape"
+  ) {
     hideLogin();
     hideSignup();
+  } else if (
+    document.querySelector("#aside_forms").style.display == "flex" &&
+    event.key === "Escape"
+  ) {
+    formView(false);
   }
 });
 

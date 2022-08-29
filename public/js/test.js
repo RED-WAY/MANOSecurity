@@ -1,5 +1,1 @@
-setTimeout(() => {
-  // showLogin();
-  // showSignup();
-  // showMenu();
-}, 500);
+// window.location = "../dashboard.html";

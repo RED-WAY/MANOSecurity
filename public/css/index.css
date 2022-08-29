@@ -11,13 +11,8 @@ section {
   z-index: 0;
   scroll-snap-align: center;
 }
-:has(section[class="section-start"]) {
-  background-color: var(--red);
-}
 
 /* HOME SECTION */
-.section-start {
-}
 .section-start__primary,
 .section-start__second {
   display: flex;
@@ -100,7 +95,7 @@ section {
   grid-template-columns: 48% auto;
   clip-path: polygon(85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%, 0 0);
   background-color: var(--card1);
-  transition: border 0.3s;
+  transition: border 0.3s, background-color 0.5s;
   scroll-snap-align: center;
 }
 .card-info:hover {
@@ -152,6 +147,7 @@ section {
   font-weight: 400;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: color 0.4s;
 }
 .card-info p::-webkit-scrollbar {
   width: 4px;
@@ -164,4 +160,8 @@ section {
 }
 .card-info p::-webkit-scrollbar-thumb:hover {
   background: var(--red-alt);
+}
+
+.second-section {
+  background-image: var(--second-section-back);
 }

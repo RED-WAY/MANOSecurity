@@ -1,0 +1,41 @@
+@import "./variables.css";
+
+@media (min-width: 426px) {
+  .card-buttons button ion-icon {
+    font-size: 3em;
+  }
+}
+
+@media (min-width: 769px) {
+  #dispositivos .content {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  }
+
+  .btn-add p {
+    display: block;
+  }
+  .btn-add ion-icon {
+    font-size: 1.2em;
+    --ionicon-stroke-width: 3em;
+  }
+
+  .card-buttons {
+    width: 100%;
+  }
+  .card-buttons button ion-icon {
+    font-size: 2em;
+  }
+  .card-buttons p {
+    display: flex;
+  }
+
+  .acessos-info p {
+    display: block;
+  }
+}
+
+@media (min-width: 1441px) {
+  #dispositivos .content {
+    grid-template-columns: repeat(auto-fit, minmax(565px, 1fr));
+  }
+}

@@ -30,5 +30,5 @@ app.listen(PORT, function () {
     Application at ${process.env.ENV} proccess mode \n
     \t\tIf "development" => connected to local database (MySQL - Workbench). \n
     \t\tIf "production" => connected to remote database (SQL Server - Azure) \n
-    \t\t\t\tTo SWITCH ENVIRONMENT, comment or uncomment the first 2 lines at: app.js`);
+    \t\t\tTo SWITCH ENVIRONMENT, comment or uncomment the first 2 lines at: app.js`);
 });

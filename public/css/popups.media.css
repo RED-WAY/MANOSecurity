@@ -6,7 +6,7 @@
     height: 70%;
   }
 }
-@media (min-width: 426px) {
+@media (min-width: 426px) { 
   .form-card button {
     max-width: 65%;
     height: 8rem;
