@@ -22,7 +22,7 @@ const mySqlConfig = {
   host: "localhost",
   database: "MANOSecurity",
   user: "root",
-  password: "PASSWORD",
+  password: "#Gf52900796881",
 };
 
 function executeQuery(modelQuery) {

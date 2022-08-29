@@ -1,0 +1,85 @@
+@media (min-width: 426px) {
+  .section-start__primary div {
+    margin-top: 15em;
+  }
+  .section-start__primary img {
+    clip-path: polygon(
+      50% 0%,
+      100% 0,
+      100% 80%,
+      80% 100%,
+      20% 100%,
+      0 80%,
+      0 0
+    );
+  }
+
+  .card-info {
+    width: 22em;
+    font-size: 1.2rem;
+    grid-template-columns: 36% auto;
+  }
+  .card-info:hover img {
+    width: 9.5em;
+  }
+}
+@media (min-width: 769px) {
+  .section-start__primary::before {
+    background: url("../assets/gifs/bannerGif1.gif") no-repeat center;
+    background-size: cover;
+    filter: var(--invert) opacity(0.3);
+  }
+  .section-start__primary div {
+    margin-top: 28em;
+  }
+  .section-start__primary img {
+    width: 40em;
+    clip-path: none;
+  }
+  .section-start__primary div div {
+    display: flex;
+    width: 41em;
+    height: 39em;
+  }
+
+  .nav-cards ul {
+    width: 100%;
+    gap: 0;
+    overflow-y: hidden;
+  }
+
+  .card-info {
+    width: 18em;
+    font-size: 1rem;
+    grid-template-columns: 45% auto;
+  }
+  .card-info img {
+    width: 9em;
+  }
+  .card-info:hover img {
+    width: 9.5em;
+  }
+}
+@media (min-width: 1025px) {
+  .section-start__primary div {
+    margin-top: 13em;
+  }
+  .section-start__primary div div {
+    width: 31em;
+    height: 29em;
+  }
+  .section-start__primary img {
+    width: 30em;
+  }
+}
+@media (min-width: 1201px) {
+  .card-info {
+    width: 22em;
+  }
+  .card-info img {
+    width: 10em;
+  }
+  .card-info:hover img {
+    width: 10.5em;
+  }
+}

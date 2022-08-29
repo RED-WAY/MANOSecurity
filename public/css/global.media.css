@@ -6,6 +6,11 @@ html {
   html {
     font-size: 10px;
   }
+
+  #theme_changer + label {
+    bottom: -11vh;
+    left: -6vw;
+  }
 }
 @media (min-width: 769px) {
   html {
@@ -21,7 +26,7 @@ html {
     display: none;
   }
   .wrapper-logo {
-    width: 20%;
+    display: none;
   }
   .wrapper-buttons {
     width: 15%;
@@ -31,6 +36,17 @@ html {
     height: 17vh;
     bottom: -8vh;
     left: -4vw;
+  }
+  #theme_changer + label {
+    width: 8vw;
+    height: 17vh;
+    bottom: -8vh;
+    left: -4vw;
+  }
+
+  #theme_changer + label:hover {
+    bottom: -7.5vh;
+    left: -3.75vw;
   }
 }
 @media (min-width: 1025px) {

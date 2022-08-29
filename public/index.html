@@ -3,19 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta
+      name="viewport"
+      content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"
+    />
+    <link rel="icon" href="assets/imgs/fingerWhite.png" />
     <title>man.OS</title>
 
     <script src="./js/session.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./css/global.css" />
-    <link rel="stylesheet" type="text/css" href="./css/index.css" />
     <link rel="stylesheet" type="text/css" href="./css/global.media.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./css/index.media.css" />
     <link rel="stylesheet" type="text/css" href="./css/popups.media.css" />
   </head>
 
   <body>
+    <!-- LOADER -->
+    <!-- <div class="loader">
+      <img src="assets/gifs/loading3.gif" class="to-invert" alt="loader gif" draggable="false" />
+    </div> -->
+
     <!-- HEADER -->
     <header>
       <div class="container">
@@ -24,14 +33,14 @@
         </div>
         <nav class="menu-nav">
           <ul>
-            <a href="#" tabindex="1">
-              <li>Empresarial</li>
+            <a href="./dashboard.html" tabindex="1" draggable="false">
+              <li>Objetivo</li>
             </a>
-            <a href="#" tabindex="2">
-              <li>Pessoal</li>
+            <a href="#" tabindex="2" draggable="false">
+              <li>REDWAY</li>
             </a>
-            <a href="#" tabindex="3">
-              <li>Lista Negra</li>
+            <a href="#" tabindex="3" draggable="false">
+              <li>Contato</li>
             </a>
           </ul>
         </nav>
@@ -57,6 +66,31 @@
         </div>
       </div>
     </header>
+
+    <!-- MENU CARD -->
+    <aside class="popup-aside invisible" id="aside_menu">
+      <div class="menu-nav hamburguer">
+        <ul>
+          <a href="#" tabindex="1" id="menu_first_item">
+            <li>Objetivo</li>
+          </a>
+          <a href="#" tabindex="2">
+            <li>REDWAY</li>
+          </a>
+          <a href="#" tabindex="3">
+            <li>Contato</li>
+          </a>
+        </ul>
+        <ion-icon
+          name="close-outline"
+          class="close-form"
+          onclick="hideMenu()"
+          onkeypress="hideMenu()"
+          title="Fechar tela"
+          tabindex="4"
+        />
+      </div>
+    </aside>
 
     <!-- LOGIN CARD -->
     <aside class="popup-aside invisible" id="aside_login">
@@ -174,30 +208,76 @@
       </div>
     </aside>
 
-    <!-- MENU CARD -->
-    <aside class="popup-aside invisible" id="aside_menu">
-      <div class="menu-nav hamburguer">
-        <ul>
-          <a href="#" tabindex="1" id="menu_first_item">
-            <li>Empresarial</li>
-          </a>
-          <a href="#" tabindex="2">
-            <li>Pessoal</li>
-          </a>
-          <a href="#" tabindex="3">
-            <li>Lista Negra</li>
-          </a>
-        </ul>
-        <ion-icon
-          name="close-outline"
-          class="close-form"
-          onclick="hideMenu()"
-          onkeypress="hideMenu()"
-          title="Fechar tela"
-          tabindex="4"
-        />
+    <!-- WELCOME SECTION -->
+    <section class="section-start">
+      <div class="section-start__primary">
+        <div>
+          <img
+            src="assets/gifs/manosGlitch.gif"
+            alt="man.OS ProcessKiller"
+            class="to-invert"
+            draggable="false"
+          />
+          <div class="border-manos"></div>
+        </div>
       </div>
-    </aside>
+      <div class="section-start__second">
+        <div class="menu-nav nav-cards">
+          <ul>
+            <li>
+              <div class="card-info">
+                <img
+                  src="https://via.placeholder.com/80"
+                  alt=""
+                  draggable="false"
+                />
+                <h3>SUBTITLE</h3>
+                <h2>Title</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+                  perspiciatis molestias nemo distinctio aut sed facere magni
+                  incidunt ex in!asdadadadadadwadadwdad ad adwad adwa
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="card-info">
+                <img
+                  src="https://via.placeholder.com/80"
+                  alt=""
+                  draggable="false"
+                />
+                <h3>SUBTITLE</h3>
+                <h2>Title</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+                  perspiciatis molestias nemo distinctio aut sed facere magni
+                  incidunt ex in!
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="card-info">
+                <img
+                  src="https://via.placeholder.com/80"
+                  alt=""
+                  draggable="false"
+                />
+                <h3>SUBTITLE</h3>
+                <h2>Title</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
+                  perspiciatis molestias nemo distinctio aut sed facere magni
+                  incidunt ex in!asdadadadadadwadadwdad ad adwad adwa
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-content second-section"></section>
 
     <!-- THEME CHANGER -->
     <input
@@ -206,7 +286,7 @@
       id="theme_changer"
       title="Alterar tema"
     />
-    <label for="theme_changer" title="Alterar tema"></label>
+    <label for="theme_changer" title="Alterar tema" class="to-invert"></label>
     <!-- IONICONS IMPORT -->
     <script
       type="module"
@@ -218,10 +298,10 @@
     ></script>
   </body>
 </html>
-  
+
 <script src="./js/global.js"></script>
+<script src="./js/global.addons.js"></script>
 <script src="./js/fetches/signup.js"></script>
 <script src="./js/fetches/login.js"></script>
-<script src="./js/global.addons.js"></script>
 <script src="./js/pagesJS/index.js"></script>
 <script src="./js/test.js"></script>

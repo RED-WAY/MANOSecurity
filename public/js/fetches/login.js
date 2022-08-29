@@ -33,8 +33,8 @@ function logIn() {
             sessionStorage.ID_USER = json.idUser;
 
             setTimeout(function () {
-              console.log("LOGIN EFETUADO COM SUCESSO");
               hideLogin();
+              window.location = "../../dashboard.html";
             }, 500);
           });
         } else {

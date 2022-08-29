@@ -1,12 +1,13 @@
 // THEME CHANGING
 const themeTrigger = document.querySelector("#theme_changer");
+const dataTheme = document.documentElement;
+// adjust at begin
+themeTrigger.checked =
+  dataTheme.getAttribute("data-theme") == "light" ? false : true;
 // change theme at checkbox change
 themeTrigger.addEventListener("change", function () {
   let theme = this.checked ? "dark" : "light";
-  document.documentElement.setAttribute("data-theme", theme);
-  for (let element of document.getElementsByClassName("to-invert")) {
-    element.style.filter = `invert(${this.checked ? "1" : "0"})`;
-  }
+  dataTheme.setAttribute("data-theme", theme);
 });
 
 // RANDOMIZE CORNERS
