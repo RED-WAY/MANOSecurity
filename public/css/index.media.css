@@ -50,7 +50,7 @@
 
   .card-info {
     width: 18em;
-    font-size: 1rem;
+    font-size: .9rem;
     grid-template-columns: 45% auto;
   }
   .card-info img {
