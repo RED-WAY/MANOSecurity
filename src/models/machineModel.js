@@ -17,9 +17,6 @@ function addMachine(nameController, idUserController, nameUserController, colect
               
           
            `;
-  // perguntar como sera que vamos add o coleção(dar ideia de um check)
-  // insert into Sector(sectorName)value
-  // ('${colectionController}');
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -33,6 +30,8 @@ function showMachine(company) {
   const dbQuery = `
        
          SELECT *, machineName as nomeMaquina, nameUserAdder as user FROM Machine WHERE fkCompany = ${company};
+
+         
               
           
            `;
@@ -56,8 +55,27 @@ function deleteMachine(idMachine) {
   return database.executeQuery(dbQuery);
 }
 
+function editMachine(idMachine, newName, newCollection){
+  console.log(
+    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
+    idMachine,
+    newName,
+    newCollection
+  );
+  const dbQuery = `
+   UPDATE Machine SET machineName = "${newName}", fkSector = ${newCollection} WHERE idMachine = ${idMachine};
+ 
+            
+        
+         `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
 module.exports = {
   addMachine,
   showMachine,
-  deleteMachine
+  deleteMachine,
+  editMachine
 };

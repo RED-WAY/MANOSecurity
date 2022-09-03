@@ -12,6 +12,10 @@ router.delete("/deleteMachine/:idMachine", function(req,res){
      machineController.deleteMachine(req,res);
 }); 
 
+router.put("/editMachine/:idMachine", function(req,res){
+      machineController.editMachine(req,res);
+});
+
 router.post("/showMachine", function (req, res) {
     machineController.showMachine(req, res);
 });

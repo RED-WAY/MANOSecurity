@@ -68,7 +68,7 @@ function deleteMachine(req, res) {
         res.json(result);
       }
     ).catch(
-      function(error) {
+      function (error) {
         console.log(error);
         console.log("Delete machine has been failed: ", error.sqlMessage);
         res.status(500).json(error.sqlMessage)
@@ -78,9 +78,44 @@ function deleteMachine(req, res) {
 
 }
 
+function editMachine(req, res) {
+  const idMachine = req.params.idMachine;
+  const newNameMachine = req.body.newNameServer;
+  const newCollectionMachine = req.body.newCollectionServer;
+  console.log(idMachine)
+  console.log(newNameMachine)
+  console.log(newCollectionMachine)
+  
+  if (idMachine == undefined) {
+    return false;
+  } else if (newCollectionMachine == undefined ||
+    newCollectionMachine == "") {
+    return false;
+  } else if (newNameMachine == undefined ||
+    newNameMachine == "") {
+    return false;
+  }else{
+
+ machineModel.editMachine(idMachine,newNameMachine, newCollectionMachine)
+    .then(
+      function (result) {
+        res.json(result);
+      }
+    ).catch(
+      function (error) {
+        console.log(error);
+        console.log("edit machine has been failed: ", error.sqlMessage);
+        res.status(500).json(error.sqlMessage)
+      }
+    )
+    }
+
+}
+
 
 module.exports = {
   addMachine,
   showMachine,
-  deleteMachine
+  deleteMachine,
+  editMachine
 };

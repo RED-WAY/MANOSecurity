@@ -43,7 +43,7 @@ function showDevices() {
               <div class="card-info" id="machine${i}" >
               <ion-icon name="desktop-outline"></ion-icon>
               <div class="card-buttons">
-                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', 'machine${i}')">
+                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${json[i].idMachine}')">
                   <ion-icon name="create-outline"></ion-icon>
   
   
@@ -54,7 +54,7 @@ function showDevices() {
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="collection_machine">COLLECTION</h3>
+              <h3 id="collection_machine">COLLECTION ${json[i].fkSector}</h3>
               <h2 id="name_machine${i}">Name: ${json[i].machineName}</h2>
               <p>
   

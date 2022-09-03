@@ -8,9 +8,7 @@ function deleteMachine(idMachine) {
   })
     .then(function (result) {
       if (result.ok) {
-        window.alert(
-          "machine deleted sucesseful: " );
-         showDevices()
+         showDevices();
       } else if (result.status == 404) {
         window.alert("Error 404!");
       } else {
