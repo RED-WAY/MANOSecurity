@@ -19,10 +19,10 @@ function logIn(emailModel, passwordModel) {
     passwordModel
   );
   const dbQuery = `
-        SELECT * 
-          FROM user
-            WHERE userEmail = '${emailModel}' 
-              AND userPassword = AES_ENCRYPT('${passwordModel}', '${encrypter}');
+        SELECT *, fkCompany as company 
+          FROM Consumer
+            WHERE consumerEmail = '${emailModel}' 
+              AND consumerPassword = AES_ENCRYPT('${passwordModel}', '${encrypter}');
             `;
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);

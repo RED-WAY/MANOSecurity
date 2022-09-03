@@ -12,6 +12,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var userRouter = require("./src/routes/users");
+var machineRouter = require("./src/routes/machine");
 // ADD ROUTES HERE
 
 app.use(express.json());
@@ -21,7 +22,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
-app.use("/users", userRouter)
+app.use("/users", userRouter);
+app.use("/machine", machineRouter)
 
 // ADD ROUTES HERE TOO
 

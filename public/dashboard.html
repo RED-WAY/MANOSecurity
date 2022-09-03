@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="./css/dashboard.media.css" />
   </head>
   <body>
+    <!-- onclick="showDivices()" -->
     <!-- HEADER -->
     <header>
       <div class="container">
@@ -125,11 +126,14 @@
           </div>
         </div>
         <div id="dispositivos_content" class="content">
-          <div class="card-info" id="machine1" >
-            <ion-icon name="desktop-outline"></ion-icon>
-            <div class="card-buttons">
-              <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', 'machine1')">
+          
+          <!-- <div class="card-info" id="machine1" > -->
+            <!-- <ion-icon name="desktop-outline"></ion-icon>
+            <div class="card-buttons"> -->
+              <!-- <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', 'machine1')">
                 <ion-icon name="create-outline"></ion-icon>
+
+
                 <p>EDITAR</p>
               </button>
               <button onclick="removeMachine('machine1')">
@@ -137,15 +141,19 @@
                 <p>REMOVER</p>
               </button>
             </div>
-            <h3 id="collection_machine1">COLLECTION</h3>
-            <h2 id="name_machine1">Name</h2>
+            <h3 id="collection_machine1">COLLECTION</h3> -->
+            <!-- <h2 id="name_machine1">Name</h2>
             <p>
+
+              
               <strong>Adicionado em: </strong>10/04/2002<br />
               <strong>Às: </strong>10:45<br />
               <strong>Por: </strong>Pedro Esfuma-Tora
             </p>
+
           </div>
-        </div>
+        </div> -->
+       
       </section>
       <!-- collections -->
       <section id="colecoes" class="sec">
@@ -271,7 +279,16 @@
         <button
           type="button"
           id="button_form"
+          onclick="addMachine()"
         >
+
+        <!-- botão para teste, TIRAR DPS -->
+        <button
+        type="button"
+        id="button_form"
+        onclick=" showDevices()"
+      >
+        <!-- botão para teste, TIRAR DPS -->
           ADICIONAR
         </button>
         <ion-icon
@@ -306,4 +323,7 @@
 
 <script src="./js/global.js"></script>
 <script src="./js/global.addons.js"></script>
+<script src="./js/fetches/addMachine.js"></script>
+<script src="./js/fetches/showDevices.js"></script>
+<script src="./js/fetches/showDevices.js"></script>
 <script src="./js/pagesJS/dashboard.js"></script>

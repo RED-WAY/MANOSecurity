@@ -27,10 +27,11 @@ function logIn() {
           result.json().then((json) => {
             console.log(json);
             console.log(JSON.stringify(json));
-
-            sessionStorage.EMAIL_USER = json.userEmail;
-            sessionStorage.NOME_USER = json.userName;
-            sessionStorage.ID_USER = json.idUser;
+          
+            sessionStorage.COMPANY_USER = json.company;
+            sessionStorage.EMAIL_USER = json.consumerEmail;
+            sessionStorage.NOME_USER = json.consumerName;
+            sessionStorage.ID_USER = json.idConsumer;
 
             setTimeout(function () {
               hideLogin();
