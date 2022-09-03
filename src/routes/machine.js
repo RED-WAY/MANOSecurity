@@ -8,6 +8,10 @@ router.post("/addMachine", function (req, res) {
     machineController.addMachine(req, res);
 });
 
+router.delete("/deleteMachine/:idMachine", function(req,res){
+     machineController.deleteMachine(req,res);
+}); 
+
 router.post("/showMachine", function (req, res) {
     machineController.showMachine(req, res);
 });

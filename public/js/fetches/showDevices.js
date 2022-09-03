@@ -49,7 +49,7 @@ function showDevices() {
   
                   <p>EDITAR</p>
                 </button>
-                <button onclick="removeMachine('machine${i}')">
+                <button onclick="deleteMachine(${json[i].idMachine})">
                   <ion-icon name="trash-outline"></ion-icon>
                   <p>REMOVER</p>
                 </button>
