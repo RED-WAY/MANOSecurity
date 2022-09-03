@@ -1,299 +1,292 @@
 <!DOCTYPE html>
 <html lang="pt-br" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"
-    />
-    <link rel="icon" href="assets/imgs/fingerWhite.png" />
-    <title>man.OS</title>
 
-    <script src="./js/session.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="icon" href="assets/imgs/fingerWhite.png" />
+  <title>man.OS</title>
 
-    <link rel="stylesheet" type="text/css" href="./css/global.css" />
-    <link rel="stylesheet" type="text/css" href="./css/global.media.css" />
-    <link rel="stylesheet" type="text/css" href="./css/index.css" />
-    <link rel="stylesheet" type="text/css" href="./css/index.media.css" />
-    <link rel="stylesheet" type="text/css" href="./css/popups.media.css" />
-  </head>
+  <script src="./js/session.js"></script>
 
-  <body>
-    <!-- LOADER -->
-    <!-- <div class="loader">
+  <link rel="stylesheet" type="text/css" href="./css/global.css" />
+  <link rel="stylesheet" type="text/css" href="./css/global.media.css" />
+  <link rel="stylesheet" type="text/css" href="./css/index.css" />
+  <link rel="stylesheet" type="text/css" href="./css/index.media.css" />
+  <link rel="stylesheet" type="text/css" href="./css/popups.media.css" />
+
+  <!-- AOS Animation (SCROLL ANMS) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- LOADER -->
+  <!-- <div class="loader">
       <img src="assets/gifs/loading3.gif" class="to-invert" alt="loader gif" draggable="false" />
     </div> -->
 
-    <!-- HEADER -->
-    <header>
-      <div class="container">
-        <div class="wrapper-logo">
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="wrapper-logo">
+        <a href="#welcome">
           <div alt="MAN.OS" class="to-invert" draggable="false"></div>
-        </div>
-        <nav class="menu-nav">
-          <ul>
-            <a href="./dashboard.html" tabindex="1" draggable="false">
-              <li>Objetivo</li>
-            </a>
-            <a href="#" tabindex="2" draggable="false">
-              <li>REDWAY</li>
-            </a>
-            <a href="#" tabindex="3" draggable="false">
-              <li>Contato</li>
-            </a>
-          </ul>
-        </nav>
-        <div class="wrapper-buttons">
-          <button
-            type="button"
-            onclick="showLogin()"
-            onmouseenter="borderChange(this)"
-            onmouseleave="resetBorder(this)"
-            title="Entrar com sua conta"
-            tabindex="4"
-          >
-            ACESSAR
-          </button>
-          <ion-icon
-            name="menu-outline"
-            id="menu_icon"
-            title="Abrir menu"
-            onclick="showMenu()"
-            onkeypress="showMenu()"
-            tabindex="4"
-          />
-        </div>
+        </a>
       </div>
-    </header>
-
-    <!-- MENU CARD -->
-    <aside class="popup-aside invisible" id="aside_menu">
-      <div class="menu-nav hamburguer">
+      <nav class="menu-nav">
         <ul>
-          <a href="#" tabindex="1" id="menu_first_item">
+          <a href="#objetivo" tabindex="1" draggable="false">
             <li>Objetivo</li>
           </a>
-          <a href="#" tabindex="2">
+          <a href="#redway" tabindex="2" draggable="false">
             <li>REDWAY</li>
           </a>
-          <a href="#" tabindex="3">
+          <a href="#contato" tabindex="3" draggable="false">
             <li>Contato</li>
           </a>
         </ul>
-        <ion-icon
-          name="close-outline"
-          class="close-form"
-          onclick="hideMenu()"
-          onkeypress="hideMenu()"
-          title="Fechar tela"
-          tabindex="4"
-        />
+      </nav>
+      <div class="wrapper-buttons">
+        <button type="button" id="btnAccess" onclick="showLogin()" onmouseenter="borderChange(this)"
+          onmouseleave="resetBorder(this)" title="Entrar com sua conta" tabindex="4">
+          ACESSAR
+        </button>
+        <ion-icon name="menu-outline" id="menu_icon" title="Abrir menu" onclick="showMenu()" onkeypress="showMenu()"
+          tabindex="5" />
       </div>
-    </aside>
+    </div>
+  </header>
 
-    <!-- LOGIN CARD -->
-    <aside class="popup-aside invisible" id="aside_login">
-      <div class="form-card" id="login_card">
-        <h1>Acessar</h1>
-        <form id="form_login">
-          <div class="form__input">
-            <label for="email">E-mail</label>
-            <input name="email" id="login_email" type="email" tabindex="5" />
-          </div>
-          <div class="form__input">
-            <label for="password">Senha</label>
-            <input
-              name="password"
-              id="login_password"
-              type="password"
-              tabindex="6"
-            />
-          </div>
-          <button
-            type="button"
-            onclick="logIn()"
-            onmouseenter="borderChange(this)"
-            onmouseleave="resetBorder(this)"
-            tabindex="7"
-          >
-            ENTRAR
-          </button>
-        </form>
-        <h3>
-          Ainda não se cadastrou? Seja um
-          <span
-            onclick="hideLogin(), showSignup()"
-            onkeypress="hideLogin(), showSignup()"
-            title="Criar uma conta"
-            tabindex="8"
-            >MANO!</span
-          >
-        </h3>
-        <ion-icon
-          name="close-outline"
-          class="close-form"
-          onclick="hideLogin()"
-          onkeypress="hideLogin()"
-          title="Fechar tela"
-          tabindex="9"
-        />
+  <!-- MENU CARD -->
+  <aside class="popup-aside invisible" id="aside_menu">
+    <div class="menu-nav hamburguer">
+      <ul>
+        <a href="#objetivo" onclick="hideMenu()" tabindex="1" id="menu_first_item">
+          <li>Objetivo</li>
+        </a>
+        <a href="#redway" onclick="hideMenu()" tabindex="2">
+          <li>REDWAY</li>
+        </a>
+        <a href="#contato" onclick="hideMenu()" tabindex="3">
+          <li>Contato</li>
+        </a>
+      </ul>
+      <ion-icon name="close-outline" class="close-form" onclick="hideMenu()" onkeypress="hideMenu()" title="Fechar tela"
+        tabindex="4" />
+    </div>
+  </aside>
+
+  <!-- LOGIN CARD -->
+  <aside class="popup-aside invisible" id="aside_login">
+    <div class="form-card" id="login_card">
+      <h1>Acessar</h1>
+      <form id="form_login">
+        <div class="form__input">
+          <label for="email">E-mail</label>
+          <input name="email" id="login_email" type="email" tabindex="5" />
+        </div>
+        <div class="form__input">
+          <label for="password">Senha</label>
+          <input name="password" id="login_password" type="password" tabindex="6" />
+        </div>
+        <button type="button" onclick="logIn()" onmouseenter="borderChange(this)" onmouseleave="resetBorder(this)"
+          tabindex="7">
+          ENTRAR
+        </button>
+      </form>
+      <ion-icon name="close-outline" class="close-form" onclick="hideLogin()" onkeypress="hideLogin()"
+        title="Fechar tela" tabindex="8" />
+    </div>
+  </aside>
+
+  <!-- WELCOME SECTION -->
+  <section class="section-start" id="welcome">
+    <div class="section-start__primary">
+      <div>
+        <img src="assets/gifs/manosGlitch.gif" alt="man.OS ProcessKiller" class="to-invert" draggable="false" />
+        <div class="border-manos"></div>
       </div>
-    </aside>
-
-    <!-- SIGNUP CARD -->
-    <aside class="popup-aside invisible" id="aside_signup">
-      <div class="form-card" id="signup_card">
-        <h1>Cadastrar</h1>
-        <form id="form_signup">
-          <div class="form__input">
-            <label for="email">E-mail</label>
-            <input name="email" id="signup_email" type="email" tabindex="5" />
-          </div>
-          <div class="form__input">
-            <label for="username">Nome</label>
-            <input
-              name="username"
-              id="signup_username"
-              type="text"
-              tabindex="6"
-            />
-          </div>
-          <div class="form__input">
-            <label for="password">Senha</label>
-            <input
-              name="password"
-              id="signup_password"
-              type="password"
-              tabindex="7"
-            />
-          </div>
-          <div class="form__input">
-            <label for="password_confirm">Confirmar Senha</label>
-            <input
-              name="password_confirm"
-              id="signup_password_confirm"
-              type="password"
-              tabindex="8"
-            />
-          </div>
-          <button
-            type="button"
-            onclick="signUp()"
-            onmouseenter="borderChange(this)"
-            onmouseleave="resetBorder(this)"
-            tabindex="9"
-          >
-            CADASTRAR
-          </button>
-        </form>
-        <h3>
-          Já possui uma conta?
-          <span
-            onclick="hideSignup(), showLogin()"
-            onkeypress="hideSignup(), showLogin()"
-            title="Entrar com sua conta"
-            tabindex="10"
-            >Entre agora!</span
-          >
-        </h3>
-        <ion-icon
-          name="close-outline"
-          class="close-form"
-          onclick="hideSignup()"
-          onkeypress="hideSignup()"
-          title="Fechar tela"
-          tabindex="11"
-        />
+    </div>
+    <div class="section-start__second">
+      <div class="menu-nav nav-cards">
+        <ul>
+          <li>
+            <div class="card-info" data-aos="fade-right">
+              <img class="to-invert" src="assets/imgs/laptop.svg" alt="Laptop" draggable="false" />
+              <h3>CADASTRE</h3>
+              <h2>MAQUINAS E USUARIOS</h2>
+              <p>
+                Para formar uma rede de monitoramento de processos para seus
+                professores e analistas
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="card-info" data-aos="fade-up">
+              <img class="to-invert" src="assets/imgs/collections.svg" alt="Keys" draggable="false" />
+              <h3>ADICIONE</h3>
+              <h2>COLEÇÕES E ACESSOS</h2>
+              <p>
+                Para formar sua própria e customizada lista de acessos e
+                grupos de processos
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="card-info" data-aos="fade-left">
+              <img class="to-invert" src="assets/imgs/locker.svg" alt="Locker" draggable="false" />
+              <h3>ESTUDE</h3>
+              <h2>SEGURANÇA DA INFORMAÇÃO</h2>
+              <p>
+                Com vídeos rápidos e informativos sobre a segurança na
+                computação
+              </p>
+            </div>
+          </li>
+        </ul>
       </div>
-    </aside>
+    </div>
+  </section>
 
-    <!-- WELCOME SECTION -->
-    <section class="section-start">
-      <div class="section-start__primary">
-        <div>
-          <img
-            src="assets/gifs/manosGlitch.gif"
-            alt="man.OS ProcessKiller"
-            class="to-invert"
-            draggable="false"
-          />
-          <div class="border-manos"></div>
+  <!-- BLABLA SECTION -->
+  <section class="section-content second-section" id="objetivo">
+    <div class="container">
+      <div class="sec-content">
+        <h1 data-aos="fade-down-right">Objetivo e Valores</h1>
+        <p data-aos="fade-up-left">
+          &emsp;O man.OS (Modular and Newbie Observing System), proporciona um
+          conjunto de ferramentas que busca facilitar, simultanemaente, a vida
+          dos professores e das intiuições de ensino, mas principalmente no
+          aluno, visando minimizar a frequente falta de foco da mais nova
+          geração. <br /><br />&emsp;Geramos valor ao diminuir o risco de
+          gastos com recomposição de componentes danificados, ou pior,
+          vazamento de informações causadas por invasões cibernéticas. Agora,
+          com os man.OS, você será capaz de gerir com mais dinamismo as
+          perissões de processos em suas máquinas!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REDWAY SECTION -->
+  <section class="section-content third-section" id="redway">
+    <div class="container">
+      <div class="sec-redway">
+        <!-- andrey -->
+        <div class="card-member" data-aos="fade-up">
+          <img src="https://via.placeholder.com/120x200" alt="Andrey Pic" />
+          <h2>
+            <span class="func-detail">A</span>ndrey
+            <span class="func-detail">B</span>enicchio
+          </h2>
+          <h4>
+            DB <span class="func-detail">&</span> Doc
+            <span class="func-detail">&</span> Back-end
+          </h4>
+        </div>
+        <!-- arthur -->
+        <div class="card-member" data-aos="fade-up">
+          <img src="https://via.placeholder.com/120x200" alt="Arthur Pic" />
+          <h2>
+            <span class="func-detail">A</span>rthur
+            <span class="func-detail">P</span>eraçolli
+          </h2>
+          <h4>Back-end <span class="func-detail">&</span> DB</h4>
+        </div>
+        <!-- joão -->
+        <div class="card-member" data-aos="fade-up">
+          <img src="https://via.placeholder.com/120x200" alt="Joao Pic" />
+          <h2>
+            <span class="func-detail">J</span>oão
+            <span class="func-detail">A</span>lvarenga
+          </h2>
+          <h4>
+            Back-end <span class="func-detail">&</span> Front-end
+            <span class="func-detail">&</span> Doc
+          </h4>
+        </div>
+        <!-- murillo -->
+        <div class="card-member" data-aos="fade-up">
+          <img src="https://via.placeholder.com/120x200" alt="Murillo Pic" />
+          <h2>
+            <span class="func-detail">M</span>urillo
+            <span class="func-detail">B</span>orba
+          </h2>
+          <h4>
+            Back-end <span class="func-detail">&</span> Front-end
+            <span class="func-detail">&</span> Doc
+          </h4>
+        </div>
+        <!-- pedro -->
+        <div class="card-member" data-aos="fade-up">
+          <img src="https://via.placeholder.com/120x200" alt="Pedro Pic" />
+          <h2>
+            <span class="func-detail">P</span>edro
+            <span class="func-detail">R</span>anéa
+          </h2>
+          <h4>Back-end <span class="func-detail">&</span> DB</h4>
+        </div>
+        <!-- vitor -->
+        <div class="card-member" data-aos="fade-up">
+          <img src="https://via.placeholder.com/120x200" alt="Vitor Pic" />
+          <h2>
+            <span class="func-detail">V</span>itor
+            <span class="func-detail">M</span>endes
+          </h2>
+          <h4>
+            Front-end <span class="func-detail">&</span> Back-end
+            <span class="func-detail">&</span> DB
+          </h4>
         </div>
       </div>
-      <div class="section-start__second">
-        <div class="menu-nav nav-cards">
-          <ul>
-            <li>
-              <div class="card-info">
-                <img
-                  src="https://via.placeholder.com/80"
-                  alt=""
-                  draggable="false"
-                />
-                <h3>CADASTRE</h3>
-                <h2>MAQUINAS E USUARIOS</h2>
-                <p>
-                  Para formar uma rede de monitoramento de processos para seus
-                  professores e analistas
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="card-info">
-                <img
-                  src="https://via.placeholder.com/80"
-                  alt=""
-                  draggable="false"
-                />
-                <h3>ADICIONE</h3>
-                <h2>COLEÇÕES E ACESSOS</h2>
-                <p>
-                  Para formar sua própria e customizada lista de acessos e
-                  grupos de processos
-                </p>
-              </div>
-            </li>
-            <li>
-              <div class="card-info">
-                <img
-                  src="https://via.placeholder.com/80"
-                  alt=""
-                  draggable="false"
-                />
-                <h3>ESTUDE</h3>
-                <h2>CYBERSEGURANÇA</h2>
-                <p>
-                  Com vídeos rápidos e informativos sobre a segurança na
-                  computação
-                </p>
-              </div>
-            </li>
-          </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section-content fourth-section" id="contato">
+    <div class="form-card signup-form" id="signup_card" data-aos="flip-up">
+      <h1>Contato</h1>
+      <form id="form_signup">
+        <div class="form__input">
+          <label for="email">E-mail</label>
+          <input name="email" id="signup_email" type="email" tabindex="9" />
+        </div>
+        <div class="form__input">
+          <label for="cnpj">CNPJ</label>
+          <input name="cnpj" id="signup_cnpj" type="text" tabindex="10" />
+        </div>
+        <button type="button" onclick="signUp()" onmouseenter="borderChange(this)" onmouseleave="resetBorder(this)"
+          tabindex="11">
+          CONTRATAR
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <section>
+      <div class="container">
+        <div class="footer-info">
+          <a href="https://github.com/RED-WAY" target="_blank"><img src="https://via.placeholder.com/200"
+              alt="REDWAY logo" /></a>
+          <hr />
+          <p>REDWAY <span class="func-detail">©</span> 2022</a></p>
         </div>
       </div>
     </section>
+  </footer>
 
-    <section class="section-content second-section"></section>
+  <!-- THEME CHANGER -->
+  <input type="checkbox" alt="Change theme" id="theme_changer" title="Alterar tema" />
+  <label for="theme_changer" title="Alterar tema" class="to-invert"></label>
+  <!-- IONICONS IMPORT -->
+  <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+</body>
 
-    <!-- THEME CHANGER -->
-    <input
-      type="checkbox"
-      alt="Change theme"
-      id="theme_changer"
-      title="Alterar tema"
-    />
-    <label for="theme_changer" title="Alterar tema" class="to-invert"></label>
-    <!-- IONICONS IMPORT -->
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"
-    ></script>
-  </body>
 </html>
 
 <script src="./js/global.js"></script>
@@ -302,3 +295,11 @@
 <script src="./js/fetches/login.js"></script>
 <script src="./js/pagesJS/index.js"></script>
 <script src="./js/test.js"></script>
+
+<!-- AOS Animation (SCROLL ANMS) -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: false,
+  });
+</script>
