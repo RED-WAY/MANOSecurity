@@ -111,6 +111,7 @@ section {
   max-width: 200px;
   padding: 1em;
   margin-left: -15%;
+  transition: filter 0.6s;
 }
 
 .card-info h3 {
@@ -162,6 +163,124 @@ section {
   background: var(--red-alt);
 }
 
+/* BLABLA SECTION */
 .second-section {
   background-image: var(--second-section-back);
+}
+
+.sec-content {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--font1);
+  pointer-events: none;
+}
+
+.sec-content h1 {
+  font-size: 2.6em;
+}
+.sec-content p {
+  text-align: justify;
+}
+
+/* REDWAY SECTION */
+.third-section {
+  min-height: 100vh;
+  height: fit-content;
+}
+.third-section .container {
+  min-height: 100vh;
+  align-items: end;
+}
+
+.sec-redway {
+  width: 100%;
+  min-height: 80vh;
+  height: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
+  scroll-snap-type: y mandatory;
+}
+
+.card-member {
+  width: 100%;
+  max-width: 31em;
+  height: 20em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--font1);
+  background-color: var(--card1);
+  clip-path: polygon(
+    50% 0%,
+    90% 0,
+    100% 10%,
+    100% 90%,
+    90% 100%,
+    50% 100%,
+    10% 100%,
+    0 90%,
+    0 10%,
+    10% 0
+  );
+}
+
+.card-member img {
+  max-width: 9em;
+  max-height: 15em;
+  width: 100%;
+  height: 100%;
+}
+
+.func-detail {
+  color: var(--red);
+}
+
+/* CONTACT SECTION */
+.fourth-section {
+  display: flex;
+  align-items: center;
+}
+
+.signup-form {
+  position: initial;
+  z-index: 0;
+}
+
+/* FOOTER */
+footer {
+  background-color: var(--back1);
+  transition: background-color 0.5s;
+  box-shadow: 0 0 0.5em var(--red-alt);
+}
+footer section {
+  height: 50vh;
+}
+.footer-info {
+  width: 500px;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.footer-info a {
+  cursor: pointer;
+}
+.footer-info img {
+  width: 200px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.footer-info hr {
+  width: 100%;
+  margin: 1vh;
+  border-color: var(--red);
+}
+.footer-info p {
+  font-size: 2.8vh;
+  color: var(--font1);
 }
