@@ -174,6 +174,7 @@ section {
   flex-direction: column;
   justify-content: center;
   color: var(--font1);
+  pointer-events: none;
 }
 
 .sec-content h1 {
@@ -251,8 +252,9 @@ section {
 
 /* FOOTER */
 footer {
-  background-color: var(--bla);
-  transition: background-color 0.3s;
+  background-color: var(--back1);
+  transition: background-color 0.5s;
+  box-shadow: 0 0 0.5em var(--red-alt);
 }
 footer section {
   height: 50vh;
@@ -266,7 +268,12 @@ footer section {
   align-items: center;
 }
 .footer-info a {
-  cursor: url(../assets/imgs/arrowPointer.png), pointer;
+  cursor: pointer;
+}
+.footer-info img {
+  width: 200px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 .footer-info hr {
   width: 100%;
@@ -275,5 +282,5 @@ footer section {
 }
 .footer-info p {
   font-size: 2.8vh;
-  color: var(--font2);
+  color: var(--font1);
 }
