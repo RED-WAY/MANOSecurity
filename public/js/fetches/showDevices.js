@@ -54,13 +54,13 @@ function showDevices() {
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="collection_machine">COLLECTION ${json[i].fkSector}</h3>
+              <h3 id="collection_machine">COLLECTION: ${json[i].collection}</h3>
               <h2 id="name_machine${i}">Name: ${json[i].machineName}</h2>
               <p>
   
                 
-                <strong>Adicionado em: </strong>${json[i].idMachine}<br />
-                <strong>Às: </strong>calma la<br />
+                <strong>Adicionado em: </strong>${json[i].day}/${json[i].mounth}/${json[i].year}<br />
+                <strong>Às: </strong>${json[i].hour}:${json[i].minut}<br />
                 <strong>Por: </strong>${json[i].nameUserAdder}
               </p>
   

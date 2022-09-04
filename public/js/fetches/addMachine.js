@@ -37,7 +37,7 @@ function addMachine(){
                 setTimeout(() => {
                   console.log("maquina adicionada com sucesso!");
                   formView(false);
-                
+                  showDevices();
                 }, 500);
               } else {
                 throw "There was an error while you´re add a machine!";

@@ -12,8 +12,8 @@ function addMachine(nameController, idUserController, nameUserController, colect
     company
   );
   const dbQuery = `
-        insert into Machine(machineName,fkConsumerAdder, NameUserAdder, fkCompany) values
-           ('${nameController}','${idUserController}','${nameUserController}', '${company}');
+        insert into Machine(machineName,fkConsumerAdder, NameUserAdder, fkCompany, fkSector) values
+           ('${nameController}','${idUserController}','${nameUserController}', '${company}', ${colectionController});
               
           
            `;
@@ -29,11 +29,17 @@ function showMachine(company) {
   );
   const dbQuery = `
        
-         SELECT *, machineName as nomeMaquina, nameUserAdder as user FROM Machine WHERE fkCompany = ${company};
-
-         
-              
-          
+         SELECT *, machineName AS nomeMaquina,
+          nameUserAdder AS user, 
+          sectorName AS collection,
+          YEAR(dtAdded) AS year,
+          MONTH(dtAdded) AS mounth,
+          DAY(dtAdded) As day,
+          HOUR(dtAdded) AS hour,
+          MINUTE(dtAdded) AS minut
+          FROM Machine  JOIN  Sector 
+          ON idSector = fkSector
+          WHERE fkCompany = ${company};   
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -65,8 +71,6 @@ function editMachine(idMachine, newName, newCollection){
   const dbQuery = `
    UPDATE Machine SET machineName = "${newName}", fkSector = ${newCollection} WHERE idMachine = ${idMachine};
  
-            
-        
          `;
 
   console.log("Executing SQL query: \n" + dbQuery);

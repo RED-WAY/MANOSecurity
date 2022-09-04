@@ -15,9 +15,11 @@ function editMachine(idMachine) {
   })
     .then(function (result) {
       if (result.ok) {
-          showDevices()
+          showDevices();
+          formView(false);
+
       } else if (result.status == 404) {
-        window.alert("Deu 404!");
+        window.alert("error 404!");
       } else {
         throw (
           "Delete has fail, result: " +
