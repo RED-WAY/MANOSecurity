@@ -263,3 +263,42 @@ header button:focus {
 .to-invert {
   filter: var(--invert);
 }
+
+/* TABLE */
+table {
+  min-width: 450px;
+  width: 100%;
+  border-radius: 0.5em;
+  /* padding: 0.5em 1em; */
+  border-collapse: collapse;
+}
+.lastTdBorder {
+  border-right: 0;
+}
+/* thead */
+thead {
+  height: 2.5em;
+}
+thead tr {
+  background-color: var(--bla);
+}
+thead td {
+  color: var(--font2);
+  font-size: 1.5em;
+  font-weight: 700;
+  padding: 1em;
+  border-right: 1px solid var(--font2);
+}
+/* tbody */
+tbody {
+  height: 100%;
+  overflow: auto !important;  
+}
+tbody tr:nth-child(odd) {
+  background-color: var(--card1-trans);
+}
+tbody td {
+  padding: 1em;
+  border: 1px solid var(--bla);
+  color: var(--font1);
+}
