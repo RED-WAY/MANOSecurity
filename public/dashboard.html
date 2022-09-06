@@ -71,6 +71,14 @@
             >
               <li>Acessos</li>
             </a>
+            <a
+            href="#"
+            tabindex="4"
+            draggable="false"
+            onclick="showSection('#usuarios')"
+          >
+            <li>Usuários</li>
+          </a>
           </ul>
         </nav>
       </div>
@@ -93,6 +101,9 @@
           </a>
           <a href="#" tabindex="3" onclick="showSection('#acessos')">
             <li>Acessos</li>
+          </a>
+          <a href="#" tabindex="3" onclick="showSection('#usuarios')">
+            <li>Usuários</li>
           </a>
         </ul>
         <ion-icon
@@ -226,6 +237,24 @@
             <p>Process path lorem ipsum</p>
           </div>
         </div>
+      </section>
+      <!-- users -->
+      <section id="usuarios" class="sec">
+        <div class="header">
+          <h1>Usuários</h1>
+          <div>
+            <button
+              class="btn-add"
+              title="Adicionar um novo usuário"
+              onclick="formView(true, 'Adicionar usuário', 'user', 'add')"
+              onkeypress="formView(true, 'Adicionar usuário', 'user', 'add')"
+            >
+              <ion-icon name="add-outline"></ion-icon>
+              <p>ADICIONAR</p>
+            </button>
+          </div>
+        </div>
+        <div id="dispositivos_content" class="content">                             
       </section>
     </section>
 
