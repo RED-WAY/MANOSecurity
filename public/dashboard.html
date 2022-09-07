@@ -1,146 +1,100 @@
 <!DOCTYPE html>
 <html lang="pt-br" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"
-    />
-    <link rel="icon" href="assets/imgs/fingerWhite.png" />
-    <title>man.OS</title>
 
-    <script src="./js/session.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="icon" href="assets/imgs/fingerWhite.png" />
+  <title>man.OS</title>
 
-    <link rel="stylesheet" type="text/css" href="./css/global.css" />
-    <link rel="stylesheet" type="text/css" href="./css/global.media.css" />
-    <link rel="stylesheet" type="text/css" href="./css/popups.css" />
-    <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
-    <link rel="stylesheet" type="text/css" href="./css/dashboard.media.css" />
-  </head>
-  <body  onload="showDevices()">
-    <!-- HEADER -->
-    <header>
-      <div class="container">
-        <div class="wrapper-logo">
-          <div alt="MAN.OS" class="to-invert" draggable="false"></div>
-        </div>
-        <div class="wrapper-buttons">
-          <button
-            type="button"
-            onclick="showLogin()"
-            onmouseenter="borderChange(this)"
-            onmouseleave="resetBorder(this)"
-            title="Entrar com sua conta"
-            tabindex="4"
-          >
-            DASHBOARD
-          </button>
-          <ion-icon
-            name="menu-outline"
-            id="menu_icon"
-            title="Abrir menu"
-            onclick="showMenu()"
-            onkeypress="showMenu()"
-            tabindex="4"
-          />
-        </div>
-        <nav class="menu-nav dashboard">
-          <ul>
-            <a
-              href="#"
-              tabindex="1"
-              draggable="false"
-              onclick="showSection('#dispositivos')"
-            >
-              <li>Dispositivos</li>
-            </a>
-            <a
-              href="#"
-              tabindex="2"
-              draggable="false"
-              onclick="showSection('#colecoes')"
-            >
-              <li>Coleções</li>
-            </a>
-            <a
-              href="#"
-              tabindex="3"
-              draggable="false"
-              onclick="showSection('#acessos')"
-            >
-              <li>Acessos</li>
-            </a>
-            <a
-            href="#"
-            tabindex="4"
-            draggable="false"
-            onclick="showSection('#usuarios')"
-          >
-            <li>Usuários</li>
-            </a>
-          </ul>
-        </nav>
+  <script src="./js/session.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="./css/global.css" />
+  <link rel="stylesheet" type="text/css" href="./css/global.media.css" />
+  <link rel="stylesheet" type="text/css" href="./css/popups.css" />
+  <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
+  <link rel="stylesheet" type="text/css" href="./css/dashboard.media.css" />
+</head>
+
+<body onload="showDevices()">
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="wrapper-logo">
+        <div alt="MAN.OS" class="to-invert" draggable="false"></div>
       </div>
-    </header>
-
-    <!-- MENU CARD -->
-    <aside class="popup-aside invisible" id="aside_menu">
-      <div class="menu-nav hamburguer">
+      <div class="wrapper-buttons">
+        <button type="button" onclick="showLogin()" onmouseenter="borderChange(this)" onmouseleave="resetBorder(this)"
+          title="Entrar com sua conta" tabindex="4">
+          DASHBOARD
+        </button>
+        <ion-icon name="menu-outline" id="menu_icon" title="Abrir menu" onclick="showMenu()" onkeypress="showMenu()"
+          tabindex="4" />
+      </div>
+      <nav class="menu-nav dashboard">
         <ul>
-          <a
-            href="#"
-            tabindex="1"
-            id="menu_first_item"
-            onclick="showSection('#dispositivos')"
-          >
+          <a href="#" tabindex="1" draggable="false" onclick="showSection('#dispositivos')">
             <li>Dispositivos</li>
           </a>
-          <a href="#" tabindex="2" onclick="showSection('#colecoes')">
+          <a href="#" tabindex="2" draggable="false" onclick="showSection('#colecoes')">
             <li>Coleções</li>
           </a>
-          <a href="#" tabindex="3" onclick="showSection('#acessos')">
+          <a href="#" tabindex="3" draggable="false" onclick="showSection('#acessos')">
             <li>Acessos</li>
           </a>
-          <a href="#" tabindex="3" onclick="showSection('#usuarios')">
+          <a href="#" tabindex="4" draggable="false" onclick="showSection('#usuarios')">
             <li>Usuários</li>
           </a>
         </ul>
-        <ion-icon
-          name="close-outline"
-          class="close-form"
-          onclick="hideMenu()"
-          onkeypress="hideMenu()"
-          title="Fechar tela"
-          tabindex="4"
-        />
-      </div>
-    </aside>
+      </nav>
+    </div>
+  </header>
 
-    <!-- SECTION CONTENTS -->
-    <section class="sec-main">
-      <!-- machines -->
-      <section id="dispositivos" class="sec">
-        <div class="header">
-          <h1>Dispositivos</h1>
-          <div>
-            <button
-              class="btn-add"
-              title="Adicionar uma nova máquina"
-              onclick="formView(true, 'Adicionar máquina', 'machine', 'add')"
-              onkeypress="formView(true, 'Adicionar máquina', 'machine', 'add')"
-            >
-              <ion-icon name="add-outline"></ion-icon>
-              <p>ADICIONAR</p>
-            </button>
-          </div>
+  <!-- MENU CARD -->
+  <aside class="popup-aside invisible" id="aside_menu">
+    <div class="menu-nav hamburguer">
+      <ul>
+        <a href="#" tabindex="1" id="menu_first_item" onclick="showSection('#dispositivos')">
+          <li>Dispositivos</li>
+        </a>
+        <a href="#" tabindex="2" onclick="showSection('#colecoes')">
+          <li>Coleções</li>
+        </a>
+        <a href="#" tabindex="3" onclick="showSection('#acessos')">
+          <li>Acessos</li>
+        </a>
+        <a href="#" tabindex="3" onclick="showSection('#usuarios')">
+          <li>Usuários</li>
+        </a>
+      </ul>
+      <ion-icon name="close-outline" class="close-form" onclick="hideMenu()" onkeypress="hideMenu()" title="Fechar tela"
+        tabindex="4" />
+    </div>
+  </aside>
+
+  <!-- SECTION CONTENTS -->
+  <section class="sec-main">
+    <!-- machines -->
+    <section id="dispositivos" class="sec">
+      <div class="header">
+        <h1>Dispositivos</h1>
+        <div>
+          <button class="btn-add" title="Adicionar uma nova máquina"
+            onclick="formView(true, 'Adicionar máquina', 'machine', 'add')"
+            onkeypress="formView(true, 'Adicionar máquina', 'machine', 'add')">
+            <ion-icon name="add-outline"></ion-icon>
+            <p>ADICIONAR</p>
+          </button>
         </div>
-        <div id="dispositivos_content" class="content">
-          
-          <!-- <div class="card-info" id="machine1" > -->
-            <!-- <ion-icon name="desktop-outline"></ion-icon>
+      </div>
+      <div id="dispositivos_content" class="content">
+
+        <!-- <div class="card-info" id="machine1" > -->
+        <!-- <ion-icon name="desktop-outline"></ion-icon>
             <div class="card-buttons"> -->
-              <!-- <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', 'machine1')">
+        <!-- <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', 'machine1')">
                 <ion-icon name="create-outline"></ion-icon>
                 <p>EDITAR</p>
               </button>
@@ -150,7 +104,7 @@
               </button>
             </div>
             <h3 id="collection_machine1">COLLECTION</h3> -->
-            <!-- <h2 id="name_machine1">Name</h2>
+        <!-- <h2 id="name_machine1">Name</h2>
             <p>
 
               
@@ -161,195 +115,186 @@
 
           </div>
         </div> -->
-       
-      </section>
-      <!-- collections -->
-      <section id="colecoes" class="sec">
-        <div class="header">
-          <h1>Coleções</h1>
-          <div>
-            <button
-              class="btn-add"
-              title="Adicionar uma nova coleção"
-              onclick="formView(true, 'Adicionar coleção', 'collection', 'add', null)"
-              onkeypress="formView(true, 'Adicionar coleção', 'collection', 'add', null)"
-            >
-              <ion-icon name="add-outline"></ion-icon>
-              <p>ADICIONAR</p>
+
+    </section>
+    <!-- collections -->
+    <section id="colecoes" class="sec">
+      <div class="header">
+        <h1>Coleções</h1>
+        <div>
+          <button class="btn-add" title="Adicionar uma nova coleção"
+            onclick="formView(true, 'Adicionar coleção', 'collection', 'add', null)"
+            onkeypress="formView(true, 'Adicionar coleção', 'collection', 'add', null)">
+            <ion-icon name="add-outline"></ion-icon>
+            <p>ADICIONAR</p>
+          </button>
+        </div>
+      </div>
+      <div id="colecoes_content" class="content">
+        <div class="card-info" id="collection1">
+          <ion-icon name="layers-outline"></ion-icon>
+          <div class="card-buttons">
+            <button onclick="formView(true, 'Editar coleção', 'collection', 'edit', 'collection1')">
+              <ion-icon name="create-outline"></ion-icon>
+              <p>EDITAR</p>
+            </button>
+            <button onclick="removeCollection('collection1')">
+              <ion-icon name="trash-outline"></ion-icon>
+              <p>REMOVER</p>
             </button>
           </div>
+          <h3 id="level_collection1">LEVEL</h3>
+          <h2 id="name_collection1">Name</h2>
+          <p>
+            - Lorem ipsum dolor sit, amet consectetur<br />
+            - Lorem ipsum dolor sit, amet consectetur<br />
+            - Lorem ipsum dolor sit, amet consectetur<br />
+            - Lorem ipsum dolor sit, amet consectetur<br />
+            - Lorem ipsum dolor sit, amet consectetur<br />
+            - Lorem ipsum dolor sit, amet consectetur<br />
+            - Lorem ipsum dolor sit, amet consectetur<br />
+            - Lorem ipsum dolor sit, amet consectetur<br />
+          </p>
         </div>
-        <div id="colecoes_content" class="content">
-          <div class="card-info" id="collection1">
-            <ion-icon name="layers-outline"></ion-icon>
-            <div class="card-buttons">
-              <button onclick="formView(true, 'Editar coleção', 'collection', 'edit', 'collection1')">
-                <ion-icon name="create-outline"></ion-icon>
-                <p>EDITAR</p>
-              </button>
-              <button onclick="removeCollection('collection1')">
-                <ion-icon name="trash-outline"></ion-icon>
-                <p>REMOVER</p>
-              </button>
-            </div>
-            <h3 id="level_collection1">LEVEL</h3>
-            <h2 id="name_collection1">Name</h2>
-            <p>
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-            </p>
-          </div>
+      </div>
+    </section>
+    <!-- access -->
+    <section id="acessos" class="sec">
+      <div class="header">
+        <h1>Acessos</h1>
+        <div>
+          <button class="btn-add" title="Adicionar uma nova permissão"
+            onclick="formView(true, 'Adicionar acesso', 'access', 'add')"
+            onkeypress="formView(true, 'Adicionar acesso', 'access', 'add')">
+            <ion-icon name="add-outline"></ion-icon>
+            <p>ADICIONAR</p>
+          </button>
         </div>
-      </section>
-      <!-- access -->
-      <section id="acessos" class="sec">
-        <div class="header">
-          <h1>Acessos</h1>
-          <div>
-            <button
-              class="btn-add"
-              title="Adicionar uma nova permissão"
-              onclick="formView(true, 'Adicionar acesso', 'access', 'add')"
-              onkeypress="formView(true, 'Adicionar acesso', 'access', 'add')"
-            >
-              <ion-icon name="add-outline"></ion-icon>
-              <p>ADICIONAR</p>
+      </div>
+      <div id="acessos_content" class="content">
+        <div class="card-info acessos-info" id="access1">
+          <ion-icon name="lock-open-outline"></ion-icon>
+          <div class="card-buttons">
+            <button onclick="remove('access1')">
+              <ion-icon name="trash-outline"></ion-icon>
+              <p>REMOVER</p>
             </button>
           </div>
+          <h3>TYPE</h3>
+          <h2>Name</h2>
+          <p>Process path lorem ipsum</p>
         </div>
-        <div id="acessos_content" class="content">
-          <div class="card-info acessos-info" id="access1">
-            <ion-icon name="lock-open-outline"></ion-icon>
-            <div class="card-buttons">
-              <button onclick="remove('access1')">
-                <ion-icon name="trash-outline"></ion-icon>
-                <p>REMOVER</p>
-              </button>
-            </div>
-            <h3>TYPE</h3>
-            <h2>Name</h2>
-            <p>Process path lorem ipsum</p>
-          </div>
+      </div>
+    </section>
+    <!-- users -->
+    <section id="usuarios" class="sec">
+      <div class="header">
+        <h1>Usuários</h1>
+        <div>
+          <button class="btn-add" title="Adicionar um novo usuário"
+            onclick="formView(true, 'Adicionar usuário', 'user', 'add')"
+            onkeypress="formView(true, 'Adicionar usuário', 'user', 'add')">
+            <ion-icon name="add-outline"></ion-icon>
+            <p>ADICIONAR</p>
+          </button>
         </div>
-      </section>
-      <!-- users -->
-      <section id="usuarios" class="sec">
-        <div class="header">
-          <h1>Usuários</h1>
-          <div>
-            <button
-              class="btn-add"
-              title="Adicionar um novo usuário"
-              onclick="formView(true, 'Adicionar usuário', 'user', 'add')"
-              onkeypress="formView(true, 'Adicionar usuário', 'user', 'add')"
-            >
-              <ion-icon name="add-outline"></ion-icon>
-              <p>ADICIONAR</p>
-            </button>
-          </div>
-        </div>
-        <div class="content table-content">
-          <table class="main-table">                          
-            <thead>
-              <tr>
-                <td>Nome</td>
-                <td>Email</td>
-                <td>Data</td>
-                <td class="lastTdBorder">Gestor</td>
-              </tr>
-            </thead>
+      </div>
+      <div class="content table-content">
+        <table class="main-table">
+          <thead>
+            <tr>
+              <td>Nome</td>
+              <td>Email</td>
+              <td>Data</td>
+              <td class="lastTdBorder">Gestor</td>
+            </tr>
+          </thead>
           <tbody>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
               <td>Fernando Brandão</td>
             </tr>
-            <tr>              
+            <tr>
               <td>Vitor Mendes</td>
               <td>vitormendesco.js@gmail.com</td>
               <td>10/03/2004</td>
@@ -358,87 +303,69 @@
           </tbody>
         </table>
       </div>
-      </section>
     </section>
+  </section>
 
-    <!-- POPUPS -->
-    <aside class="popup-aside" id="aside_forms">
-      <div class="form-card">
-        <h1 id="form_title">Adicionar acesso</h1>
-        <form id="form_inputs">
-          <!-- ACCESS -->
-          <div class="form__input input-access">
-            <label for="accessType">Tipo</label>
-            <select name="accessType" id="access_type">
-              <option value="browser">Web</option>
-              <option value="desktop">Desktop</option>
-            </select>
-          </div>
-          <div class="form__input input-access">
-            <label for="accessName">Nome</label>
-            <input name="accessName" id="access_name" type="text" />
-          </div>
-          <div class="form__input input-access">
-            <label for="accessPath">Processo</label>
-            <input name="accessPath" id="access_path" type="text" />
-          </div>
-          <!-- COLLECTIONS -->
-          <div class="form__input input-collection edit">
-            <label for="collectionLevel">Level</label>
-            <input name="collectionLevel" id="collection_level" type="text" />
-          </div>
-          <div class="form__input input-collection edit">
-            <label for="collectionName">Nome</label>
-            <input name="collectionName" id="collection_name" type="text" />
-          </div>
-          <!-- MACHINES -->
-          <div class="form__input input-machine">
-            <label for="machineName">Token</label>
-            <input name="machineName" id="machine_token" type="text" />
-          </div>
-          <div class="form__input input-machine edit">
-            <label for="machineCollection">Coleção</label>
-            <input name="machineCollection" id="machine_collection" type="text" />
-          </div>
-          <div class="form__input input-machine edit">
-            <label for="machineName">Nome</label>
-            <input name="machineName" id="machine_name" type="text" />
-          </div>
-        </form>
-        <button
-          type="button"
-          id="button_form"
-        >
-          ADICIONAR
-        </button>
-        <ion-icon
-          name="close-outline"
-          class="close-form"
-          onclick="formView(false)"
-          onkeypress="formView(false)"
-          title="Fechar tela"
-        />
-      </div>
-    </aside>
+  <!-- POPUPS -->
+  <aside class="popup-aside" id="aside_forms">
+    <div class="form-card">
+      <h1 id="form_title">Adicionar acesso</h1>
+      <form id="form_inputs">
+        <!-- ACCESS -->
+        <div class="form__input input-access">
+          <label for="accessType">Tipo</label>
+          <select name="accessType" id="access_type">
+            <option value="browser">Web</option>
+            <option value="desktop">Desktop</option>
+          </select>
+        </div>
+        <div class="form__input input-access">
+          <label for="accessName">Nome</label>
+          <input name="accessName" id="access_name" type="text" />
+        </div>
+        <div class="form__input input-access">
+          <label for="accessPath">Processo</label>
+          <input name="accessPath" id="access_path" type="text" />
+        </div>
+        <!-- COLLECTIONS -->
+        <div class="form__input input-collection edit">
+          <label for="collectionLevel">Level</label>
+          <input name="collectionLevel" id="collection_level" type="text" />
+        </div>
+        <div class="form__input input-collection edit">
+          <label for="collectionName">Nome</label>
+          <input name="collectionName" id="collection_name" type="text" />
+        </div>
+        <!-- MACHINES -->
+        <div class="form__input input-machine">
+          <label for="machineName">Token</label>
+          <input name="machineName" id="machine_token" type="text" />
+        </div>
+        <div class="form__input input-machine edit">
+          <label for="machineCollection">Coleção</label>
+          <input name="machineCollection" id="machine_collection" type="text" />
+        </div>
+        <div class="form__input input-machine edit">
+          <label for="machineName">Nome</label>
+          <input name="machineName" id="machine_name" type="text" />
+        </div>
+      </form>
+      <button type="button" id="button_form">
+        ADICIONAR
+      </button>
+      <ion-icon name="close-outline" class="close-form" onclick="formView(false)" onkeypress="formView(false)"
+        title="Fechar tela" />
+    </div>
+  </aside>
 
-    <!-- THEME CHANGER -->
-    <input
-      type="checkbox"
-      alt="Change theme"
-      id="theme_changer"
-      title="Alterar tema"
-    />
-    <label for="theme_changer" title="Alterar tema" class="to-invert"></label>
-    <!-- IONICONS IMPORT -->
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"
-    ></script>
-  </body>
+  <!-- THEME CHANGER -->
+  <input type="checkbox" alt="Change theme" id="theme_changer" title="Alterar tema" />
+  <label for="theme_changer" title="Alterar tema" class="to-invert"></label>
+  <!-- IONICONS IMPORT -->
+  <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+</body>
+
 </html>
 
 <script src="./js/global.js"></script>
@@ -449,3 +376,4 @@
 <script src="./js/fetches/showDevices.js"></script>
 <script src="./js/fetches/showDevices.js"></script>
 <script src="./js/pagesJS/dashboard.js"></script>
+<script src="./js/pagesJS/dashboard.addons.js"></script>
