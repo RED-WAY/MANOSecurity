@@ -136,9 +136,7 @@
             </button>
           </div>
         </div>
-        <div id="dispositivos_content" class="content">
-          
-        </div>
+        <div id="dispositivos_content" class="content"></div>
       </section>
       <!-- collections -->
       <section id="colecoes" class="sec">
@@ -320,6 +318,26 @@
           <div class="form__input input-machine edit">
             <label for="machineName">Nome</label>
             <input name="machineName" id="machine_name" type="text" />
+          </div>
+          <!-- USERS -->
+          <div class="form__input input-user">
+            <label for="userName">Nome</label>
+            <input name="userName" id="user_name" type="text" />
+          </div>
+          <div class="form__input input-user">
+            <label for="userEmail">Email</label>
+            <input name="userEmail" id="user_email" type="text" />
+          </div>
+          <div class="form__input input-user">
+            <label for="userPassword">Senha</label>
+            <input name="userPassword" id="user_password" type="password" />
+          </div>
+          <div class="form__input input-user">
+            <label for="userOffice">Cargo</label>
+            <select name="userOffice" id="user_office">
+              <option value="comum">Comum</option>
+              <option value="admin">Administrador</option>
+            </select>
           </div>
         </form>
         <button type="button" id="button_form" class="btnForm">
