@@ -27,7 +27,7 @@ window.addEventListener("keydown", (event) => {
   if (
     document.querySelector(".popup-form").display != "flex" &&
     event.key == "Enter"
-  ) {    
+  ) {
     document.querySelector(".btnForm").focus();
     setTimeout(() => {
       document.querySelector(".btnForm").click();
@@ -46,6 +46,14 @@ window.addEventListener("keydown", (event) => {
   ) {
     formView(false);
   }
+});
+
+// prevent multiple clicks
+document.querySelector(".btnForm").addEventListener("click", () => {
+  document.querySelector(".btnForm").disabled = true;
+  setTimeout(() => {
+    document.querySelector(".btnForm").disabled = false;
+  }, 2000);
 });
 
 // change visibility of elements with OPACITY and POINTER-EVENTS
