@@ -22,15 +22,26 @@ function hideMenu() {
 }
 
 // exit form with "escape" key
-document.addEventListener("keydown", (event) => {
+window.addEventListener("keydown", (event) => {
+  // press button in form with ENTER
+  if (
+    document.querySelector(".popup-form").display != "flex" &&
+    event.key == "Enter"
+  ) {    
+    document.querySelector(".btnForm").focus();
+    setTimeout(() => {
+      document.querySelector(".btnForm").click();
+    }, 400);
+  }
+
+  // close forms with ESC
   if (
     document.querySelector(".section-start") !== null &&
     event.key === "Escape"
   ) {
     hideLogin();
-    hideSignup();
   } else if (
-    document.querySelector("#aside_forms").style.display == "flex" &&
+    document.querySelector("#aside_forms") !== null &&
     event.key === "Escape"
   ) {
     formView(false);
