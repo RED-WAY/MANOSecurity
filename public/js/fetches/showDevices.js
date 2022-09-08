@@ -1,76 +1,55 @@
-
 function showDevices() {
-
   const companyVar = sessionStorage.COMPANY_USER;
-
 
   // fazer ela dinamica
 
   // while que enquanto user estiver na pagina ele verifica com o banco
   // e se o length que retornar for diferente ele cria as div´s de novo
 
-
-  // confirmar com big vitaminas 
+  // confirmar com big vitaminas
 
   // setInterval(funcao, tempo);
 
   fetch("/machine/showMachine", {
-
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      companyServer: companyVar
+      companyServer: companyVar,
     }),
   })
     .then(function (result) {
-
-
       if (result.ok) {
-        console.log("resposta: ", result);
-
         result.json().then((json) => {
-
-          console.log(JSON.stringify(json));
-
-
-          
-          dispositivos_content.innerHTML = ""
+          dispositivos_content.innerHTML = "";
           for (var i = 0; i < json.length; i++) {
             dispositivos_content.innerHTML += `
-             
-              <div class="card-info" id="machine${i}" >
+              <div class="card-info" id="machine${i}">
               <ion-icon name="desktop-outline"></ion-icon>
+
               <div class="card-buttons">
-                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${json[i].idMachine}')">
-                  <ion-icon name="create-outline"></ion-icon>
-  
-  
+                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${json[i].idMachine}')" class="btn-special">
+                  <ion-icon name="create-outline"></ion-icon>  
                   <p>EDITAR</p>
                 </button>
-                <button onclick="deleteMachine(${json[i].idMachine})">
+                <button onclick="deleteMachine(${json[i].idMachine})" class="btn-special">
                   <ion-icon name="trash-outline"></ion-icon>
                   <p>REMOVER</p>
                 </button>
               </div>
+
               <h3 id="collection_machine">COLLECTION: ${json[i].collection}</h3>
               <h2 id="name_machine${i}">Name: ${json[i].machineName}</h2>
               <p>
-  
-                
                 <strong>Adicionado em: </strong>${json[i].day}/${json[i].mounth}/${json[i].year}<br />
                 <strong>Às: </strong>${json[i].hour}:${json[i].minut}<br />
                 <strong>Por: </strong>${json[i].nameUserAdder}
               </p>
-  
-            </div>
-        
-            
-         `
-
+            </div>  
+         `;
           }
-        })
+        });
       } else {
         throw "There was an error while getting the machines";
       }
@@ -80,6 +59,4 @@ function showDevices() {
     });
 
   return false;
-
-
 }

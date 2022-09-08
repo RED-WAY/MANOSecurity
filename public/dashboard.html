@@ -18,7 +18,8 @@
     <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="./css/dashboard.media.css" />
   </head>
-  <body  onload="showDevices()">
+
+  <body onload="showDevices()">
     <!-- HEADER -->
     <header>
       <div class="container">
@@ -71,6 +72,14 @@
             >
               <li>Acessos</li>
             </a>
+            <a
+              href="#"
+              tabindex="4"
+              draggable="false"
+              onclick="showSection('#usuarios')"
+            >
+              <li>Usuários</li>
+            </a>
           </ul>
         </nav>
       </div>
@@ -93,6 +102,9 @@
           </a>
           <a href="#" tabindex="3" onclick="showSection('#acessos')">
             <li>Acessos</li>
+          </a>
+          <a href="#" tabindex="3" onclick="showSection('#usuarios')">
+            <li>Usuários</li>
           </a>
         </ul>
         <ion-icon
@@ -124,33 +136,7 @@
             </button>
           </div>
         </div>
-        <div id="dispositivos_content" class="content">
-          
-          <!-- <div class="card-info" id="machine1" > -->
-            <!-- <ion-icon name="desktop-outline"></ion-icon>
-            <div class="card-buttons"> -->
-              <!-- <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', 'machine1')">
-                <ion-icon name="create-outline"></ion-icon>
-                <p>EDITAR</p>
-              </button>
-              <button onclick="removeMachine('machine1')">
-                <ion-icon name="trash-outline"></ion-icon>
-                <p>REMOVER</p>
-              </button>
-            </div>
-            <h3 id="collection_machine1">COLLECTION</h3> -->
-            <!-- <h2 id="name_machine1">Name</h2>
-            <p>
-
-              
-              <strong>Adicionado em: </strong>10/04/2002<br />
-              <strong>Às: </strong>10:45<br />
-              <strong>Por: </strong>Pedro Esfuma-Tora
-            </p>
-
-          </div>
-        </div> -->
-       
+        <div id="dispositivos_content" class="content"></div>
       </section>
       <!-- collections -->
       <section id="colecoes" class="sec">
@@ -172,11 +158,17 @@
           <div class="card-info" id="collection1">
             <ion-icon name="layers-outline"></ion-icon>
             <div class="card-buttons">
-              <button onclick="formView(true, 'Editar coleção', 'collection', 'edit', 'collection1')">
+              <button
+                onclick="formView(true, 'Editar coleção', 'collection', 'edit', 'collection1')"
+                class="btn-special"
+              >
                 <ion-icon name="create-outline"></ion-icon>
                 <p>EDITAR</p>
               </button>
-              <button onclick="removeCollection('collection1')">
+              <button
+                onclick="removeCollection('collection1')"
+                class="btn-special"
+              >
                 <ion-icon name="trash-outline"></ion-icon>
                 <p>REMOVER</p>
               </button>
@@ -216,7 +208,7 @@
           <div class="card-info acessos-info" id="access1">
             <ion-icon name="lock-open-outline"></ion-icon>
             <div class="card-buttons">
-              <button onclick="remove('access1')">
+              <button onclick="remove('access1')" class="btn-special">
                 <ion-icon name="trash-outline"></ion-icon>
                 <p>REMOVER</p>
               </button>
@@ -227,10 +219,56 @@
           </div>
         </div>
       </section>
+      <!-- users -->
+      <section id="usuarios" class="sec">
+        <div class="header">
+          <h1>Usuários</h1>
+          <div>
+            <button id="userEditButton" class="btn-special user-btn" disabled>
+              <ion-icon name="create-outline"></ion-icon>
+              <p>EDITAR</p>
+            </button>
+
+            <button id="userRemoveButton" class="btn-special user-btn" disabled>
+              <ion-icon name="trash-outline"></ion-icon>
+              <p>REMOVER</p>
+            </button>
+            <button
+              class="btn-add"
+              title="Adicionar um novo usuário"
+              onclick="formView(true, 'Adicionar usuário', 'user', 'add')"
+              onkeypress="formView(true, 'Adicionar usuário', 'user', 'add')"
+            >
+              <ion-icon name="add-outline"></ion-icon>
+              <p>ADICIONAR</p>
+            </button>
+          </div>
+        </div>
+        <div class="content table-content">
+          <table class="main-table">
+            <thead>
+              <tr>
+                <td>Nome</td>
+                <td>Email</td>
+                <td>Data</td>
+                <td class="lastTdBorder">Gestor</td>
+              </tr>
+            </thead>
+            <tbody id="COMEÇA AQUI PEDRAO">
+              <tr onclick="userBtnAttributes(true, '10')">
+                <td>Vitor Mendes</td>
+                <td>vitormendesco.js@gmail.com</td>
+                <td>10/03/2004</td>
+                <td>Fernando Brandão</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </section>
 
     <!-- POPUPS -->
-    <aside class="popup-aside" id="aside_forms">
+    <aside class="popup-form popup-aside" id="aside_forms">
       <div class="form-card">
         <h1 id="form_title">Adicionar acesso</h1>
         <form id="form_inputs">
@@ -266,17 +304,39 @@
           </div>
           <div class="form__input input-machine edit">
             <label for="machineCollection">Coleção</label>
-            <input name="machineCollection" id="machine_collection" type="text" />
+            <input
+              name="machineCollection"
+              id="machine_collection"
+              type="text"
+            />
           </div>
           <div class="form__input input-machine edit">
             <label for="machineName">Nome</label>
             <input name="machineName" id="machine_name" type="text" />
           </div>
+          <!-- USERS -->
+          <div class="form__input input-user">
+            <label for="userName">Nome</label>
+            <input name="userName" id="user_name" type="text" />
+          </div>
+          <div class="form__input input-user">
+            <label for="userEmail">Email</label>
+            <input name="userEmail" id="user_email" type="text" />
+          </div>
+          <div class="form__input input-user">
+            <label for="userPassword">Senha</label>
+            <input name="userPassword" id="user_password" type="password" />
+          </div>
+          <div class="form__input input-user">
+            <label for="userOffice">Cargo</label>
+            <select name="userOffice" id="user_office">
+              <option value="1">Level 1</option>
+              <option value="2">Level 2</option>
+              <option value="3">Level 3</option>
+            </select>
+          </div>
         </form>
-        <button
-          type="button"
-          id="button_form"
-        >
+        <button type="button" id="button_form" class="btnForm">
           ADICIONAR
         </button>
         <ion-icon
@@ -288,7 +348,6 @@
         />
       </div>
     </aside>
-
     <!-- THEME CHANGER -->
     <input
       type="checkbox"
@@ -317,3 +376,4 @@
 <script src="./js/fetches/showDevices.js"></script>
 <script src="./js/fetches/showDevices.js"></script>
 <script src="./js/pagesJS/dashboard.js"></script>
+<script src="./js/pagesJS/dashboard.addons.js"></script>
