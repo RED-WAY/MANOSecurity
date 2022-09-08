@@ -29,11 +29,11 @@ function showDevices() {
               <ion-icon name="desktop-outline"></ion-icon>
 
               <div class="card-buttons">
-                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${json[i].idMachine}')">
+                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${json[i].idMachine}')" class="btn-special">
                   <ion-icon name="create-outline"></ion-icon>  
                   <p>EDITAR</p>
                 </button>
-                <button onclick="deleteMachine(${json[i].idMachine})">
+                <button onclick="deleteMachine(${json[i].idMachine})" class="btn-special">
                   <ion-icon name="trash-outline"></ion-icon>
                   <p>REMOVER</p>
                 </button>

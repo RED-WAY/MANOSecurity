@@ -200,7 +200,8 @@ button {
 }
 
 header button:hover,
-header button:focus {
+header button:focus,
+.button--enter {
   font-size: 1.1rem;
   color: var(--white);
   background-color: var(--red-alt);
