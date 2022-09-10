@@ -224,7 +224,12 @@
         <div class="header">
           <h1>Usuários</h1>
           <div>
-            <button id="userEditButton" class="btn-special user-btn" disabled>
+            <button
+              onclick="formView(true, 'Editar usuário', 'user', 'edit', 'idUser')"
+              id="userEditButton"
+              class="btn-special user-btn"
+              disabled
+            >
               <ion-icon name="create-outline"></ion-icon>
               <p>EDITAR</p>
             </button>
@@ -315,19 +320,19 @@
             <input name="machineName" id="machine_name" type="text" />
           </div>
           <!-- USERS -->
-          <div class="form__input input-user">
+          <div class="form__input input-user edit">
             <label for="userName">Nome</label>
             <input name="userName" id="user_name" type="text" />
           </div>
-          <div class="form__input input-user">
+          <div class="form__input input-user edit">
             <label for="userEmail">Email</label>
             <input name="userEmail" id="user_email" type="text" />
           </div>
-          <div class="form__input input-user">
+          <div class="form__input input-user edit">
             <label for="userPassword">Senha</label>
             <input name="userPassword" id="user_password" type="password" />
           </div>
-          <div class="form__input input-user">
+          <div class="form__input input-user edit">
             <label for="userOffice">Cargo</label>
             <select name="userOffice" id="user_office">
               <option value="1">Level 1</option>
