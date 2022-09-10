@@ -313,11 +313,13 @@
           </div>
           <div class="form__input input-machine edit">
             <label for="machineCollection">Coleção</label>
-            <input
-              name="machineCollection"
-              id="machine_collection"
-              type="text"
-            />
+            <select name="machineCollection" id="machine_collection">
+              <option value="" disabled selected>selecionar grupo</option>
+                            
+              <!-- <option value="fk1">Adobe</option>
+              <option value="fk2">Office</option>
+              <option value="fk3">Outros</option> -->
+            </select>
           </div>
           <div class="form__input input-machine edit">
             <label for="machineName">Nome</label>
