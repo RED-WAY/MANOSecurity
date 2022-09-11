@@ -315,6 +315,7 @@ tbody {
 
 tbody tr {
   color: var(--font1);
+  cursor: pointer;
   transition: background-color .2s, color .2s, box-shadow .3s, text-shadow .3s;
 }
 

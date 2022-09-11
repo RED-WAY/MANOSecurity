@@ -40,11 +40,13 @@ window.addEventListener("keydown", (event) => {
     event.key === "Escape"
   ) {
     hideLogin();
+    hideMenu();
   } else if (
     document.querySelector("#aside_forms") !== null &&
     event.key === "Escape"
   ) {
     formView(false);
+    hideMenu();
   }
 });
 

@@ -17,6 +17,13 @@
     <link rel="stylesheet" type="text/css" href="./css/popups.css" />
     <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="./css/dashboard.media.css" />
+
+    <!-- CHECKBOXES -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"
+    />
   </head>
 
   <body onload="showDevices()">
@@ -224,7 +231,12 @@
         <div class="header">
           <h1>Usuários</h1>
           <div>
-            <button id="userEditButton" class="btn-special user-btn" disabled>
+            <button
+              onclick="formView(true, 'Editar usuário', 'user', 'edit', 'idUser')"
+              id="userEditButton"
+              class="btn-special user-btn"
+              disabled
+            >
               <ion-icon name="create-outline"></ion-icon>
               <p>EDITAR</p>
             </button>
@@ -291,11 +303,32 @@
           <!-- COLLECTIONS -->
           <div class="form__input input-collection edit">
             <label for="collectionLevel">Level</label>
-            <input name="collectionLevel" id="collection_level" type="text" />
+            <select name="collectionLevel" id="collection_level">
+              <option value="1">Level 1</option>
+              <option value="2">Level 2</option>
+              <option value="3">Level 3</option>
+            </select>
           </div>
           <div class="form__input input-collection edit">
             <label for="collectionName">Nome</label>
             <input name="collectionName" id="collection_name" type="text" />
+          </div>
+          <div class="form__input input-collection div-checkes edit">
+
+            <div class="pretty p-default p-default p-thick p-pulse manos-check">
+              <input type="checkbox" class="get-checkes" id="access1" />
+              <div class="state p-danger-o">
+                <label>Access 1 dahoralegal</label>
+              </div>
+            </div>
+            
+            <div class="pretty p-default p-default p-thick p-pulse manos-check">
+              <input type="checkbox" class="get-checkes" id="access2" />
+              <div class="state p-danger-o">
+                <label>Access 2 dahorabacanaa</label>
+              </div>
+            </div>
+
           </div>
           <!-- MACHINES -->
           <div class="form__input input-machine">
@@ -304,30 +337,32 @@
           </div>
           <div class="form__input input-machine edit">
             <label for="machineCollection">Coleção</label>
-            <input
-              name="machineCollection"
-              id="machine_collection"
-              type="text"
-            />
+            <select name="machineCollection" id="machine_collection">
+              <option value="" disabled selected>selecionar grupo</option>
+
+              <!-- <option value="fk1">Adobe</option>
+              <option value="fk2">Office</option>
+              <option value="fk3">Outros</option> -->
+            </select>
           </div>
           <div class="form__input input-machine edit">
             <label for="machineName">Nome</label>
             <input name="machineName" id="machine_name" type="text" />
           </div>
           <!-- USERS -->
-          <div class="form__input input-user">
+          <div class="form__input input-user edit">
             <label for="userName">Nome</label>
             <input name="userName" id="user_name" type="text" />
           </div>
-          <div class="form__input input-user">
+          <div class="form__input input-user edit">
             <label for="userEmail">Email</label>
             <input name="userEmail" id="user_email" type="text" />
           </div>
-          <div class="form__input input-user">
+          <div class="form__input input-user edit">
             <label for="userPassword">Senha</label>
             <input name="userPassword" id="user_password" type="password" />
           </div>
-          <div class="form__input input-user">
+          <div class="form__input input-user edit">
             <label for="userOffice">Cargo</label>
             <select name="userOffice" id="user_office">
               <option value="1">Level 1</option>
