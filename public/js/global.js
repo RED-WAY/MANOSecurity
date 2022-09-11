@@ -67,3 +67,15 @@ function opacityPointer(element, option) {
     el.classList.add("invisible");
   }
 }
+
+// loader
+function viewLoad(option) {
+  setTimeout(() => {
+    opacityPointer(".loader", option);
+    if (option == "hide") {
+      document.querySelector("body").style.overflowY = "scroll";
+    } else {
+      document.querySelector("body").style.overflowY = "hidden";
+    }
+  }, 1000);
+}

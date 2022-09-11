@@ -19,6 +19,7 @@ body {
   background-color: var(--back1);
   transition: background-color 0.5s;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -90,13 +91,17 @@ a {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: 100;
-  background-color: var(--back1);
+  z-index: 20;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--back1);
+  user-select: none;
+  transition: opacity 1s ease-out;
 }
-
 .loader img {
-  margin: 0 auto;
+  width: 15vw;
+  filter: contrast(0);
 }
 
 /* HEADER */
@@ -248,7 +253,7 @@ header button:focus,
   cursor: pointer;
 }
 
-#theme_changer+label {
+#theme_changer + label {
   background-image: url("../assets/imgs/day_night.png");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -264,11 +269,11 @@ header button:focus,
   transition: rotate 0.8s, bottom 0.4s, left 0.4s, filter 1s;
 }
 
-#theme_changer:checked+label {
+#theme_changer:checked + label {
   rotate: -180deg;
 }
 
-#theme_changer+label:hover {
+#theme_changer + label:hover {
   bottom: -10.5vh;
   left: -4.75vw;
 }
@@ -316,7 +321,8 @@ tbody {
 tbody tr {
   color: var(--font1);
   cursor: pointer;
-  transition: background-color .2s, color .2s, box-shadow .3s, text-shadow .3s;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.3s,
+    text-shadow 0.3s;
 }
 
 tbody tr:nth-child(odd) {
@@ -328,8 +334,8 @@ tbody tr:not([class="tr-clicked"]):hover {
 }
 
 tbody tr[class="tr-clicked"]:hover {
-  box-shadow: 0 0 .5em var(--red-alt);
-  text-shadow: 0 0 .1em var(--white);
+  box-shadow: 0 0 0.5em var(--red-alt);
+  text-shadow: 0 0 0.1em var(--white);
 }
 
 .tr-clicked {

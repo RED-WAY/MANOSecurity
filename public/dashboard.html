@@ -26,13 +26,29 @@
     />
   </head>
 
-  <body onload="showDevices()">
+  <body onload="validateSession(), showDevices(), viewLoad('hide')">
+    <!-- LOADER -->
+    <div class="loader">
+      <img
+        src="assets/gifs/loading4.gif"
+        class="to-invert"
+        alt="loader gif"
+        draggable="false"
+      />
+    </div>
+
     <!-- HEADER -->
     <header>
       <div class="container">
-        <div class="wrapper-logo">
-          <div alt="MAN.OS" class="to-invert" draggable="false"></div>
-        </div>
+        <a
+          onclick="cleanSession()"
+          href="./index.html"
+          style="display: contents"
+        >
+          <div class="wrapper-logo">
+            <div alt="MAN.OS" class="to-invert" draggable="false"></div>
+          </div>
+        </a>
         <div class="wrapper-buttons">
           <button
             type="button"
@@ -314,21 +330,19 @@
             <input name="collectionName" id="collection_name" type="text" />
           </div>
           <div class="form__input input-collection div-checkes edit">
-
             <div class="pretty p-default p-default p-thick p-pulse manos-check">
               <input type="checkbox" class="get-checkes" id="access1" />
               <div class="state p-danger-o">
                 <label>Access 1 dahoralegal</label>
               </div>
             </div>
-            
+
             <div class="pretty p-default p-default p-thick p-pulse manos-check">
               <input type="checkbox" class="get-checkes" id="access2" />
               <div class="state p-danger-o">
                 <label>Access 2 dahorabacanaa</label>
               </div>
             </div>
-
           </div>
           <!-- MACHINES -->
           <div class="form__input input-machine">
