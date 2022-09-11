@@ -3,7 +3,7 @@ function addMachine(){
     // const token = machine_token.value;
     const collectionVar =  machine_collection.value;
     const nameVar = machine_name.value;
-    const nameUser = sessionStorage.NOME_USER;
+    const nameUser = sessionStorage.NAME_USER;
     const idUser = sessionStorage.ID_USER;
     const companyVar = sessionStorage.COMPANY_USER;
  
