@@ -1,6 +1,7 @@
 function editMachine(idMachine) {
-  
-  const collectionVar =  machine_collection.value;
+  showLoading();
+
+  const collectionVar = machine_collection.value;
   const nameVar = machine_name.value;
 
   fetch(`/machine/editMachine/${idMachine}`, {
@@ -10,24 +11,32 @@ function editMachine(idMachine) {
     },
     body: JSON.stringify({
       newCollectionServer: collectionVar,
-      newNameServer: nameVar
+      newNameServer: nameVar,
     }),
   })
     .then(function (result) {
       if (result.ok) {
-          showDevices();
+        showDevices();
+        setTimeout(() => {
+          hideLoading();
           formView(false);
-
+        }, 500);
       } else if (result.status == 404) {
-        window.alert("error 404!");
+        setTimeout(() => {
+          window.alert("error 404!");
+          hideLoading();
+        }, 800);
       } else {
-        throw (
-          "Delete has fail, result: " +
-          result.status
-        );
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
+        throw "Delete has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
       console.log(`#ERRO: ${result}`);
+      setTimeout(() => {
+        hideLoading();
+      }, 3000);
     });
 }

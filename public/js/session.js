@@ -11,7 +11,3 @@ function validateSession() {
 function cleanSession() {
   sessionStorage.clear();
 }
-
-function aguardar() {}
-
-function finalizarAguardar() {}

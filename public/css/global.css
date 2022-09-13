@@ -103,6 +103,13 @@ a {
   width: 15vw;
   filter: contrast(0);
 }
+.load-proc {
+  background-color: var(--card1-trans);
+}
+.load-proc img {
+  width: 12vw;
+  filter: invert(1);
+}
 
 /* HEADER */
 header {

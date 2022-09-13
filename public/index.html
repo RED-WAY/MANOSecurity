@@ -10,6 +10,7 @@
   <title>man.OS</title>
 
   <script src="./js/session.js"></script>
+  <script src="./js/global.addons.js"></script>
 
   <link rel="stylesheet" type="text/css" href="./css/global.css" />
   <link rel="stylesheet" type="text/css" href="./css/global.media.css" />
@@ -21,13 +22,20 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body onload="cleanSession(), viewLoad('hide')">
+<body onload="cleanSession(), viewLoad('hide'), hideLoading()">
   <!-- LOADER -->
   <div class="loader">
     <img
-      src="assets/gifs/loading4.gif"
+      src="assets/gifs/loading.gif"
       class="to-invert"
       alt="loader gif"
+      draggable="false"
+    />
+  </div>
+  <div class="loader load-proc invisible">
+    <img
+      src="assets/gifs/loadingRed.gif"
+      alt="loading process gif"
       draggable="false"
     />
   </div>
@@ -297,7 +305,6 @@
 </html>
 
 <script src="./js/global.js"></script>
-<script src="./js/global.addons.js"></script>
 <script src="./js/fetches/signup.js"></script>
 <script src="./js/fetches/login.js"></script>
 <script src="./js/pagesJS/index.js"></script>

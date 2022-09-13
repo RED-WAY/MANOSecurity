@@ -1,4 +1,5 @@
 function showDevices() {
+  showLoading();
   const companyVar = sessionStorage.COMPANY_USER;
 
   // fazer ela dinamica
@@ -48,14 +49,23 @@ function showDevices() {
               </p>
             </div>  
          `;
+            setTimeout(() => {
+              hideLoading();
+            }, 1000);
           }
         });
       } else {
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
         throw "There was an error while getting the machines";
       }
     })
     .catch((error) => {
       console.log(error);
+      setTimeout(() => {
+        hideLoading();
+      }, 1000);
     });
 
   return false;

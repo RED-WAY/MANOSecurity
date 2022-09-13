@@ -11,6 +11,7 @@
     <title>man.OS</title>
 
     <script src="./js/session.js"></script>
+    <script src="./js/global.addons.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./css/global.css" />
     <link rel="stylesheet" type="text/css" href="./css/global.media.css" />
@@ -26,13 +27,20 @@
     />
   </head>
 
-  <body onload="validateSession(), showDevices(), viewLoad('hide')">
+  <body onload="validateSession(), showDevices(), viewLoad('hide'), hideLoading()">
     <!-- LOADER -->
     <div class="loader">
       <img
-        src="assets/gifs/loading4.gif"
+        src="assets/gifs/loading.gif"
         class="to-invert"
         alt="loader gif"
+        draggable="false"
+      />
+    </div>
+    <div class="loader load-proc invisible">
+      <img
+        src="assets/gifs/loadingRed.gif"
+        alt="loading process gif"
         draggable="false"
       />
     </div>
@@ -343,6 +351,32 @@
                 <label>Access 2 dahorabacanaa</label>
               </div>
             </div>
+            <div class="pretty p-default p-default p-thick p-pulse manos-check">
+              <input type="checkbox" class="get-checkes" id="access1" />
+              <div class="state p-danger-o">
+                <label>Access 1 dahoralegal</label>
+              </div>
+            </div>
+
+            <div class="pretty p-default p-default p-thick p-pulse manos-check">
+              <input type="checkbox" class="get-checkes" id="access2" />
+              <div class="state p-danger-o">
+                <label>Access 2 dahorabacanaa</label>
+              </div>
+            </div>
+            <div class="pretty p-default p-default p-thick p-pulse manos-check">
+              <input type="checkbox" class="get-checkes" id="access1" />
+              <div class="state p-danger-o">
+                <label>Access 1 dahoralegal</label>
+              </div>
+            </div>
+
+            <div class="pretty p-default p-default p-thick p-pulse manos-check">
+              <input type="checkbox" class="get-checkes" id="access2" />
+              <div class="state p-danger-o">
+                <label>Access 2 dahorabacanaa</label>
+              </div>
+            </div>
           </div>
           <!-- MACHINES -->
           <div class="form__input input-machine">
@@ -354,9 +388,9 @@
             <select name="machineCollection" id="machine_collection">
               <option value="" disabled selected>selecionar grupo</option>
 
-              <!-- <option value="fk1">Adobe</option>
+              <option value="1">Adobe</option>
               <option value="fk2">Office</option>
-              <option value="fk3">Outros</option> -->
+              <option value="fk3">Outros</option>
             </select>
           </div>
           <div class="form__input input-machine edit">
@@ -418,7 +452,6 @@
 </html>
 
 <script src="./js/global.js"></script>
-<script src="./js/global.addons.js"></script>
 <script src="./js/fetches/addMachine.js"></script>
 <script src="./js/fetches/remove.js"></script>
 <script src="./js/fetches/edit.js"></script>

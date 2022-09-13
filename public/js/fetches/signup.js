@@ -1,4 +1,6 @@
 function signUp() {
+  showLoading();
+
   const usernameVar = signup_username.value;
   const emailVar = signup_email.value;
   const passwordVar = signup_password.value;
@@ -30,15 +32,22 @@ function signUp() {
         if (result.ok) {
           setTimeout(() => {
             console.log("CADASTRO REALIZADO COM SUCESSO");
+            hideLoading();
             hideSignup();
             showLogin();
-          }, 500);
+          }, 700);
         } else {
+          setTimeout(() => {
+            hideLoading();
+          }, 1000);
           throw "There was an error while signing up!";
         }
       })
       .catch((error) => {
         console.log(error);
+        setTimeout(() => {
+          hideLoading();
+        }, 3000);
       });
 
     return false;
