@@ -1,26 +1,17 @@
 // SESSION MANAGE
-function validarSessao() {
+function validateSession() {
+  const consumerEmail = sessionStorage.EMAIL_USER;
+  const consumerName = sessionStorage.NAME_USER;
 
-  var email = sessionStorage.EMAIL_USUARIO;
-  var nome = sessionStorage.NOME_USUARIO;
-
-  var b_usuario = document.getElementById("b_usuario");
-
-  if (email != null && nome != null) {
-    // window.alert(`Seja bem-vindo, ${nome}!`);
-    b_usuario.innerHTML = nome;
-
-    // finalizarAguardar();
-  } else {
-    window.location = "../login.html";
+  if (consumerEmail == null && consumerName == null) {
+    window.location = "../index.html";
   }
 }
 
-function limparSessao() {
+function cleanSession() {
+  sessionStorage.clear();
 }
 
-function aguardar() {
-}
+function aguardar() {}
 
-function finalizarAguardar() {
-}
+function finalizarAguardar() {}

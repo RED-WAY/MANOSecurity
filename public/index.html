@@ -21,11 +21,16 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="cleanSession(), viewLoad('hide')">
   <!-- LOADER -->
-  <!-- <div class="loader">
-      <img src="assets/gifs/loading3.gif" class="to-invert" alt="loader gif" draggable="false" />
-    </div> -->
+  <div class="loader">
+    <img
+      src="assets/gifs/loading4.gif"
+      class="to-invert"
+      alt="loader gif"
+      draggable="false"
+    />
+  </div>
 
   <!-- HEADER -->
   <header >
@@ -79,7 +84,7 @@
   </aside>
 
   <!-- LOGIN CARD -->
-  <aside class="popup-aside invisible" id="aside_login">
+  <aside class="popup-form popup-aside invisible" id="aside_login">
     <div class="form-card" id="login_card">
       <h1 >Acessar</h1>
       <form id="form_login">
@@ -91,7 +96,7 @@
           <label for="password">Senha</label>
           <input name="password" id="login_password" type="password" tabindex="6" />
         </div>
-        <button type="button" onclick="logIn()" onmouseenter="borderChange(this)" onmouseleave="resetBorder(this)"
+        <button class="btnForm" type="button" onclick="logIn()" onmouseenter="borderChange(this)" onmouseleave="resetBorder(this)"
           tabindex="7">
           ENTRAR
         </button>
@@ -176,7 +181,7 @@
       <div class="sec-redway">
         <!-- andrey -->
         <div class="card-member" data-aos="fade-up">
-          <img src="https://via.placeholder.com/120x200" alt="Andrey Pic" />
+          <img src="assets/imgs/andrey.jpg" alt="Andrey Pic" />
           <h2>
             <span class="func-detail">A</span>ndrey
             <span class="func-detail">B</span>enicchio
@@ -188,7 +193,7 @@
         </div>
         <!-- arthur -->
         <div class="card-member" data-aos="fade-up">
-          <img src="https://via.placeholder.com/120x200" alt="Arthur Pic" />
+          <img src="assets/imgs/arthur.jpg" alt="Arthur Pic" />
           <h2>
             <span class="func-detail">A</span>rthur
             <span class="func-detail">P</span>eraçolli
@@ -197,7 +202,7 @@
         </div>
         <!-- joão -->
         <div class="card-member" data-aos="fade-up">
-          <img src="https://via.placeholder.com/120x200" alt="Joao Pic" />
+          <img src="assets/imgs/joao.jpg" alt="Joao Pic" />
           <h2>
             <span class="func-detail">J</span>oão
             <span class="func-detail">A</span>lvarenga
@@ -208,7 +213,7 @@
         </div>
         <!-- murillo -->
         <div class="card-member" data-aos="fade-up">
-          <img src="https://via.placeholder.com/120x200" alt="Murillo Pic" />
+          <img src="assets/imgs/murillo.jpg" alt="Murillo Pic" />
           <h2>
             <span class="func-detail">M</span>urillo
             <span class="func-detail">B</span>orba
@@ -220,7 +225,7 @@
         </div>
         <!-- pedro -->
         <div class="card-member" data-aos="fade-up">
-          <img src="https://via.placeholder.com/120x200" alt="Pedro Pic" />
+          <img src="assets/imgs/pedro.jpg" alt="Pedro Pic" />
           <h2>
             <span class="func-detail">P</span>edro
             <span class="func-detail">F</span>reitas
@@ -229,7 +234,7 @@
         </div>
         <!-- vitor -->
         <div class="card-member" data-aos="fade-up">
-          <img src="https://via.placeholder.com/120x200" alt="Vitor Pic" />
+          <img src="assets/imgs/vitor.jpg" alt="Vitor Pic" />
           <h2>
             <span class="func-detail">V</span>itor
             <span class="func-detail">M</span>endes

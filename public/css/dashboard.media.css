@@ -4,6 +4,10 @@
   .card-buttons button ion-icon {
     font-size: 3em;
   }
+
+  .user-btn {
+    margin-right: 2em;
+  }
 }
 
 @media (min-width: 769px) {
@@ -22,16 +26,17 @@
   .card-buttons {
     width: 100%;
   }
-  .card-buttons button ion-icon {
+  .btn-special ion-icon {
     font-size: 2em;
   }
-  .card-buttons p {
+  .btn-special p {
     display: flex;
   }
 
   .acessos-info p {
     display: block;
   }
+
 }
 
 @media (min-width: 1441px) {
