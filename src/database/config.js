@@ -21,8 +21,8 @@ const sqlServerConfig = {
 const mySqlConfig = {
   host: "localhost",
   database: "MANOSecurity",
-  user: "root",
-  password: "PASSWORD",
+  user: "aluno",
+  password: "sptech",
 };
 
 function executeQuery(modelQuery) {

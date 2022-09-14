@@ -20,5 +20,9 @@ router.post("/showMachine", function (req, res) {
     machineController.showMachine(req, res);
 });
 
+router.get("/getCollection/:idCompany", function (req, res) {
+    machineController.getCollection(req, res);
+});
+
 
 module.exports = router;

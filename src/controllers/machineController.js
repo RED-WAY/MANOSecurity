@@ -58,6 +58,29 @@ function showMachine(req, res) {
   }
 }
 
+function getCollection(req, res) {
+  const company = req.params.idCompany;
+
+  if (company == undefined) {
+    console.log("company undefined on getCollection")
+    return false;
+  } else {
+    machineModel.getCollection(company)
+      .then(function (result) {
+        res.json(result);
+        console.log('estou aqui, machineController')
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
 
 function deleteMachine(req, res) {
   const idMachine = req.params.idMachine;
@@ -117,5 +140,6 @@ module.exports = {
   addMachine,
   showMachine,
   deleteMachine,
-  editMachine
+  editMachine,
+  getCollection
 };

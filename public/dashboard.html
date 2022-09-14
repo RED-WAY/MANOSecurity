@@ -151,7 +151,8 @@
             <button
               class="btn-add"
               title="Adicionar uma nova máquina"
-              onclick="formView(true, 'Adicionar máquina', 'machine', 'add')"
+              onclick="formView(true, 'Adicionar máquina', 'machine', 'add'), 
+              getCollection(sessionStorage.COMPANY_USER)"
               onkeypress="formView(true, 'Adicionar máquina', 'machine', 'add')"
             >
               <ion-icon name="add-outline"></ion-icon>
@@ -351,12 +352,10 @@
           </div>
           <div class="form__input input-machine edit">
             <label for="machineCollection">Coleção</label>
-            <select name="machineCollection" id="machine_collection">
+            <select name="machineCollection" id="machine_collection_select">
               <option value="" disabled selected>selecionar grupo</option>
 
-              <!-- <option value="fk1">Adobe</option>
-              <option value="fk2">Office</option>
-              <option value="fk3">Outros</option> -->
+              
             </select>
           </div>
           <div class="form__input input-machine edit">
@@ -420,9 +419,11 @@
 <script src="./js/global.js"></script>
 <script src="./js/global.addons.js"></script>
 <script src="./js/fetches/addMachine.js"></script>
+<script src="./js/fetches/getCollection.js"></script>
 <script src="./js/fetches/remove.js"></script>
 <script src="./js/fetches/edit.js"></script>
 <script src="./js/fetches/showDevices.js"></script>
 <script src="./js/fetches/showDevices.js"></script>
 <script src="./js/pagesJS/dashboard.js"></script>
 <script src="./js/pagesJS/dashboard.addons.js"></script>
+
