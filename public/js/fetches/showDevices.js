@@ -4,15 +4,6 @@ function showDevices() {
   const companyVar = sessionStorage.COMPANY_USER;
 
 
-  // fazer ela dinamica
-
-  // while que enquanto user estiver na pagina ele verifica com o banco
-  // e se o length que retornar for diferente ele cria as div´s de novo
-
-
-  // confirmar com big vitaminas 
-
-  // setInterval(funcao, tempo);
 
   fetch("/machine/showMachine", {
 
@@ -36,7 +27,8 @@ function showDevices() {
 
 
           
-          dispositivos_content.innerHTML = ""
+          dispositivos_content.innerHTML = "";
+          
           for (var i = 0; i < json.length; i++) {
             dispositivos_content.innerHTML += `
              
