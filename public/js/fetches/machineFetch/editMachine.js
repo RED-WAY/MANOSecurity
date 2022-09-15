@@ -1,6 +1,6 @@
 function editMachine(idMachine) {
   
-  const collectionVar =  machine_collection.value;
+  const collectionVar =  machine_collection_select.value;
   const nameVar = machine_name.value;
 
   fetch(`/machine/editMachine/${idMachine}`, {

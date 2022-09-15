@@ -9,7 +9,7 @@ function getCollection(idCompany){
   } else {
     
 
-    fetch(`/machine/getCollection/${idCompanyVar}`, {
+    fetch(`/collection/getCollection/${idCompanyVar}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -28,8 +28,8 @@ function getCollection(idCompany){
              `<option value="${json[i].idSector}" selected>${json[i].sectorName}</option>`
             }
             setTimeout(function () {
-              hideLogin();
-              window.location = "../../dashboard.html";
+            
+             
             }, 500);
           });
         } else {

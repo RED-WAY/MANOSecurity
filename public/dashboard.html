@@ -26,7 +26,8 @@
     />
   </head>
 
-  <body onload="validateSession(), showDevices(), viewLoad('hide')">
+  <body onload="validateSession(), showDevices(), viewLoad('hide'), 
+  getCollection(sessionStorage.COMPANY_USER)">
     <!-- LOADER -->
     <div class="loader">
       <img
@@ -151,8 +152,7 @@
             <button
               class="btn-add"
               title="Adicionar uma nova máquina"
-              onclick="formView(true, 'Adicionar máquina', 'machine', 'add'), 
-              getCollection(sessionStorage.COMPANY_USER)"
+              onclick="formView(true, 'Adicionar máquina', 'machine', 'add')"
               onkeypress="formView(true, 'Adicionar máquina', 'machine', 'add')"
             >
               <ion-icon name="add-outline"></ion-icon>
@@ -418,12 +418,11 @@
 
 <script src="./js/global.js"></script>
 <script src="./js/global.addons.js"></script>
-<script src="./js/fetches/addMachine.js"></script>
-<script src="./js/fetches/getCollection.js"></script>
-<script src="./js/fetches/remove.js"></script>
-<script src="./js/fetches/edit.js"></script>
-<script src="./js/fetches/showDevices.js"></script>
-<script src="./js/fetches/showDevices.js"></script>
+<script src="./js/fetches/machineFetch/addMachine.js"></script>
+<script src="./js/fetches//collectioFetch/getCollection.js"></script>
+<script src="./js/fetches//machineFetch/removeMachine.js"></script>
+<script src="./js/fetches//machineFetch/editMachine.js"></script>
+<script src="./js/fetches/machineFetch/showDevices.js"></script>
 <script src="./js/pagesJS/dashboard.js"></script>
 <script src="./js/pagesJS/dashboard.addons.js"></script>
 

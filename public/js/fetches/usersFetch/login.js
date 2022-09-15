@@ -30,7 +30,7 @@ function logIn() {
           
             sessionStorage.COMPANY_USER = json.company;
             sessionStorage.EMAIL_USER = json.consumerEmail;
-            sessionStorage.NOME_USER = json.consumerName;
+            sessionStorage.NAME_USER = json.consumerName;
             sessionStorage.ID_USER = json.idConsumer;
 
             setTimeout(function () {

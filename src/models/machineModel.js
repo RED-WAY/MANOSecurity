@@ -39,7 +39,7 @@ function showMachine(company) {
           MINUTE(dtAdded) AS minut
           FROM Machine  JOIN  Sector 
           ON idSector = fkSector
-          WHERE fkCompany = ${company};   
+          WHERE Machine.fkCompany = ${company};   
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
