@@ -76,7 +76,7 @@
               href="#"
               tabindex="1"
               draggable="false"
-              onclick="showSection('#dispositivos')"
+              onclick="showSection('#dispositivos'), showDevices()"
             >
               <li>Dispositivos</li>
             </a>
@@ -84,7 +84,7 @@
               href="#"
               tabindex="2"
               draggable="false"
-              onclick="showSection('#colecoes')"
+              onclick="showSection('#colecoes'), showCollections()"
             >
               <li>Coleções</li>
             </a>
@@ -92,7 +92,7 @@
               href="#"
               tabindex="3"
               draggable="false"
-              onclick="showSection('#acessos')"
+              onclick="showSection('#acessos'),showAcess()"
             >
               <li>Acessos</li>
             </a>
@@ -100,7 +100,7 @@
               href="#"
               tabindex="4"
               draggable="false"
-              onclick="showSection('#usuarios')"
+              onclick="showSection('#usuarios'), showUsers()"
             >
               <li>Usuários</li>
             </a>
@@ -108,7 +108,7 @@
         </nav>
       </div>
     </header>
-
+<!-- aqui -->
     <!-- MENU CARD -->
     <aside class="popup-aside invisible" id="aside_menu">
       <div class="menu-nav hamburguer">
@@ -179,7 +179,7 @@
           </div>
         </div>
         <div id="colecoes_content" class="content">
-          <div class="card-info" id="collection1">
+          <!-- <div class="card-info" id="collection1">
             <ion-icon name="layers-outline"></ion-icon>
             <div class="card-buttons">
               <button
@@ -209,7 +209,7 @@
               - Lorem ipsum dolor sit, amet consectetur<br />
               - Lorem ipsum dolor sit, amet consectetur<br />
             </p>
-          </div>
+          </div> -->
         </div>
       </section>
       <!-- access -->
@@ -320,7 +320,7 @@
           <!-- COLLECTIONS -->
           <div class="form__input input-collection edit">
             <label for="collectionLevel">Level</label>
-            <select name="collectionLevel" id="collection_level">
+            <select name="collectionLevel" id="collection_level_select">
               <option value="1">Level 1</option>
               <option value="2">Level 2</option>
               <option value="3">Level 3</option>
@@ -419,9 +419,13 @@
 <script src="./js/global.js"></script>
 <script src="./js/global.addons.js"></script>
 <script src="./js/fetches/machineFetch/addMachine.js"></script>
-<script src="./js/fetches//collectioFetch/getCollection.js"></script>
-<script src="./js/fetches//machineFetch/removeMachine.js"></script>
-<script src="./js/fetches//machineFetch/editMachine.js"></script>
+<script src="./js/fetches/collectioFetch/getCollection.js"></script>
+<script src="./js/fetches/collectioFetch/showCollection.js"></script>
+<script src="./js/fetches/collectioFetch/addCollection.js"></script>
+<script src="./js/fetches/collectioFetch/removeCollection.js"></script>
+<script src="./js/fetches/collectioFetch/editCollection.js"></script>
+<script src="./js/fetches/machineFetch/removeMachine.js"></script>
+<script src="./js/fetches/machineFetch/editMachine.js"></script>
 <script src="./js/fetches/machineFetch/showDevices.js"></script>
 <script src="./js/pagesJS/dashboard.js"></script>
 <script src="./js/pagesJS/dashboard.addons.js"></script>

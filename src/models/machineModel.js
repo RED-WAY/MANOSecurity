@@ -77,24 +77,12 @@ function editMachine(idMachine, newName, newCollection){
   return database.executeQuery(dbQuery);
 }
 
-function getCollection(idCompany){
-  console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
-    idCompany
-  );
-  const dbQuery = `
-    select * from sector where fkCompany = ${idCompany}
- 
-         `;
 
-  console.log("Executing SQL query: \n" + dbQuery);
-  return database.executeQuery(dbQuery);
-}
 
 module.exports = {
   addMachine,
   showMachine,
   deleteMachine,
-  editMachine,
-  getCollection
+  editMachine
+  
 };
