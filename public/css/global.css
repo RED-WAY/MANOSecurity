@@ -124,6 +124,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  pointer-events: none;
 }
 
 .message-modal {
@@ -134,8 +135,8 @@ a {
   align-items: center;
   padding: 1.5em;
   background-color: var(--card1);
-  box-shadow: 0 0 .5em var(--red);
-  transition: opacity .5s;
+  box-shadow: 0 0 0.5em var(--red);
+  transition: opacity 0.5s;
 }
 #message_icon {
   font-size: 4em;
@@ -148,10 +149,20 @@ a {
 .message-modal .close-form {
   top: auto;
   font-size: 1.4em;
+  pointer-events: all;
+  cursor: pointer;
 }
 .message-modal .close-form:hover {
   top: auto;
   right: 0;
+}
+#message_bar {
+  width: 100%;
+  height: 0.6em;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transition: width 0.1s, opacity 0.5s;
 }
 
 /* CONFIRMATION */

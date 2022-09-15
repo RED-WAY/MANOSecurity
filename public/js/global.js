@@ -21,6 +21,8 @@ function hideMenu() {
   opacityPointer("#aside_menu", "hide");
 }
 // display message aside
+let barWidth = 100;
+let barInterval;
 function showMessage(status, msg) {
   let imgSrc = "";
   switch (status) {
@@ -36,26 +38,50 @@ function showMessage(status, msg) {
     default:
       imgSrc = "checkmark-circle";
   }
-  
-  const element = document.querySelector(".message-modal"); 
-  document.querySelector('#message_icon').name = imgSrc;
-  document.querySelector('#message_icon').style.color = `var(--msg-${status})`;
+
+  // set content in message
+  const element = document.querySelector(".message-modal");
+  document.querySelector("#message_icon").name = imgSrc;
+  document.querySelector("#message_icon").style.color = `var(--msg-${status})`;
   element.style.boxShadow = `0 0 .5em var(--msg-${status})`;
-  document.querySelector('#message_text').innerHTML = msg;
+  document.querySelector("#message_text").innerHTML = msg;
 
+  if (element.classList.contains("invisible")) {
+    document.querySelector(
+      "#message_bar"
+    ).style.backgroundColor = `var(--msg-${status})`;
+    barInterval = setInterval(() => {
+      if (barWidth <= 0) {
+        clearInterval(barInterval);
+        barWidth = 100;
+      }
 
-  if (element.classList.contains('invisible')) {
+      barWidth--;
+      document.querySelector("#message_bar").style.width = `${barWidth}%`;
+    }, 35);
+
     setTimeout(() => {
       opacityPointer(element, "show");
     }, 0);
-    
-    setTimeout(() => {
+    hideMsgTimeout = setTimeout(() => {
+      setTimeout(() => {
+        clearInterval(barInterval);
+        barWidth = 100;
+        document.querySelector("#message_bar").style.width = "100%";
+      }, 500);
       opacityPointer(element, "hide");
     }, 3000);
   }
 }
 // hide message aside
+let hideMsgTimeout;
 function hideMessage(element) {
+  setTimeout(() => {
+    clearInterval(barInterval);
+    clearInterval(hideMsgTimeout);
+    barWidth = 100;
+    document.querySelector("#message_bar").style.width = "100%";
+  }, 500);
   opacityPointer(element.parentElement, "hide");
 }
 
