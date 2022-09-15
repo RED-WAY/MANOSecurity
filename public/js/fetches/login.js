@@ -5,13 +5,10 @@ function logIn() {
   const passwordVar = login_password.value;
 
   if (emailVar == "" || passwordVar == "") {
-    return false;
-  } else if (emailVar.indexOf("@") == -1) {
+    showMessage("error", "E-mail e/ou senha não preenchido!");
+    hideLoading();
     return false;
   } else {
-    console.log("FORM LOGIN: ", emailVar);
-    console.log("FORM SENHA: ", passwordVar);
-
     fetch("/users/logIn", {
       method: "POST",
       headers: {
@@ -24,12 +21,7 @@ function logIn() {
     })
       .then(function (result) {
         if (result.ok) {
-          console.log(result);
-
           result.json().then((json) => {
-            console.log(json);
-            console.log(JSON.stringify(json));
-
             sessionStorage.COMPANY_USER = json.company;
             sessionStorage.EMAIL_USER = json.consumerEmail;
             sessionStorage.NAME_USER = json.consumerName;
@@ -42,20 +34,22 @@ function logIn() {
             }, 700);
           });
         } else {
+          showMessage("error", "E-mail e/ou senha inválidos!");
           setTimeout(() => {
-            hideLoading();            
+            hideLoading();
             result.text().then((err) => {
               console.error(err);
             });
           }, 1000);
         }
       })
-      .catch((error) => {      
+      .catch((error) => {
+        showMessage("error", "Erro na API!");
         console.log(error);
         setTimeout(() => {
-          hideLoading();          
+          hideLoading();
         }, 3000);
-      })
+      });
     return false;
   }
 }

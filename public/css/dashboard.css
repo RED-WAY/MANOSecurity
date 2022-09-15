@@ -182,7 +182,7 @@ section section {
 }
 
 #acessos_content {
-  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  grid-template-columns: auto;
 }
 .acessos-info {
   /* min-width: 160px; */

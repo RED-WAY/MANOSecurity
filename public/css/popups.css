@@ -17,6 +17,7 @@
 }
 
 .form-card h1 {
+  font-size: 1.3em;
   color: var(--font1);
 }
 .form-card form {

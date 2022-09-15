@@ -20,6 +20,44 @@ function showMenu() {
 function hideMenu() {
   opacityPointer("#aside_menu", "hide");
 }
+// display message aside
+function showMessage(status, msg) {
+  let imgSrc = "";
+  switch (status) {
+    case "success":
+      imgSrc = "checkmark-circle";
+      break;
+    case "error":
+      imgSrc = "close-circle";
+      break;
+    case "warning":
+      imgSrc = "warning";
+      break;
+    default:
+      imgSrc = "checkmark-circle";
+  }
+  
+  const element = document.querySelector(".message-modal"); 
+  document.querySelector('#message_icon').name = imgSrc;
+  document.querySelector('#message_icon').style.color = `var(--msg-${status})`;
+  element.style.boxShadow = `0 0 .5em var(--msg-${status})`;
+  document.querySelector('#message_text').innerHTML = msg;
+
+
+  if (element.classList.contains('invisible')) {
+    setTimeout(() => {
+      opacityPointer(element, "show");
+    }, 0);
+    
+    setTimeout(() => {
+      opacityPointer(element, "hide");
+    }, 3000);
+  }
+}
+// hide message aside
+function hideMessage(element) {
+  opacityPointer(element.parentElement, "hide");
+}
 
 // exit form with "escape" key
 window.addEventListener("keydown", (event) => {
@@ -60,7 +98,8 @@ document.querySelector(".btnForm").addEventListener("click", () => {
 
 // change visibility of elements with OPACITY and POINTER-EVENTS
 function opacityPointer(element, option) {
-  el = document.querySelector(element);
+  const el =
+    typeof element === "string" ? document.querySelector(element) : element;
   if (option === "show") {
     el.classList.remove("invisible");
   } else {

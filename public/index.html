@@ -10,7 +10,6 @@
   <title>man.OS</title>
 
   <script src="./js/session.js"></script>
-  <script src="./js/global.addons.js"></script>
 
   <link rel="stylesheet" type="text/css" href="./css/global.css" />
   <link rel="stylesheet" type="text/css" href="./css/global.media.css" />
@@ -39,6 +38,23 @@
       draggable="false"
     />
   </div>
+
+  <!-- MESSAGE -->
+  <div id="messages">
+    <div class="message-modal invisible">
+      <ion-icon name="" id="message_icon"></ion-icon>
+      <p id="message_text"></p>
+      <ion-icon name="close-outline" class="close-form" onclick="hideMessage(this)"
+      title="Fechar mensagem" />
+    </div>
+  </div>
+
+  <!-- CONFIRMATION -->
+  <!-- <div class="form-card confirmation-modal">
+    <h1 id="confirm_message"></h1>
+    <button id="yes_button">Sim</button>
+    <button id="no_button">Não</button>
+  </div> -->
 
   <!-- HEADER -->
   <header >
@@ -305,10 +321,10 @@
 </html>
 
 <script src="./js/global.js"></script>
+<script src="./js/global.addons.js"></script>
 <script src="./js/fetches/signup.js"></script>
 <script src="./js/fetches/login.js"></script>
 <script src="./js/pagesJS/index.js"></script>
-<script src="./js/test.js"></script>
 
 <!-- AOS Animation (SCROLL ANMS) -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

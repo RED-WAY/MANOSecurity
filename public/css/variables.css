@@ -7,6 +7,10 @@ html {
   --gray-light: #aaa;
 
   --red-alt: #ed1440;
+
+  --msg-success: #04cf55;
+  --msg-error: #ed1440;
+  --msg-warning: #ffa500;
   
   --border1: 0.25em solid var(--red);
   --card-gradient: linear-gradient(to bottom, var(--card1), var(--card1-trans));

@@ -15,6 +15,10 @@
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   }
 
+  #acessos_content {
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  }
+
   .btn-add p {
     display: block;
   }
@@ -36,7 +40,6 @@
   .acessos-info p {
     display: block;
   }
-
 }
 
 @media (min-width: 1441px) {

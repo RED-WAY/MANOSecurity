@@ -111,6 +111,56 @@ a {
   filter: invert(1);
 }
 
+/* MESSAGE */
+#messages {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  z-index: 60;
+  width: 80vw;
+  max-width: 360px;
+  height: fit-content;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.message-modal {
+  width: 100%;
+  min-height: 130px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 1.5em;
+  background-color: var(--card1);
+  box-shadow: 0 0 .5em var(--red);
+  transition: opacity .5s;
+}
+#message_icon {
+  font-size: 4em;
+  margin-right: 0.3em;
+}
+#message_text {
+  font-size: 14px;
+  color: var(--font1);
+}
+.message-modal .close-form {
+  top: auto;
+  font-size: 1.4em;
+}
+.message-modal .close-form:hover {
+  top: auto;
+  right: 0;
+}
+
+/* CONFIRMATION */
+.confirmation-modal {
+  position: fixed;
+  z-index: 50;
+  display: grid;
+}
+
 /* HEADER */
 header {
   width: 100%;
