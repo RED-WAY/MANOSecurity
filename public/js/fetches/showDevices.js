@@ -9,7 +9,7 @@ function showDevices() {
 
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json", 
     },
     body: JSON.stringify({
       companyServer: companyVar
@@ -62,7 +62,7 @@ function showDevices() {
          `
 
           }
-        })
+        });
       } else {
         throw "There was an error while getting the machines";
       }

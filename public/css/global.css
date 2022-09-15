@@ -19,16 +19,21 @@ body {
   background-color: var(--back1);
   transition: background-color 0.5s;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
+
 body::-webkit-scrollbar {
   width: 0.4em;
 }
+
 body::-webkit-scrollbar-track {
   background: var(--gray-light);
 }
+
 body::-webkit-scrollbar-thumb {
   background: var(--gray-dark);
 }
+
 body::-webkit-scrollbar-thumb:hover {
   background: var(--red-alt);
 }
@@ -86,12 +91,17 @@ a {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: 100;
-  background-color: var(--back1);
+  z-index: 20;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--back1);
+  user-select: none;
+  transition: opacity 1s ease-out;
 }
 .loader img {
-  margin: 0 auto;
+  width: 15vw;
+  filter: contrast(0);
 }
 
 /* HEADER */
@@ -155,6 +165,7 @@ nav {
   height: 6em;
   margin-bottom: 0.6em;
 }
+
 .menu-nav a::before {
   content: "";
   width: 0.15em;
@@ -163,6 +174,7 @@ nav {
   background-color: var(--red-dark);
   transition: height 0.3s ease-out, width 0.3s ease-out;
 }
+
 .menu-nav a:hover::before,
 .menu-nav a:focus::before {
   height: 1em;
@@ -191,8 +203,10 @@ button {
   outline: none;
   transition: all 0.4s, font-size 1s;
 }
+
 header button:hover,
-header button:focus {
+header button:focus,
+.button--enter {
   font-size: 1.1rem;
   color: var(--white);
   background-color: var(--red-alt);
@@ -210,6 +224,7 @@ header button:focus {
   border-radius: 100%;
   transition: background-color 0.3s ease-out;
 }
+
 #menu_icon:hover,
 #menu_icon:focus,
 #menu_icon:active {
@@ -237,6 +252,7 @@ header button:focus {
   z-index: 15;
   cursor: pointer;
 }
+
 #theme_changer + label {
   background-image: url("../assets/imgs/day_night.png");
   background-size: 100%;
@@ -252,9 +268,11 @@ header button:focus {
   rotate: 0;
   transition: rotate 0.8s, bottom 0.4s, left 0.4s, filter 1s;
 }
+
 #theme_changer:checked + label {
   rotate: -180deg;
 }
+
 #theme_changer + label:hover {
   bottom: -10.5vh;
   left: -4.75vw;
@@ -262,4 +280,70 @@ header button:focus {
 
 .to-invert {
   filter: var(--invert);
+}
+
+/* TABLE */
+table {
+  min-width: 450px;
+  width: 100%;
+  border-radius: 0.5em;
+  /* padding: 0.5em 1em; */
+  border-collapse: collapse;
+}
+
+.lastTdBorder {
+  border-right: 0;
+}
+
+/* thead */
+thead {
+  height: 2.5em;
+}
+
+thead tr {
+  background-color: var(--bla);
+}
+
+thead td {
+  color: var(--font2);
+  font-size: 1.5em;
+  font-weight: 700;
+  padding: 1em;
+  border-right: 1px solid var(--font2);
+}
+
+/* tbody */
+tbody {
+  height: 100%;
+  overflow: auto !important;
+}
+
+tbody tr {
+  color: var(--font1);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.3s,
+    text-shadow 0.3s;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--card1-trans);
+}
+
+tbody tr:not([class="tr-clicked"]):hover {
+  background-color: var(--table-hover);
+}
+
+tbody tr[class="tr-clicked"]:hover {
+  box-shadow: 0 0 0.5em var(--red-alt);
+  text-shadow: 0 0 0.1em var(--white);
+}
+
+.tr-clicked {
+  background-color: var(--red-alt) !important;
+  color: var(--white);
+}
+
+tbody td {
+  padding: 1em;
+  border: 1px solid var(--bla);
 }

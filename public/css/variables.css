@@ -36,6 +36,8 @@ html[data-theme="light"] {
   --success: #04cf55;
   --success-trans: #04cf5599;
 
+  --table-hover: #aaa;
+
   --invert: invert(0);
   --second-section-back: linear-gradient(to bottom, #F7F7F7, var(--back1));
 }
@@ -63,6 +65,8 @@ html[data-theme="dark"] {
 
   --success: #007E33;
   --success-trans: #007E3350;
+
+  --table-hover: #5f5f5f;
 
   --invert: invert(1);
   --second-section-back: linear-gradient(to bottom, #080808, var(--back1));

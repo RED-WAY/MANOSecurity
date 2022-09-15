@@ -22,19 +22,40 @@ function hideMenu() {
 }
 
 // exit form with "escape" key
-document.addEventListener("keydown", (event) => {
+window.addEventListener("keydown", (event) => {
+  // press button in form with ENTER
+  if (
+    document.querySelector(".popup-form").display != "flex" &&
+    event.key == "Enter"
+  ) {
+    document.querySelector(".btnForm").focus();
+    setTimeout(() => {
+      document.querySelector(".btnForm").click();
+    }, 400);
+  }
+
+  // close forms with ESC
   if (
     document.querySelector(".section-start") !== null &&
     event.key === "Escape"
   ) {
     hideLogin();
-    hideSignup();
+    hideMenu();
   } else if (
-    document.querySelector("#aside_forms").style.display == "flex" &&
+    document.querySelector("#aside_forms") !== null &&
     event.key === "Escape"
   ) {
     formView(false);
+    hideMenu();
   }
+});
+
+// prevent multiple clicks
+document.querySelector(".btnForm").addEventListener("click", () => {
+  document.querySelector(".btnForm").disabled = true;
+  setTimeout(() => {
+    document.querySelector(".btnForm").disabled = false;
+  }, 2000);
 });
 
 // change visibility of elements with OPACITY and POINTER-EVENTS
@@ -45,4 +66,16 @@ function opacityPointer(element, option) {
   } else {
     el.classList.add("invisible");
   }
+}
+
+// loader
+function viewLoad(option) {
+  setTimeout(() => {
+    opacityPointer(".loader", option);
+    if (option == "hide") {
+      document.querySelector("body").style.overflowY = "scroll";
+    } else {
+      document.querySelector("body").style.overflowY = "hidden";
+    }
+  }, 1000);
 }

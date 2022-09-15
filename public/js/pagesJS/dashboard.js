@@ -72,3 +72,20 @@ function verifyInputs(formParam, mode, editId) {
   button.textContent = mode == "add" ? "ADICIONAR" : "EDITAR";
   button.setAttribute("onclick", `${mode + formParam}(${editId})`);
 }
+
+// ENABLE USERS BUTTONS
+function userBtnAttributes(isEnabling, idUser) {
+  const editBtn = document.querySelector('#userEditButton');
+  const removeBtn = document.querySelector('#userRemoveButton');
+  if (isEnabling) {
+    editBtn.disabled = false;
+    removeBtn.disabled = false;
+
+    // SET ATTRIBUTE HERE
+  } else {
+     editBtn.disabled = true;
+     removeBtn.disabled = true;
+
+     // UNSET ATTRIBUTE HERE
+  }
+}
