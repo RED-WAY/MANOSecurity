@@ -89,7 +89,7 @@
             onclick="showLogin()"
             onmouseenter="borderChange(this)"
             onmouseleave="resetBorder(this)"
-            title="Entrar com sua conta"
+            title="Acessar DASHBOARD"
             tabindex="4"
           >
             DASHBOARD
@@ -137,6 +137,15 @@
             >
               <li>Usuários</li>
             </a>
+            <a
+              class="quit-icon"
+              href="#"
+              draggable="false"
+              onclick="cleanSession(), validateSession()"
+              title="Voltar ao início"
+            >
+              <ion-icon name="exit"></ion-icon>
+            </a>
           </ul>
         </nav>
       </div>
@@ -162,6 +171,15 @@
           </a>
           <a href="#" tabindex="3" onclick="showSection('#usuarios')">
             <li>Usuários</li>
+          </a>
+          <a
+            class="quit-icon"
+            href="#"
+            draggable="false"
+            onclick="cleanSession(), validateSession()"
+            title="Voltar ao início"
+          >
+            <ion-icon name="exit"></ion-icon><p>SAIR</p>
           </a>
         </ul>
         <ion-icon

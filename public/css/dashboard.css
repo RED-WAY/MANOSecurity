@@ -20,6 +20,22 @@ header {
   height: 0.15em;
 }
 
+.quit-icon {
+  font-size: 2em;
+}
+.quit-icon p {
+  font-size: .6em !important;
+}
+.quit-icon:hover {
+  color: var(--red-alt);
+}
+.quit-icon:hover::before,
+.quit-icon:hover::after,
+.quit-icon::after {
+  width: 0 !important;
+  height: 0 !important;
+}
+
 /* DASH CONTENT */
 body {
   width: 100vw;
