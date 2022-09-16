@@ -1,7 +1,8 @@
 html {
   --white: #fff;
   --black: #222;
-  
+  --black-trans: #00000090;
+
   --gray: #888;
   --gray-dark: #5e5e5e;
   --gray-light: #aaa;

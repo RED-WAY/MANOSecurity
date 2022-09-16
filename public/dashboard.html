@@ -61,11 +61,15 @@
     </div>
 
     <!-- CONFIRMATION -->
-    <!-- <div class="form-card confirmation-modal">
-      <h1 id="confirm_message"></h1>
-      <button id="yes_button">Sim</button>
-      <button id="no_button">Não</button>
-    </div> -->
+    <div class="confirmation-back invisible">
+      <div class="form-card confirmation-modal">
+        <h1 id="confirm_message">Adicionar uma nova máquina?</h1>
+        <div class="confirmation-modal--buttons">
+          <button id="yes_button">Sim</button>
+          <button id="no_button" onclick="hideConfirm()">Não</button>
+        </div>
+      </div>
+    </div>
 
     <!-- HEADER -->
     <header>

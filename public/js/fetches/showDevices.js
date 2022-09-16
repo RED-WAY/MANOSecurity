@@ -34,7 +34,7 @@ function showDevices() {
                   <ion-icon name="create-outline"></ion-icon>  
                   <p>EDITAR</p>
                 </button>
-                <button onclick="deleteMachine(${json[i].idMachine})" class="btn-special">
+                <button onclick="setYes('Remover máquina', 'deleteMachine', '${json[i].idMachine}')" class="btn-special">
                   <ion-icon name="trash-outline"></ion-icon>
                   <p>REMOVER</p>
                 </button>

@@ -166,10 +166,36 @@ a {
 }
 
 /* CONFIRMATION */
+.confirmation-back {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: var(--black-trans);
+  z-index: 14;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .5s;
+}
 .confirmation-modal {
   position: fixed;
   z-index: 50;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  gap: 2em;
+}
+#confirm_message {
+  text-align: center;
+}
+.confirmation-modal--buttons {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+.confirmation-modal--buttons button {
+  width: 50% !important;
 }
 
 /* HEADER */

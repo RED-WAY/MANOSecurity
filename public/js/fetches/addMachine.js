@@ -34,13 +34,15 @@ function addMachine() {
         console.log("resposta: ", result);
 
         if (result.ok) {
+          console.log("maquina adicionada com sucesso!");
+          hideConfirm();
           setTimeout(() => {
-            console.log("maquina adicionada com sucesso!");
             hideLoading();
             formView(false);
             showDevices();
           }, 200);
         } else {
+          hideConfirm();
           setTimeout(() => {
             hideLoading();
           }, 1000);
@@ -49,6 +51,7 @@ function addMachine() {
       })
       .catch((error) => {
         console.log(error);
+        hideConfirm();
         setTimeout(() => {
           hideLoading();
         }, 3000);

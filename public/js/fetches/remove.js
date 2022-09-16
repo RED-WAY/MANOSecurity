@@ -12,13 +12,16 @@ function deleteMachine(idMachine) {
         setTimeout(() => {
           showDevices();
           hideLoading();
+          hideConfirm();
         }, 500);
       } else if (result.status == 404) {
+        hideConfirm();
         setTimeout(() => {
           window.alert("Error 404!");
           hideLoading();
         }, 800);
       } else {
+        hideConfirm();
         setTimeout(() => {
           hideLoading();
         }, 1000);
@@ -27,6 +30,7 @@ function deleteMachine(idMachine) {
     })
     .catch(function (result) {
       console.log(`#ERRO: ${result}`);
+      hideConfirm();
       setTimeout(() => {
         hideLoading();
       }, 3000);

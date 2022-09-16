@@ -24,6 +24,7 @@ function hideMenu() {
 let barWidth = 100;
 let barInterval;
 function showMessage(status, msg) {
+  // verify state and set message icon
   let imgSrc = "";
   switch (status) {
     case "success":
@@ -39,17 +40,19 @@ function showMessage(status, msg) {
       imgSrc = "checkmark-circle";
   }
 
-  // set content in message
+  // set custom content in message
   const element = document.querySelector(".message-modal");
   document.querySelector("#message_icon").name = imgSrc;
   document.querySelector("#message_icon").style.color = `var(--msg-${status})`;
   element.style.boxShadow = `0 0 .5em var(--msg-${status})`;
   document.querySelector("#message_text").innerHTML = msg;
 
+  // execute if there is no message displayed
   if (element.classList.contains("invisible")) {
     document.querySelector(
       "#message_bar"
     ).style.backgroundColor = `var(--msg-${status})`;
+    // restart bar
     barInterval = setInterval(() => {
       if (barWidth <= 0) {
         clearInterval(barInterval);
@@ -60,9 +63,12 @@ function showMessage(status, msg) {
       document.querySelector("#message_bar").style.width = `${barWidth}%`;
     }, 35);
 
+    // show message
     setTimeout(() => {
       opacityPointer(element, "show");
     }, 0);
+
+    // timer to remove message and restart
     hideMsgTimeout = setTimeout(() => {
       setTimeout(() => {
         clearInterval(barInterval);
@@ -76,12 +82,14 @@ function showMessage(status, msg) {
 // hide message aside
 let hideMsgTimeout;
 function hideMessage(element) {
+  // reset progress bar
   setTimeout(() => {
     clearInterval(barInterval);
     clearInterval(hideMsgTimeout);
     barWidth = 100;
     document.querySelector("#message_bar").style.width = "100%";
   }, 500);
+  // hide message div
   opacityPointer(element.parentElement, "hide");
 }
 
