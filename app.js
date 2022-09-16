@@ -14,6 +14,7 @@ var indexRouter = require("./src/routes/index");
 var userRouter = require("./src/routes/users");
 var machineRouter = require("./src/routes/machine");
 var collectionRouter = require("./src/routes/collection");
+var acessRouter = require("./src/routes/acess");
 // ADD ROUTES HERE
 
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/machine", machineRouter);
 app.use("/collection", collectionRouter);
+app.use("/acess", acessRouter);
 
 // ADD ROUTES HERE TOO
 

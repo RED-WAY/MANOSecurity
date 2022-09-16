@@ -1,4 +1,3 @@
-const { showCollection } = require("../../../../src/models/collectionModel");
 
 function addCollection() {
 
@@ -37,7 +36,7 @@ function addCollection() {
                     setTimeout(() => {
                        
                         formView(false);
-                        showCollection();
+                        showCollections();
                     }, 500);
                 } else {
                     throw "There was an error while you´re add a collection!";

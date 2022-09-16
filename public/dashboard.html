@@ -229,18 +229,7 @@
           </div>
         </div>
         <div id="acessos_content" class="content">
-          <div class="card-info acessos-info" id="access1">
-            <ion-icon name="lock-open-outline"></ion-icon>
-            <div class="card-buttons">
-              <button onclick="remove('access1')" class="btn-special">
-                <ion-icon name="trash-outline"></ion-icon>
-                <p>REMOVER</p>
-              </button>
-            </div>
-            <h3>TYPE</h3>
-            <h2>Name</h2>
-            <p>Process path lorem ipsum</p>
-          </div>
+         
         </div>
       </section>
       <!-- users -->
@@ -279,6 +268,7 @@
               <tr>
                 <td>Nome</td>
                 <td>Email</td>
+                <td>permissão</td>
                 <td>Data</td>
                 <td class="lastTdBorder">Gestor</td>
               </tr>
@@ -287,8 +277,10 @@
               <tr onclick="userBtnAttributes(true, '10')">
                 <td>Vitor Mendes</td>
                 <td>vitormendesco.js@gmail.com</td>
+                <td>ADMIN</td>
                 <td>10/03/2004</td>
                 <td>Fernando Brandão</td>
+                
               </tr>
             </tbody>
           </table>
@@ -418,10 +410,14 @@
 
 <script src="./js/global.js"></script>
 <script src="./js/global.addons.js"></script>
+<script src="./js/fetches/usersFetch/login.js"></script>
 <script src="./js/fetches/machineFetch/addMachine.js"></script>
 <script src="./js/fetches/collectioFetch/getCollection.js"></script>
 <script src="./js/fetches/collectioFetch/showCollection.js"></script>
 <script src="./js/fetches/collectioFetch/addCollection.js"></script>
+<script src="./js/fetches/acess/addAcess.js"></script>
+<script src="./js/fetches/acess/showAcess.js"></script>
+<script src="./js/fetches/acess/removeAcess.js"></script>
 <script src="./js/fetches/collectioFetch/removeCollection.js"></script>
 <script src="./js/fetches/collectioFetch/editCollection.js"></script>
 <script src="./js/fetches/machineFetch/removeMachine.js"></script>
