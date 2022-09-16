@@ -1,82 +1,99 @@
 @media (min-width: 376px) {
   .form__input {
+    /* SIZE */
     height: 5em;
   }
   .form__input input {
+    /* SIZE */
     height: 70%;
   }
 }
 @media (min-width: 426px) { 
   .form-card button {
+    /* SIZE */
     max-width: 65%;
     height: 8rem;
+    /* TEXT */
     font-size: 2.4rem;
   }
   .form-card button:hover,
   .form-card button:focus {
+    /* SIZE */
     max-width: 100%;
   }
   .form-card h3 {
+    /* TEXT */
     font-size: 2rem;
   }
   .form__input label {
+    /* TEXT */
     font-size: 1.2em;
   }
   .form__input input {
+    /* TEXT */
     font-size: 1em;
   }
 }
 @media (min-width: 769px) {
   .form-card {
-    font-size: 1.4rem;
+    /* SIZE */
     width: 33em;
-    padding: 4em 0;
     height: fit-content;
+    /* POSITION */
+    padding: 4em 0;
+    /* TEXT */
+    font-size: 1.4rem;
+    /* BACKGROUND */
     background-color: var(--card1);
+    /* BORDER */
     border-radius: 0.1em;
   }
   .form-card form {
+    /* SIZE */
     width: 70%;
   }
   .form-card button {
+    /* SIZE */
     max-width: 60%;
     height: 4rem;
+    /* TEXT */
     font-size: 1.4rem;
   }
   .form-card button:hover,
   .form-card button:focus {
+    /* SIZE */
     max-width: 70%;
   }
   .form-card h3 {
+    /* TEXT */
     font-size: 1.5rem;
   }
   .form__input input {
+    /* SIZE */
     height: 60%;
   }
 }
 @media (min-width: 1025px) {
   .form-card {
-    font-size: 1rem;
+    /* SIZE */
     width: 32em;
+    /* TEXT */
+    font-size: 1rem;
   }
   .form-card button {
+    /* SIZE */
     height: 3rem;
+    /* TEXT */
     font-size: 0.9rem;
   }
   .form-card h3 {
+    /* TEXT */
     font-size: 1.1rem;
   }
 }
 @media (min-width: 1441px) {
   .form-card h3 {
+    /* TEXT */
     font-size: 0.9rem;
   }
-}
-@media (min-width: 1921px) {
-}
-@media (min-width: 2561px) {
-}
-@media (min-width: 3841px) {
-}
-@media (min-width: 7679px) {
 }

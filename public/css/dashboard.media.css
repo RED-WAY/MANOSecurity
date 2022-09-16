@@ -2,48 +2,59 @@
 
 @media (min-width: 426px) {
   .card-buttons button ion-icon {
+    /* ICON SIZE */
     font-size: 3em;
   }
 
   .user-btn {
+    /* POSITION */
     margin-right: 2em;
   }
 }
 
 @media (min-width: 769px) {
   #dispositivos .content {
+    /* DISPLAY */
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   }
 
   #acessos_content {
+    /* DISPLAY */
     grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
   }
 
   .btn-add p {
+    /* DISPLAY */
     display: block;
   }
   .btn-add ion-icon {
+    /* ICON SIZE */
     font-size: 1.2em;
     --ionicon-stroke-width: 3em;
   }
 
   .card-buttons {
+    /* SIZE */
     width: 100%;
   }
   .btn-special ion-icon {
+    /* ICON SIZE */
     font-size: 2em;
   }
   .btn-special p {
+    /* DISPLAY */
     display: flex;
   }
 
   .acessos-info p {
+    /* DISPLAY */
     display: block;
   }
 }
 
 @media (min-width: 1441px) {
   #dispositivos .content {
+    /* DISPLAY */
     grid-template-columns: repeat(auto-fit, minmax(565px, 1fr));
   }
 }
