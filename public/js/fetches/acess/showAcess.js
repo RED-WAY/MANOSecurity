@@ -1,34 +1,23 @@
-function showAcess(){
+function showAcess() {
+  const idCompany = sessionStorage.COMPANY_USER;
 
+  fetch(`/acess/showAcess/${idCompany}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (result) {
+      if (result.ok) {
+        console.log("resposta: ", result);
 
-    const idCompany = sessionStorage.COMPANY_USER;
+        result.json().then((json) => {
+          console.log(JSON.stringify(json));
 
+          acessos_content.innerHTML = "";
 
-
-    fetch(`/acess/showAcess/${idCompany}`, {
-  
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json", 
-      },
-     
-    })
-      .then(function (result) {
-  
-  
-        if (result.ok) {
-          console.log("resposta: ", result);
-  
-          result.json().then((json) => {
-  
-            console.log(JSON.stringify(json));
-  
-  
-            
-            acessos_content.innerHTML = "";
-            
-            for (var i = 0; i < json.length; i++) {
-                acessos_content.innerHTML += `
+          for (var i = 0; i < json.length; i++) {
+            acessos_content.innerHTML += `
                
                 <div class="card-info acessos-info" id="${json[i].idOperation}">
                 <ion-icon name="lock-open-outline"></ion-icon>
@@ -43,17 +32,16 @@ function showAcess(){
                 <p>Process path: ${json[i].OperationPath}</p>
               </div>
               
-           `
-  
-            }
-          });
-        } else {
-          throw "There was an error while getting the machines";
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  
-    return false;
+           `;
+          }
+        });
+      } else {
+        throw "There was an error while getting the machines";
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return false;
 }

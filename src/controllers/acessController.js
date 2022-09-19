@@ -30,7 +30,7 @@ function addAcess(req, res) {
     }
   }
 
-  function addAcess2(req, res) {
+  function addAccessCompany(req, res) {
 
     var type = req.body.typeServer;
     var name = req.body.nameServer;
@@ -44,7 +44,7 @@ function addAcess(req, res) {
     } else if(process == undefined){
         res.status(400).send("process is undefined")
     }else{
-      acessModel.addAcess2(type, name, process, company)
+      acessModel.addAccessCompany(type, name, process, company)
         .then(function (result) {
           res.json(result);
           console.log('estou aqui, collectionController')
@@ -108,5 +108,5 @@ module.exports = {
     addAcess,
     showAcess,
     deleteAcess,
-    addAcess2
+    addAccessCompany
   };

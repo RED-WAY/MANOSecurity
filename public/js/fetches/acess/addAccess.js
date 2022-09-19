@@ -45,7 +45,7 @@ function addAccess() {
 
         if (result.ok) {
 
-          fetch("/acess/addAcess2", {
+          fetch("/acess/addAccessCompany", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

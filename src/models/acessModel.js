@@ -21,7 +21,7 @@ function addAcess(type, name, process, company) {
     return database.executeQuery(dbQuery);
 }
 
-function addAcess2(type, name, process, company) {
+function addAccessCompany(type, name, process, company) {
   console.log(
       "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
       type,
@@ -30,8 +30,6 @@ function addAcess2(type, name, process, company) {
       company
   );
   const dbQuery = `
-      
-
           INSERT INTO companyOperations(fkOperation, fkCompany)values
            ( (SELECT (idOperation)
            FROM Operation
@@ -70,9 +68,7 @@ function showAcess(idCompany){
       acess
     );
     const dbQuery = `
-          DELETE FROM operation WHERE idOperation = ${acess};
-              
-          
+          DELETE FROM operation WHERE idOperation = ${acess};              
            `;
   
     console.log("Executing SQL query: \n" + dbQuery);
@@ -82,5 +78,5 @@ module.exports = {
     addAcess,
     showAcess,
     deleteAcess,
-    addAcess2
+    addAccessCompany
 };

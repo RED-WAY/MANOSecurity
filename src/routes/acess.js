@@ -8,8 +8,8 @@ router.post("/addAcess", function (req, res) {
     acessController.addAcess(req, res);
 });
 
-router.post("/addAcess2", function (req, res) {
-    acessController.addAcess2(req, res);
+router.post("/addAccessCompany", function (req, res) {
+    acessController.addAccessCompany(req, res);
 });
 
 router.get("/showAcess/:idCompany", function (req, res) {
