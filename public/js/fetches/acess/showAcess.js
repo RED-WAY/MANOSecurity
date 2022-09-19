@@ -1,11 +1,11 @@
 function showAcess(){
 
 
-    const companyVar = sessionStorage.COMPANY_USER;
+    const idCompany = sessionStorage.COMPANY_USER;
 
 
 
-    fetch(`/acess/showAcess/${companyVar}`, {
+    fetch(`/acess/showAcess/${idCompany}`, {
   
       method: "GET",
       headers: {

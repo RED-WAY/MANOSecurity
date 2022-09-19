@@ -14,17 +14,35 @@ function addAcess(type, name, process, company) {
               VALUES
             ('${name}','${process}','${type}');
 
-            INSERT INTO companyOperations(fkOperation, fkCompany)values
-             ( (SELECT (idOperation)
-             FROM Operation
-             WHERE 
-             operationName = '${name}' and
-             operationPath = '${process}' and
-             OperationType ='${type}'), ${company} );
              `;
 
     console.log("Executing SQL query: \n" + dbQuery);
+
     return database.executeQuery(dbQuery);
+}
+
+function addAcess2(type, name, process, company) {
+  console.log(
+      "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
+      type,
+      name,
+      process,
+      company
+  );
+  const dbQuery = `
+      
+
+          INSERT INTO companyOperations(fkOperation, fkCompany)values
+           ( (SELECT (idOperation)
+           FROM Operation
+           WHERE 
+           operationName = '${name}' and
+           operationPath = '${process}' and
+           OperationType ='${type}'), ${company} );
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
 }
 
 
@@ -63,5 +81,6 @@ function showAcess(idCompany){
 module.exports = {
     addAcess,
     showAcess,
-    deleteAcess
+    deleteAcess,
+    addAcess2
 };

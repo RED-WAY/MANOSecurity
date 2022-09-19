@@ -30,7 +30,38 @@ function addAcess(req, res) {
     }
   }
 
+  function addAcess2(req, res) {
+
+    var type = req.body.typeServer;
+    var name = req.body.nameServer;
+    var process = req.body.processServer;
+    const company = req.body.companyServer
+  
+    if (type == undefined) {
+      res.status(400).send("collectionLevel is undefined!");
+    } else if (name == undefined) {
+      res.status(400).send("collectionName is undefined!");
+    } else if(process == undefined){
+        res.status(400).send("process is undefined")
+    }else{
+      acessModel.addAcess2(type, name, process, company)
+        .then(function (result) {
+          res.json(result);
+          console.log('estou aqui, collectionController')
+        })
+        .catch(function (error) {
+          console.log(error);
+          console.error(
+            "\nThere was an error executing the query!\nERROR: ",
+            error.sqlMessage
+          );
+          res.status(500).json(error.sqlMessage);
+        });
+    }
+  }
+
   function showAcess(req, res) {
+    
     const company = req.params.idCompany;
   
     if (company == undefined) {
@@ -76,5 +107,6 @@ function addAcess(req, res) {
 module.exports = {
     addAcess,
     showAcess,
-    deleteAcess
+    deleteAcess,
+    addAcess2
   };
