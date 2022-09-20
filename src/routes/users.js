@@ -16,4 +16,12 @@ router.post("/logIn", function (req, res) {
     userController.logIn(req, res);
 });
 
+router.get("/showUsers/:idCompany", function (req, res) {
+    userController.showUsers(req, res);
+});
+
+router.post("/addUser/:idCompany", function (req, res) {
+    userController.addUser(req, res);
+});
+
 module.exports = router;

@@ -1,12 +1,13 @@
 const database = require("../database/config");
 const encrypter = process.env.AES_ENCRYPT;
 
-function listModel() {
+function showUsers(idCompany) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function listModel()"
+    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function listModel()",
+    idCompany
   );
   const dbQuery = `
-        SELECT * FROM userTable;
+        SELECT * FROM Consumer where fkCompany = ${idCompany};
     `;
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -44,8 +45,29 @@ function signUp(usernameModel, emailModel, passwordModel) {
   return database.executeQuery(dbQuery);
 }
 
+function addUser(idCompany, userName, 
+  userEmail, userPassword,manager, carg) {
+  console.log(
+    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function signupModel():",
+    idCompany, 
+    userName,  
+    userEmail, 
+    userPassword, 
+    carg,
+    manager
+  );
+
+  const dbQuery = `
+  insert into Consumer(consumerName, consumerEmail, consumerPassword, responsability, manager, fkCompany) values
+  ( "${userName}","${userEmail}","${userPassword}","${carg}",${manager},${idCompany});
+    `;
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
 module.exports = {
-  listModel,
+  showUsers,
   logIn,
   signUp,
+  addUser
 };

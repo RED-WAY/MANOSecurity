@@ -1,8 +1,15 @@
 var userModel = require("../models/userModel");
 
-function listController(req, res) {
+
+
+function showUsers(req, res) {
+
+   const idCompany = req.params.idCompany;
+   if(idCompany == undefined){
+    return false;
+   }else{
   userModel
-    .listModel()
+    .showUsers(idCompany)
     .then(function (result) {
       if (result.length > 0) {
         res.status(200).json(result);
@@ -19,7 +26,7 @@ function listController(req, res) {
       res.status(500).json(error.sqlMessage);
     });
 }
-
+}
 function logIn(req, res) {
   const emailController = req.body.emailServer;
   const passwordController = req.body.passwordServer;
@@ -83,8 +90,52 @@ function signUp(req, res) {
   }
 }
 
+function addUser(req, res){
+  const idCompany = req.params.idCompany;
+  const userName = req.body.userNameServer;
+  const userEmail = req.body.userEmailServer;
+  const userPassword = req.body.userPasswordServer;
+  const carg = req.body.cargServer;
+  const manager = req.body.manegerServer;
+ 
+  if (userEmail == undefined) {
+    console.log('userName is not defined')
+} else if (userPassword == undefined) {
+ 
+    console.log('userPassowrd is not defined')
+} else if (carg == undefined){
+    console.log('user Carg is not defined')
+
+
+}else if(userName == undefined){
+    console.log('userName is not defined')
+}else if(manager == undefined){
+  console.log('user manager is not defined')
+}{
+
+    userModel.addUser(idCompany, userName, 
+      userEmail, userPassword,manager, carg)
+    .then(function (result) {
+      res.json(result);
+      console.log('estou aqui, userController')
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.error(
+        "\nThere was an error executing the query!\nERROR: ",
+        error.sqlMessage
+      );
+      res.status(500).json(error.sqlMessage);
+    });
+}
+}
+  
+  
+
+
 module.exports = {
-  listController,
+  showUsers,
   logIn,
   signUp,
+ addUser
 };
