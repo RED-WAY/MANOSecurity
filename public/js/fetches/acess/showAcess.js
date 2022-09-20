@@ -9,11 +9,7 @@ function showAcess() {
   })
     .then(function (result) {
       if (result.ok) {
-        console.log("resposta: ", result);
-
         result.json().then((json) => {
-          console.log(JSON.stringify(json));
-
           acessos_content.innerHTML = "";
 
           for (var i = 0; i < json.length; i++) {
@@ -33,6 +29,19 @@ function showAcess() {
               </div>
               
            `;
+          }
+
+          const divCheck = document.querySelector(".div-checkes");
+          divCheck.innerHTML = "";
+          for (var i = 0; i < json.length; i++) {
+            divCheck.innerHTML += `
+            <div class="pretty p-default p-default p-thick p-pulse manos-check">
+                      <input type="checkbox" class="get-checkes" id="${json[i].idOperation}" />
+                      <div class="state p-danger-o">
+                        <label>${json[i].OperationName}</label>
+                      </div>
+                    </div>
+            `;
           }
         });
       } else {

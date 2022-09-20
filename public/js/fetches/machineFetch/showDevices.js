@@ -1,34 +1,20 @@
-                                
 function showDevices() {
-
   const companyVar = sessionStorage.COMPANY_USER;
 
-
-
   fetch("/machine/showMachine", {
-
     method: "POST",
     headers: {
-      "Content-Type": "application/json", 
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      companyServer: companyVar
+      companyServer: companyVar,
     }),
   })
     .then(function (result) {
-
-
       if (result.ok) {
-        console.log("resposta: ", result);
-
         result.json().then((json) => {
-
-          console.log(JSON.stringify(json));
-
-
-          
           dispositivos_content.innerHTML = "";
-          
+
           for (var i = 0; i < json.length; i++) {
             dispositivos_content.innerHTML += `
              
@@ -61,8 +47,7 @@ function showDevices() {
             </div>
         
             
-         `
-
+         `;
           }
         });
       } else {
@@ -74,6 +59,4 @@ function showDevices() {
     });
 
   return false;
-
-
 }

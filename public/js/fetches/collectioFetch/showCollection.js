@@ -1,34 +1,19 @@
-function showCollections(){
+function showCollections() {
+  const companyVar = sessionStorage.COMPANY_USER;
 
+  fetch(`/collection/showCollection/${companyVar}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (result) {
+      if (result.ok) {
+        result.json().then((json) => {
+          colecoes_content.innerHTML = "";
 
-    const companyVar = sessionStorage.COMPANY_USER;
-
-
-
-    fetch(`/collection/showCollection/${companyVar}`, {
-  
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json", 
-      },
-     
-    })
-      .then(function (result) {
-  
-  
-        if (result.ok) {
-          console.log("resposta: ", result);
-  
-          result.json().then((json) => {
-  
-            console.log(JSON.stringify(json));
-  
-  
-            
-            colecoes_content.innerHTML = "";
-            
-            for (var i = 0; i < json.length; i++) {
-                colecoes_content.innerHTML += `
+          for (var i = 0; i < json.length; i++) {
+            colecoes_content.innerHTML += `
                
               <div class="card-info" id="${json[i].idSector}">
               <ion-icon name="layers-outline"></ion-icon>
@@ -59,18 +44,16 @@ function showCollections(){
             </div>
           
               
-           `
-  
-            }
-          });
-        } else {
-          throw "There was an error while getting the machines";
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  
-    return false;
-  
+           `;
+          }
+        });
+      } else {
+        throw "There was an error while getting the machines";
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return false;
 }
