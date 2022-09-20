@@ -22,22 +22,22 @@ function showUsers(){
 
 
           
-          usersDysplay.innerHTML = "";
+          usersDisplay.innerHTML = "";
           
           for (var i = 0; i < json.length; i++) {
-            usersDysplay.innerHTML += `
+            usersDisplay.innerHTML += `
              
             
-        
-             
+            
               <tr onclick="userBtnAttributes(true, '${json[i].idConsumer}')">
                 <td>${json[i].consumerName}</td>
                 <td>${json[i].consumerEmail}</td>
                 <td>${json[i].responsability}</td>
-                <td>10/03/2004</td>
-                <td></td>
-                
-            
+                <td>${json[i].dia}/${json[i].mes}/${json[i].ano}</td>
+                <td>${json[i].gerente}</td>
+              </tr>
+              
+           
             
          `
 

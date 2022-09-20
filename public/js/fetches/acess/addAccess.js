@@ -6,16 +6,9 @@ function addAccess() {
   const process = access_path.value;
   const company = sessionStorage.COMPANY_USER;
 
-  console.log('type')
-  console.log(type)
 
 
-  console.log('name')
-  console.log(name)
 
-  console.log('process: ' + process)
-
-  console.log('company' + company)
   if (type == undefined) {
 
     console.log('type')

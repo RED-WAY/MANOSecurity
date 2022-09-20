@@ -24,4 +24,11 @@ router.post("/addUser/:idCompany", function (req, res) {
     userController.addUser(req, res);
 });
 
+router.delete("/deleteUser/:idCompany", function (req, res) {
+    userController.deleteUser(req, res);
+});
+
+router.put("/editUser/:idUser", function (req, res) {
+    userController.editUser(req, res);
+});
 module.exports = router;

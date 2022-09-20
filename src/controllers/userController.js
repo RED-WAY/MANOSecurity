@@ -131,11 +131,70 @@ function addUser(req, res){
 }
   
   
+function deleteUser(req, res) {
+  const idUser = req.params.idUser;
 
+  userModel.deleteUser(idUser)
+    .then(
+      function (result) {
+        res.json(result);
+      }
+    ).catch(
+      function (error) {
+        console.log(error);
+        console.log("Delete machine has been failed: ", error.sqlMessage);
+        res.status(500).json(error.sqlMessage)
+      }
+    )
+
+
+}
+
+function editUser(req, res){
+  const idUser = req.params.idUser;
+  const userName = req.body.userNameServer;
+  const userEmail = req.body.userEmailServer;
+  const userPassword = req.body.userPasswordServer;
+  const carg = req.body.cargServer;
+  
+ 
+  if (userEmail == undefined) {
+    console.log('userName is not defined')
+} else if (userPassword == undefined) {
+ 
+    console.log('userPassowrd is not defined')
+} else if (carg == undefined){
+    console.log('user Carg is not defined')
+
+
+}else if(userName == undefined){
+    console.log('userName is not defined')
+}else if(idUser == undefined){
+  console.log('user idUser is not defined')
+}{
+
+    userModel.addUser(idUser, userName, 
+      userEmail, userPassword, carg)
+    .then(function (result) {
+      res.json(result);
+      console.log('estou aqui, userController')
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.error(
+        "\nThere was an error executing the query!\nERROR: ",
+        error.sqlMessage
+      );
+      res.status(500).json(error.sqlMessage);
+    });
+}
+}
 
 module.exports = {
   showUsers,
   logIn,
   signUp,
- addUser
+ addUser,
+ deleteUser,
+ editUser
 };
