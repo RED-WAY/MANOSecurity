@@ -41,9 +41,7 @@ function showCollections() {
                 - Lorem ipsum dolor sit, amet consectetur<br />
           
               </p>
-            </div>
-          
-              
+            </div> 
            `;
           }
         });

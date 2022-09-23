@@ -101,21 +101,6 @@ function addCollectionAccess(req, res) {
   }
 }
 
-function deleteCollection(req, res) {
-  const idCollection = req.params.idCollection;
-
-  collectionModel
-    .deleteCollection(idCollection)
-    .then(function (result) {
-      res.json(result);
-    })
-    .catch(function (error) {
-      console.log(error);
-      console.log("Delete machine has been failed: ", error.sqlMessage);
-      res.status(500).json(error.sqlMessage);
-    });
-}
-
 function editCollection(req, res) {
   const idCollection = req.params.idCollection;
   const newNameCollection = req.body.newNameServer;
@@ -144,6 +129,44 @@ function editCollection(req, res) {
   }
 }
 
+function deleteCollection(req, res) {
+  const idCollection = req.params.idCollection;
+
+  collectionModel
+    .deleteCollection(idCollection)
+    .then(function (result) {
+      res.json(result);
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log("Delete collection has been failed: ", error.sqlMessage);
+      res.status(500).json(error.sqlMessage);
+    });
+}
+
+function editMachineCollections(req, res) {
+  const idCollection = req.body.idCollectionServer;
+  const id = req.params.idCollection;
+
+  if (idCollection == undefined) {
+    return false;
+  } else {
+    collectionModel
+      .editMachineCollections(idCollection)
+      .then(function (result) {
+        console.log("AAAAAAAAAAAAAAAAAA");
+        console.log(result);
+
+        res.json(result);
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.log("edit machine collections has been failed: ", error.sqlMessage);
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
 module.exports = {
   getCollection,
   addCollection,
@@ -151,4 +174,5 @@ module.exports = {
   showCollection,
   editCollection,
   deleteCollection,
+  editMachineCollections,
 };

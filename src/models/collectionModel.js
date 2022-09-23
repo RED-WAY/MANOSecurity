@@ -2,12 +2,11 @@ const database = require("../database/config");
 
 function getCollection(idCompany) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getCollection(): ",
     idCompany
   );
   const dbQuery = `
-      select * from sector where fkCompany = ${idCompany}
-   
+      SELECT * FROM sector WHERE fkCompany = ${idCompany}
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -16,12 +15,11 @@ function getCollection(idCompany) {
 
 function showCollection(idCompany) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showCollection(): ",
     idCompany
   );
   const dbQuery = `
-      select * from sector where fkCompany = ${idCompany}
-   
+      SELECT * FROM sector WHERE fkCompany = ${idCompany}
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -30,8 +28,7 @@ function showCollection(idCompany) {
 
 function addCollection(collectionLevel, collectionName, company) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
-
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addCollection(): ",
     collectionLevel,
     collectionName,
     company
@@ -46,8 +43,7 @@ function addCollection(collectionLevel, collectionName, company) {
 }
 function addCollectionAccess(accessArray, fkCollection) {
   console.log(
-    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function collectionModel(): ",
-
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addCollectionAccess(): ",
     accessArray,
     fkCollection
   );
@@ -73,7 +69,7 @@ function addCollectionAccess(accessArray, fkCollection) {
 
 function editCollection(idCollection, newNameCollection, newLevelCollection) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function editCollection(): ",
     idCollection,
     newNameCollection,
     newLevelCollection
@@ -81,7 +77,6 @@ function editCollection(idCollection, newNameCollection, newLevelCollection) {
   const dbQuery = `
      UPDATE Sector SET sectorName = "${newNameCollection}", sectorLevel = ${newLevelCollection} 
      WHERE idSector = ${idCollection};
-   
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -90,13 +85,29 @@ function editCollection(idCollection, newNameCollection, newLevelCollection) {
 
 function deleteCollection(idSector) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteCollection(): ",
     idSector
   );
   const dbQuery = `
-          DELETE FROM Sector WHERE idSector = ${idSector};
-              
-          
+        DELETE OperationLog, Sector 
+          FROM OperationLog 
+            LEFT JOIN Sector ON idSector = fkSector 
+              WHERE fkSector = ${idSector};
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function editMachineCollections(idCollection) {
+  console.log(
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function editMachineCollections(): ",
+    idCollection
+  );
+  const dbQuery = `
+        UPDATE machine 
+          SET fkSector = null 
+            WHERE fkSector = ${idCollection}
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -110,4 +121,5 @@ module.exports = {
   showCollection,
   editCollection,
   deleteCollection,
+  editMachineCollections,
 };

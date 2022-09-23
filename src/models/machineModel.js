@@ -27,8 +27,7 @@ function showMachine(company) {
     "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
     company
   );
-  const dbQuery = `
-       
+  const dbQuery = `       
          SELECT *, machineName AS nomeMaquina,
           nameUserAdder AS user, 
           sectorName AS collection,
@@ -37,7 +36,7 @@ function showMachine(company) {
           DAY(dtAdded) As day,
           HOUR(dtAdded) AS hour,
           MINUTE(dtAdded) AS minut
-          FROM Machine  JOIN  Sector 
+          FROM Machine LEFT JOIN Sector 
           ON idSector = fkSector
           WHERE Machine.fkCompany = ${company};   
            `;

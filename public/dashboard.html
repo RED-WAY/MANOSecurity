@@ -28,7 +28,7 @@
 
   <body
     onload="validateSession(), showDevices(), viewLoad('hide'), 
-  getCollection(sessionStorage.COMPANY_USER), showAcess(sessionStorage.COMPANY_USER)"
+  getCollection(), showAcess()"
   >
     <!-- LOADER -->
     <div class="loader">
@@ -413,11 +413,11 @@
 <script src="./js/fetches/collectioFetch/getCollection.js"></script>
 <script src="./js/fetches/collectioFetch/showCollection.js"></script>
 <script src="./js/fetches/collectioFetch/addCollection.js"></script>
+<script src="./js/fetches/collectioFetch/editCollection.js"></script>
+<script src="./js/fetches/collectioFetch/removeCollection.js"></script>
 <script src="./js/fetches/acess/addAccess.js"></script>
 <script src="./js/fetches/acess/showAcess.js"></script>
 <script src="./js/fetches/acess/removeAcess.js"></script>
-<script src="./js/fetches/collectioFetch/removeCollection.js"></script>
-<script src="./js/fetches/collectioFetch/editCollection.js"></script>
 <script src="./js/fetches/machineFetch/removeMachine.js"></script>
 <script src="./js/fetches/machineFetch/editMachine.js"></script>
 <script src="./js/fetches/machineFetch/showDevices.js"></script>

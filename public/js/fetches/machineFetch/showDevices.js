@@ -34,7 +34,7 @@ function showDevices() {
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="collection_machine">COLLECTION: ${json[i].collection}</h3>
+              <h3 id="collection_machine">COLLECTION: ${json[i].collection || 'não adicionada'}</h3>
               <h2 id="name_machine${i}">Name: ${json[i].machineName}</h2>
               <p>
   

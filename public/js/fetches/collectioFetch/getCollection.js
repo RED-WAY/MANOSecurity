@@ -1,5 +1,5 @@
-function getCollection(idCompany) {
-  const idCompanyVar = idCompany;
+function getCollection() {
+  const idCompanyVar = sessionStorage.COMPANY_USER;
 
   if (idCompanyVar == undefined) {
     return false;
