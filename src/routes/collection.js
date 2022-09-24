@@ -22,12 +22,17 @@ router.put("/editCollection/:idCollection", function (req, res) {
   collectionController.editCollection(req, res);
 });
 
+router.put("/editMachineCollections/:idCollection", function (req, res) {
+  collectionController.editMachineCollections(req, res);
+});
+
+router.delete("/removeFromOperationLog/:fkCollection", function (req, res) {
+  collectionController.removeFromOperationLog(req, res);
+});
+
 router.delete("/deleteCollection/:idCollection", function (req, res) {
   collectionController.deleteCollection(req, res);
 });
 
-router.put("/editMachineCollections/:idCollection", function (req, res) {
-  collectionController.editMachineCollections(req, res);
-});
 
 module.exports = router;

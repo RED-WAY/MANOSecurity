@@ -83,36 +83,49 @@ function editCollection(idCollection, newNameCollection, newLevelCollection) {
   return database.executeQuery(dbQuery);
 }
 
-function deleteCollection(idSector) {
-  console.log(
-    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteCollection(): ",
-    idSector
-  );
-  const dbQuery = `
-        DELETE OperationLog, Sector 
-          FROM OperationLog 
-            LEFT JOIN Sector ON idSector = fkSector 
-              WHERE fkSector = ${idSector};
-           `;
-
-  console.log("Executing SQL query: \n" + dbQuery);
-  return database.executeQuery(dbQuery);
-}
-
-function editMachineCollections(idCollection) {
+function editMachineCollections(idFamily) {
   console.log(
     "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function editMachineCollections(): ",
-    idCollection
+    idFamily
   );
   const dbQuery = `
         UPDATE machine 
           SET fkSector = null 
-            WHERE fkSector = ${idCollection}
+            WHERE fkSector = ${idFamily}
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
+
+function removeFromOperationLog(fkFamily) {
+  console.log(
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function removeFromOperationLog(): ",
+    fkFamily
+  );
+  const dbQuery = `
+          DELETE FROM operationlog 
+              WHERE fkSector = ${fkFamily};            
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function deleteCollection(idFamily) {
+  console.log(
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteCollection(): ",
+    idFamily
+  );
+  const dbQuery = `
+          DELETE FROM sector 
+              WHERE idSector = ${idFamily};            
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
 
 module.exports = {
   getCollection,
@@ -120,6 +133,7 @@ module.exports = {
   addCollectionAccess,
   showCollection,
   editCollection,
-  deleteCollection,
   editMachineCollections,
+  removeFromOperationLog,
+  deleteCollection,
 };

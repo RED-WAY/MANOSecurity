@@ -129,6 +129,41 @@ function editCollection(req, res) {
   }
 }
 
+function editMachineCollections(req, res) {
+  const idCollection = req.body.idCollectionServer;
+  const id = req.params.idCollection;
+
+  if (idCollection == undefined) {
+    return false;
+  } else {
+    collectionModel
+      .editMachineCollections(idCollection)
+      .then(function (result) {        
+        res.json(result);
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.log("edit machine collections has been failed: ", error.sqlMessage);
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function removeFromOperationLog(req, res) {
+  const fkCollection = req.params.fkCollection;
+
+  collectionModel
+    .removeFromOperationLog(fkCollection)
+    .then(function (result) {
+      res.json(result);
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log("Delete collection from operation log has been failed: ", error.sqlMessage);
+      res.status(500).json(error.sqlMessage);
+    });
+}
+
 function deleteCollection(req, res) {
   const idCollection = req.params.idCollection;
 
@@ -144,28 +179,7 @@ function deleteCollection(req, res) {
     });
 }
 
-function editMachineCollections(req, res) {
-  const idCollection = req.body.idCollectionServer;
-  const id = req.params.idCollection;
 
-  if (idCollection == undefined) {
-    return false;
-  } else {
-    collectionModel
-      .editMachineCollections(idCollection)
-      .then(function (result) {
-        console.log("AAAAAAAAAAAAAAAAAA");
-        console.log(result);
-
-        res.json(result);
-      })
-      .catch(function (error) {
-        console.log(error);
-        console.log("edit machine collections has been failed: ", error.sqlMessage);
-        res.status(500).json(error.sqlMessage);
-      });
-  }
-}
 
 module.exports = {
   getCollection,
@@ -173,6 +187,7 @@ module.exports = {
   addCollectionAccess,
   showCollection,
   editCollection,
-  deleteCollection,
   editMachineCollections,
+  removeFromOperationLog,
+  deleteCollection,
 };
