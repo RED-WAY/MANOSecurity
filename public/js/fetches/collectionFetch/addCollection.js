@@ -11,10 +11,11 @@ function addCollection() {
   });
 
   if (collectionLevel == undefined) {
-    console.log("deu ruim no addCollection");
+    console.log("collectionLevel is undefined!");
     return false;
   } else if (collectionName == "") {
-    console.log("collection needs name");
+    console.log("collectionName is undefined!");
+    return false;
   } else {
     fetch("/collection/addCollection", {
       method: "POST",
@@ -35,8 +36,8 @@ function addCollection() {
               if (accessArray.length > 0) {
                 addCollectionAccess([accessArray, res.insertId]);
               }
-              formView(false);
               showCollections();
+              formView(false);
               getCollection(sessionStorage.COMPANY_USER);
             }, 500);
           } else {
@@ -71,7 +72,9 @@ function addCollectionAccess([accessArray, fkCollection]) {
       }),
     })
       .then(function (result) {
-        if (!result.ok) {
+        if (result.ok) {
+          showCollections();
+        } else {
           throw "There was an error while you´re add a collection access!";
         }
       })

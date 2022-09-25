@@ -6,7 +6,7 @@ function getCollection(fkCompany) {
     fkCompany
   );
   const dbQuery = `
-      SELECT * FROM sector WHERE fkCompany = ${fkCompany}
+      SELECT * FROM sector WHERE fkCompany = ${fkCompany};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -21,7 +21,7 @@ function getSpecificCollection(idCollection) {
   const dbQuery = `
           SELECT sectorName, sectorLevel, fkOperation 
             FROM sector 
-              JOIN operationlog ON idSector = fkSector 
+              LEFT JOIN operationlog ON idSector = fkSector 
                 WHERE idSector = ${idCollection};
            `;
 
@@ -29,13 +29,17 @@ function getSpecificCollection(idCollection) {
   return database.executeQuery(dbQuery);
 }
 
-function showCollection(fkCompany) {
+function showCollections(fkCompany) {
   console.log(
-    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showCollection(): ",
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showCollections(): ",
     fkCompany
   );
   const dbQuery = `
-      SELECT * FROM sector WHERE fkCompany = ${fkCompany}
+          SELECT idSector, sectorLevel, sectorName, OperationName FROM sector 
+	          LEFT JOIN operationlog ON idSector = fkSector 
+	          	LEFT JOIN operation ON idOperation = fkOperation 
+	          		WHERE fkCompany = 1
+	          			ORDER BY idSector ASC;
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -152,7 +156,7 @@ function deleteCollection(idFamily) {
 module.exports = {
   getCollection,
   getSpecificCollection,
-  showCollection,
+  showCollections,
   addCollection,
   addCollectionAccess,
   editCollection,

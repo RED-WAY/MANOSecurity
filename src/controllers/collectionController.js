@@ -48,15 +48,15 @@ function getSpecificCollection(req, res) {
   }
 }
 
-function showCollection(req, res) {
+function showCollections(req, res) {
   const company = req.params.idCompany;
 
   if (company == undefined) {
-    console.log("company undefined on showCollection");
+    console.log("company undefined on showCollections");
     return false;
   } else {
     collectionModel
-      .getCollection(company)
+      .showCollections(company)
       .then(function (result) {
         res.json(result);
         console.log("on collectionController");
@@ -215,9 +215,9 @@ function deleteCollection(req, res) {
 module.exports = {
   getCollection,
   getSpecificCollection,
+  showCollections,
   addCollection,
   addCollectionAccess,
-  showCollection,
   editCollection,
   editMachineCollections,
   removeFromOperationLog,

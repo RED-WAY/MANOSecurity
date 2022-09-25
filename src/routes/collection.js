@@ -11,8 +11,8 @@ router.get("/getSpecificCollection/:idCollection", function (req, res) {
   collectionController.getSpecificCollection(req, res);
 });
 
-router.get("/showCollection/:idCompany", function (req, res) {
-  collectionController.getCollection(req, res);
+router.get("/showCollections/:idCompany", function (req, res) {
+  collectionController.showCollections(req, res);
 });
 
 router.post("/addCollection", function (req, res) {
