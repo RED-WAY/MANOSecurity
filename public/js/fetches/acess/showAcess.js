@@ -1,7 +1,7 @@
 function showAcess() {
   const idCompany = sessionStorage.COMPANY_USER;
 
-  fetch(`/acess/showAcess/${idCompany}`, {
+  fetch(`/access/showAccess/${idCompany}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +18,7 @@ function showAcess() {
                 <div class="card-info acessos-info" id="${json[i].idOperation}">
                 <ion-icon name="lock-open-outline"></ion-icon>
                 <div class="card-buttons">
-                  <button onclick="remove('${json[i].idOperation}')" class="btn-special">
+                  <button onclick="deleteAccess('${json[i].idOperation}')" class="btn-special">
                     <ion-icon name="trash-outline"></ion-icon>
                     <p>REMOVER</p>
                   </button>

@@ -26,7 +26,7 @@ function addAccessGlobal(type, name, process) {
     process
   );
   const dbQuery = `
-            INSERT INTO Operation(operationName, operationPath, OperationType) VALUES
+            INSERT INTO Operation(operationName, operationPath, OperationType) VALUES 
               ('${name}','${process}','${type}');
              `;
 
@@ -42,15 +42,15 @@ function addAccessCompany(fkOperation, fkCompany) {
     fkCompany
   );
   const dbQuery = `
-          INSERT INTO companyOperations(fkOperation, fkCompany)values
-           ( ${fkOperation}, ${fkCompany} );
+          INSERT INTO companyOperations(fkOperation, fkCompany) VALUES 
+           (${fkOperation}, ${fkCompany});
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
 
-function showAcess(fkCompany) {
+function showAccess(fkCompany) {
   console.log(
     "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showAccess(): ",
     fkCompany
@@ -66,7 +66,7 @@ function showAcess(fkCompany) {
   return database.executeQuery(dbQuery);
 }
 
-function deleteAcess(idOperation) {
+function deleteAccess(idOperation) {
   console.log(
     "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccess(): ",
     idOperation
@@ -82,6 +82,6 @@ module.exports = {
   checkAccessGlobaly,
   addAccessGlobal,
   addAccessCompany,
-  showAcess,
-  deleteAcess,
+  showAccess,
+  deleteAccess,
 };

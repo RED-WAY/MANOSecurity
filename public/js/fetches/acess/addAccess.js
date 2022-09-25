@@ -10,7 +10,7 @@ function addAccess() {
   } else if (processVar == "") {
     console.log("processVar is undefined");
   } else {
-    fetch(`/acess/checkAccessGlobaly/${typeVar}/${nameVar}/${processVar}`, {
+    fetch(`/access/checkAccessGlobaly/${typeVar}/${nameVar}/${processVar}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function addAccess() {
 }
 
 function addAccessGlobal(typeVar, nameVar, processVar) {
-  fetch("/acess/addAccessGlobal", {
+  fetch("/access/addAccessGlobal", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -72,17 +72,12 @@ function addAccessCompany(operationId) {
   const operationIdVar = operationId;
   const companyVar = sessionStorage.COMPANY_USER;
 
-  console.log(`
-  ${operationIdVar}\n
-  ${companyVar}
-  `);
-
   if (operationIdVar == undefined) {
     console.log("operationIdVar is undefined");
   } else if (companyVar == undefined) {
     console.log("companyVar is undefined");
   } else {
-    fetch("/acess/addAccessCompany", {
+    fetch("/access/addAccessCompany", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

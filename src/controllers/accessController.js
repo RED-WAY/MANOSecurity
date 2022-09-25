@@ -1,4 +1,4 @@
-var acessModel = require("../models/acessModel");
+var accessModel = require("../models/accessModel");
 
 function checkAccessGlobaly(req, res) {
   const type = req.params.type;
@@ -12,7 +12,7 @@ function checkAccessGlobaly(req, res) {
   } else if (process == undefined) {
     res.status(400).send("process is undefined");
   } else {
-    acessModel
+    accessModel
       .checkAccessGlobaly(type, name, process)
       .then(function (result) {
           res.json(result);
@@ -40,7 +40,7 @@ function addAccessGlobal(req, res) {
   } else if (process == undefined) {
     res.status(400).send("process is undefined");
   } else {
-    acessModel
+    accessModel
       .addAccessGlobal(type, name, process)
       .then(function (result) {
         res.json(result);
@@ -65,7 +65,7 @@ function addAccessCompany(req, res) {
   } else if (company == undefined) {
     res.status(400).send("company is undefined!");
   } else {
-    acessModel
+    accessModel
       .addAccessCompany(operationId, company)
       .then(function (result) {
         res.json(result);
@@ -82,18 +82,18 @@ function addAccessCompany(req, res) {
   }
 }
 
-function showAcess(req, res) {
+function showAccess(req, res) {
   const company = req.params.idCompany;
 
   if (company == undefined) {
-    console.log("company undefined on showCollection");
+    console.log("company undefined on showAccess");
     return false;
   } else {
-    acessModel
-      .showAcess(company)
+    accessModel
+      .showAccess(company)
       .then(function (result) {
         res.json(result);
-        console.log("estou aqui, collectionController");
+        console.log("on accessController");
       })
       .catch(function (error) {
         console.log(error);
@@ -106,17 +106,17 @@ function showAcess(req, res) {
   }
 }
 
-function deleteAcess(req, res) {
-  const acess = req.params.idAcess;
+function deleteAccess(req, res) {
+  const access = req.params.idAccess;
 
-  acessModel
-    .deleteAcess(acess)
+  accessModel
+    .deleteAccess(access)
     .then(function (result) {
       res.json(result);
     })
     .catch(function (error) {
       console.log(error);
-      console.log("Delete machine has been failed: ", error.sqlMessage);
+      console.log("Delete access has been failed: ", error.sqlMessage);
       res.status(500).json(error.sqlMessage);
     });
 }
@@ -125,6 +125,6 @@ module.exports = {
   checkAccessGlobaly,
   addAccessGlobal,
   addAccessCompany,
-  showAcess,
-  deleteAcess,
+  showAccess,
+  deleteAccess,
 };
