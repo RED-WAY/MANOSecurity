@@ -18,3 +18,58 @@ for (const tr of rows) {
     return this.classList.remove("tr-clicked");
   });
 }
+
+function resetFields() {
+  machine_token.value = "";
+  machine_name.value = "";
+  collection_name.value = "";
+  access_name.value = "";
+  access_path.value = "";
+
+  const divCheck = document.querySelector(".div-checkes");
+  Array.from(divCheck.children).map((access) => {
+    const checkOpt = access.children[0];
+    checkOpt.checked = false;
+  });
+}
+
+function loadCheckes(idCollection) {
+  fetch(`/collection/getSpecificCollection/${idCollection}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (result) {
+      if (result.ok) {
+        result.json().then((json) => {
+          collection_level_select.value = json[0].sectorLevel;
+          collection_name.value = json[0].sectorName;
+
+          const divCheck = document.querySelector(".div-checkes");
+          Array.from(divCheck.children).map((access) => {
+            const checkOpt = access.children[0];
+            checkOpt.checked = false;
+          });
+
+          for (const register of json) {
+            Array.from(divCheck.children).map((access) => {
+              const checkOpt = access.children[0];
+              if (checkOpt.id == register.fkOperation) {
+                checkOpt.checked = true;
+              }
+            });
+          }
+        });
+      } else {
+        result.text().then((err) => {
+          console.error(err);
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return false;
+}

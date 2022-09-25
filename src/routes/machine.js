@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var machineController = require("../controllers/machineController");
+const machineController = require("../controllers/machineController");
 
 
 router.post("/addMachine", function (req, res) {

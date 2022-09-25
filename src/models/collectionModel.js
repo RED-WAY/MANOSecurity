@@ -1,25 +1,41 @@
 const database = require("../database/config");
 
-function getCollection(idCompany) {
+function getCollection(fkCompany) {
   console.log(
     "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getCollection(): ",
-    idCompany
+    fkCompany
   );
   const dbQuery = `
-      SELECT * FROM sector WHERE fkCompany = ${idCompany}
+      SELECT * FROM sector WHERE fkCompany = ${fkCompany}
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
 
-function showCollection(idCompany) {
+function getSpecificCollection(idCollection) {
   console.log(
-    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showCollection(): ",
-    idCompany
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getSpecificCollection(): ",
+    idCollection
   );
   const dbQuery = `
-      SELECT * FROM sector WHERE fkCompany = ${idCompany}
+          SELECT sectorName, sectorLevel, fkOperation 
+            FROM sector 
+              JOIN operationlog ON idSector = fkSector 
+                WHERE idSector = ${idCollection};
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function showCollection(fkCompany) {
+  console.log(
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showCollection(): ",
+    fkCompany
+  );
+  const dbQuery = `
+      SELECT * FROM sector WHERE fkCompany = ${fkCompany}
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -35,7 +51,7 @@ function addCollection(collectionLevel, collectionName, company) {
   );
   const dbQuery = `
       INSERT INTO Sector(sectorName, sectorLevel, fkCompany)VALUES
-     ('${collectionName}', '${collectionLevel}',${company});                          
+     ('${collectionName}', '${collectionLevel}', ${company});                          
              `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -135,9 +151,10 @@ function deleteCollection(idFamily) {
 
 module.exports = {
   getCollection,
+  getSpecificCollection,
+  showCollection,
   addCollection,
   addCollectionAccess,
-  showCollection,
   editCollection,
   editMachineCollections,
   removeFromOperationLog,

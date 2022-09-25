@@ -1,4 +1,4 @@
-var accessModel = require("../models/accessModel");
+const accessModel = require("../models/accessModel");
 
 function checkAccessGlobaly(req, res) {
   const type = req.params.type;
@@ -16,6 +16,7 @@ function checkAccessGlobaly(req, res) {
       .checkAccessGlobaly(type, name, process)
       .then(function (result) {
           res.json(result);
+          console.log("on accessController");
       })
       .catch(function (error) {
         console.log(error);
@@ -44,6 +45,7 @@ function addAccessGlobal(req, res) {
       .addAccessGlobal(type, name, process)
       .then(function (result) {
         res.json(result);
+        console.log("on accessController");
       })
       .catch(function (error) {
         console.log(error);
@@ -57,8 +59,8 @@ function addAccessGlobal(req, res) {
 }
 
 function addAccessCompany(req, res) {
-  var operationId = req.body.operationIdServer;
-  var company = req.body.companyServer;
+  const operationId = req.body.operationIdServer;
+  const company = req.body.companyServer;
 
   if (operationId == undefined) {
     res.status(400).send("operationId is undefined!");
@@ -114,6 +116,7 @@ function deleteAccessCompany(req, res) {
     .deleteAccessCompany(company, access)
     .then(function (result) {
       res.json(result);
+      console.log("on accessController");
     })
     .catch(function (error) {
       console.log(error);
@@ -130,6 +133,7 @@ function deleteAccessFamily(req, res) {
     .deleteAccessFamily(company, access)
     .then(function (result) {
       res.json(result);
+      console.log("on accessController");
     })
     .catch(function (error) {
       console.log(error);
@@ -169,6 +173,7 @@ function deleteAccessGlobal(req, res) {
     .deleteAccessGlobal(access)
     .then(function (result) {
       res.json(result);
+      console.log("on accessController");
     })
     .catch(function (error) {
       console.log(error);

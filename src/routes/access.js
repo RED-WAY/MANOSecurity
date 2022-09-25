@@ -1,8 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var accessController = require("../controllers/accessController");
-
+const accessController = require("../controllers/accessController");
 
 router.get("/checkAccessGlobaly/:type/:name/:process", function (req, res) {
     accessController.checkAccessGlobaly(req, res);

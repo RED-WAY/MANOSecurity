@@ -18,7 +18,6 @@ function getCollection() {
             for (var i = 0; i < json.length; i++) {
               machine_collection_select.innerHTML += `<option value="${json[i].idSector}">${json[i].sectorName}</option>`;
             }
-            setTimeout(function () {}, 500);
           });
         } else {
           result.text().then((err) => {

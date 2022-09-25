@@ -33,7 +33,6 @@ function addCollection() {
           if (result.ok) {
             setTimeout(() => {
               if (accessArray.length > 0) {
-                console.log(res);
                 addCollectionAccess([accessArray, res.insertId]);
               }
               formView(false);

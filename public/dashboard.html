@@ -28,7 +28,7 @@
 
   <body
     onload="validateSession(), showDevices(), viewLoad('hide'), 
-  getCollection(), showAcess()"
+  getCollection(), showAccess()"
   >
     <!-- LOADER -->
     <div class="loader">
@@ -94,7 +94,7 @@
               href="#"
               tabindex="3"
               draggable="false"
-              onclick="showSection('#acessos'),showAcess()"
+              onclick="showSection('#acessos'),showAccess()"
             >
               <li>Acessos</li>
             </a>
@@ -162,7 +162,9 @@
             </button>
           </div>
         </div>
-        <div id="dispositivos_content" class="content"></div>
+        <div id="dispositivos_content" class="content">
+          <!-- ADD MACHINES HERE -->
+        </div>
       </section>
       <!-- collections -->
       <section id="colecoes" class="sec">
@@ -181,37 +183,7 @@
           </div>
         </div>
         <div id="colecoes_content" class="content">
-          <!-- <div class="card-info" id="collection1">
-            <ion-icon name="layers-outline"></ion-icon>
-            <div class="card-buttons">
-              <button
-                onclick="formView(true, 'Editar coleção', 'collection', 'edit', 'collection1')"
-                class="btn-special"
-              >
-                <ion-icon name="create-outline"></ion-icon>
-                <p>EDITAR</p>
-              </button>
-              <button
-                onclick="removeCollection('collection1')"
-                class="btn-special"
-              >
-                <ion-icon name="trash-outline"></ion-icon>
-                <p>REMOVER</p>
-              </button>
-            </div>
-            <h3 id="level_collection1">LEVEL</h3>
-            <h2 id="name_collection1">Name</h2>
-            <p>
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-            </p>
-          </div> -->
+          <!-- ADD COLLECTIONS HERE -->
         </div>
       </section>
       <!-- access -->
@@ -230,7 +202,9 @@
             </button>
           </div>
         </div>
-        <div id="acessos_content" class="content"></div>
+        <div id="acessos_content" class="content">
+          <!-- ADD ACCESS HERE -->
+        </div>
       </section>
       <!-- users -->
       <section id="usuarios" class="sec">
@@ -274,6 +248,7 @@
               </tr>
             </thead>
             <tbody id="COMEÇA AQUI PEDRAO">
+              <!-- ADD USERS HERE -->
               <tr onclick="userBtnAttributes(true, '10')">
                 <td>Vitor Mendes</td>
                 <td>vitormendesco.js@gmail.com</td>
@@ -363,7 +338,7 @@
           </div>
           <div class="form__input input-user edit">
             <label for="userPassword">Senha</label>
-            <input name="userPassword" id="user_password" type="password" />
+            <input name="userPassword" id="user_password" type="password" autocomplete="off" />
           </div>
           <div class="form__input input-user edit">
             <label for="userOffice">Cargo</label>
@@ -410,16 +385,16 @@
 <script src="./js/global.addons.js"></script>
 <script src="./js/fetches/usersFetch/login.js"></script>
 <script src="./js/fetches/machineFetch/addMachine.js"></script>
-<script src="./js/fetches/collectioFetch/getCollection.js"></script>
-<script src="./js/fetches/collectioFetch/showCollection.js"></script>
-<script src="./js/fetches/collectioFetch/addCollection.js"></script>
-<script src="./js/fetches/collectioFetch/editCollection.js"></script>
-<script src="./js/fetches/collectioFetch/removeCollection.js"></script>
-<script src="./js/fetches/acess/addAccess.js"></script>
-<script src="./js/fetches/acess/showAcess.js"></script>
-<script src="./js/fetches/acess/removeAcess.js"></script>
+<script src="./js/fetches/collectionFetch/getCollection.js"></script>
+<script src="./js/fetches/collectionFetch/showCollection.js"></script>
+<script src="./js/fetches/collectionFetch/addCollection.js"></script>
+<script src="./js/fetches/collectionFetch/editCollection.js"></script>
+<script src="./js/fetches/collectionFetch/removeCollection.js"></script>
+<script src="./js/fetches/access/addAccess.js"></script>
+<script src="./js/fetches/access/showAccess.js"></script>
+<script src="./js/fetches/access/removeAccess.js"></script>
 <script src="./js/fetches/machineFetch/removeMachine.js"></script>
 <script src="./js/fetches/machineFetch/editMachine.js"></script>
 <script src="./js/fetches/machineFetch/showDevices.js"></script>
-<script src="./js/pagesJS/dashboard.js"></script>
 <script src="./js/pagesJS/dashboard.addons.js"></script>
+<script src="./js/pagesJS/dashboard.js"></script>

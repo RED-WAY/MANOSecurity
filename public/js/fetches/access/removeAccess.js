@@ -33,7 +33,7 @@ function deleteAccessFamily(fkAccess) {
     .then(function (result) {
       if (result.ok) {
         showCollections();
-        showAcess();
+        showAccess();
         formView(false);
         verifyGlobalAccessUsing(fkAccess);
       } else if (result.status == 404) {
@@ -85,8 +85,8 @@ function verifyGlobalAccessUsing(idAccess) {
   }
 }
 
-function deleteAccessGlobal(idAcess) {
-  fetch(`/access/deleteAccessGlobal/${idAcess}`, {
+function deleteAccessGlobal(idAccess) {
+  fetch(`/access/deleteAccessGlobal/${idAccess}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 function editCollection(idCollection) {
-  var collectionLevel = collection_level_select.value;
-  var collectionName = collection_name.value;
-  var company = sessionStorage.COMPANY_USER;
+  const collectionLevel = collection_level_select.value;
+  const collectionName = collection_name.value;
+  const company = sessionStorage.COMPANY_USER;
 
   const accessArray = [];
   const divCheck = document.querySelector(".div-checkes");

@@ -1,4 +1,4 @@
-function showAcess() {
+function showAccess() {
   const idCompany = sessionStorage.COMPANY_USER;
 
   fetch(`/access/showAccess/${idCompany}`, {

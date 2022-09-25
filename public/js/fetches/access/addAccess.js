@@ -89,7 +89,7 @@ function addAccessCompany(operationId) {
     })
       .then(function (result) {
         if (result.ok) {
-          showAcess();
+          showAccess();
           formView(false);
         } else {
           throw "There was an error while adding company operation!";

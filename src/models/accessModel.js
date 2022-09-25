@@ -20,7 +20,7 @@ function checkAccessGlobaly(type, name, process) {
 
 function addAccessGlobal(type, name, process) {
   console.log(
-    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addAcessGlobal(): ",
+    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addAccessGlobal(): ",
     type,
     name,
     process

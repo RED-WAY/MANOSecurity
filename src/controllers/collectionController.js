@@ -1,28 +1,4 @@
-var collectionModel = require("../models/collectionModel");
-
-function showCollection(req, res) {
-  const company = req.params.idCompany;
-
-  if (company == undefined) {
-    console.log("company undefined on showCollection");
-    return false;
-  } else {
-    collectionModel
-      .getCollection(company)
-      .then(function (result) {
-        console.log("on collectionController");
-        res.json(result);
-      })
-      .catch(function (error) {
-        console.log(error);
-        console.error(
-          "\nThere was an error executing the query!\nERROR: ",
-          error.sqlMessage
-        );
-        res.status(500).json(error.sqlMessage);
-      });
-  }
-}
+const collectionModel = require("../models/collectionModel");
 
 function getCollection(req, res) {
   const company = req.params.idCompany;
@@ -35,7 +11,55 @@ function getCollection(req, res) {
       .getCollection(company)
       .then(function (result) {
         res.json(result);
-        console.log("estou aqui, machineController");
+        console.log("on collectionController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function getSpecificCollection(req, res) {
+  const idCollection = req.params.idCollection;
+
+  if (idCollection == undefined) {
+    console.log("idCollection is undefined");
+    return false;
+  } else {
+    collectionModel
+      .getSpecificCollection(idCollection)
+      .then(function (result) {
+        res.json(result);
+        console.log("on collectionController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function showCollection(req, res) {
+  const company = req.params.idCompany;
+
+  if (company == undefined) {
+    console.log("company undefined on showCollection");
+    return false;
+  } else {
+    collectionModel
+      .getCollection(company)
+      .then(function (result) {
+        res.json(result);
+        console.log("on collectionController");
       })
       .catch(function (error) {
         console.log(error);
@@ -49,9 +73,9 @@ function getCollection(req, res) {
 }
 
 function addCollection(req, res) {
-  var collectionLevel = req.body.collectionLevelServer;
-  var collectionName = req.body.collectionNameServer;
-  var company = req.body.companyServer;
+  const collectionLevel = req.body.collectionLevelServer;
+  const collectionName = req.body.collectionNameServer;
+  const company = req.body.companyServer;
 
   if (collectionLevel == undefined) {
     res.status(400).send("collectionLevel is undefined!");
@@ -62,7 +86,7 @@ function addCollection(req, res) {
       .addCollection(collectionLevel, collectionName, company)
       .then(function (result) {
         res.json(result);
-        console.log("estou aqui, collectionController");
+        console.log("on collectionController");
       })
       .catch(function (error) {
         console.log(error);
@@ -76,8 +100,8 @@ function addCollection(req, res) {
 }
 
 function addCollectionAccess(req, res) {
-  var accessArray = req.body.accessArrayServer;
-  var fkCollection = req.body.fkCollectionServer;
+  const accessArray = req.body.accessArrayServer;
+  const fkCollection = req.body.fkCollectionServer;
 
   if (accessArray == undefined) {
     res.status(400).send("collectionLevel is undefined!");
@@ -88,7 +112,7 @@ function addCollectionAccess(req, res) {
       .addCollectionAccess(accessArray, fkCollection)
       .then(function (result) {
         res.json(result);
-        console.log("AT addCollectionAccess CONTROLLER");
+        console.log("on collectionController");
       })
       .catch(function (error) {
         console.log(error);
@@ -120,6 +144,7 @@ function editCollection(req, res) {
       .editCollection(idCollection, collectionLevel, collectionName)
       .then(function (result) {
         res.json(result);
+        console.log("on collectionController");
       })
       .catch(function (error) {
         console.log(error);
@@ -129,8 +154,6 @@ function editCollection(req, res) {
   }
 }
 
-
-
 function editMachineCollections(req, res) {
   const idCollection = req.body.idCollectionServer;
 
@@ -139,12 +162,16 @@ function editMachineCollections(req, res) {
   } else {
     collectionModel
       .editMachineCollections(idCollection)
-      .then(function (result) {        
+      .then(function (result) {
         res.json(result);
+        console.log("on collectionController");
       })
       .catch(function (error) {
         console.log(error);
-        console.log("edit machine collections has been failed: ", error.sqlMessage);
+        console.log(
+          "edit machine collections has been failed: ",
+          error.sqlMessage
+        );
         res.status(500).json(error.sqlMessage);
       });
   }
@@ -157,10 +184,14 @@ function removeFromOperationLog(req, res) {
     .removeFromOperationLog(fkCollection)
     .then(function (result) {
       res.json(result);
+      console.log("on collectionController");
     })
     .catch(function (error) {
       console.log(error);
-      console.log("Delete collection from operation log has been failed: ", error.sqlMessage);
+      console.log(
+        "Delete collection from operation log has been failed: ",
+        error.sqlMessage
+      );
       res.status(500).json(error.sqlMessage);
     });
 }
@@ -172,6 +203,7 @@ function deleteCollection(req, res) {
     .deleteCollection(idCollection)
     .then(function (result) {
       res.json(result);
+      console.log("on collectionController");
     })
     .catch(function (error) {
       console.log(error);
@@ -180,10 +212,9 @@ function deleteCollection(req, res) {
     });
 }
 
-
-
 module.exports = {
   getCollection,
+  getSpecificCollection,
   addCollection,
   addCollectionAccess,
   showCollection,

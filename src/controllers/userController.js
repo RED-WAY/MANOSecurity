@@ -1,4 +1,4 @@
-var userModel = require("../models/userModel");
+const userModel = require("../models/userModel");
 
 function listController(req, res) {
   userModel
@@ -70,7 +70,6 @@ function signUp(req, res) {
     userModel.signUp(usernameController, emailController, passwordController)
       .then(function (result) {
         res.json(result);
-        console.log('estou aqui')
       })
       .catch(function (error) {
         console.log(error);
