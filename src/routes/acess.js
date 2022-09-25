@@ -4,8 +4,12 @@ var router = express.Router();
 var acessController = require("../controllers/acessController");
 
 
-router.post("/addAcess", function (req, res) {
-    acessController.addAcess(req, res);
+router.get("/checkAccessGlobaly/:type/:name/:process", function (req, res) {
+    acessController.checkAccessGlobaly(req, res);
+});
+
+router.post("/addAccessGlobal", function (req, res) {
+    acessController.addAccessGlobal(req, res);
 });
 
 router.post("/addAccessCompany", function (req, res) {

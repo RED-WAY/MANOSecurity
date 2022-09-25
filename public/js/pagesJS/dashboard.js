@@ -70,7 +70,7 @@ function verifyInputs(formParam, mode, editId) {
   // add correct function to add
   formParam = formParam.replace(formParam[0], formParam[0].toUpperCase());
   button.textContent = mode == "add" ? "ADICIONAR" : "EDITAR";
-  button.setAttribute("onclick", `${mode + formParam}(${editId})`);
+  button.setAttribute("onclick", `${mode + formParam}(${editId})`);  
 }
 
 // ENABLE USERS BUTTONS

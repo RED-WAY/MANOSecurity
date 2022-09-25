@@ -10,8 +10,8 @@ function showCollection(req, res) {
     collectionModel
       .getCollection(company)
       .then(function (result) {
+        console.log("on collectionController");
         res.json(result);
-        console.log("estou aqui, collectionController");
       })
       .catch(function (error) {
         console.log(error);
