@@ -72,8 +72,6 @@ function addCollectionAccess(accessArray, fkCollection) {
       }),
     })
       .then(function (result) {
-        console.log("resposta: ", result);
-
         if (!result.ok) {
           throw "There was an error while you´re add a collection access!";
         }

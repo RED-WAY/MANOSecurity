@@ -66,9 +66,59 @@ function showAccess(fkCompany) {
   return database.executeQuery(dbQuery);
 }
 
-function deleteAccess(idOperation) {
+function deleteAccessCompany(fkCompany, fkOperation) {
   console.log(
-    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccess(): ",
+    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccessCompany(): ",
+    fkCompany,
+    fkOperation
+  );
+  const dbQuery = `
+          DELETE FROM companyoperations 
+            WHERE fkCompany = ${fkCompany}
+              AND fkOperation = ${fkOperation};              
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function deleteAccessFamily(fkCompany, fkOperation) {
+  console.log(
+    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccessFamily(): ",
+    fkCompany,
+    fkOperation
+  );
+  const dbQuery = `
+          DELETE operationlog FROM operationlog 
+	          JOIN sector ON fkSector = idSector 
+              WHERE fkCompany = ${fkCompany} 
+                AND fkOperation =${fkOperation};
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function verifyGlobalAccessUsing(idOperation) {
+  console.log(
+    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function verifyGlobalAccessUsing(): ",
+    idOperation
+  );
+  const dbQuery = `
+          SELECT companyoperations.fkOperation AS company, operationlog.fkOperation AS familiesUsing 
+            FROM companyoperations 
+	            RIGHT JOIN operation ON companyoperations.fkOperation = idOperation 
+	            	LEFT JOIN operationlog ON operationlog.fkOperation = idOperation 
+	            		WHERE idOperation = ${idOperation};
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function deleteAccessGlobal(idOperation) {
+  console.log(
+    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccessGlobal(): ",
     idOperation
   );
   const dbQuery = `
@@ -78,10 +128,14 @@ function deleteAccess(idOperation) {
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
+
 module.exports = {
   checkAccessGlobaly,
   addAccessGlobal,
   addAccessCompany,
   showAccess,
-  deleteAccess,
+  deleteAccessCompany,
+  deleteAccessFamily,
+  verifyGlobalAccessUsing,
+  deleteAccessGlobal,
 };

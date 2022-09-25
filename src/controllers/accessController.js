@@ -106,17 +106,73 @@ function showAccess(req, res) {
   }
 }
 
-function deleteAccess(req, res) {
-  const access = req.params.idAccess;
+function deleteAccessCompany(req, res) {
+  const company = req.params.fkCompany;
+  const access = req.params.fkAccess;
 
   accessModel
-    .deleteAccess(access)
+    .deleteAccessCompany(company, access)
     .then(function (result) {
       res.json(result);
     })
     .catch(function (error) {
       console.log(error);
-      console.log("Delete access has been failed: ", error.sqlMessage);
+      console.log("Delete company access has been failed: ", error.sqlMessage);
+      res.status(500).json(error.sqlMessage);
+    });
+}
+
+function deleteAccessFamily(req, res) {
+  const company = req.params.fkCompany;
+  const access = req.params.fkAccess;
+
+  accessModel
+    .deleteAccessFamily(company, access)
+    .then(function (result) {
+      res.json(result);
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log("Delete family access has been failed: ", error.sqlMessage);
+      res.status(500).json(error.sqlMessage);
+    });
+}
+
+function verifyGlobalAccessUsing(req, res) {
+  const access = req.params.idAccess;
+
+  if (access == undefined) {
+    console.log("access undefined on verifyGlobalAccessUsing");
+    return false;
+  } else {
+    accessModel
+      .verifyGlobalAccessUsing(access)
+      .then(function (result) {
+        res.json(result);
+        console.log("on accessController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function deleteAccessGlobal(req, res) {
+  const access = req.params.idAccess;
+
+  accessModel
+    .deleteAccessGlobal(access)
+    .then(function (result) {
+      res.json(result);
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log("Delete global access has been failed: ", error.sqlMessage);
       res.status(500).json(error.sqlMessage);
     });
 }
@@ -126,5 +182,8 @@ module.exports = {
   addAccessGlobal,
   addAccessCompany,
   showAccess,
-  deleteAccess,
+  deleteAccessCompany,
+  deleteAccessFamily,
+  verifyGlobalAccessUsing,
+  deleteAccessGlobal,
 };
