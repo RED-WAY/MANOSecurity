@@ -48,18 +48,24 @@ function addCollectionAccess(accessArray, fkCollection) {
     fkCollection
   );
 
+  let command = "INSERT INTO OperationLog(fkOperation, fkSector) VALUES";
   let insertedValues = "";
-  accessArray.map((idProc, i) => {
-    insertedValues += `('${idProc}', '${fkCollection}')`;
-    if (i + 1 === accessArray.length) {
-      insertedValues += ";";
-    } else {
-      insertedValues += ", ";
-    }
-  });
+  if (accessArray.length > 0) {
+    accessArray.map((idProc, i) => {
+      insertedValues += `('${idProc}', '${fkCollection}')`;
+      if (i + 1 === accessArray.length) {
+        insertedValues += ";";
+      } else {
+        insertedValues += ", ";
+      }
+    });
+  } else {
+    command = "SELECT * FROM";
+    insertedValues = "operation log;";
+  }
 
   const dbQuery = `
-      INSERT INTO OperationLog(fkOperation, fkSector)VALUES
+      ${command} 
      ${insertedValues}
              `;
 
@@ -67,16 +73,17 @@ function addCollectionAccess(accessArray, fkCollection) {
   return database.executeQuery(dbQuery);
 }
 
-function editCollection(idCollection, newNameCollection, newLevelCollection) {
+function editCollection(idCollection, collectionLevel, collectionName) {
   console.log(
     "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function editCollection(): ",
     idCollection,
-    newNameCollection,
-    newLevelCollection
+    collectionLevel,
+    collectionName
   );
   const dbQuery = `
-     UPDATE Sector SET sectorName = "${newNameCollection}", sectorLevel = ${newLevelCollection} 
-     WHERE idSector = ${idCollection};
+          UPDATE Sector 
+            SET sectorName = "${collectionName}", sectorLevel = ${collectionLevel} 
+              WHERE idSector = ${idCollection};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -125,7 +132,6 @@ function deleteCollection(idFamily) {
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
-
 
 module.exports = {
   getCollection,

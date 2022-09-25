@@ -103,35 +103,36 @@ function addCollectionAccess(req, res) {
 
 function editCollection(req, res) {
   const idCollection = req.params.idCollection;
-  const newNameCollection = req.body.newNameServer;
-  const newLevelCollection = req.body.newCollectionlevelServer;
-  console.log(idCollection);
-  console.log(newNameCollection);
-  console.log(newLevelCollection);
+  const collectionLevel = req.body.collectionLevelServer;
+  const collectionName = req.body.collectionNameServer;
 
   if (idCollection == undefined) {
+    console.log("idCollection is undefined!");
     return false;
-  } else if (newNameCollection == undefined) {
+  } else if (collectionLevel == undefined) {
+    console.log("collectionLevel is undefined!");
     return false;
-  } else if (newLevelCollection == undefined) {
+  } else if (collectionName == undefined) {
+    console.log("collectionName is undefined!");
     return false;
   } else {
     collectionModel
-      .editCollection(idCollection, newNameCollection, newLevelCollection)
+      .editCollection(idCollection, collectionLevel, collectionName)
       .then(function (result) {
         res.json(result);
       })
       .catch(function (error) {
         console.log(error);
-        console.log("edit machine has been failed: ", error.sqlMessage);
+        console.log("edit collection has been failed: ", error.sqlMessage);
         res.status(500).json(error.sqlMessage);
       });
   }
 }
 
+
+
 function editMachineCollections(req, res) {
   const idCollection = req.body.idCollectionServer;
-  const id = req.params.idCollection;
 
   if (idCollection == undefined) {
     return false;

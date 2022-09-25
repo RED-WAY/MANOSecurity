@@ -34,7 +34,7 @@ function addCollection() {
             setTimeout(() => {
               if (accessArray.length > 0) {
                 console.log(res);
-                addCollectionAccess(accessArray, res.insertId);
+                addCollectionAccess([accessArray, res.insertId]);
               }
               formView(false);
               showCollections();
@@ -53,7 +53,7 @@ function addCollection() {
   }
 }
 
-function addCollectionAccess(accessArray, fkCollection) {
+function addCollectionAccess([accessArray, fkCollection]) {
   if (accessArray == undefined) {
     console.log("accessArray undefined at addCollectionAccess FETCH");
     return false;

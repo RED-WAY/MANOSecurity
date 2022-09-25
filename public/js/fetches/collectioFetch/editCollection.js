@@ -1,29 +1,50 @@
 function editCollection(idCollection) {
-  const newNameCollection = collection_name.value;
-  const newCollectionLevel = collection_level_select.value;
+  var collectionLevel = collection_level_select.value;
+  var collectionName = collection_name.value;
+  var company = sessionStorage.COMPANY_USER;
 
-  fetch(`/collection/editCollection/${idCollection}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      newCollectionlevelServer: newCollectionLevel,
-      newNameServer: newNameCollection,
-    }),
-  })
-    .then(function (result) {
-      if (result.ok) {
-        formView(false);
-        showCollections();
-        getCollection(sessionStorage.COMPANY_USER);
-      } else if (result.status == 404) {
-        window.alert("error 404!");
-      } else {
-        throw "Delete has fail, result: " + result.status;
-      }
+  const accessArray = [];
+  const divCheck = document.querySelector(".div-checkes");
+  Array.from(divCheck.children).map((access) => {
+    const checkOpt = access.children[0];
+    checkOpt.checked && accessArray.push(checkOpt.id);
+  });
+
+  if (collectionLevel == undefined) {
+    console.log("collection level is not defined");
+    return false;
+  } else if (collectionName == "") {
+    console.log("collection name is undefined");
+    return false;
+  } else {
+    fetch(`/collection/editCollection/${idCollection}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        collectionLevelServer: collectionLevel,
+        collectionNameServer: collectionName,
+        companyServer: company,
+      }),
     })
-    .catch(function (result) {
-      console.log(`#ERRO: ${result}`);
-    });
+      .then(function (result) {
+        if (result.ok) {
+          showCollections();
+          getCollection();
+          removeFromOperationLog(idCollection, addCollectionAccess, [
+            accessArray,
+            idCollection,
+          ]);
+          formView(false);
+        } else {
+          throw "There was an error while editing a collection!";
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return false;
+  }
 }

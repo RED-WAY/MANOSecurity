@@ -11,7 +11,7 @@ function removeCollection(idCollection) {
     .then(function (result) {
       if (result.ok) {
         showDevices();
-        removeFromOperationLog(idCollection);
+        removeFromOperationLog(idCollection, removeFromSector, idCollection);
       } else if (result.status == 404) {
         window.alert("error 404!");
       } else {
@@ -23,7 +23,7 @@ function removeCollection(idCollection) {
     });
 }
 
-function removeFromOperationLog(fkCollection) {
+function removeFromOperationLog(fkCollection, postFunc, parameters) {
   fetch(`/collection/removeFromOperationLog/${fkCollection}`, {
     method: "DELETE",
     headers: {
@@ -32,7 +32,7 @@ function removeFromOperationLog(fkCollection) {
   })
     .then(function (result) {
       if (result.ok) {
-        removeFromSector(fkCollection);
+        postFunc(parameters);
       } else if (result.status == 404) {
         window.alert("error 404!");
       } else {
