@@ -88,10 +88,22 @@ function userBtnAttributes(isEnabling, idUser) {
     removeBtn.disabled = false;
 
     // SET ATTRIBUTE HERE
+    editBtn.setAttribute(
+      "onclick",
+      `formView(true, "Editar usuário", "user", "edit", ${idUser})`
+    );
+    removeBtn.setAttribute(
+      "onclick",
+      `deleteUser(${idUser})`
+    );
   } else {
     editBtn.disabled = true;
+<<<<<<< HEAD
     removeBtn.disabled = true;
 
     // UNSET ATTRIBUTE HERE
+=======
+    removeBtn.disabled = true;    
+>>>>>>> development
   }
 }
