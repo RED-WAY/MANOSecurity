@@ -51,7 +51,6 @@ function signUp(req, res) {
       .signUp(usernameController, emailController, passwordController)
       .then(function (result) {
         res.json(result);
-        console.log("estou aqui");
       })
       .catch(function (error) {
         console.log(error);

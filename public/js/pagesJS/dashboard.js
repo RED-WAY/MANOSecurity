@@ -71,6 +71,12 @@ function verifyInputs(formParam, mode, editId) {
   formParam = formParam.replace(formParam[0], formParam[0].toUpperCase());
   button.textContent = mode == "add" ? "ADICIONAR" : "EDITAR";
   button.setAttribute("onclick", `${mode + formParam}(${editId})`);
+
+  if (mode == "add") {
+    resetFields();
+  } else if (mode + formParam == "editCollection") {
+    loadCheckes(editId);
+  }
 }
 
 // ENABLE USERS BUTTONS
@@ -92,6 +98,12 @@ function userBtnAttributes(isEnabling, idUser) {
     );
   } else {
     editBtn.disabled = true;
+<<<<<<< HEAD
+    removeBtn.disabled = true;
+
+    // UNSET ATTRIBUTE HERE
+=======
     removeBtn.disabled = true;    
+>>>>>>> development
   }
 }

@@ -1,14 +1,9 @@
-function getCollection(idCompany){
+function getCollection() {
+  const idCompanyVar = sessionStorage.COMPANY_USER;
 
-  const idCompanyVar = idCompany;
-
-  
-   
- if (idCompanyVar == undefined) {
+  if (idCompanyVar == undefined) {
     return false;
   } else {
-    
-
     fetch(`/collection/getCollection/${idCompanyVar}`, {
       method: "GET",
       headers: {
@@ -17,20 +12,12 @@ function getCollection(idCompany){
     })
       .then(function (result) {
         if (result.ok) {
-          console.log(result);
-
           result.json().then((json) => {
-            console.log(json);
-            console.log(JSON.stringify(json));
-          
-            for(var i = 0; i < json.length; i++ ){
-            machine_collection_select.innerHTML +=
-             `<option value="${json[i].idSector}" selected>${json[i].sectorName}</option>`
+            machine_collection_select.innerHTML =
+              "<option value='' disabled selected>selecionar grupo</option>";
+            for (var i = 0; i < json.length; i++) {
+              machine_collection_select.innerHTML += `<option value="${json[i].idSector}">${json[i].sectorName}</option>`;
             }
-            setTimeout(function () {
-            
-             
-            }, 500);
           });
         } else {
           result.text().then((err) => {
@@ -44,6 +31,4 @@ function getCollection(idCompany){
 
     return false;
   }
-
-
 }
