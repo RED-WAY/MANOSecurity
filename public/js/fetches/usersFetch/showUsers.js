@@ -29,15 +29,15 @@ function showUsers(){
              
             
             
-              <tr onclick="userBtnAttributes(true, '${json[i].idConsumer}')">
-                <td>${json[i].consumerName}</td>
-                <td>${json[i].consumerEmail}</td>
-                <td>${json[i].responsability}</td>
-                <td>${json[i].dia}/${json[i].mes}/${json[i].ano}</td>
-                <td>${json[i].gerente}</td>
-              </tr>
+               <tr onclick="userBtnAttributes(true, '${json[i].idConsumer}')">
+                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].consumerName}</td>
+                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].consumerEmail}</td>
+                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].responsability}</td>
+                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].dia}/${json[i].mes}/${json[i].ano}</td>
+                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].gerente}</td>
+  
               
-           
+               <tr>
             
          `
 
