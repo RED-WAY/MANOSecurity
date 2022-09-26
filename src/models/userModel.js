@@ -33,10 +33,11 @@ function signUp(usernameModel, emailModel, passwordModel) {
   return database.executeQuery(dbQuery);
 }
 
-function showConsumers(idCompany) {
+function showConsumers(idCompany, idConsumer) {
   console.log(
     "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showConsumers()",
-    idCompany
+    idCompany,
+    idConsumer
   );
   const dbQuery = `
           SELECT consumer.idConsumer, consumer.consumerName, consumer.consumerEmail, 
@@ -46,7 +47,8 @@ function showConsumers(idCompany) {
 	          			JOIN consumer AS manager ON manager.idConsumer = consumer.fkManager 
 	          				JOIN company ON idCompany = consumer.fkCompany 
 	          					WHERE idCompany = ${idCompany} 
-                        ORDER BY consumer.dtAdded DESC;
+                        AND consumer.idConsumer != ${idConsumer} 
+                          ORDER BY consumer.dtAdded DESC;
     `;
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -97,8 +99,9 @@ function editConsumer(
   const dbQuery = `
           UPDATE consumer 
             SET consumerName = "${consumerName}", consumerEmail = "${consumerEmail}", 
-              consumerPassword = "${consumerPassword}", management = "${management}" 
-                WHERE idConsumer = ${idConsumer};
+              consumerPassword = AES_ENCRYPT('${consumerPassword}', '${encrypter}'),  
+                management = "${management}" 
+                  WHERE idConsumer = ${idConsumer};
     `;
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);

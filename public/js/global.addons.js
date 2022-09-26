@@ -28,3 +28,11 @@ function resetBorder(element) {
   element.classList.remove(radiusCorners.at(-1));
   radiusCorners.pop();
 }
+
+// SHOW/HIDE LOADING
+function showLoading() {
+  opacityPointer(".load-proc", "show");
+}
+function hideLoading() {
+  opacityPointer(".load-proc", "hide");
+}

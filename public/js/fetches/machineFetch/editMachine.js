@@ -1,5 +1,6 @@
 function editMachine(idMachine) {
-  
+  showLoading();
+
   const collectionVar =  machine_collection_select.value;
   const nameVar = machine_name.value;
 
@@ -10,24 +11,36 @@ function editMachine(idMachine) {
     },
     body: JSON.stringify({
       newCollectionServer: collectionVar,
-      newNameServer: nameVar
+      newNameServer: nameVar,
     }),
   })
     .then(function (result) {
       if (result.ok) {
-          showDevices();
+        showDevices();
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
           formView(false);
-
+        }, 500);
       } else if (result.status == 404) {
-        window.alert("error 404!");
+        hideConfirm();
+        setTimeout(() => {
+          window.alert("error 404!");
+          hideLoading();
+        }, 800);
       } else {
-        throw (
-          "Delete has fail, result: " +
-          result.status
-        );
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
+        throw "Delete has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
       console.log(`#ERRO: ${result}`);
+      hideConfirm();
+      setTimeout(() => {
+        hideLoading();
+      }, 3000);
     });
 }

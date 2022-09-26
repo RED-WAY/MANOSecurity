@@ -15,7 +15,7 @@ router.post("/signUp", function (req, res) {
   userController.signUp(req, res);
 });
 
-router.get("/showConsumers/:fkCompany", function (req, res) {
+router.get("/showConsumers/:fkCompany/:idConsumer", function (req, res) {
   userController.showConsumers(req, res);
 });
 

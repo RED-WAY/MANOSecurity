@@ -21,15 +21,33 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body onload="cleanSession(), viewLoad('hide')">
+<body onload="cleanSession(), viewLoad('hide'), hideLoading()">
   <!-- LOADER -->
   <div class="loader">
     <img
-      src="assets/gifs/loading4.gif"
+      src="assets/gifs/loading.gif"
       class="to-invert"
       alt="loader gif"
       draggable="false"
     />
+  </div>
+  <div class="loader load-proc invisible">
+    <img
+      src="assets/gifs/loadingRed.gif"
+      alt="loading process gif"
+      draggable="false"
+    />
+  </div>
+
+  <!-- MESSAGE -->
+  <div id="messages">
+    <div class="message-modal invisible">
+      <div id="message_bar"></div>
+      <ion-icon name="" id="message_icon"></ion-icon>
+      <p id="message_text"></p>
+      <ion-icon name="close-outline" class="close-form" onclick="hideMessage(this)"
+      title="Fechar mensagem" />
+    </div>
   </div>
 
   <!-- HEADER -->

@@ -1,4 +1,6 @@
 function addMachine() {
+  showLoading();
+
   const collectionVar = machine_collection_select.value;
   const machineNameVar = machine_name.value;
   const nameUser = sessionStorage.NAME_USER;
@@ -37,15 +39,25 @@ function addMachine() {
       .then(function (result) {
         if (result.ok) {
           showDevices();
+          hideConfirm();
           setTimeout(() => {
+            hideLoading();
             formView(false);
-          }, 500);
+          }, 200);
         } else {
+          hideConfirm();
+          setTimeout(() => {
+            hideLoading();
+          }, 1000);
           throw "There was an error while you´re add a machine!";
         }
       })
       .catch((error) => {
         console.log(error);
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 3000);
       });
 
     return false;

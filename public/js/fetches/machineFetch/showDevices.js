@@ -1,4 +1,5 @@
 function showDevices() {
+  showLoading();
   const companyVar = sessionStorage.COMPANY_USER;
 
   fetch("/machine/showMachine", {
@@ -28,8 +29,7 @@ function showDevices() {
                   <ion-icon name="create-outline"></ion-icon>
                   <p>EDITAR</p>
                 </button>
-                <button onclick="deleteMachine(${json[i].idMachine})"
-                class="btn-special">
+                <button onclick="setYes('Remover máquina', 'deleteMachine', '${json[i].idMachine}')" class="btn-special">
                   <ion-icon name="trash-outline"></ion-icon>
                   <p>REMOVER</p>
                 </button>
@@ -47,14 +47,23 @@ function showDevices() {
               </p>
             </div> 
          `;
+            setTimeout(() => {
+              hideLoading();
+            }, 1000);
           }
         });
       } else {
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
         throw "There was an error while getting the machines";
       }
     })
     .catch((error) => {
       console.log(error);
+      setTimeout(() => {
+        hideLoading();
+      }, 1000);
     });
 
   return false;

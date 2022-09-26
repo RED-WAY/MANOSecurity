@@ -28,16 +28,48 @@
 
   <body
     onload="validateSession(), showDevices(), viewLoad('hide'), 
-  getCollection(), showAccess()"
+  getCollection(), showAccess(), hideLoading()"
   >
     <!-- LOADER -->
     <div class="loader">
       <img
-        src="assets/gifs/loading4.gif"
+        src="assets/gifs/loading.gif"
         class="to-invert"
         alt="loader gif"
         draggable="false"
       />
+    </div>
+    <div class="loader load-proc invisible">
+      <img
+        src="assets/gifs/loadingRed.gif"
+        alt="loading process gif"
+        draggable="false"
+      />
+    </div>
+
+    <!-- MESSAGE -->
+    <div id="messages">
+      <div class="message-modal invisible">
+        <ion-icon name="" id="message_icon"></ion-icon>
+        <p id="message_text"></p>
+        <ion-icon
+          name="close-outline"
+          class="close-form"
+          onclick="hideMessage(this)"
+          title="Fechar mensagem"
+        />
+      </div>
+    </div>
+
+    <!-- CONFIRMATION -->
+    <div class="confirmation-back invisible">
+      <div class="form-card confirmation-modal">
+        <h1 id="confirm_message">Adicionar uma nova máquina?</h1>
+        <div class="confirmation-modal--buttons">
+          <button id="yes_button">Sim</button>
+          <button id="no_button" onclick="hideConfirm()">Não</button>
+        </div>
+      </div>
     </div>
 
     <!-- HEADER -->
@@ -58,7 +90,7 @@
             onclick="showLogin()"
             onmouseenter="borderChange(this)"
             onmouseleave="resetBorder(this)"
-            title="Entrar com sua conta"
+            title="Acessar DASHBOARD"
             tabindex="4"
           >
             DASHBOARD
@@ -106,6 +138,15 @@
             >
               <li>Usuários</li>
             </a>
+            <a
+              class="quit-icon"
+              href="#"
+              draggable="false"
+              onclick="setYes('Encerrar sessão', 'cleanSession', true)"
+              title="Voltar ao início"
+            >
+              <ion-icon name="exit"></ion-icon>
+            </a>
           </ul>
         </nav>
       </div>
@@ -131,6 +172,16 @@
           </a>
           <a href="#" tabindex="3" onclick="showSection('#usuarios')">
             <li>Usuários</li>
+          </a>
+          <a
+            class="quit-icon"
+            href="#"
+            draggable="false"
+            onclick="cleanSession(), validateSession()"
+            title="Voltar ao início"
+          >
+            <ion-icon name="exit"></ion-icon>
+            <p>SAIR</p>
           </a>
         </ul>
         <ion-icon
@@ -290,19 +341,7 @@
             <input name="collectionName" id="collection_name" type="text" />
           </div>
           <div class="form__input input-collection div-checkes edit">
-            <div class="pretty p-default p-default p-thick p-pulse manos-check">
-              <input type="checkbox" class="get-checkes" id="access1" />
-              <div class="state p-danger-o">
-                <label>Access 1 dahoralegal</label>
-              </div>
-            </div>
-
-            <div class="pretty p-default p-default p-thick p-pulse manos-check">
-              <input type="checkbox" class="get-checkes" id="access2" />
-              <div class="state p-danger-o">
-                <label>Access 2 dahorabacanaa</label>
-              </div>
-            </div>
+            <!-- INSERT CHECKES HERE -->
           </div>
           <!-- MACHINES -->
           <div class="form__input input-machine">
@@ -313,7 +352,7 @@
             <label for="machineCollection">Coleção</label>
             <select name="machineCollection" id="machine_collection_select">
               <option value="" disabled selected>selecionar grupo</option>
-              <!-- INSERT COLLECTIONS HERE     -->
+              <!-- INSERT MACHINE COLLECTIONS HERE -->
             </select>
           </div>
           <div class="form__input input-machine edit">

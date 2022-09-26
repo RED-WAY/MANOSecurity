@@ -65,12 +65,17 @@ function signUp(req, res) {
 
 function showConsumers(req, res) {
   const fkCompany = req.params.fkCompany;
+  const idConsumer = req.params.idConsumer;
+
   if (fkCompany == undefined) {
     console.log("fkCompany is undefined!");
     return false;
+  } else if (idConsumer == undefined) {
+    console.log("idConsumer is undefined!");
+    return false;
   } else {
     userModel
-      .showConsumers(fkCompany)
+      .showConsumers(fkCompany, idConsumer)
       .then(function (result) {
         if (result.length > 0) {
           res.status(200).json(result);

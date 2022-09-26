@@ -20,6 +20,78 @@ function showMenu() {
 function hideMenu() {
   opacityPointer("#aside_menu", "hide");
 }
+// display message aside
+let barWidth = 100;
+let barInterval;
+function showMessage(status, msg) {
+  // verify state and set message icon
+  let imgSrc = "";
+  switch (status) {
+    case "success":
+      imgSrc = "checkmark-circle";
+      break;
+    case "error":
+      imgSrc = "close-circle";
+      break;
+    case "warning":
+      imgSrc = "warning";
+      break;
+    default:
+      imgSrc = "checkmark-circle";
+  }
+
+  // set custom content in message
+  const element = document.querySelector(".message-modal");
+  document.querySelector("#message_icon").name = imgSrc;
+  document.querySelector("#message_icon").style.color = `var(--msg-${status})`;
+  element.style.boxShadow = `0 0 .5em var(--msg-${status})`;
+  document.querySelector("#message_text").innerHTML = msg;
+
+  // execute if there is no message displayed
+  if (element.classList.contains("invisible")) {
+    document.querySelector(
+      "#message_bar"
+    ).style.backgroundColor = `var(--msg-${status})`;
+    // restart bar
+    barInterval = setInterval(() => {
+      if (barWidth <= 0) {
+        clearInterval(barInterval);
+        barWidth = 100;
+      }
+
+      barWidth--;
+      document.querySelector("#message_bar").style.width = `${barWidth}%`;
+    }, 35);
+
+    // show message
+    setTimeout(() => {
+      opacityPointer(element, "show");
+    }, 0);
+
+    // timer to remove message and restart
+    hideMsgTimeout = setTimeout(() => {
+      setTimeout(() => {
+        clearInterval(barInterval);
+        barWidth = 100;
+        document.querySelector("#message_bar").style.width = "100%";
+      }, 500);
+      opacityPointer(element, "hide");
+    }, 3000);
+  }
+}
+// hide message aside
+let hideMsgTimeout;
+function hideMessage(element) {
+  // reset progress bar
+  setTimeout(() => {
+    clearInterval(barInterval);
+    clearInterval(hideMsgTimeout);
+    barWidth = 100;
+    document.querySelector("#message_bar").style.width = "100%";
+  }, 500);
+  // hide message div
+  opacityPointer(element.parentElement, "hide");
+}
 
 // exit form with "escape" key
 window.addEventListener("keydown", (event) => {
@@ -60,7 +132,8 @@ document.querySelector(".btnForm").addEventListener("click", () => {
 
 // change visibility of elements with OPACITY and POINTER-EVENTS
 function opacityPointer(element, option) {
-  el = document.querySelector(element);
+  const el =
+    typeof element === "string" ? document.querySelector(element) : element;
   if (option === "show") {
     el.classList.remove("invisible");
   } else {

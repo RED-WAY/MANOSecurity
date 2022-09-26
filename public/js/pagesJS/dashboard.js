@@ -30,7 +30,7 @@ function formView(isOpening, formTitle, formParam, mode, editId) {
     const title = document.querySelector("#form_title");
     title.textContent = formTitle;
     // change inputs
-    verifyInputs(formParam, mode, editId);
+    verifyInputs(formParam, mode, editId, formTitle);
     form.style.display = "flex";
     setTimeout(() => {
       form.style.opacity = "1";
@@ -44,7 +44,7 @@ function formView(isOpening, formTitle, formParam, mode, editId) {
 }
 
 // ADAPT INPUTS ACCORDINGLY WITH SECTION
-function verifyInputs(formParam, mode, editId) {
+function verifyInputs(formParam, mode, editId, confirmTitle) {
   // formParam: machine, collection, access
   const form = document.querySelector("#form_inputs");
   const button = document.querySelector("#button_form");
@@ -70,7 +70,7 @@ function verifyInputs(formParam, mode, editId) {
   // add correct function to add
   formParam = formParam.replace(formParam[0], formParam[0].toUpperCase());
   button.textContent = mode == "add" ? "ADICIONAR" : "EDITAR";
-  button.setAttribute("onclick", `${mode + formParam}(${editId})`);
+  button.setAttribute("onclick", `setYes('${confirmTitle}', '${mode + formParam}', ${editId})`);
 
   if (mode == "add") {
     resetFields();
@@ -98,7 +98,26 @@ function userBtnAttributes(isEnabling, idUser) {
     );
     removeBtn.setAttribute("onclick", `deleteUser(${idUser})`);
   } else {
-    editBtn.disabled = true;
-    removeBtn.disabled = true;
+     editBtn.disabled = true;
+     removeBtn.disabled = true;
   }
+}
+
+// CONFIRMATION MESSAGE
+function setYes(msg, func, params) {
+  // set question
+  confirm_message.innerHTML = msg + "?";
+
+  // show confirm buttons
+  const confirmDiv = document.querySelector('.confirmation-back');
+  opacityPointer(confirmDiv, "show");
+
+  // set YES button onclick function
+  const yesButton = document.querySelector('#yes_button');
+  yesButton.setAttribute("onclick", `${func}(${params})`);
+}
+// hide confirm buttons
+function hideConfirm() {
+  const confirmDiv = document.querySelector(".confirmation-back");
+  opacityPointer(confirmDiv, "hide");
 }

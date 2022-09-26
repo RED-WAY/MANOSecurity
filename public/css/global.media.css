@@ -4,78 +4,97 @@ html {
 
 @media (min-width: 426px) {
   html {
+    /* TEXT */
     font-size: 10px;
   }
 
   #theme_changer + label {
+    /* POSITION */
     bottom: -11vh;
     left: -6vw;
   }
 }
 @media (min-width: 769px) {
   html {
+    /* TEXT */
     font-size: 12px;
   }
   header {
+    /* SIZE */
     height: 6rem;
   }
   nav {
+    /* DISPLAY */
     display: flex;
   }
   #menu_icon {
+    /* DISPLAY */
     display: none;
   }
   .wrapper-logo {
+    /* DISPLAY */
     display: none;
   }
   .wrapper-buttons {
+    /* SIZE */
     width: 15%;
   }
   #theme_changer {
+    /* SIZE */
     width: 8vw;
     height: 17vh;
+    /* POSITION */
     bottom: -8vh;
     left: -4vw;
   }
   #theme_changer + label {
+    /* SIZE */
     width: 8vw;
     height: 17vh;
+    /* POSITION */
     bottom: -8vh;
     left: -4vw;
   }
 
   #theme_changer + label:hover {
+    /* POSITION */
     bottom: -7.5vh;
     left: -3.75vw;
   }
 }
 @media (min-width: 1025px) {
   html {
+    /* TEXT */
     font-size: 16px;
   }
 }
 @media (min-width: 1441px) {
   html {
+    /* TEXT */
     font-size: 18px;
   }
 }
 @media (min-width: 1921px) {
   html {
+    /* TEXT */
     font-size: 20px;
   }
 }
 @media (min-width: 2561px) {
   html {
+    /* TEXT */
     font-size: 26px;
   }
 }
 @media (min-width: 3841px) {
   html {
+    /* TEXT */
     font-size: 40px;
   }
 }
 @media (min-width: 7679px) {
   html {
+    /* TEXT */
     font-size: 50px;
   }
 }
