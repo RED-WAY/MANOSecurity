@@ -12,28 +12,21 @@ function showUsers() {
       if (result.ok) {
         result.json().then((users) => {
           usersDisplay.innerHTML = "";
-          
-          for (var i = 0; i < json.length; i++) {
+          for (var i = 0; i < users.length; i++) {
             usersDisplay.innerHTML += `
-             
-            
-            
-              <tr onclick="userBtnAttributes(true, '${json[i].idConsumer}')">
-                <td>${json[i].consumerName}</td>
-                <td>${json[i].consumerEmail}</td>
-                <td>${json[i].responsability}</td>
-                <td>${json[i].dia}/${json[i].mes}/${json[i].ano}</td>
-                <td>${json[i].gerente}</td>
-              </tr>
-              
-           
-            
-         `
-
+              <tr onclick="userBtnAttributes(true, '${users[i].idConsumer}')" id="user${users[i].idConsumer}">
+                <td>${users[i].consumerName}</td>
+                <td>${users[i].consumerEmail}</td>
+                <td>${users[i].management}</td>
+                <td>${users[i].dtAdded}</td>
+                <td>${users[i].managerName}</td>
+              </tr> 
+         `;
           }
+          paintUsersOnClick();
         });
       } else {
-        throw "There was an error while getting the machines";
+        throw "There was an error while showing the users";
       }
     })
     .catch((error) => {
@@ -41,5 +34,4 @@ function showUsers() {
     });
 
   return false;
-
 }
