@@ -1,7 +1,7 @@
 function editMachine(idMachine) {
   showLoading();
 
-  const collectionVar = machine_collection.value;
+  const collectionVar =  machine_collection_select.value;
   const nameVar = machine_name.value;
 
   fetch(`/machine/editMachine/${idMachine}`, {
@@ -16,8 +16,8 @@ function editMachine(idMachine) {
   })
     .then(function (result) {
       if (result.ok) {
-        hideConfirm();
         showDevices();
+        hideConfirm();
         setTimeout(() => {
           hideLoading();
           formView(false);

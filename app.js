@@ -13,6 +13,8 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var userRouter = require("./src/routes/users");
 var machineRouter = require("./src/routes/machine");
+var collectionRouter = require("./src/routes/collection");
+var accessRouter = require("./src/routes/access");
 // ADD ROUTES HERE
 
 app.use(express.json());
@@ -23,7 +25,9 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);
-app.use("/machine", machineRouter)
+app.use("/machine", machineRouter);
+app.use("/collection", collectionRouter);
+app.use("/access", accessRouter);
 
 // ADD ROUTES HERE TOO
 

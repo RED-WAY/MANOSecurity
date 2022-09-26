@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var machineController = require("../controllers/machineController");
+const machineController = require("../controllers/machineController");
 
 
 router.post("/addMachine", function (req, res) {
@@ -19,6 +19,7 @@ router.put("/editMachine/:idMachine", function(req,res){
 router.post("/showMachine", function (req, res) {
     machineController.showMachine(req, res);
 });
+
 
 
 module.exports = router;

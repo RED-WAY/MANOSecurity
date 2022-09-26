@@ -1,22 +1,28 @@
 function addMachine() {
   showLoading();
 
-  // const token = machine_token.value;
-  const collectionVar = machine_collection.value;
-  const nameVar = machine_name.value;
+  const collectionVar = machine_collection_select.value;
+  const machineNameVar = machine_name.value;
   const nameUser = sessionStorage.NAME_USER;
   const idUser = sessionStorage.ID_USER;
   const companyVar = sessionStorage.COMPANY_USER;
 
-  if (nameVar == "" || collectionVar == "") {
-    console.log("deu ruim no addMachine");
+  if (machineNameVar == "") {
+    console.log("machineName is undefined!");
+    return false;
+  } else if (nameUser == "") {
+    console.log("nameUser is undefined!");
+    return false;
+  } else if (idUser == "") {
+    console.log("idUser is undefined!");
+    return false;
+  } else if (companyVar == "") {
+    console.log("companyVar is undefined!");
+    return false;
+  } else if (collectionVar == "") {
+    console.log("collectionVar is undefined!");
     return false;
   } else {
-    console.log(collectionVar);
-    console.log(nameVar);
-    console.log(nameUser);
-    console.log(idUser);
-
     fetch("/machine/addMachine", {
       method: "POST",
       headers: {
@@ -24,22 +30,19 @@ function addMachine() {
       },
       body: JSON.stringify({
         collectionServer: collectionVar,
-        nameServer: nameVar,
+        nameServer: machineNameVar,
         nameUserServer: nameUser,
         idUserServer: idUser,
         companyServer: companyVar,
       }),
     })
       .then(function (result) {
-        console.log("resposta: ", result);
-
         if (result.ok) {
-          console.log("maquina adicionada com sucesso!");
+          showDevices();
           hideConfirm();
           setTimeout(() => {
             hideLoading();
             formView(false);
-            showDevices();
           }, 200);
         } else {
           hideConfirm();

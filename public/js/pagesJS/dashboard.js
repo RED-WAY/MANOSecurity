@@ -71,22 +71,35 @@ function verifyInputs(formParam, mode, editId, confirmTitle) {
   formParam = formParam.replace(formParam[0], formParam[0].toUpperCase());
   button.textContent = mode == "add" ? "ADICIONAR" : "EDITAR";
   button.setAttribute("onclick", `setYes('${confirmTitle}', '${mode + formParam}', ${editId})`);
+
+  if (mode == "add") {
+    resetFields();
+  } else if (mode + formParam == "editMachine") {
+    loadMachineInputs(editId);
+  } else if (mode + formParam == "editUser") {
+    loadUserInputs(editId);
+  } else if (mode + formParam == "editCollection") {
+    loadCheckes(editId);
+  }
 }
 
 // ENABLE USERS BUTTONS
 function userBtnAttributes(isEnabling, idUser) {
-  const editBtn = document.querySelector('#userEditButton');
-  const removeBtn = document.querySelector('#userRemoveButton');
+  const editBtn = document.querySelector("#userEditButton");
+  const removeBtn = document.querySelector("#userRemoveButton");
   if (isEnabling) {
     editBtn.disabled = false;
     removeBtn.disabled = false;
 
     // SET ATTRIBUTE HERE
+    editBtn.setAttribute(
+      "onclick",
+      `formView(true, "Editar usuário", "user", "edit", ${idUser})`
+    );
+    removeBtn.setAttribute("onclick", `deleteUser(${idUser})`);
   } else {
      editBtn.disabled = true;
      removeBtn.disabled = true;
-
-     // UNSET ATTRIBUTE HERE
   }
 }
 
@@ -105,6 +118,6 @@ function setYes(msg, func, params) {
 }
 // hide confirm buttons
 function hideConfirm() {
-  const confirmDiv = document.querySelector('.confirmation-back');
-  opacityPointer(confirmDiv, "hide")
+  const confirmDiv = document.querySelector(".confirmation-back");
+  opacityPointer(confirmDiv, "hide");
 }
