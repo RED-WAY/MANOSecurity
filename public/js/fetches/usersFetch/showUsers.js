@@ -1,27 +1,15 @@
-function showUsers(){
+function showUsers() {
+  const fkCompany = sessionStorage.COMPANY_USER;
 
-   const idCompany = sessionStorage.COMPANY_USER;
-
-   fetch(`/users/showUsers/${idCompany}`, {
-  
+  fetch(`/users/showConsumers/${fkCompany}`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json", 
+      "Content-Type": "application/json",
     },
-   
   })
     .then(function (result) {
-
-
       if (result.ok) {
-        console.log("resposta: ", result);
-
-        result.json().then((json) => {
-
-          console.log(JSON.stringify(json));
-
-
-          
+        result.json().then((users) => {
           usersDisplay.innerHTML = "";
           
           for (var i = 0; i < json.length; i++) {
@@ -29,15 +17,15 @@ function showUsers(){
              
             
             
-               <tr onclick="userBtnAttributes(true, '${json[i].idConsumer}')">
-                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].consumerName}</td>
-                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].consumerEmail}</td>
-                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].responsability}</td>
-                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].dia}/${json[i].mes}/${json[i].ano}</td>
-                 <td onclick="userBtnAttributes(true, '${json[i].idConsumer}')">${json[i].gerente}</td>
-  
+              <tr onclick="userBtnAttributes(true, '${json[i].idConsumer}')">
+                <td>${json[i].consumerName}</td>
+                <td>${json[i].consumerEmail}</td>
+                <td>${json[i].responsability}</td>
+                <td>${json[i].dia}/${json[i].mes}/${json[i].ano}</td>
+                <td>${json[i].gerente}</td>
+              </tr>
               
-               <tr>
+           
             
          `
 

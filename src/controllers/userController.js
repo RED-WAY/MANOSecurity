@@ -1,32 +1,5 @@
-var userModel = require("../models/userModel");
+const userModel = require("../models/userModel");
 
-
-
-function showUsers(req, res) {
-
-   const idCompany = req.params.idCompany;
-   if(idCompany == undefined){
-    return false;
-   }else{
-  userModel
-    .showUsers(idCompany)
-    .then(function (result) {
-      if (result.length > 0) {
-        res.status(200).json(result);
-      } else {
-        res.status(204).send("No results found!");
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-      console.error(
-        "\nThere was an error executing the query!\nERROR: ",
-        error.sqlMessage
-      );
-      res.status(500).json(error.sqlMessage);
-    });
-}
-}
 function logIn(req, res) {
   const emailController = req.body.emailServer;
   const passwordController = req.body.passwordServer;
@@ -74,10 +47,10 @@ function signUp(req, res) {
   } else if (passwordController == undefined) {
     res.status(400).send("PasswordController is undefined!");
   } else {
-    userModel.signUp(usernameController, emailController, passwordController)
+    userModel
+      .signUp(usernameController, emailController, passwordController)
       .then(function (result) {
         res.json(result);
-        console.log('estou aqui')
       })
       .catch(function (error) {
         console.log(error);
@@ -90,111 +63,138 @@ function signUp(req, res) {
   }
 }
 
-function addUser(req, res){
-  const idCompany = req.params.idCompany;
-  const userName = req.body.userNameServer;
-  const userEmail = req.body.userEmailServer;
-  const userPassword = req.body.userPasswordServer;
-  const carg = req.body.cargServer;
-  const manager = req.body.manegerServer;
- 
-  if (userEmail == undefined) {
-    console.log('userName is not defined')
-} else if (userPassword == undefined) {
- 
-    console.log('userPassowrd is not defined')
-} else if (carg == undefined){
-    console.log('user Carg is not defined')
-
-
-}else if(userName == undefined){
-    console.log('userName is not defined')
-}else if(manager == undefined){
-  console.log('user manager is not defined')
-}{
-
-    userModel.addUser(idCompany, userName, 
-      userEmail, userPassword,manager, carg)
-    .then(function (result) {
-      res.json(result);
-      console.log('estou aqui, userController')
-    })
-    .catch(function (error) {
-      console.log(error);
-      console.error(
-        "\nThere was an error executing the query!\nERROR: ",
-        error.sqlMessage
-      );
-      res.status(500).json(error.sqlMessage);
-    });
-}
-}
-  
-  
-function deleteUser(req, res) {
-  const idUser = req.params.idUser;
-
-  userModel.deleteUser(idUser)
-    .then(
-      function (result) {
-        res.json(result);
-      }
-    ).catch(
-      function (error) {
+function showConsumers(req, res) {
+  const fkCompany = req.params.fkCompany;
+  if (fkCompany == undefined) {
+    console.log("fkCompany is undefined!");
+    return false;
+  } else {
+    userModel
+      .showConsumers(fkCompany)
+      .then(function (result) {
+        if (result.length > 0) {
+          res.status(200).json(result);
+        } else {
+          res.status(204).send("No users found!");
+        }
+      })
+      .catch(function (error) {
         console.log(error);
-        console.log("Delete machine has been failed: ", error.sqlMessage);
-        res.status(500).json(error.sqlMessage)
-      }
-    )
-
-
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
 }
 
-function editUser(req, res){
-  const idUser = req.params.idUser;
-  const userName = req.body.userNameServer;
-  const userEmail = req.body.userEmailServer;
-  const userPassword = req.body.userPasswordServer;
-  const carg = req.body.cargServer;
-  
- 
-  if (userEmail == undefined) {
-    console.log('userName is not defined')
-} else if (userPassword == undefined) {
- 
-    console.log('userPassowrd is not defined')
-} else if (carg == undefined){
-    console.log('user Carg is not defined')
+function addConsumer(req, res) {
+  const fkCompany = req.params.fkCompany;
+  const consumerName = req.body.consumerNameServer;
+  const consumerEmail = req.body.consumerEmailServer;
+  const consumerPassword = req.body.consumerPasswordServer;
+  const management = req.body.managementServer;
+  const manager = req.body.managerServer;
 
+  if (consumerName == undefined) {
+    console.log("consumerName is undefined");
+  } else if (consumerEmail == undefined) {
+    console.log("consumerEmail is undefined");
+  } else if (consumerPassword == undefined) {
+    console.log("consumerPassowrd is undefined");
+  } else if (management == undefined) {
+    console.log("management is undefined");
+  } else if (manager == undefined) {
+    console.log("manager is undefined");
+  } else if (fkCompany == undefined) {
+    console.log("fkCompany is undefined");
+  } else {
+    userModel
+      .addConsumer(
+        consumerName,
+        consumerEmail,
+        consumerPassword,
+        management,
+        manager,
+        fkCompany
+      )
+      .then(function (result) {
+        res.json(result);
+        console.log("on userController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
 
-}else if(userName == undefined){
-    console.log('userName is not defined')
-}else if(idUser == undefined){
-  console.log('user idUser is not defined')
-}{
+function editConsumer(req, res) {
+  const idConsumer = req.params.idConsumer;
+  const consumerName = req.body.consumerNameServer;
+  const consumerEmail = req.body.consumerEmailServer;
+  const consumerPassword = req.body.consumerPasswordServer;
+  const management = req.body.managementServer;
 
-    userModel.addUser(idUser, userName, 
-      userEmail, userPassword, carg)
+  if (consumerName == undefined) {
+    console.log("consumerName is undefined");
+  } else if (consumerEmail == undefined) {
+    console.log("consumerEmail is undefined");
+  } else if (consumerPassword == undefined) {
+    console.log("consumerPassowrd is undefined");
+  } else if (management == undefined) {
+    console.log("management is undefined");
+  } else if (idConsumer == undefined) {
+    console.log("idConsumer is undefined");
+  } else {
+    userModel
+      .editConsumer(
+        consumerName,
+        consumerEmail,
+        consumerPassword,
+        management,
+        idConsumer
+      )
+      .then(function (result) {
+        res.json(result);
+        console.log("on userController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function deleteConsumer(req, res) {
+  const idConsumer = req.params.idConsumer;
+
+  userModel
+    .deleteConsumer(idConsumer)
     .then(function (result) {
       res.json(result);
-      console.log('estou aqui, userController')
     })
     .catch(function (error) {
       console.log(error);
-      console.error(
-        "\nThere was an error executing the query!\nERROR: ",
-        error.sqlMessage
-      );
+      console.log("Delete user has been failed: ", error.sqlMessage);
       res.status(500).json(error.sqlMessage);
     });
-}
 }
 
 module.exports = {
-  showUsers,
   logIn,
   signUp,
- addUser,
- deleteUser,
- editUser
+  showConsumers,
+  addConsumer,
+  editConsumer,
+  deleteConsumer,
 };

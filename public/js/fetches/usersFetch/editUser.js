@@ -1,57 +1,49 @@
-function editUser(idUser) {
+function editUser(idConsumer) {
+  const consumerNameVar = user_name.value;
+  const consumerEmailVar = user_email.value;
+  const consumerPasswordVar = user_password.value;
+  const managementVar = user_office.value.toUpperCase();
 
-    const userName = user_name.value;
-    const userEmail = user_email.value;
-    const userPassword = user_password.value;
-    const carg = user_office.value;
+  if (consumerNameVar == undefined) {
+    console.log("consumerName is undefined");
+  } else if (consumerEmailVar == undefined) {
+    console.log("consumerEmail is undefined");
+  } else if (consumerPasswordVar == undefined) {
+    console.log("consumerPassword is undefined");
+  } else if (managementVar == undefined) {
+    console.log("management is undefined");
+  } else if (idConsumer == undefined) {
+    console.log("idConsumer is undefined");
+  } else {
+    fetch(`/users/editConsumer/${idConsumer}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        consumerNameServer: consumerNameVar,
+        consumerEmailServer: consumerEmailVar,
+        consumerPasswordServer: consumerPasswordVar,
+        managementServer: managementVar,
+      }),
+    })
+      .then(function (result) {
+        console.log("resposta: ", result);
 
-   
-    if (userEmail == undefined) {
-        console.log('userName is not defined')
-    } else if (userPassword == undefined) {
-     
-        console.log('userPassowrd is not defined')
-    } else if (carg == undefined){
-        console.log('user Carg is not defined')
+        if (result.ok) {
+          showUsers();
+          setTimeout(() => {
+            formView(false);
+            userBtnAttributes(false);
+          }, 500);
+        } else {
+          throw "There was an error while editing user!";
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-
-    }else if(userName == undefined){
-        console.log('userName is not defined')
-    }else {
-
-
-        fetch(`/users/editUser/${idUser}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                userNameServer: userName,
-                userEmailServer: userEmail,
-                userPasswordServer: userPassword,
-                cargServer: carg
-              
-            }),
-        })
-            .then(function (result) {
-                console.log("resposta: ", result);
-
-                if (result.ok) {
-                    setTimeout(() => {
-
-                        formView(false);
-                        showUsers();
-                    }, 500);
-                } else {
-                    throw "There was an error while you´re add a collection!";
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-        return false;
-    }
-
-
+    return false;
+  }
 }

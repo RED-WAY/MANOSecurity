@@ -26,8 +26,10 @@
     />
   </head>
 
-  <body onload="validateSession(), showDevices(), viewLoad('hide'), 
-  getCollection(sessionStorage.COMPANY_USER)">
+  <body
+    onload="validateSession(), showDevices(), viewLoad('hide'), 
+  getCollection(), showAccess()"
+  >
     <!-- LOADER -->
     <div class="loader">
       <img
@@ -92,7 +94,7 @@
               href="#"
               tabindex="3"
               draggable="false"
-              onclick="showSection('#acessos'),showAcess()"
+              onclick="showSection('#acessos'),showAccess()"
             >
               <li>Acessos</li>
             </a>
@@ -108,7 +110,7 @@
         </nav>
       </div>
     </header>
-<!-- aqui -->
+    <!-- aqui -->
     <!-- MENU CARD -->
     <aside class="popup-aside invisible" id="aside_menu">
       <div class="menu-nav hamburguer">
@@ -158,9 +160,11 @@
               <ion-icon name="add-outline"></ion-icon>
               <p>ADICIONAR</p>
             </button>
-         </div>
+          </div>
         </div>
-        <div id="dispositivos_content" class="content"></div>
+        <div id="dispositivos_content" class="content">
+          <!-- ADD MACHINES HERE -->
+        </div>
       </section>
       <!-- collections -->
       <section id="colecoes" class="sec">
@@ -179,7 +183,7 @@
           </div>
         </div>
         <div id="colecoes_content" class="content">
-         
+          <!-- ADD COLLECTIONS HERE -->
         </div>
       </section>
       <!-- access -->
@@ -199,7 +203,7 @@
           </div>
         </div>
         <div id="acessos_content" class="content">
-         
+          <!-- ADD ACCESS HERE -->
         </div>
       </section>
       <!-- users -->
@@ -232,18 +236,19 @@
             </button>
           </div>
         </div>
-        <div  class="content table-content">
+        <div class="content table-content">
           <table class="main-table">
             <thead>
               <tr>
                 <td>Nome</td>
                 <td>Email</td>
-                <td>permissão</td>
+                <td>Permissão</td>
                 <td>Data</td>
                 <td class="lastTdBorder">Gestor</td>
               </tr>
             </thead>
             <tbody id="usersDisplay">
+              <!-- ADD USERS HERE -->
             </tbody>
           </table>
         </div>
@@ -258,7 +263,7 @@
           <!-- ACCESS -->
           <div class="form__input input-access">
             <label for="accessType">Tipo</label>
-            <select name="accessType" id="access_type_select">
+            <select name="web" id="access_type_select">
               <option value="web">Web</option>
               <option value="desktop">Desktop</option>
             </select>
@@ -308,8 +313,7 @@
             <label for="machineCollection">Coleção</label>
             <select name="machineCollection" id="machine_collection_select">
               <option value="" disabled selected>selecionar grupo</option>
-
-              
+              <!-- INSERT COLLECTIONS HERE     -->
             </select>
           </div>
           <div class="form__input input-machine edit">
@@ -327,14 +331,19 @@
           </div>
           <div class="form__input input-user edit">
             <label for="userPassword">Senha</label>
-            <input name="userPassword" id="user_password" type="password" />
+            <input
+              name="userPassword"
+              id="user_password"
+              type="password"
+              autocomplete="off"
+            />
           </div>
           <div class="form__input input-user edit">
             <label for="userOffice">Cargo</label>
             <select name="userOffice" id="user_office">
-              <option value="master">MASTER</option>
-              <option value="admin">ADMIN</option>
-              <option value="analista">ANALISTA</option>
+              <option value="MASTER">MASTER</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="ANALYST">ANALISTA</option>
             </select>
           </div>
         </form>
@@ -378,17 +387,16 @@
 <script src="./js/fetches/usersFetch/editUser.js"></script>
 <script src="./js/fetches/usersFetch/deleteUser.js"></script>
 <script src="./js/fetches/machineFetch/addMachine.js"></script>
-<script src="./js/fetches/collectioFetch/getCollection.js"></script>
-<script src="./js/fetches/collectioFetch/showCollection.js"></script>
-<script src="./js/fetches/collectioFetch/addCollection.js"></script>
-<script src="./js/fetches/acess/addAccess.js"></script>
-<script src="./js/fetches/acess/showAcess.js"></script>
-<script src="./js/fetches/acess/removeAcess.js"></script>
-<script src="./js/fetches/collectioFetch/removeCollection.js"></script>
-<script src="./js/fetches/collectioFetch/editCollection.js"></script>
+<script src="./js/fetches/collectionFetch/getCollection.js"></script>
+<script src="./js/fetches/collectionFetch/showCollection.js"></script>
+<script src="./js/fetches/collectionFetch/addCollection.js"></script>
+<script src="./js/fetches/collectionFetch/editCollection.js"></script>
+<script src="./js/fetches/collectionFetch/removeCollection.js"></script>
+<script src="./js/fetches/access/addAccess.js"></script>
+<script src="./js/fetches/access/showAccess.js"></script>
+<script src="./js/fetches/access/removeAccess.js"></script>
 <script src="./js/fetches/machineFetch/removeMachine.js"></script>
 <script src="./js/fetches/machineFetch/editMachine.js"></script>
 <script src="./js/fetches/machineFetch/showDevices.js"></script>
-<script src="./js/pagesJS/dashboard.js"></script>
 <script src="./js/pagesJS/dashboard.addons.js"></script>
-
+<script src="./js/pagesJS/dashboard.js"></script>
