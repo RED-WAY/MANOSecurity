@@ -74,6 +74,10 @@ function verifyInputs(formParam, mode, editId) {
 
   if (mode == "add") {
     resetFields();
+  } else if (mode + formParam == "editMachine") {
+    loadMachineInputs(editId);
+  } else if (mode + formParam == "editUser") {
+    loadUserInputs(editId);
   } else if (mode + formParam == "editCollection") {
     loadCheckes(editId);
   }
@@ -92,18 +96,9 @@ function userBtnAttributes(isEnabling, idUser) {
       "onclick",
       `formView(true, "Editar usuário", "user", "edit", ${idUser})`
     );
-    removeBtn.setAttribute(
-      "onclick",
-      `deleteUser(${idUser})`
-    );
+    removeBtn.setAttribute("onclick", `deleteUser(${idUser})`);
   } else {
     editBtn.disabled = true;
-<<<<<<< HEAD
     removeBtn.disabled = true;
-
-    // UNSET ATTRIBUTE HERE
-=======
-    removeBtn.disabled = true;    
->>>>>>> development
   }
 }

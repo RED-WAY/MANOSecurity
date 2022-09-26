@@ -28,6 +28,9 @@ function resetFields() {
   collection_name.value = "";
   access_name.value = "";
   access_path.value = "";
+  user_name.value = "";
+  user_email.value = "";
+  user_password.value = "";
 
   // changing all process checkboxes to false
   const divCheck = document.querySelector(".div-checkes");
@@ -35,6 +38,33 @@ function resetFields() {
     const checkOpt = access.children[0];
     checkOpt.checked = false;
   });
+}
+
+function loadMachineInputs(machineId) {
+  machine_name.value = document
+    .querySelector(`#name_machine${machineId}`)
+    .innerHTML.replace("Name: ", "");
+  const selectValue = document
+    .querySelector(`#machine${machineId}`)
+    .children[2].id.replace("collection_machine", "");
+  if (selectValue != "null") {
+    machine_collection_select.value = selectValue;
+  } else {
+    machine_collection_select.value = "";
+  }
+}
+
+function loadUserInputs(userId) {
+  user_name.value = document.querySelector(
+    `#user${userId}`
+  ).children[0].innerHTML;
+  user_email.value = document.querySelector(
+    `#user${userId}`
+  ).children[1].innerHTML;
+  user_password.value = "";
+  user_office.value = document.querySelector(
+    `#user${userId}`
+  ).children[2].innerHTML;
 }
 
 function loadCheckes(idCollection) {

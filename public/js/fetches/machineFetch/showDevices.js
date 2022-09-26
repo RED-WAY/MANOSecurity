@@ -16,16 +16,16 @@ function showDevices() {
           dispositivos_content.innerHTML = "";
 
           for (var i = 0; i < json.length; i++) {
-            dispositivos_content.innerHTML += `
-             
-              <div class="card-info" id="machine${i}" >
+            json[i]
+            dispositivos_content.innerHTML += `             
+              <div class="card-info" id="machine${json[i].idMachine}" >
               <ion-icon name="desktop-outline"></ion-icon>
               <div class="card-buttons">
-                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${json[i].idMachine}')"
+                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${
+                  json[i].idMachine
+                }')"
                 class="btn-special">
                   <ion-icon name="create-outline"></ion-icon>
-  
-  
                   <p>EDITAR</p>
                 </button>
                 <button onclick="deleteMachine(${json[i].idMachine})"
@@ -34,19 +34,18 @@ function showDevices() {
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="collection_machine">COLLECTION: ${json[i].collection || 'não adicionada'}</h3>
-              <h2 id="name_machine${i}">Name: ${json[i].machineName}</h2>
+              <h3 id="collection_machine${json[i].idSector}">COLLECTION: ${
+              json[i].sectorName || "não adicionada"
+            }</h3>
+              <h2 id="name_machine${json[i].idMachine}">Name: ${
+              json[i].machineName
+            }</h2>
               <p>
-  
-                
-                <strong>Adicionado em: </strong>${json[i].day}/${json[i].mounth}/${json[i].year}<br />
-                <strong>Às: </strong>${json[i].hour}:${json[i].minut}<br />
+                <strong>Adicionado em: </strong>${json[i].dtAdded.split("-")[0]}<br />
+                <strong>Às: </strong>${json[i].dtAdded.split("-")[1]}<br />
                 <strong>Por: </strong>${json[i].nameUserAdder}
               </p>
-  
-            </div>
-        
-            
+            </div> 
          `;
           }
         });

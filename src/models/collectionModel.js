@@ -38,7 +38,7 @@ function showCollections(fkCompany) {
           SELECT idSector, sectorLevel, sectorName, OperationName FROM sector 
 	          LEFT JOIN operationlog ON idSector = fkSector 
 	          	LEFT JOIN operation ON idOperation = fkOperation 
-	          		WHERE fkCompany = 1
+	          		WHERE fkCompany = ${fkCompany}
 	          			ORDER BY idSector ASC;
            `;
 

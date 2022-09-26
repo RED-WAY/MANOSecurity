@@ -34,6 +34,7 @@ function editUser(idConsumer) {
           showUsers();
           setTimeout(() => {
             formView(false);
+            userBtnAttributes(false);
           }, 500);
         } else {
           throw "There was an error while editing user!";
