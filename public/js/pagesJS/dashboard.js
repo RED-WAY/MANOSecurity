@@ -75,17 +75,23 @@ function verifyInputs(formParam, mode, editId) {
 
 // ENABLE USERS BUTTONS
 function userBtnAttributes(isEnabling, idUser) {
-  const editBtn = document.querySelector('#userEditButton');
-  const removeBtn = document.querySelector('#userRemoveButton');
+  const editBtn = document.querySelector("#userEditButton");
+  const removeBtn = document.querySelector("#userRemoveButton");
   if (isEnabling) {
     editBtn.disabled = false;
     removeBtn.disabled = false;
 
     // SET ATTRIBUTE HERE
+    editBtn.setAttribute(
+      "onclick",
+      `formView(true, "Editar usuário", "user", "edit", ${idUser})`
+    );
+    removeBtn.setAttribute(
+      "onclick",
+      `deleteUser(${idUser})`
+    );
   } else {
-     editBtn.disabled = true;
-     removeBtn.disabled = true;
-
-     // UNSET ATTRIBUTE HERE
+    editBtn.disabled = true;
+    removeBtn.disabled = true;    
   }
 }
