@@ -30,8 +30,6 @@ function editUser(idConsumer) {
       }),
     })
       .then(function (result) {
-        console.log("resposta: ", result);
-
         if (result.ok) {
           showUsers();
           userBtnAttributes(false);

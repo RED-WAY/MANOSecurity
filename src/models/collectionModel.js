@@ -1,12 +1,12 @@
 const database = require("../database/config");
 
-function getCollection(fkCompany) {
+function getFamily(fkCompany) {
   console.log(
-    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getCollection(): ",
+    "ACCESSING COLLECTION MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getFamily(): ",
     fkCompany
   );
   const dbQuery = `
-      SELECT * FROM sector WHERE fkCompany = ${fkCompany};
+      SELECT * FROM family WHERE fkCompany = ${fkCompany};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -102,7 +102,7 @@ function editCollection(idCollection, collectionLevel, collectionName) {
   );
   const dbQuery = `
           UPDATE Sector 
-            SET sectorName = "${collectionName}", sectorLevel = ${collectionLevel} 
+            SET sectorName = "${collectionName}", sectorLevel = "${collectionLevel}" 
               WHERE idSector = ${idCollection};
            `;
 
@@ -154,7 +154,7 @@ function deleteCollection(idFamily) {
 }
 
 module.exports = {
-  getCollection,
+  getFamily,
   getSpecificCollection,
   showCollections,
   addCollection,

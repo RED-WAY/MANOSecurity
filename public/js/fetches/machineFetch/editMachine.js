@@ -1,8 +1,8 @@
 function editMachine(idMachine) {
   showLoading();
 
-  const collectionVar =  machine_collection_select.value;
-  const nameVar = machine_name.value;
+  const machineNameVar = machine_name.value;
+  const fkFamilyVar =  machine_collection_select.value;
 
   fetch(`/machine/editMachine/${idMachine}`, {
     method: "PUT",
@@ -10,13 +10,13 @@ function editMachine(idMachine) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      newCollectionServer: collectionVar,
-      newNameServer: nameVar,
+      machineNameServer: machineNameVar,
+      fkFamilyServer: fkFamilyVar,
     }),
   })
     .then(function (result) {
       if (result.ok) {
-        showDevices();
+        showMachines();
         hideConfirm();
         setTimeout(() => {
           formView(false);

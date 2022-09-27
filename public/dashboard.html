@@ -27,7 +27,7 @@
   </head>
 
   <body
-    onload="validateSession(), showDevices(), viewLoad('hide'), 
+    onload="validateSession(), showMachines(), viewLoad('hide'), 
   getCollection(), showAccess(), hideLoading()"
   >
     <!-- LOADER -->
@@ -110,7 +110,7 @@
               href="#"
               tabindex="1"
               draggable="false"
-              onclick="showSection('#dispositivos'), showDevices()"
+              onclick="showSection('#dispositivos'), showMachines()"
             >
               <li>Dispositivos</li>
             </a>
@@ -331,9 +331,10 @@
           <div class="form__input input-collection edit">
             <label for="collectionLevel">Level</label>
             <select name="collectionLevel" id="collection_level_select">
-              <option value="1">Level 1</option>
-              <option value="2">Level 2</option>
-              <option value="3">Level 3</option>
+              <option value="Student">Estudante</option>
+              <option value="Junior">Junior</option>
+              <option value="InCharge">InCharge</option>
+              <option value="Adm">Admin</option>
             </select>
           </div>
           <div class="form__input input-collection edit">
@@ -436,6 +437,6 @@
 <script src="./js/fetches/access/removeAccess.js"></script>
 <script src="./js/fetches/machineFetch/removeMachine.js"></script>
 <script src="./js/fetches/machineFetch/editMachine.js"></script>
-<script src="./js/fetches/machineFetch/showDevices.js"></script>
+<script src="./js/fetches/machineFetch/showMachines.js"></script>
 <script src="./js/pagesJS/dashboard.addons.js"></script>
 <script src="./js/pagesJS/dashboard.js"></script>

@@ -1,14 +1,14 @@
 const collectionModel = require("../models/collectionModel");
 
-function getCollection(req, res) {
-  const company = req.params.idCompany;
+function getFamily(req, res) {
+  const fkCompanyController = req.params.fkCompany;
 
-  if (company == undefined) {
-    console.log("company undefined on getCollection");
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController undefined on getFamily");
     return false;
   } else {
     collectionModel
-      .getCollection(company)
+      .getFamily(fkCompanyController)
       .then(function (result) {
         res.json(result);
         console.log("on collectionController");
@@ -213,7 +213,7 @@ function deleteCollection(req, res) {
 }
 
 module.exports = {
-  getCollection,
+  getFamily,
   getSpecificCollection,
   showCollections,
   addCollection,

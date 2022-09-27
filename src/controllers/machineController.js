@@ -1,29 +1,26 @@
 const machineModel = require("../models/machineModel");
 
 function addMachine(req, res) {
-  //  const tokenController = req.body.usernameServer;
-  const colectionController = req.body.collectionServer;
-  const nameController = req.body.nameServer;
-  const nameUserController = req.body.nameUserServer;
-  const idUserController = req.body.idUserServer;
-  const company = req.body.companyServer;
+  const machineNameController = req.body.machineNameServer;
+  const fkConsumerController = req.body.fkConsumerServer;
+  const fkCompanyController = req.body.fkCompanyServer;
+  const fkFamilyController = req.body.fkFamilyServer;
 
-  if (colectionController == undefined) {
-    res.status(400).send("colectionController is undefined!");
-  } else if (nameController == undefined) {
-    res.status(400).send("nameController is undefined!");
-  } else if (nameUserController == undefined) {
-    res.status(400).send("nameUserController is undefined!");
-  } else if (idUserController == undefined) {
-    res.status(400).send("idUser is undefined!");
+  if (machineNameController == undefined) {
+    res.status(400).send("machineNameController is undefined!");
+  } else if (fkConsumerController == undefined) {
+    res.status(400).send("fkConsumerController is undefined!");
+  } else if (fkCompanyController == undefined) {
+    res.status(400).send("fkCompanyController is undefined!");
+  } else if (fkFamilyController == undefined) {
+    res.status(400).send("fkFamilyController is undefined!");
   } else {
     machineModel
       .addMachine(
-        nameController,
-        idUserController,
-        nameUserController,
-        colectionController,
-        company
+        machineNameController,
+        fkConsumerController,
+        fkCompanyController,
+        fkFamilyController
       )
       .then(function (result) {
         res.json(result);
@@ -80,22 +77,29 @@ function deleteMachine(req, res) {
 }
 
 function editMachine(req, res) {
-  const idMachine = req.params.idMachine;
-  const newNameMachine = req.body.newNameServer;
-  const newCollectionMachine = req.body.newCollectionServer;
+  const idMachineController = req.params.idMachine;
+  const machineNameController = req.body.machineNameServer;
+  const fkFamilyController = req.body.fkFamilyServer;
 
-  if (idMachine == undefined) {
-    console.log("machine id is undefined!");
+  if (idMachineController == undefined) {
+    console.log("idMachineController is undefined!");
     return false;
-  } else if (newCollectionMachine == undefined || newCollectionMachine == "") {
-    console.log("collection machine is undefined!");
+  } else if (
+    machineNameController == undefined ||
+    machineNameController == ""
+  ) {
+    console.log("machineNameController is undefined!");
     return false;
-  } else if (newNameMachine == undefined || newNameMachine == "") {
-    console.log("machine name is undefined!");
+  } else if (fkFamilyController == undefined || fkFamilyController == "") {
+    console.log("fkFamilyController is undefined!");
     return false;
   } else {
     machineModel
-      .editMachine(idMachine, newNameMachine, newCollectionMachine)
+      .editMachine(
+        idMachineController,
+        machineNameController,
+        fkFamilyController
+      )
       .then(function (result) {
         res.json(result);
       })

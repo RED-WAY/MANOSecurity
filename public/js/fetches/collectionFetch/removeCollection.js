@@ -12,7 +12,7 @@ function removeCollection(idCollection) {
   })
     .then(function (result) {
       if (result.ok) {
-        showDevices();
+        showMachines();
         removeFromOperationLog(idCollection, removeFromSector, idCollection);
       } else if (result.status == 404) {
         window.alert("error 404!");

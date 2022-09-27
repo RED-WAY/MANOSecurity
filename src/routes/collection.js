@@ -3,8 +3,8 @@ const router = express.Router();
 
 const collectionController = require("../controllers/collectionController");
 
-router.get("/getCollection/:idCompany", function (req, res) {
-  collectionController.getCollection(req, res);
+router.get("/getFamily/:fkCompany", function (req, res) {
+  collectionController.getFamily(req, res);
 });
 
 router.get("/getSpecificCollection/:idCollection", function (req, res) {

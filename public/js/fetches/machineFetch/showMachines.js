@@ -1,4 +1,4 @@
-function showDevices() {
+function showMachines() {
   showLoading();
   const companyVar = sessionStorage.COMPANY_USER;
 
@@ -36,8 +36,8 @@ function showDevices() {
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="collection_machine${json[i].idSector}">COLLECTION: ${
-              json[i].sectorName || "não adicionada"
+              <h3 id="collection_machine${json[i].idFamily}">COLLECTION: ${
+              json[i].familyName || "não adicionada"
             }</h3>
               <h2 id="name_machine${json[i].idMachine}">Name: ${
               json[i].machineName
@@ -47,7 +47,7 @@ function showDevices() {
                   json[i].dtAdded.split("-")[0]
                 }<br />
                 <strong>Às: </strong>${json[i].dtAdded.split("-")[1]}<br />
-                <strong>Por: </strong>${json[i].nameUserAdder}
+                <strong>Por: </strong>${json[i].consumerName || "USUÁRIO REMOVIDO"}
               </p>
             </div> 
          `;

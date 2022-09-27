@@ -9,7 +9,7 @@ function deleteMachine(idMachine) {
   })
     .then(function (result) {
       if (result.ok) {
-        showDevices();
+        showMachines();
         hideConfirm();
         setTimeout(() => {
           hideLoading();

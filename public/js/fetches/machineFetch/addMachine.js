@@ -1,26 +1,22 @@
 function addMachine() {
   showLoading();
 
-  const collectionVar = machine_collection_select.value;
   const machineNameVar = machine_name.value;
-  const nameUser = sessionStorage.NAME_USER;
-  const idUser = sessionStorage.ID_USER;
-  const companyVar = sessionStorage.COMPANY_USER;
+  const fkConsumerVar = sessionStorage.ID_USER;
+  const fkCompanyVar = sessionStorage.COMPANY_USER;
+  const fkFamilyVar = machine_collection_select.value;
 
   if (machineNameVar == "") {
     console.log("machineName is undefined!");
     return false;
-  } else if (nameUser == "") {
-    console.log("nameUser is undefined!");
+  } else if (fkConsumerVar == "") {
+    console.log("fkConsumerVar is undefined!");
     return false;
-  } else if (idUser == "") {
-    console.log("idUser is undefined!");
+  } else if (fkCompanyVar == "") {
+    console.log("fkCompanyVar is undefined!");
     return false;
-  } else if (companyVar == "") {
-    console.log("companyVar is undefined!");
-    return false;
-  } else if (collectionVar == "") {
-    console.log("collectionVar is undefined!");
+  } else if (fkFamilyVar == "") {
+    console.log("fkFamilyVar is undefined!");
     return false;
   } else {
     fetch("/machine/addMachine", {
@@ -29,16 +25,15 @@ function addMachine() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        collectionServer: collectionVar,
-        nameServer: machineNameVar,
-        nameUserServer: nameUser,
-        idUserServer: idUser,
-        companyServer: companyVar,
+        machineNameServer: machineNameVar,
+        fkConsumerServer: fkConsumerVar,
+        fkCompanyServer: fkCompanyVar,
+        fkFamilyServer: fkFamilyVar,
       }),
     })
       .then(function (result) {
         if (result.ok) {
-          showDevices();
+          showMachines();
           hideConfirm();
           setTimeout(() => {
             hideLoading();

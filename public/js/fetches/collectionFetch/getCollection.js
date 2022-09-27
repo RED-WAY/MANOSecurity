@@ -4,7 +4,7 @@ function getCollection() {
   if (idCompanyVar == undefined) {
     return false;
   } else {
-    fetch(`/collection/getCollection/${idCompanyVar}`, {
+    fetch(`/collection/getFamily/${idCompanyVar}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -16,7 +16,7 @@ function getCollection() {
             machine_collection_select.innerHTML =
               "<option value='' disabled selected>selecionar grupo</option>";
             for (var i = 0; i < json.length; i++) {
-              machine_collection_select.innerHTML += `<option value="${json[i].idSector}">${json[i].sectorName}</option>`;
+              machine_collection_select.innerHTML += `<option value="${json[i].idFamily}">${json[i].familyName}</option>`;
             }
           });
         } else {
