@@ -1,4 +1,6 @@
 function deleteAccess(fkAccess) {
+  showLoading();
+
   const company = sessionStorage.COMPANY_USER;
 
   fetch(`/access/deleteAccessCompany/${company}/${fkAccess}`, {
@@ -34,16 +36,31 @@ function deleteAccessFamily(fkAccess) {
       if (result.ok) {
         showCollections();
         showAccess();
-        formView(false);
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 500);
         verifyGlobalAccessUsing(fkAccess);
       } else if (result.status == 404) {
         window.alert("error 404!");
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
       } else {
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 1500);
         throw "Delete family access has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
       console.log(`#ERRO: ${result}`);
+      hideConfirm();
+      setTimeout(() => {
+        hideLoading();
+      }, 3000);
     });
 }
 
@@ -57,7 +74,7 @@ function verifyGlobalAccessUsing(idAccess) {
         "Content-Type": "application/json",
       },
     })
-      .then(function (result) {        
+      .then(function (result) {
         if (result.ok) {
           result.json().then((data) => {
             data = JSON.parse(JSON.stringify(data));
@@ -68,7 +85,7 @@ function verifyGlobalAccessUsing(idAccess) {
                 isUsing = true;
               }
             }
-            
+
             if (!isUsing) {
               deleteAccessGlobal(idAccess);
             }

@@ -1,4 +1,6 @@
 function showAccess() {
+  showLoading();
+
   const idCompany = sessionStorage.COMPANY_USER;
 
   fetch(`/access/showAccess/${idCompany}`, {
@@ -18,7 +20,7 @@ function showAccess() {
                 <div class="card-info acessos-info" id="${json[i].idOperation}">
                 <ion-icon name="lock-open-outline"></ion-icon>
                 <div class="card-buttons">
-                  <button onclick="deleteAccess('${json[i].idOperation}')" class="btn-special">
+                  <button onclick="setYes('Remover acesso', 'deleteAccess', '${json[i].idOperation}')" class="btn-special">
                     <ion-icon name="trash-outline"></ion-icon>
                     <p>REMOVER</p>
                   </button>
@@ -51,6 +53,8 @@ function showAccess() {
     .catch((error) => {
       console.log(error);
     });
-
+  setTimeout(() => {
+    hideLoading();
+  }, 1000);
   return false;
 }

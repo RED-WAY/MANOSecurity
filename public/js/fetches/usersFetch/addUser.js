@@ -1,4 +1,6 @@
 function addUser() {
+  showLoading();
+
   const consumerNameVar = user_name.value;
   const consumerEmailVar = user_email.value;
   const consumerPasswordVar = user_password.value;
@@ -35,15 +37,25 @@ function addUser() {
       .then(function (result) {
         if (result.ok) {
           showUsers();
+          hideConfirm();
           setTimeout(() => {
             formView(false);
+            hideLoading();
           }, 500);
         } else {
+          hideConfirm();
+          setTimeout(() => {
+            hideLoading();
+          }, 1000);
           throw "There was an error while adding a user!";
         }
       })
       .catch((error) => {
         console.log(error);
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 3000);
       });
 
     return false;

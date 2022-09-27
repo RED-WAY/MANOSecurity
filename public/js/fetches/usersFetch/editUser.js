@@ -1,4 +1,6 @@
 function editUser(idConsumer) {
+  showLoading();
+
   const consumerNameVar = user_name.value;
   const consumerEmailVar = user_email.value;
   const consumerPasswordVar = user_password.value;
@@ -32,16 +34,26 @@ function editUser(idConsumer) {
 
         if (result.ok) {
           showUsers();
+          userBtnAttributes(false);
+          hideConfirm();
           setTimeout(() => {
             formView(false);
-            userBtnAttributes(false);
+            hideLoading();
           }, 500);
         } else {
+          hideConfirm();
+          setTimeout(() => {
+            hideLoading();
+          }, 800);
           throw "There was an error while editing user!";
         }
       })
       .catch((error) => {
         console.log(error);
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
       });
 
     return false;

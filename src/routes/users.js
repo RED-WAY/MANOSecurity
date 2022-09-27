@@ -11,10 +11,6 @@ router.post("/logIn", function (req, res) {
   userController.logIn(req, res);
 });
 
-router.post("/signUp", function (req, res) {
-  userController.signUp(req, res);
-});
-
 router.get("/showConsumers/:fkCompany/:idConsumer", function (req, res) {
   userController.showConsumers(req, res);
 });

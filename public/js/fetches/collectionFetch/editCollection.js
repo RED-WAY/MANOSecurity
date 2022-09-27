@@ -1,4 +1,6 @@
 function editCollection(idCollection) {
+  showLoading();
+
   const collectionLevel = collection_level_select.value;
   const collectionName = collection_name.value;
   const company = sessionStorage.COMPANY_USER;
@@ -36,13 +38,25 @@ function editCollection(idCollection) {
             accessArray,
             idCollection,
           ]);
-          formView(false);
+          hideConfirm();
+          setTimeout(() => {
+            hideLoading();
+            formView(false);
+          }, 500);
         } else {
+          setTimeout(() => {
+            hideLoading();
+            formView(false);
+          }, 500);
           throw "There was an error while editing a collection!";
         }
       })
       .catch((error) => {
         console.log(error);
+        setTimeout(() => {
+          hideLoading();
+          formView(false);
+        }, 500);
       });
 
     return false;

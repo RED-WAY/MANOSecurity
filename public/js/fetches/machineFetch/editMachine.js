@@ -19,13 +19,13 @@ function editMachine(idMachine) {
         showDevices();
         hideConfirm();
         setTimeout(() => {
-          hideLoading();
           formView(false);
+          hideLoading();
         }, 500);
       } else if (result.status == 404) {
+        window.alert("error 404!");
         hideConfirm();
         setTimeout(() => {
-          window.alert("error 404!");
           hideLoading();
         }, 800);
       } else {

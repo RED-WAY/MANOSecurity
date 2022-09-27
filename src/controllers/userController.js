@@ -35,34 +35,6 @@ function logIn(req, res) {
   }
 }
 
-function signUp(req, res) {
-  const usernameController = req.body.usernameServer;
-  const emailController = req.body.emailServer;
-  const passwordController = req.body.passwordServer;
-
-  if (usernameController == undefined) {
-    res.status(400).send("UsernameController is undefined!");
-  } else if (emailController == undefined) {
-    res.status(400).send("EmailController is undefined!");
-  } else if (passwordController == undefined) {
-    res.status(400).send("PasswordController is undefined!");
-  } else {
-    userModel
-      .signUp(usernameController, emailController, passwordController)
-      .then(function (result) {
-        res.json(result);
-      })
-      .catch(function (error) {
-        console.log(error);
-        console.error(
-          "\nThere was an error executing the query!\nERROR: ",
-          error.sqlMessage
-        );
-        res.status(500).json(error.sqlMessage);
-      });
-  }
-}
-
 function showConsumers(req, res) {
   const fkCompany = req.params.fkCompany;
   const idConsumer = req.params.idConsumer;
@@ -197,7 +169,6 @@ function deleteConsumer(req, res) {
 
 module.exports = {
   logIn,
-  signUp,
   showConsumers,
   addConsumer,
   editConsumer,

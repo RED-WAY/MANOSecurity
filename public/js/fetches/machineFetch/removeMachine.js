@@ -9,15 +9,15 @@ function deleteMachine(idMachine) {
   })
     .then(function (result) {
       if (result.ok) {
-        setTimeout(() => {
-          showDevices();
-          hideLoading();
-          hideConfirm();
-        }, 500);
-      } else if (result.status == 404) {
+        showDevices();
         hideConfirm();
         setTimeout(() => {
-          window.alert("Error 404!");
+          hideLoading();
+        }, 500);
+      } else if (result.status == 404) {
+        window.alert("Error 404!");
+        hideConfirm();
+        setTimeout(() => {
           hideLoading();
         }, 800);
       } else {

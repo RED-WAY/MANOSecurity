@@ -17,7 +17,7 @@ function showDevices() {
           dispositivos_content.innerHTML = "";
 
           for (var i = 0; i < json.length; i++) {
-            json[i]
+            json[i];
             dispositivos_content.innerHTML += `             
               <div class="card-info" id="machine${json[i].idMachine}" >
               <ion-icon name="desktop-outline"></ion-icon>
@@ -29,7 +29,9 @@ function showDevices() {
                   <ion-icon name="create-outline"></ion-icon>
                   <p>EDITAR</p>
                 </button>
-                <button onclick="setYes('Remover máquina', 'deleteMachine', '${json[i].idMachine}')" class="btn-special">
+                <button onclick="setYes('Remover máquina', 'deleteMachine', '${
+                  json[i].idMachine
+                }')" class="btn-special">
                   <ion-icon name="trash-outline"></ion-icon>
                   <p>REMOVER</p>
                 </button>
@@ -41,30 +43,25 @@ function showDevices() {
               json[i].machineName
             }</h2>
               <p>
-                <strong>Adicionado em: </strong>${json[i].dtAdded.split("-")[0]}<br />
+                <strong>Adicionado em: </strong>${
+                  json[i].dtAdded.split("-")[0]
+                }<br />
                 <strong>Às: </strong>${json[i].dtAdded.split("-")[1]}<br />
                 <strong>Por: </strong>${json[i].nameUserAdder}
               </p>
             </div> 
          `;
-            setTimeout(() => {
-              hideLoading();
-            }, 1000);
           }
         });
       } else {
-        setTimeout(() => {
-          hideLoading();
-        }, 1000);
         throw "There was an error while getting the machines";
       }
     })
     .catch((error) => {
       console.log(error);
-      setTimeout(() => {
-        hideLoading();
-      }, 1000);
     });
-
+  setTimeout(() => {
+    hideLoading();
+  }, 1000);
   return false;
 }

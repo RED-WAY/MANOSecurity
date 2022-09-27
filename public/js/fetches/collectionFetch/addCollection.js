@@ -1,4 +1,6 @@
 function addCollection() {
+  showLoading();
+
   var collectionLevel = collection_level_select.value;
   var collectionName = collection_name.value;
   var company = sessionStorage.COMPANY_USER;
@@ -32,21 +34,31 @@ function addCollection() {
         const idPromise = result.json();
         idPromise.then((res) => {
           if (result.ok) {
+            if (accessArray.length > 0) {
+              addCollectionAccess([accessArray, res.insertId]);
+            }
+            showCollections();
+            getCollection(sessionStorage.COMPANY_USER);
+            hideConfirm();
             setTimeout(() => {
-              if (accessArray.length > 0) {
-                addCollectionAccess([accessArray, res.insertId]);
-              }
-              showCollections();
               formView(false);
-              getCollection(sessionStorage.COMPANY_USER);
+              hideLoading();
             }, 500);
           } else {
+            hideConfirm();
+            setTimeout(() => {
+              hideLoading();
+            }, 1000);
             throw "There was an error while you´re add a collection!";
           }
         });
       })
       .catch((error) => {
         console.log(error);
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
       });
 
     return false;

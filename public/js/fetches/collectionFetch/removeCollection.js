@@ -1,4 +1,6 @@
 function removeCollection(idCollection) {
+  showLoading();
+
   fetch(`/collection/editMachineCollections/${idCollection}`, {
     method: "PUT",
     headers: {
@@ -33,14 +35,30 @@ function removeFromOperationLog(fkCollection, postFunc, parameters) {
     .then(function (result) {
       if (result.ok) {
         postFunc(parameters);
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 500);
       } else if (result.status == 404) {
         window.alert("error 404!");
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
       } else {
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 1500);
         throw "Delete collection from operation log has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
       console.log(`#ERROR: ${result}`);
+      hideConfirm();
+      setTimeout(() => {
+        hideLoading();
+      }, 3000);
     });
 }
 
@@ -55,7 +73,11 @@ function removeFromSector(idCollection) {
       if (result.ok) {
         showCollections();
         getCollection();
-        formView(false);
+        hideConfirm();
+        setTimeout(() => {
+          formView(false);
+          hideLoading();
+        }, 500);
       } else if (result.status == 404) {
         window.alert("error 404!");
       } else {

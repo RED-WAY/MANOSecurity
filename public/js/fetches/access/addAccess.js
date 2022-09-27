@@ -1,4 +1,6 @@
 function addAccess() {
+  showLoading();
+
   const typeVar = access_type_select.value;
   const nameVar = access_name.value;
   const processVar = access_path.value;
@@ -31,6 +33,10 @@ function addAccess() {
       })
       .catch((error) => {
         console.log(error);
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 3000);
       });
 
     return false;
@@ -56,13 +62,25 @@ function addAccessGlobal(typeVar, nameVar, processVar) {
             addAccessCompany(res.insertId);
           }, 500);
         });
-      } 
-      else {
+        hideConfirm();
+        setTimeout(() => {
+          formView(false);
+          hideLoading();
+        }, 500);
+      } else {
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 1000);
         throw "There was an error while adding operation global!";
       }
     })
     .catch((error) => {
       console.log(error);
+      hideConfirm();
+      setTimeout(() => {
+        hideLoading();
+      }, 3000);
     });
 
   return false;
@@ -90,13 +108,25 @@ function addAccessCompany(operationId) {
       .then(function (result) {
         if (result.ok) {
           showAccess();
-          formView(false);
+          hideConfirm();
+          setTimeout(() => {
+            formView(false);
+            hideLoading();
+          }, 500);
         } else {
+          hideConfirm();
+          setTimeout(() => {
+            hideLoading();
+          }, 1000);
           throw "There was an error while adding company operation!";
         }
       })
       .catch((error) => {
         console.log(error);
+        hideConfirm();
+        setTimeout(() => {
+          hideLoading();
+        }, 3000);
       });
 
     return false;

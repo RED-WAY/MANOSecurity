@@ -1,4 +1,6 @@
 function showUsers() {
+  showLoading();
+
   const fkCompany = sessionStorage.COMPANY_USER;
   const idConsumer = sessionStorage.ID_USER;
 
@@ -19,7 +21,7 @@ function showUsers() {
                 <td>${users[i].consumerEmail}</td>
                 <td>${users[i].management}</td>
                 <td>${users[i].dtAdded}</td>
-                <td>${users[i].managerName}</td>
+                <td>${users[i].managerName || "USUÁRIO REMOVIDO"}</td>
               </tr> 
          `;
           }
@@ -32,6 +34,8 @@ function showUsers() {
     .catch((error) => {
       console.log(error);
     });
-
+  setTimeout(() => {
+    hideLoading();
+  }, 1000);
   return false;
 }

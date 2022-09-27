@@ -96,7 +96,7 @@ function userBtnAttributes(isEnabling, idUser) {
       "onclick",
       `formView(true, "Editar usuário", "user", "edit", ${idUser})`
     );
-    removeBtn.setAttribute("onclick", `deleteUser(${idUser})`);
+    removeBtn.setAttribute("onclick", `setYes('Remover usuário', 'deleteUser', '${idUser}')`);
   } else {
      editBtn.disabled = true;
      removeBtn.disabled = true;

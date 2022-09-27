@@ -1,4 +1,6 @@
 function showCollections() {
+  showLoading();
+  
   const companyVar = sessionStorage.COMPANY_USER;
 
   fetch(`/collection/showCollections/${companyVar}`, {
@@ -27,7 +29,7 @@ function showCollections() {
                   <p>EDITAR</p>
                 </button>
                 <button
-                  onclick="removeCollection('${res[i].idSector}')"
+                  onclick="setYes('Remover coleção', 'removeCollection', '${res[i].idSector}')"
                   class="btn-special"
                 >
                   <ion-icon name="trash-outline"></ion-icon>
@@ -56,7 +58,6 @@ function showCollections() {
               });
             }
           }
-          // - Lorem ipsum dolor sit, amet consectetur<br />
         });
       } else {
         throw "There was an error while getting the machines";
@@ -65,6 +66,8 @@ function showCollections() {
     .catch((error) => {
       console.log(error);
     });
-
+  setTimeout(() => {
+    hideLoading();
+  }, 1000);
   return false;
 }
