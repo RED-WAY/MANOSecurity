@@ -1,14 +1,14 @@
 function showMachines() {
   showLoading();
-  const companyVar = sessionStorage.COMPANY_USER;
+  const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch("/machine/showMachine", {
+  fetch("/machine/showMachines", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      companyServer: companyVar,
+      fkCompanyServer: fkCompanyVar,
     }),
   })
     .then(function (result) {
@@ -36,7 +36,7 @@ function showMachines() {
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="collection_machine${json[i].idFamily}">COLLECTION: ${
+              <h3 id="family_machine${json[i].idFamily}">COLLECTION: ${
               json[i].familyName || "não adicionada"
             }</h3>
               <h2 id="name_machine${json[i].idMachine}">Name: ${

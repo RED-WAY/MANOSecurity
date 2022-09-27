@@ -1,33 +1,33 @@
 const database = require("../database/config");
 
-function checkAccessGlobaly(type, name, process) {
+function checkAccessGlobaly(operationName, operationPath, operationType) {
   console.log(
     "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function checkAccessGlobaly(): ",
-    type,
-    name,
-    process
+    operationName,
+    operationPath,
+    operationType,
   );
   const dbQuery = `
-          SELECT * FROM Operation
-	          WHERE OperationName = '${name}' 
-	          	AND OperationPath = '${process}' 
-	          		AND OperationType = '${type}';
+          SELECT * FROM operation
+	          WHERE operationName = '${operationName}' 
+	          	AND operationPath = '${operationPath}' 
+	          		AND operationType = '${operationType}';
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
 
-function addAccessGlobal(type, name, process) {
+function addAccessGlobal(operationName, operationPath, operationType) {
   console.log(
     "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addAccessGlobal(): ",
-    type,
-    name,
-    process
+    operationName,
+    operationPath,
+    operationType
   );
   const dbQuery = `
-            INSERT INTO Operation(operationName, operationPath, OperationType) VALUES 
-              ('${name}','${process}','${type}');
+            INSERT INTO operation (operationName, operationPath, operationType) VALUES 
+              ('${operationName}','${operationPath}','${operationType}');
              `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -56,7 +56,7 @@ function showAccess(fkCompany) {
     fkCompany
   );
   const dbQuery = `
-        SELECT * FROM Operation 
+        SELECT * FROM operation 
           JOIN companyOperations ON fkOperation = idOperation 
             JOIN Company ON idCompany = fkCompany 
               WHERE fkCompany = ${fkCompany};
@@ -73,7 +73,7 @@ function deleteAccessCompany(fkCompany, fkOperation) {
     fkOperation
   );
   const dbQuery = `
-          DELETE FROM companyoperations 
+          DELETE FROM companyOperations 
             WHERE fkCompany = ${fkCompany}
               AND fkOperation = ${fkOperation};              
            `;
@@ -89,8 +89,8 @@ function deleteAccessFamily(fkCompany, fkOperation) {
     fkOperation
   );
   const dbQuery = `
-          DELETE operationlog FROM operationlog 
-	          JOIN sector ON fkSector = idSector 
+          DELETE familyOperations FROM familyOperations 
+	          JOIN family ON fkFamily = idFamily 
               WHERE fkCompany = ${fkCompany} 
                 AND fkOperation =${fkOperation};
            `;
@@ -105,10 +105,10 @@ function verifyGlobalAccessUsing(idOperation) {
     idOperation
   );
   const dbQuery = `
-          SELECT companyoperations.fkOperation AS company, operationlog.fkOperation AS familiesUsing 
-            FROM companyoperations 
-	            RIGHT JOIN operation ON companyoperations.fkOperation = idOperation 
-	            	LEFT JOIN operationlog ON operationlog.fkOperation = idOperation 
+          SELECT companyOperations.fkOperation AS company, familyOperations.fkOperation AS familiesUsing 
+            FROM companyOperations 
+	            RIGHT JOIN operation ON companyOperations.fkOperation = idOperation 
+	            	LEFT JOIN familyOperations ON familyOperations.fkOperation = idOperation 
 	            		WHERE idOperation = ${idOperation};
            `;
 

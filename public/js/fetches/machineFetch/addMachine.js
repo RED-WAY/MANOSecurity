@@ -4,7 +4,7 @@ function addMachine() {
   const machineNameVar = machine_name.value;
   const fkConsumerVar = sessionStorage.ID_USER;
   const fkCompanyVar = sessionStorage.COMPANY_USER;
-  const fkFamilyVar = machine_collection_select.value;
+  const fkFamilyVar = machine_family_select.value;
 
   if (machineNameVar == "") {
     console.log("machineName is undefined!");

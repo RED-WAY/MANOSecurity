@@ -1,9 +1,9 @@
-function addCollection() {
+function addFamily() {
   showLoading();
 
-  var collectionLevel = collection_level_select.value;
-  var collectionName = collection_name.value;
-  var company = sessionStorage.COMPANY_USER;
+  var familyNameVar = family_name.value;
+  var familyLevelVar = family_level_select.value;
+  var fkCompanyVar = sessionStorage.COMPANY_USER;
 
   const accessArray = [];
   const divCheck = document.querySelector(".div-checkes");
@@ -12,22 +12,25 @@ function addCollection() {
     checkOpt.checked && accessArray.push(checkOpt.id);
   });
 
-  if (collectionLevel == undefined) {
-    console.log("collectionLevel is undefined!");
+  if (familyNameVar == undefined) {
+    console.log("familyNameVar is undefined!");
     return false;
-  } else if (collectionName == "") {
-    console.log("collectionName is undefined!");
+  } else if (familyLevelVar == "") {
+    console.log("familyLevelVar is undefined!");
+    return false;
+  } else if (fkCompanyVar == "") {
+    console.log("fkCompanyVar is undefined!");
     return false;
   } else {
-    fetch("/collection/addCollection", {
+    fetch("/family/addFamily", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        collectionLevelServer: collectionLevel,
-        collectionNameServer: collectionName,
-        companyServer: company,
+        familyNameServer: familyNameVar,
+        familyLevelServer: familyLevelVar,
+        fkCompanyServer: fkCompanyVar,
       }),
     })
       .then(function (result) {
@@ -35,10 +38,10 @@ function addCollection() {
         idPromise.then((res) => {
           if (result.ok) {
             if (accessArray.length > 0) {
-              addCollectionAccess([accessArray, res.insertId]);
+              addFamilyAccess([accessArray, res.insertId]);
             }
-            showCollections();
-            getCollection(sessionStorage.COMPANY_USER);
+            showFamilies();
+            getFamily(fkCompanyVar);
             hideConfirm();
             setTimeout(() => {
               formView(false);
@@ -49,7 +52,7 @@ function addCollection() {
             setTimeout(() => {
               hideLoading();
             }, 1000);
-            throw "There was an error while you´re add a collection!";
+            throw "There was an error while you´re add a family!";
           }
         });
       })
@@ -65,29 +68,29 @@ function addCollection() {
   }
 }
 
-function addCollectionAccess([accessArray, fkCollection]) {
+function addFamilyAccess([accessArray, fkFamily]) {
   if (accessArray == undefined) {
-    console.log("accessArray undefined at addCollectionAccess FETCH");
+    console.log("accessArray undefined at addFamilyAccess FETCH");
     return false;
-  } else if (fkCollection == undefined) {
-    console.log("fkCollection undefined at addCollectionAccess FETCH");
+  } else if (fkFamily == undefined) {
+    console.log("fkFamily undefined at addFamilyAccess FETCH");
     return false;
   } else {
-    fetch("/collection/addCollectionAccess", {
+    fetch("/family/addFamilyAccess", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         accessArrayServer: accessArray,
-        fkCollectionServer: fkCollection,
+        fkFamilyServer: fkFamily,
       }),
     })
       .then(function (result) {
         if (result.ok) {
-          showCollections();
+          showFamilies();
         } else {
-          throw "There was an error while you´re add a collection access!";
+          throw "There was an error while you´re add a family access!";
         }
       })
       .catch((error) => {

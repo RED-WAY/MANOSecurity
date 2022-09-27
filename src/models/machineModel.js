@@ -23,7 +23,7 @@ function addMachine(
   return database.executeQuery(dbQuery);
 }
 
-function showMachine(fkCompany) {
+function showMachines(fkCompany) {
   console.log(
     "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showMachine(): ",
     fkCompany
@@ -75,7 +75,7 @@ function deleteMachine(idMachine) {
 
 module.exports = {
   addMachine,
-  showMachine,
+  showMachines,
   editMachine,
   deleteMachine,
 };

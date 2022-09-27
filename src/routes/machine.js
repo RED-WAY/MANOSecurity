@@ -16,8 +16,8 @@ router.put("/editMachine/:idMachine", function(req,res){
       machineController.editMachine(req,res);
 });
 
-router.post("/showMachine", function (req, res) {
-    machineController.showMachine(req, res);
+router.post("/showMachines", function (req, res) {
+    machineController.showMachines(req, res);
 });
 
 

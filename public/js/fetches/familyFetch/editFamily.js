@@ -1,9 +1,8 @@
-function editCollection(idCollection) {
+function editFamily(idFamily) {
   showLoading();
 
-  const collectionLevel = collection_level_select.value;
-  const collectionName = collection_name.value;
-  const company = sessionStorage.COMPANY_USER;
+  const familyNameVar = family_name.value;
+  const familyLevelVar = family_level_select.value;
 
   const accessArray = [];
   const divCheck = document.querySelector(".div-checkes");
@@ -12,31 +11,30 @@ function editCollection(idCollection) {
     checkOpt.checked && accessArray.push(checkOpt.id);
   });
 
-  if (collectionLevel == undefined) {
-    console.log("collection level is not defined");
+  if (familyNameVar == undefined) {
+    console.log("familyNameVar is undefined");
     return false;
-  } else if (collectionName == "") {
-    console.log("collection name is undefined");
+  } else if (familyLevelVar == "") {
+    console.log("familyLevelVar is undefined");
     return false;
   } else {
-    fetch(`/collection/editCollection/${idCollection}`, {
+    fetch(`/family/editFamily/${idFamily}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        collectionLevelServer: collectionLevel,
-        collectionNameServer: collectionName,
-        companyServer: company,
+        familyNameServer: familyNameVar,
+        familyLevelServer: familyLevelVar,
       }),
     })
       .then(function (result) {
         if (result.ok) {
-          showCollections();
-          getCollection();
-          removeFromOperationLog(idCollection, addCollectionAccess, [
+          showFamilies();
+          getFamily();
+          removeFromFamilyOperations(idFamily, addFamilyAccess, [
             accessArray,
-            idCollection,
+            idFamily,
           ]);
           hideConfirm();
           setTimeout(() => {
@@ -48,7 +46,7 @@ function editCollection(idCollection) {
             hideLoading();
             formView(false);
           }, 500);
-          throw "There was an error while editing a collection!";
+          throw "There was an error while editing a family!";
         }
       })
       .catch((error) => {

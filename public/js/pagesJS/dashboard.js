@@ -45,7 +45,7 @@ function formView(isOpening, formTitle, formParam, mode, editId) {
 
 // ADAPT INPUTS ACCORDINGLY WITH SECTION
 function verifyInputs(formParam, mode, editId, confirmTitle) {
-  // formParam: machine, collection, access
+  // formParam: machine, family, access
   const form = document.querySelector("#form_inputs");
   const button = document.querySelector("#button_form");
 
@@ -78,7 +78,7 @@ function verifyInputs(formParam, mode, editId, confirmTitle) {
     loadMachineInputs(editId);
   } else if (mode + formParam == "editUser") {
     loadUserInputs(editId);
-  } else if (mode + formParam == "editCollection") {
+  } else if (mode + formParam == "editFamily") {
     loadCheckes(editId);
   }
 }

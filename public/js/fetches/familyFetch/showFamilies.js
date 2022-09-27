@@ -1,9 +1,9 @@
-function showCollections() {
+function showFamilies() {
   showLoading();
   
-  const companyVar = sessionStorage.COMPANY_USER;
+  const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/collection/showCollections/${companyVar}`, {
+  fetch(`/family/showFamilies/${fkCompanyVar}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -15,30 +15,30 @@ function showCollections() {
           colecoes_content.innerHTML = "";
 
           for (let i = 0; i < res.length; i++) {
-            if (i == 0 || res[i].idSector != res[i - 1].idSector) {
+            if (i == 0 || res[i].idFamily != res[i - 1].idFamily) {
               colecoes_content.innerHTML += `
                
-              <div class="card-info" id="${res[i].idSector}">
+              <div class="card-info" id="${res[i].idFamily}">
               <ion-icon name="layers-outline"></ion-icon>
               <div class="card-buttons">
                 <button
-                  onclick="formView(true, 'Editar coleção', 'collection', 'edit', '${res[i].idSector}')"
+                  onclick="formView(true, 'Editar coleção', 'family', 'edit', '${res[i].idFamily}')"
                   class="btn-special"
                 >
                   <ion-icon name="create-outline"></ion-icon>
                   <p>EDITAR</p>
                 </button>
                 <button
-                  onclick="setYes('Remover coleção', 'removeCollection', '${res[i].idSector}')"
+                  onclick="setYes('Remover coleção', 'removeFamily', '${res[i].idFamily}')"
                   class="btn-special"
                 >
                   <ion-icon name="trash-outline"></ion-icon>
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="level_collection1">LEVEL: ${res[i].sectorLevel}</h3>
-              <h2 id="name_collection1">Name: ${res[i].sectorName}</h2>
-                <p id="access_preview_${res[i].idSector}">
+              <h3 id="level_family1">LEVEL: ${res[i].familyLevel}</h3>
+              <h2 id="name_family1">Name: ${res[i].familyName}</h2>
+                <p id="access_preview_${res[i].idFamily}">
                     
                 </p>
               </div> 
@@ -46,12 +46,12 @@ function showCollections() {
 
               // plot preview process
               res.map((line) => {
-                if (line.idSector == res[i].idSector) {
+                if (line.idFamily == res[i].idFamily) {
                   document.querySelector(
-                    `#access_preview_${res[i].idSector}`
+                    `#access_preview_${res[i].idFamily}`
                   ).innerHTML += `
                     - ${
-                      line.OperationName || "NÃO HÁ ACESSOS ADICIONADOS"
+                      line.operationName || "NÃO HÁ ACESSOS ADICIONADOS"
                     }<br />
                     `;
                 }

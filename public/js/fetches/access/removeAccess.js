@@ -1,9 +1,9 @@
 function deleteAccess(fkAccess) {
   showLoading();
 
-  const company = sessionStorage.COMPANY_USER;
+  const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/access/deleteAccessCompany/${company}/${fkAccess}`, {
+  fetch(`/access/deleteAccessCompany/${fkCompanyVar}/${fkAccess}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -24,9 +24,9 @@ function deleteAccess(fkAccess) {
 }
 
 function deleteAccessFamily(fkAccess) {
-  const company = sessionStorage.COMPANY_USER;
+  const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/access/deleteAccessFamily/${company}/${fkAccess}`, {
+  fetch(`/access/deleteAccessFamily/${fkCompanyVar}/${fkAccess}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -34,7 +34,7 @@ function deleteAccessFamily(fkAccess) {
   })
     .then(function (result) {
       if (result.ok) {
-        showCollections();
+        showFamilies();
         showAccess();
         hideConfirm();
         setTimeout(() => {

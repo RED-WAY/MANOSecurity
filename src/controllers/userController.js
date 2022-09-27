@@ -67,34 +67,34 @@ function showConsumers(req, res) {
 }
 
 function addConsumer(req, res) {
-  const fkCompany = req.params.fkCompany;
-  const consumerName = req.body.consumerNameServer;
-  const consumerEmail = req.body.consumerEmailServer;
-  const consumerPassword = req.body.consumerPasswordServer;
-  const management = req.body.managementServer;
-  const manager = req.body.managerServer;
+  const fkCompanyController = req.params.fkCompany;
+  const consumerNameController = req.body.consumerNameServer;
+  const consumerEmailController = req.body.consumerEmailServer;
+  const consumerPasswordController = req.body.consumerPasswordServer;
+  const managementController = req.body.managementServer;
+  const managerController = req.body.managerServer;
 
-  if (consumerName == undefined) {
+  if (consumerNameController == undefined) {
     console.log("consumerName is undefined");
-  } else if (consumerEmail == undefined) {
+  } else if (consumerEmailController == undefined) {
     console.log("consumerEmail is undefined");
-  } else if (consumerPassword == undefined) {
+  } else if (consumerPasswordController == undefined) {
     console.log("consumerPassowrd is undefined");
-  } else if (management == undefined) {
+  } else if (managementController == undefined) {
     console.log("management is undefined");
-  } else if (manager == undefined) {
+  } else if (managerController == undefined) {
     console.log("manager is undefined");
-  } else if (fkCompany == undefined) {
+  } else if (fkCompanyController == undefined) {
     console.log("fkCompany is undefined");
   } else {
     userModel
       .addConsumer(
-        consumerName,
-        consumerEmail,
-        consumerPassword,
-        management,
-        manager,
-        fkCompany
+        consumerNameController,
+        consumerEmailController,
+        consumerPasswordController,
+        managementController,
+        managerController,
+        fkCompanyController
       )
       .then(function (result) {
         res.json(result);
@@ -112,30 +112,30 @@ function addConsumer(req, res) {
 }
 
 function editConsumer(req, res) {
-  const idConsumer = req.params.idConsumer;
-  const consumerName = req.body.consumerNameServer;
-  const consumerEmail = req.body.consumerEmailServer;
-  const consumerPassword = req.body.consumerPasswordServer;
-  const management = req.body.managementServer;
+  const idConsumerController = req.params.idConsumer;
+  const consumerNameController = req.body.consumerNameServer;
+  const consumerEmailController = req.body.consumerEmailServer;
+  const consumerPasswordController = req.body.consumerPasswordServer;
+  const managementController = req.body.managementServer;
 
-  if (consumerName == undefined) {
+  if (consumerNameController == undefined) {
     console.log("consumerName is undefined");
-  } else if (consumerEmail == undefined) {
+  } else if (consumerEmailController == undefined) {
     console.log("consumerEmail is undefined");
-  } else if (consumerPassword == undefined) {
+  } else if (consumerPasswordController == undefined) {
     console.log("consumerPassowrd is undefined");
-  } else if (management == undefined) {
+  } else if (managementController == undefined) {
     console.log("management is undefined");
-  } else if (idConsumer == undefined) {
+  } else if (idConsumerController == undefined) {
     console.log("idConsumer is undefined");
   } else {
     userModel
       .editConsumer(
-        consumerName,
-        consumerEmail,
-        consumerPassword,
-        management,
-        idConsumer
+        consumerNameController,
+        consumerEmailController,
+        consumerPasswordController,
+        managementController,
+        idConsumerController
       )
       .then(function (result) {
         res.json(result);
@@ -153,10 +153,10 @@ function editConsumer(req, res) {
 }
 
 function deleteConsumer(req, res) {
-  const idConsumer = req.params.idConsumer;
+  const idConsumerController = req.params.idConsumer;
 
   userModel
-    .deleteConsumer(idConsumer)
+    .deleteConsumer(idConsumerController)
     .then(function (result) {
       res.json(result);
     })

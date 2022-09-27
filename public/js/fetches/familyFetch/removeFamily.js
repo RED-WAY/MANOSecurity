@@ -1,23 +1,23 @@
-function removeCollection(idCollection) {
+function removeFamily(fkFamily) {
   showLoading();
 
-  fetch(`/collection/editMachineCollections/${idCollection}`, {
+  fetch(`/family/editMachineFamilies`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      idCollectionServer: idCollection,
+      fkFamilyServer: fkFamily,
     }),
   })
     .then(function (result) {
       if (result.ok) {
         showMachines();
-        removeFromOperationLog(idCollection, removeFromSector, idCollection);
+        removeFromFamilyOperations(fkFamily, removeFromFamily, fkFamily);
       } else if (result.status == 404) {
         window.alert("error 404!");
       } else {
-        throw "Update machine colletions has fail, result: " + result.status;
+        throw "Update machine families has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
@@ -25,8 +25,8 @@ function removeCollection(idCollection) {
     });
 }
 
-function removeFromOperationLog(fkCollection, postFunc, parameters) {
-  fetch(`/collection/removeFromOperationLog/${fkCollection}`, {
+function removeFromFamilyOperations(fkFamily, postFunc, parameters) {
+  fetch(`/family/removeFromFamilyOperations/${fkFamily}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ function removeFromOperationLog(fkCollection, postFunc, parameters) {
         setTimeout(() => {
           hideLoading();
         }, 1500);
-        throw "Delete collection from operation log has fail, result: " + result.status;
+        throw "Delete family from familyOperations has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
@@ -62,8 +62,8 @@ function removeFromOperationLog(fkCollection, postFunc, parameters) {
     });
 }
 
-function removeFromSector(idCollection) {
-  fetch(`/collection/deleteCollection/${idCollection}`, {
+function removeFromFamily(idFamily) {
+  fetch(`/family/deleteFamily/${idFamily}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -71,8 +71,8 @@ function removeFromSector(idCollection) {
   })
     .then(function (result) {
       if (result.ok) {
-        showCollections();
-        getCollection();
+        showFamilies();
+        getFamily();
         hideConfirm();
         setTimeout(() => {
           formView(false);
@@ -81,7 +81,7 @@ function removeFromSector(idCollection) {
       } else if (result.status == 404) {
         window.alert("error 404!");
       } else {
-        throw "Delete collection has fail, result: " + result.status;
+        throw "Delete family has fail, result: " + result.status;
       }
     })
     .catch(function (result) {

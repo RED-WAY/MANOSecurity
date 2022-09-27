@@ -25,7 +25,7 @@ function resetFields() {
   // reseting input values
   machine_token.value = "";
   machine_name.value = "";
-  collection_name.value = "";
+  family_name.value = "";
   access_name.value = "";
   access_path.value = "";
   user_name.value = "";
@@ -46,11 +46,11 @@ function loadMachineInputs(machineId) {
     .innerHTML.replace("Name: ", "");
   const selectValue = document
     .querySelector(`#machine${machineId}`)
-    .children[2].id.replace("collection_machine", "");
+    .children[2].id.replace("family_machine", "");
   if (selectValue != "null") {
-    machine_collection_select.value = selectValue;
+    machine_family_select.value = selectValue;
   } else {
-    machine_collection_select.value = "";
+    machine_family_select.value = "";
   }
 }
 
@@ -67,8 +67,8 @@ function loadUserInputs(userId) {
   ).children[2].innerHTML;
 }
 
-function loadCheckes(idCollection) {
-  fetch(`/collection/getSpecificCollection/${idCollection}`, {
+function loadCheckes(idFamily) {
+  fetch(`/family/getSpecificFamily/${idFamily}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -77,9 +77,9 @@ function loadCheckes(idCollection) {
     .then(function (result) {
       if (result.ok) {
         result.json().then((json) => {
-          // setting collection name and level to old one
-          collection_level_select.value = json[0].sectorLevel;
-          collection_name.value = json[0].sectorName;
+          // setting family name and level to old one
+          family_level_select.value = json[0].familyLevel;
+          family_name.value = json[0].familyName;
 
           if (json.length > 0) {
             // changing all process checkboxes to false
@@ -105,6 +105,7 @@ function loadCheckes(idCollection) {
               const checkOpt = access.children[0];
               checkOpt.checked = false;
             });
+            divCheck.innerHTML = "SEM ACESSOS CADASTRADOS!";
           }
         });
       } else {

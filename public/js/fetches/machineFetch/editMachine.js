@@ -2,7 +2,7 @@ function editMachine(idMachine) {
   showLoading();
 
   const machineNameVar = machine_name.value;
-  const fkFamilyVar =  machine_collection_select.value;
+  const fkFamilyVar =  machine_family_select.value;
 
   fetch(`/machine/editMachine/${idMachine}`, {
     method: "PUT",

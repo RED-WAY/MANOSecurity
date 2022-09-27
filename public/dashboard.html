@@ -28,7 +28,7 @@
 
   <body
     onload="validateSession(), showMachines(), viewLoad('hide'), 
-  getCollection(), showAccess(), hideLoading()"
+  getFamily(), showAccess(), hideLoading()"
   >
     <!-- LOADER -->
     <div class="loader">
@@ -118,7 +118,7 @@
               href="#"
               tabindex="2"
               draggable="false"
-              onclick="showSection('#colecoes'), showCollections()"
+              onclick="showSection('#colecoes'), showFamilies()"
             >
               <li>Coleções</li>
             </a>
@@ -217,7 +217,7 @@
           <!-- ADD MACHINES HERE -->
         </div>
       </section>
-      <!-- collections -->
+      <!-- families -->
       <section id="colecoes" class="sec">
         <div class="header">
           <h1>Coleções</h1>
@@ -225,8 +225,8 @@
             <button
               class="btn-add"
               title="Adicionar uma nova coleção"
-              onclick="formView(true, 'Adicionar coleção', 'collection', 'add', null)"
-              onkeypress="formView(true, 'Adicionar coleção', 'collection', 'add', null)"
+              onclick="formView(true, 'Adicionar coleção', 'family', 'add', null)"
+              onkeypress="formView(true, 'Adicionar coleção', 'family', 'add', null)"
             >
               <ion-icon name="add-outline"></ion-icon>
               <p>ADICIONAR</p>
@@ -234,7 +234,7 @@
           </div>
         </div>
         <div id="colecoes_content" class="content">
-          <!-- ADD COLLECTIONS HERE -->
+          <!-- ADD FAMILIES HERE -->
         </div>
       </section>
       <!-- access -->
@@ -327,21 +327,21 @@
             <label for="accessPath">Processo</label>
             <input name="accessPath" id="access_path" type="text" />
           </div>
-          <!-- COLLECTIONS -->
-          <div class="form__input input-collection edit">
-            <label for="collectionLevel">Level</label>
-            <select name="collectionLevel" id="collection_level_select">
+          <!-- FAMILIES -->
+          <div class="form__input input-family edit">
+            <label for="familyLevel">Level</label>
+            <select name="familyLevel" id="family_level_select">
               <option value="Student">Estudante</option>
               <option value="Junior">Junior</option>
               <option value="InCharge">InCharge</option>
               <option value="Adm">Admin</option>
             </select>
           </div>
-          <div class="form__input input-collection edit">
-            <label for="collectionName">Nome</label>
-            <input name="collectionName" id="collection_name" type="text" />
+          <div class="form__input input-family edit">
+            <label for="familyName">Nome</label>
+            <input name="familyName" id="family_name" type="text" />
           </div>
-          <div class="form__input input-collection div-checkes edit">
+          <div class="form__input input-family div-checkes edit">
             <!-- INSERT CHECKES HERE -->
           </div>
           <!-- MACHINES -->
@@ -350,10 +350,10 @@
             <input name="machineName" id="machine_token" type="text" />
           </div>
           <div class="form__input input-machine edit">
-            <label for="machineCollection">Coleção</label>
-            <select name="machineCollection" id="machine_collection_select">
+            <label for="machineFamily">Coleção</label>
+            <select name="machineFamily" id="machine_family_select">
               <option value="" disabled selected>selecionar grupo</option>
-              <!-- INSERT MACHINE COLLECTIONS HERE -->
+              <!-- INSERT MACHINE FAMILIES HERE -->
             </select>
           </div>
           <div class="form__input input-machine edit">
@@ -427,11 +427,11 @@
 <script src="./js/fetches/usersFetch/editUser.js"></script>
 <script src="./js/fetches/usersFetch/deleteUser.js"></script>
 <script src="./js/fetches/machineFetch/addMachine.js"></script>
-<script src="./js/fetches/collectionFetch/getCollection.js"></script>
-<script src="./js/fetches/collectionFetch/showCollection.js"></script>
-<script src="./js/fetches/collectionFetch/addCollection.js"></script>
-<script src="./js/fetches/collectionFetch/editCollection.js"></script>
-<script src="./js/fetches/collectionFetch/removeCollection.js"></script>
+<script src="./js/fetches/familyFetch/getFamily.js"></script>
+<script src="./js/fetches/familyFetch/showFamilies.js"></script>
+<script src="./js/fetches/familyFetch/addFamily.js"></script>
+<script src="./js/fetches/familyFetch/editFamily.js"></script>
+<script src="./js/fetches/familyFetch/removeFamily.js"></script>
 <script src="./js/fetches/access/addAccess.js"></script>
 <script src="./js/fetches/access/showAccess.js"></script>
 <script src="./js/fetches/access/removeAccess.js"></script>

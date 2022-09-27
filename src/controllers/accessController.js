@@ -1,22 +1,26 @@
 const accessModel = require("../models/accessModel");
 
 function checkAccessGlobaly(req, res) {
-  const type = req.params.type;
-  const name = req.params.name;
-  const process = req.params.process;
-  
-  if (type == undefined) {
-    res.status(400).send("accessType is undefined!");
-  } else if (name == undefined) {
-    res.status(400).send("accessName is undefined!");
-  } else if (process == undefined) {
-    res.status(400).send("process is undefined");
+  const operationNameController = req.params.name;
+  const operationPathController = req.params.process;
+  const operationTypeController = req.params.type;
+
+  if (operationNameController == undefined) {
+    res.status(400).send("operationNameController is undefined!");
+  } else if (operationPathController == undefined) {
+    res.status(400).send("operationPathController is undefined!");
+  } else if (operationTypeController == undefined) {
+    res.status(400).send("operationTypeController is undefined");
   } else {
     accessModel
-      .checkAccessGlobaly(type, name, process)
+      .checkAccessGlobaly(
+        operationNameController,
+        operationPathController,
+        operationTypeController
+      )
       .then(function (result) {
-          res.json(result);
-          console.log("on accessController");
+        res.json(result);
+        console.log("on accessController");
       })
       .catch(function (error) {
         console.log(error);
@@ -30,19 +34,19 @@ function checkAccessGlobaly(req, res) {
 }
 
 function addAccessGlobal(req, res) {
-  const type = req.body.typeServer;
-  const name = req.body.nameServer;
-  const process = req.body.processServer;
+  const operationNameController = req.body.nameServer;
+  const operationPathController = req.body.processServer;
+  const operationTypeController = req.body.typeServer;
 
-  if (type == undefined) {
-    res.status(400).send("accessType is undefined!");
-  } else if (name == undefined) {
-    res.status(400).send("accessName is undefined!");
-  } else if (process == undefined) {
-    res.status(400).send("process is undefined");
+  if (operationNameController == undefined) {
+    res.status(400).send("operationNameController is undefined!");
+  } else if (operationPathController == undefined) {
+    res.status(400).send("operationPathController is undefined!");
+  } else if (operationTypeController == undefined) {
+    res.status(400).send("operationTypeController is undefined");
   } else {
     accessModel
-      .addAccessGlobal(type, name, process)
+      .addAccessGlobal(operationName, operationPath, operationType)
       .then(function (result) {
         res.json(result);
         console.log("on accessController");
@@ -59,16 +63,16 @@ function addAccessGlobal(req, res) {
 }
 
 function addAccessCompany(req, res) {
-  const operationId = req.body.operationIdServer;
-  const company = req.body.companyServer;
+  const operationIdController = req.body.operationIdServer;
+  const fkCompanyController = req.body.companyServer;
 
-  if (operationId == undefined) {
-    res.status(400).send("operationId is undefined!");
-  } else if (company == undefined) {
-    res.status(400).send("company is undefined!");
+  if (operationIdController == undefined) {
+    res.status(400).send("operationIdController is undefined!");
+  } else if (fkCompanyController == undefined) {
+    res.status(400).send("fkCompanyController is undefined!");
   } else {
     accessModel
-      .addAccessCompany(operationId, company)
+      .addAccessCompany(operationIdController, fkCompanyControllerF)
       .then(function (result) {
         res.json(result);
         console.log("on accessController");
@@ -85,14 +89,14 @@ function addAccessCompany(req, res) {
 }
 
 function showAccess(req, res) {
-  const company = req.params.idCompany;
+  const fkCompanyController = req.params.idCompany;
 
-  if (company == undefined) {
-    console.log("company undefined on showAccess");
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController is undefined!");
     return false;
   } else {
     accessModel
-      .showAccess(company)
+      .showAccess(fkCompanyController)
       .then(function (result) {
         res.json(result);
         console.log("on accessController");
@@ -109,11 +113,11 @@ function showAccess(req, res) {
 }
 
 function deleteAccessCompany(req, res) {
-  const company = req.params.fkCompany;
-  const access = req.params.fkAccess;
+  const fkCompanyController = req.params.fkCompany;
+  const fkAccessController = req.params.fkAccess;
 
   accessModel
-    .deleteAccessCompany(company, access)
+    .deleteAccessCompany(fkCompanyController, fkAccessController)
     .then(function (result) {
       res.json(result);
       console.log("on accessController");
@@ -126,11 +130,11 @@ function deleteAccessCompany(req, res) {
 }
 
 function deleteAccessFamily(req, res) {
-  const company = req.params.fkCompany;
-  const access = req.params.fkAccess;
+  const fkCompanyController = req.params.fkCompany;
+  const fkAccessController = req.params.fkAccess;
 
   accessModel
-    .deleteAccessFamily(company, access)
+    .deleteAccessFamily(fkCompanyController, fkAccessController)
     .then(function (result) {
       res.json(result);
       console.log("on accessController");
@@ -143,14 +147,14 @@ function deleteAccessFamily(req, res) {
 }
 
 function verifyGlobalAccessUsing(req, res) {
-  const access = req.params.idAccess;
+  const idAccessController = req.params.idAccess;
 
-  if (access == undefined) {
-    console.log("access undefined on verifyGlobalAccessUsing");
+  if (idAccessController == undefined) {
+    console.log("idAccessController is undefined!");
     return false;
   } else {
     accessModel
-      .verifyGlobalAccessUsing(access)
+      .verifyGlobalAccessUsing(idAccessController)
       .then(function (result) {
         res.json(result);
         console.log("on accessController");
@@ -167,10 +171,10 @@ function verifyGlobalAccessUsing(req, res) {
 }
 
 function deleteAccessGlobal(req, res) {
-  const access = req.params.idAccess;
+  const idAccessController = req.params.idAccess;
 
   accessModel
-    .deleteAccessGlobal(access)
+    .deleteAccessGlobal(idAccessController)
     .then(function (result) {
       res.json(result);
       console.log("on accessController");

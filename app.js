@@ -13,7 +13,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var userRouter = require("./src/routes/users");
 var machineRouter = require("./src/routes/machine");
-var collectionRouter = require("./src/routes/collection");
+var familyRouter = require("./src/routes/family");
 var accessRouter = require("./src/routes/access");
 // ADD ROUTES HERE
 
@@ -26,7 +26,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/machine", machineRouter);
-app.use("/collection", collectionRouter);
+app.use("/family", familyRouter);
 app.use("/access", accessRouter);
 
 // ADD ROUTES HERE TOO

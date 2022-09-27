@@ -37,15 +37,15 @@ function addMachine(req, res) {
   }
 }
 
-function showMachine(req, res) {
-  const company = req.body.companyServer;
+function showMachines(req, res) {
+  const fkCompanyController = req.body.companyServer;
 
-  if (company == undefined) {
-    console.log("company undefined");
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController undefined");
     return false;
   } else {
     machineModel
-      .showMachine(company)
+      .showMachines(fkCompanyController)
       .then(function (result) {
         res.json(result);
         console.log("on machineController");
@@ -62,10 +62,10 @@ function showMachine(req, res) {
 }
 
 function deleteMachine(req, res) {
-  const idMachine = req.params.idMachine;
+  const idMachineController = req.params.idMachine;
 
   machineModel
-    .deleteMachine(idMachine)
+    .deleteMachine(idMachineController)
     .then(function (result) {
       res.json(result);
     })
@@ -113,7 +113,7 @@ function editMachine(req, res) {
 
 module.exports = {
   addMachine,
-  showMachine,
+  showMachines,
   deleteMachine,
   editMachine,
 };

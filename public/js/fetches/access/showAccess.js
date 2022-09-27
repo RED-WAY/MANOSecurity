@@ -13,10 +13,8 @@ function showAccess() {
       if (result.ok) {
         result.json().then((json) => {
           acessos_content.innerHTML = "";
-
           for (var i = 0; i < json.length; i++) {
-            acessos_content.innerHTML += `
-               
+            acessos_content.innerHTML += `               
                 <div class="card-info acessos-info" id="${json[i].idOperation}">
                 <ion-icon name="lock-open-outline"></ion-icon>
                 <div class="card-buttons">
@@ -26,10 +24,9 @@ function showAccess() {
                   </button>
                 </div>
                 <h3>TYPE: ${json[i].operationType}</h3>
-                <h2>Name: ${json[i].OperationName}</h2>
-                <p>Process path: ${json[i].OperationPath}</p>
-              </div>
-              
+                <h2>Name: ${json[i].operationName}</h2>
+                <p>Process path: ${json[i].operationPath}</p>
+              </div>              
            `;
           }
 
@@ -40,7 +37,7 @@ function showAccess() {
             <div class="pretty p-default p-default p-thick p-pulse manos-check">
                       <input type="checkbox" class="get-checkes" id="${json[i].idOperation}" />
                       <div class="state p-danger-o">
-                        <label>${json[i].OperationName}</label>
+                        <label>${json[i].operationName}</label>
                       </div>
                     </div>
             `;
