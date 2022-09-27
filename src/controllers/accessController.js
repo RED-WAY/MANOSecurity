@@ -46,7 +46,7 @@ function addAccessGlobal(req, res) {
     res.status(400).send("operationTypeController is undefined");
   } else {
     accessModel
-      .addAccessGlobal(operationName, operationPath, operationType)
+      .addAccessGlobal(operationNameController, operationPathController, operationTypeController)
       .then(function (result) {
         res.json(result);
         console.log("on accessController");
@@ -72,7 +72,7 @@ function addAccessCompany(req, res) {
     res.status(400).send("fkCompanyController is undefined!");
   } else {
     accessModel
-      .addAccessCompany(operationIdController, fkCompanyControllerF)
+      .addAccessCompany(operationIdController, fkCompanyController)
       .then(function (result) {
         res.json(result);
         console.log("on accessController");

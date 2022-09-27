@@ -38,7 +38,7 @@ function addMachine(req, res) {
 }
 
 function showMachines(req, res) {
-  const fkCompanyController = req.body.companyServer;
+  const fkCompanyController = req.body.fkCompanyServer;
 
   if (fkCompanyController == undefined) {
     console.log("fkCompanyController undefined");
