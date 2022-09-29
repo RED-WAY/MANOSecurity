@@ -326,19 +326,6 @@ section {
   color: var(--red);
 }
 
-/* CONTACT SECTION */
-.fourth-section {
-  /* DISPLAY */
-  display: flex;
-  align-items: center;
-}
-
-.signup-form {
-  /* DISPLAY */
-  position: initial;
-  z-index: 0;
-}
-
 /* FOOTER */
 footer {
   /* BACKGROUND */

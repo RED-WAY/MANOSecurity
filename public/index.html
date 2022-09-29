@@ -66,9 +66,6 @@
           <a href="#redway" tabindex="2" draggable="false">
             <li>REDWAY</li>
           </a>
-          <a href="#contato" tabindex="3" draggable="false">
-            <li>Contato</li>
-          </a>
         </ul>
       </nav>
       <div class="wrapper-buttons">
@@ -91,9 +88,6 @@
         </a>
         <a href="#redway" onclick="hideMenu()" tabindex="2">
           <li>REDWAY</li>
-        </a>
-        <a href="#contato" onclick="hideMenu()" tabindex="3">
-          <li>Contato</li>
         </a>
       </ul>
       <ion-icon name="close-outline" class="close-form" onclick="hideMenu()" onkeypress="hideMenu()" title="Fechar tela"
@@ -266,34 +260,13 @@
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
-  <section class="section-content fourth-section" id="contato">
-    <div class="form-card signup-form" id="signup_card" data-aos="flip-up">
-      <h1>Contato</h1>
-      <form id="form_signup">
-        <div class="form__input">
-          <label for="email">E-mail</label>
-          <input name="email" id="signup_email" type="email" tabindex="9" />
-        </div>
-        <div class="form__input">
-          <label for="cnpj">CNPJ</label>
-          <input name="cnpj" id="signup_cnpj" type="text" tabindex="10" />
-        </div>
-        <button type="button" onclick="signUp()" onmouseenter="borderChange(this)" onmouseleave="resetBorder(this)"
-          tabindex="11">
-          CONTRATAR
-        </button>
-      </form>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <section>
       <div class="container">
         <div class="footer-info">
           <a href="https://github.com/RED-WAY" target="_blank"><img src="assets/imgs/RedWayIN_2.png"
-              alt="REDWAY logo" title="REDWAY Logo" /></a>
+              alt="REDWAY logo" title="REDWAY Logo" data-aos="flip-up" /></a>
           <hr />
           <p>REDWAY <span class="func-detail">©</span> 2022</a></p>
         </div>
