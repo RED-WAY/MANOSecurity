@@ -194,6 +194,7 @@ a {
   /* TEXT */
   font-size: 14px;
   color: var(--font1);
+  padding-right: 0.5em;
 }
 .message-modal .close-form {
   /* POSITION */

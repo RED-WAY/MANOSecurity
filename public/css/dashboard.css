@@ -221,6 +221,9 @@ section section {
   align-items: center;
   /* BORDER */
   border: 0.15em solid;
+  border-radius: 0.2em;
+  /* COLOR */
+  background-color: var(--gray-light2);
   border-color: var(--gray-light);
   /* MISC */
   transition: border-color 0.3s;
@@ -244,7 +247,7 @@ section section {
   transition: filter 0.3s;
 }
 .token-blur {
-  filter: blur(0.2em) !important;
+  filter: blur(0.18em) !important;
   user-select: none !important;
 }
 .copy-token ion-icon {
