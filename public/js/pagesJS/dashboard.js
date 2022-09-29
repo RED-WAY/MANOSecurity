@@ -70,7 +70,10 @@ function verifyInputs(formParam, mode, editId, confirmTitle) {
   // add correct function to add
   formParam = formParam.replace(formParam[0], formParam[0].toUpperCase());
   button.textContent = mode == "add" ? "ADICIONAR" : "EDITAR";
-  button.setAttribute("onclick", `setYes('${confirmTitle}', '${mode + formParam}', ${editId})`);
+  button.setAttribute(
+    "onclick",
+    `setYes('${confirmTitle}', '${mode + formParam}', ${editId})`
+  );
 
   if (mode == "add") {
     resetFields();
@@ -96,10 +99,13 @@ function userBtnAttributes(isEnabling, idUser) {
       "onclick",
       `formView(true, "Editar usuário", "user", "edit", ${idUser})`
     );
-    removeBtn.setAttribute("onclick", `setYes('Remover usuário', 'deleteUser', '${idUser}')`);
+    removeBtn.setAttribute(
+      "onclick",
+      `setYes('Remover usuário', 'deleteUser', '${idUser}')`
+    );
   } else {
-     editBtn.disabled = true;
-     removeBtn.disabled = true;
+    editBtn.disabled = true;
+    removeBtn.disabled = true;
   }
 }
 
@@ -109,15 +115,61 @@ function setYes(msg, func, params) {
   confirm_message.innerHTML = msg + "?";
 
   // show confirm buttons
-  const confirmDiv = document.querySelector('.confirmation-back');
+  const confirmDiv = document.querySelector(".confirmation-back");
   opacityPointer(confirmDiv, "show");
 
   // set YES button onclick function
-  const yesButton = document.querySelector('#yes_button');
+  const yesButton = document.querySelector("#yes_button");
   yesButton.setAttribute("onclick", `${func}(${params})`);
 }
 // hide confirm buttons
 function hideConfirm() {
   const confirmDiv = document.querySelector(".confirmation-back");
   opacityPointer(confirmDiv, "hide");
+}
+
+// TOKEN
+function copyToken(idMachine) {
+  const isShowing = visibleToken(idMachine);
+
+  if (isShowing) {
+    const token = document.querySelector(`#token${idMachine}`);
+
+    // HIGHLIGHT
+    highlightToken(token);
+
+    try {
+      navigator.clipboard.writeText(token.textContent);
+      showMessage('success', 'Token copiado para Área de Transferência!');
+    } catch (error) {
+      console.log(error);
+      showMessage('error', 'Não foi possível copiar o Token')
+    }
+  }
+}
+
+function visibleToken(idMachine) {
+  const border = document.querySelector(`#token${idMachine}`).parentElement;
+  const token = document.querySelector(`#token${idMachine}`);
+  const key = document.querySelector(`#key${idMachine}`);
+
+  if (token.classList.contains("token-blur")) {
+    token.classList.remove("token-blur");
+    border.style.borderColor = "var(--font1)";
+    key.classList.add("red-key");
+    return true;
+  } else {
+    token.classList.add("token-blur");
+    border.style.borderColor = "var(--gray-light)";
+    key.classList.remove("red-key");
+    return false;
+  }
+}
+
+function highlightToken(element) {
+  const selection = window.getSelection();
+  const range = document.createRange();
+  range.selectNodeContents(element);
+  selection.removeAllRanges();
+  selection.addRange(range);
 }

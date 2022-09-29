@@ -10,6 +10,11 @@
     /* POSITION */
     margin-right: 2em;
   }
+
+  .copy-token ion-icon {
+    /* SIZE */
+    font-size: 3.4em !important;
+  }
 }
 
 @media (min-width: 769px) {
@@ -50,11 +55,29 @@
     /* DISPLAY */
     display: block;
   }
+
+  .copy-token {
+    /* SPACING */
+    padding-right: 4em;
+  }
+  .copy-token > div {
+    /* SIZE */
+    width: 100%;
+  }
+  .copy-token > div div {
+    /* DISPLAY */
+    display: flex;
+  }
 }
 
 @media (min-width: 1441px) {
   #dispositivos .content {
     /* DISPLAY */
     grid-template-columns: repeat(auto-fit, minmax(565px, 1fr));
+  }
+
+  .copy-token {
+    /* SPACING */
+    padding-right: 7em;
   }
 }

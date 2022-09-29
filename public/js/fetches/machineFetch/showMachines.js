@@ -47,8 +47,22 @@ function showMachines() {
                   json[i].dtAdded.split("-")[0]
                 }<br />
                 <strong>Às: </strong>${json[i].dtAdded.split("-")[1]}<br />
-                <strong>Por: </strong>${json[i].consumerName || "USUÁRIO REMOVIDO"}
+                <strong>Por: </strong>${
+                  json[i].consumerName || "USUÁRIO REMOVIDO"
+                }
               </p>
+              <div class="copy-token">
+                <div>
+                  <div>
+                    <p class="token-blur" id="token${
+                      json[i].idMachine
+                    }">askdjhkj123</p>
+                  </div>                  
+                  <ion-icon name="key-outline" onclick="copyToken(${
+                    json[i].idMachine
+                  })" id="key${json[i].idMachine}"></ion-icon>
+                </div>
+              </div>
             </div> 
          `;
           }
