@@ -60,11 +60,21 @@ function showFamilies() {
           }
         });
       } else {
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto exibia as coleções!"
+        );
         throw "There was an error while getting the machines";
       }
     })
     .catch((error) => {
       console.log(error);
+      hideConfirm();
+      showMessage(
+        "error",
+        "Aconteceu algum erro enquanto exibia as coleções!"
+      );
     });
   setTimeout(() => {
     hideLoading();

@@ -13,9 +13,17 @@ function editFamily(idFamily) {
 
   if (familyNameVar == undefined) {
     console.log("familyNameVar is undefined");
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "warning",
+      "Nome da coleção não foi definido! Encerre a sessão e tente novamente"
+    );
     return false;
   } else if (familyLevelVar == "") {
-    console.log("familyLevelVar is undefined");
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Nível da coleção não foi definido!");
     return false;
   } else {
     fetch(`/family/editFamily/${idFamily}`, {
@@ -40,7 +48,7 @@ function editFamily(idFamily) {
           setTimeout(() => {
             hideLoading();
             formView(false);
-            showMessage('success', 'Coleção editada com sucesso!');
+            showMessage("success", "Coleção editada com sucesso!");
           }, 500);
         } else {
           setTimeout(() => {

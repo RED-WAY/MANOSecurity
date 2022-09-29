@@ -6,11 +6,17 @@ function addAccess() {
   const processVar = access_path.value;
 
   if (typeVar == "") {
-    console.log("typeVar is undefined");
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Tipo não foi escolhido!");
   } else if (nameVar == "") {
-    console.log("nameVar is undefined");
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Nome não foi definido!");
   } else if (processVar == "") {
-    console.log("processVar is undefined");
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Nome do processo não foi definido!");
   } else {
     fetch(`/access/checkAccessGlobaly/${typeVar}/${nameVar}/${processVar}`, {
       method: "GET",
@@ -28,6 +34,12 @@ function addAccess() {
             }
           });
         } else {
+          hideLoading();
+          hideConfirm();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava um acesso!"
+          );
           throw "There was an error while getting the specific process";
         }
       })
@@ -67,6 +79,12 @@ function addAccessGlobal(typeVar, nameVar, processVar) {
         setTimeout(() => {
           hideLoading();
         }, 1000);
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto adicionava um acesso!"
+        );
         throw "There was an error while adding operation global!";
       }
     })
@@ -75,6 +93,10 @@ function addAccessGlobal(typeVar, nameVar, processVar) {
       hideConfirm();
       setTimeout(() => {
         hideLoading();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto adicionava um acesso!"
+        );
       }, 3000);
     });
 
@@ -107,12 +129,13 @@ function addAccessCompany(operationId) {
           setTimeout(() => {
             formView(false);
             hideLoading();
-            showMessage('success', 'Acesso adicionado com sucesso!');
+            showMessage("success", "Acesso adicionado com sucesso!");
           }, 500);
         } else {
           hideConfirm();
           setTimeout(() => {
             hideLoading();
+            showMessage('error', 'Aconteceu algum erro enquanto adicionava um acesso!');
           }, 1000);
           throw "There was an error while adding company operation!";
         }
@@ -122,6 +145,7 @@ function addAccessCompany(operationId) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage('error', 'Aconteceu algum erro enquanto adicionava um acesso!');
         }, 3000);
       });
 

@@ -7,16 +7,30 @@ function addMachine() {
   const fkFamilyVar = machine_family_select.value;
 
   if (machineNameVar == "") {
-    console.log("machineName is undefined!");
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Nome da máquina não foi definido!");
     return false;
-  } else if (fkConsumerVar == "") {
-    console.log("fkConsumerVar is undefined!");
+  } else if (fkConsumerVar == "" || fkConsumerVar == undefined) {
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "warning",
+      "Usuário não identificado! Encerre a sessão e tente novamente"
+    );
     return false;
-  } else if (fkCompanyVar == "") {
-    console.log("fkCompanyVar is undefined!");
+  } else if (fkCompanyVar == "" || fkCompanyVar == undefined) {
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "warning",
+      "Empresa do usuário não foi encontrada! Encerre a sessão e tente novamente"
+    );
     return false;
-  } else if (fkFamilyVar == "") {
-    console.log("fkFamilyVar is undefined!");
+  } else if (fkFamilyVar == "" || fkFamilyVar == undefined) {
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Coleção não existe!");
     return false;
   } else {
     fetch("/machine/addMachine", {
@@ -38,12 +52,16 @@ function addMachine() {
           setTimeout(() => {
             hideLoading();
             formView(false);
-            showMessage('success', 'Máquina adicionada com sucesso!');
+            showMessage("success", "Máquina adicionada com sucesso!");
           }, 200);
         } else {
           hideConfirm();
           setTimeout(() => {
             hideLoading();
+            showMessage(
+              "error",
+              "Aconteceu algum erro enquanto adicionava uma máquina!"
+            );
           }, 1000);
           throw "There was an error while you´re add a machine!";
         }
@@ -53,6 +71,10 @@ function addMachine() {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava uma máquina!"
+          );
         }, 3000);
       });
 

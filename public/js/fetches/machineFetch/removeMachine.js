@@ -20,11 +20,19 @@ function deleteMachine(idMachine) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia uma máquina!"
+          );
         }, 800);
       } else {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia uma máquina!"
+          );
         }, 1000);
         throw "Delete has fail, result: " + result.status;
       }
@@ -34,6 +42,10 @@ function deleteMachine(idMachine) {
       hideConfirm();
       setTimeout(() => {
         hideLoading();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia uma máquina!"
+        );
       }, 3000);
     });
 }

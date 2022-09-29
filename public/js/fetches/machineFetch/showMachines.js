@@ -68,11 +68,21 @@ function showMachines() {
           }
         });
       } else {
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto carregavam as máquinas!"
+        );
         throw "There was an error while getting the machines";
       }
     })
     .catch((error) => {
       console.log(error);
+      hideConfirm();
+      showMessage(
+        "error",
+        "Aconteceu algum erro enquanto carregavam as máquinas!"
+      );
     });
   setTimeout(() => {
     hideLoading();

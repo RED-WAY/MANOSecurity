@@ -16,12 +16,30 @@ function removeFamily(fkFamily) {
         removeFromFamilyOperations(fkFamily, removeFromFamily, fkFamily);
       } else if (result.status == 404) {
         window.alert("error 404!");
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia uma coleção!"
+        );
       } else {
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia uma coleção!"
+        );
         throw "Update machine families has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
       console.log(`#ERRO: ${result}`);
+      hideLoading();
+      hideConfirm();
+      showMessage(
+        "error",
+        "Aconteceu algum erro enquanto removia uma coleção!"
+      );
     });
 }
 
@@ -44,13 +62,24 @@ function removeFromFamilyOperations(fkFamily, postFunc, parameters) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia uma coleção!"
+          );
         }, 1000);
       } else {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia uma coleção!"
+          );
         }, 1500);
-        throw "Delete family from familyOperations has fail, result: " + result.status;
+        throw (
+          "Delete family from familyOperations has fail, result: " +
+          result.status
+        );
       }
     })
     .catch(function (result) {
@@ -58,6 +87,10 @@ function removeFromFamilyOperations(fkFamily, postFunc, parameters) {
       hideConfirm();
       setTimeout(() => {
         hideLoading();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia uma coleção!"
+        );
       }, 3000);
     });
 }
@@ -77,15 +110,33 @@ function removeFromFamily(idFamily) {
         setTimeout(() => {
           formView(false);
           hideLoading();
-          showMessage('success', 'Coleção removida com sucesso!');
+          showMessage("success", "Coleção removida com sucesso!");
         }, 500);
       } else if (result.status == 404) {
         window.alert("error 404!");
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia uma coleção!"
+        );
       } else {
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia uma coleção!"
+        );
         throw "Delete family has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
       console.log(`#ERROR: ${result}`);
+      hideLoading();
+      hideConfirm();
+      showMessage(
+        "error",
+        "Aconteceu algum erro enquanto removia uma coleção!"
+      );
     });
 }

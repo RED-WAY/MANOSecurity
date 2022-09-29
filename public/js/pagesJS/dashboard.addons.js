@@ -23,7 +23,6 @@ function paintUsersOnClick() {
 
 function resetFields() {
   // reseting input values
-  machine_token.value = "";
   machine_name.value = "";
   family_name.value = "";
   access_name.value = "";

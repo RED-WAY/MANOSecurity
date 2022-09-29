@@ -20,11 +20,19 @@ function deleteUser(idConsumer) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia um usuário!"
+          );
         }, 800);
       } else {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia um usuário!"
+          );
         }, 1000);
         throw "Delete user has fail, result: " + result.status;
       }
@@ -34,6 +42,10 @@ function deleteUser(idConsumer) {
       hideConfirm();
       setTimeout(() => {
         hideLoading();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia um usuário!"
+        );
       }, 3000);
     });
   userBtnAttributes(false);

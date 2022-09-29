@@ -15,11 +15,20 @@ function deleteAccess(fkAccess) {
       } else if (result.status == 404) {
         window.alert("error 404!");
       } else {
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia um acesso!"
+        );
         throw "Delete company access has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
       console.log(`#ERRO: ${result}`);
+      hideLoading();
+      hideConfirm();
+      showMessage("error", "Aconteceu algum erro enquanto removia um acesso!");
     });
 }
 
@@ -40,18 +49,26 @@ function deleteAccessFamily(fkAccess) {
         verifyGlobalAccessUsing(fkAccess);
         setTimeout(() => {
           hideLoading();
-          showMessage('success', 'Acesso removido com sucesso!');
+          showMessage("success", "Acesso removido com sucesso!");
         }, 500);
       } else if (result.status == 404) {
         window.alert("error 404!");
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia um acesso!"
+          );
         }, 1000);
       } else {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia um acesso!"
+          );
         }, 1500);
         throw "Delete family access has fail, result: " + result.status;
       }
@@ -61,6 +78,10 @@ function deleteAccessFamily(fkAccess) {
       hideConfirm();
       setTimeout(() => {
         hideLoading();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia um acesso!"
+        );
       }, 3000);
     });
 }
@@ -92,11 +113,23 @@ function verifyGlobalAccessUsing(idAccess) {
             }
           });
         } else {
+          hideLoading();
+          hideConfirm();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto removia um acesso!"
+          );
           throw "There was an error while getting global access use";
         }
       })
       .catch((error) => {
         console.log(error);
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia um acesso!"
+        );
       });
 
     return false;
@@ -115,11 +148,26 @@ function deleteAccessGlobal(idAccess) {
         console.log("ACCESS GLOBALY DELETED");
       } else if (result.status == 404) {
         window.alert("error 404!");
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia um acesso!"
+        );
       } else {
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia um acesso!"
+        );
         throw "Delete global access has fail, result: " + result.status;
       }
     })
     .catch(function (result) {
       console.log(`#ERRO: ${result}`);
+      hideLoading();
+      hideConfirm();
+      showMessage("error", "Aconteceu algum erro enquanto removia um acesso!");
     });
 }

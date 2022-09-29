@@ -2,6 +2,12 @@ function getFamily() {
   const idCompanyVar = sessionStorage.COMPANY_USER;
 
   if (idCompanyVar == undefined) {
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "warning",
+      "ID da empresa não foi definida!"
+    );
     return false;
   } else {
     fetch(`/family/getFamily/${idCompanyVar}`, {
@@ -22,11 +28,23 @@ function getFamily() {
         } else {
           result.text().then((err) => {
             console.error(err);
+            hideLoading();
+            hideConfirm();
+            showMessage(
+              "error",
+              "Aconteceu algum erro enquanto removia uma coleção!"
+            );
           });
         }
       })
       .catch((error) => {
         console.log(error);
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto removia uma coleção!"
+        );
       });
 
     return false;

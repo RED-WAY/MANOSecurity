@@ -1,9 +1,9 @@
 function addFamily() {
   showLoading();
 
-  var familyNameVar = family_name.value;
-  var familyLevelVar = family_level_select.value;
-  var fkCompanyVar = sessionStorage.COMPANY_USER;
+  const familyNameVar = family_name.value;
+  const familyLevelVar = family_level_select.value;
+  const fkCompanyVar = sessionStorage.COMPANY_USER;
 
   const accessArray = [];
   const divCheck = document.querySelector(".div-checkes");
@@ -13,13 +13,22 @@ function addFamily() {
   });
 
   if (familyNameVar == undefined) {
-    console.log("familyNameVar is undefined!");
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Nome da coleção não foi definido!");
     return false;
   } else if (familyLevelVar == "") {
-    console.log("familyLevelVar is undefined!");
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Nível da coleção não foi definido!");
     return false;
-  } else if (fkCompanyVar == "") {
-    console.log("fkCompanyVar is undefined!");
+  } else if (fkCompanyVar == "" || fkCompanyVar == undefined) {
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "error",
+      "Empresa do usuário não identificada! Encerre a sessão e tente novamente"
+    );
     return false;
   } else {
     fetch("/family/addFamily", {
@@ -46,13 +55,23 @@ function addFamily() {
             setTimeout(() => {
               formView(false);
               hideLoading();
-              showMessage('success', 'Coleção adicionada com sucesso!');
+              showMessage("success", "Coleção adicionada com sucesso!");
             }, 500);
           } else {
             hideConfirm();
             setTimeout(() => {
               hideLoading();
+              showMessage(
+                "error",
+                "Aconteceu algum erro enquanto adicionava uma coleção!"
+              );
             }, 1000);
+            hideLoading();
+            hideConfirm();
+            showMessage(
+              "error",
+              "Aconteceu algum erro enquanto adicionava uma coleção!"
+            );
             throw "There was an error while you´re add a family!";
           }
         });
@@ -62,6 +81,11 @@ function addFamily() {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          hideConfirm();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava uma coleção!"
+          );
         }, 1000);
       });
 
@@ -72,10 +96,21 @@ function addFamily() {
 function addFamilyAccess([accessArray, fkFamily]) {
   if (accessArray == undefined) {
     console.log("accessArray undefined at addFamilyAccess FETCH");
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "error",
+      "Aconteceu algum erro enquanto adicionava uma coleção!"
+    );
     return false;
   } else if (fkFamily == undefined) {
     console.log("fkFamily undefined at addFamilyAccess FETCH");
-    return false;
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "error",
+      "Aconteceu algum erro enquanto adicionava uma coleção!"
+    );
   } else {
     fetch("/family/addFamilyAccess", {
       method: "POST",
@@ -91,11 +126,23 @@ function addFamilyAccess([accessArray, fkFamily]) {
         if (result.ok) {
           showFamilies();
         } else {
+          hideLoading();
+          hideConfirm();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava uma coleção!"
+          );
           throw "There was an error while you´re add a family access!";
         }
       })
       .catch((error) => {
         console.log(error);
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto adicionava uma coleção!"
+        );
       });
 
     return false;

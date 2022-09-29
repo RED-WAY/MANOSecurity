@@ -28,11 +28,19 @@ function editMachine(idMachine) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto editava uma máquina!"
+          );
         }, 800);
       } else {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto editava uma máquina!"
+          );
         }, 1000);
         throw "Delete has fail, result: " + result.status;
       }
@@ -42,6 +50,10 @@ function editMachine(idMachine) {
       hideConfirm();
       setTimeout(() => {
         hideLoading();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto editava uma máquina!"
+        );
       }, 3000);
     });
 }

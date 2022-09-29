@@ -44,11 +44,22 @@ function showAccess() {
           }
         });
       } else {
-        throw "There was an error while getting the machines";
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto carregavam os acessos!"
+        );
+        throw "There was an error while getting access";
       }
     })
     .catch((error) => {
       console.log(error);
+      hideConfirm();
+      showMessage(
+        "error",
+        "Aconteceu algum erro enquanto carregavam os acessos!"
+      );
     });
   setTimeout(() => {
     hideLoading();

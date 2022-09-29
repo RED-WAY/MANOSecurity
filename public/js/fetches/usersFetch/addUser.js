@@ -7,19 +7,47 @@ function addUser() {
   const managementVar = user_office.value.toUpperCase();
   const managerVar = sessionStorage.ID_USER;
   const companyVar = sessionStorage.COMPANY_USER;
-  
-  if (consumerNameVar == undefined) {
-    console.log("consumerName is undefined");
-  } else if (consumerEmailVar == undefined) {
-    console.log("consumerEmail is undefined");
-  } else if (consumerPasswordVar == undefined) {
-    console.log("consumerPassword is undefined");
-  } else if (managementVar == undefined) {
-    console.log("management is undefined");
+
+  const emailRegex = new RegExp(
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/
+  );
+
+  if (consumerNameVar == "") {
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Nome do usuário não foi definido!");
+    return false;
+  } else if (consumerEmailVar == "" || !consumerEmailVar.match(emailRegex)) {
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "E-mail do usuário não é válido!!");
+    return false;
+  } else if (consumerPasswordVar == "") {
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Senha do usuário não foi definida!");
+    return false;
+  } else if (managementVar == "") {
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Cargo do usuário não foi definido!");
+    return false;
   } else if (managerVar == undefined) {
-    console.log("manager is undefined");
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "warning",
+      "Gestor não foi encontrado! Encerre a sessão e tente novamente"
+    );
+    return false;
   } else if (companyVar == undefined) {
-    console.log("company is undefined");
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "warning",
+      "Empresa do usuário não foi encontrada! Encerre a sessão e tente novamente"
+    );
+    return false;
   } else {
     fetch(`/users/addUser/${companyVar}`, {
       method: "POST",
@@ -41,12 +69,16 @@ function addUser() {
           setTimeout(() => {
             formView(false);
             hideLoading();
-            showMessage('success', 'Usuário adicionado com sucesso!');
+            showMessage("success", "Usuário adicionado com sucesso!");
           }, 500);
         } else {
           hideConfirm();
           setTimeout(() => {
             hideLoading();
+            showMessage(
+              "error",
+              "Aconteceu algum erro enquanto adicionava um usuário!"
+            );
           }, 1000);
           throw "There was an error while adding a user!";
         }
@@ -56,6 +88,10 @@ function addUser() {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava um usuário!"
+          );
         }, 3000);
       });
 

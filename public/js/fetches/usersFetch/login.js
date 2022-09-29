@@ -5,7 +5,7 @@ function logIn() {
   const passwordVar = login_password.value;
 
   if (emailVar == "" || passwordVar == "") {
-    showMessage("error", "E-mail e/ou senha não preenchido!");
+    showMessage("error", "E-mail e/ou senha inválido!");
     hideLoading();
     return false;
   } else {
