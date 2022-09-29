@@ -13,6 +13,7 @@ function deleteUser(idConsumer) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
+          showMessage('success', 'Usuário removido com sucesso!');
         }, 500);
       } else if (result.status == 404) {
         window.alert("Error 404!");

@@ -37,10 +37,11 @@ function deleteAccessFamily(fkAccess) {
         showFamilies();
         showAccess();
         hideConfirm();
+        verifyGlobalAccessUsing(fkAccess);
         setTimeout(() => {
           hideLoading();
+          showMessage('success', 'Acesso removido com sucesso!');
         }, 500);
-        verifyGlobalAccessUsing(fkAccess);
       } else if (result.status == 404) {
         window.alert("error 404!");
         hideConfirm();

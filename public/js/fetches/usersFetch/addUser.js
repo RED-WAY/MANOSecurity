@@ -41,6 +41,7 @@ function addUser() {
           setTimeout(() => {
             formView(false);
             hideLoading();
+            showMessage('success', 'Usuário adicionado com sucesso!');
           }, 500);
         } else {
           hideConfirm();

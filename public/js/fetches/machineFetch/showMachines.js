@@ -54,9 +54,9 @@ function showMachines() {
               <div class="copy-token">
                 <div>
                   <div>
-                    <p class="token-blur" id="token${
-                      json[i].idMachine
-                    }">askdjhkj123</p>
+                    <p class="token-blur" id="token${json[i].idMachine}">${
+              json[i].idMachine
+            }</p>
                   </div>                  
                   <ion-icon name="key-outline" onclick="copyToken(${
                     json[i].idMachine

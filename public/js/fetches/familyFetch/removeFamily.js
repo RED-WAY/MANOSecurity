@@ -77,6 +77,7 @@ function removeFromFamily(idFamily) {
         setTimeout(() => {
           formView(false);
           hideLoading();
+          showMessage('success', 'Coleção removida com sucesso!');
         }, 500);
       } else if (result.status == 404) {
         window.alert("error 404!");

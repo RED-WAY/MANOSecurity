@@ -38,6 +38,7 @@ function addMachine() {
           setTimeout(() => {
             hideLoading();
             formView(false);
+            showMessage('success', 'Máquina adicionada com sucesso!');
           }, 200);
         } else {
           hideConfirm();

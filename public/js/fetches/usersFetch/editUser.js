@@ -37,6 +37,7 @@ function editUser(idConsumer) {
           setTimeout(() => {
             formView(false);
             hideLoading();
+            showMessage('success', 'Usuário editado com sucesso!');
           }, 500);
         } else {
           hideConfirm();

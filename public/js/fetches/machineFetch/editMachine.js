@@ -21,7 +21,8 @@ function editMachine(idMachine) {
         setTimeout(() => {
           formView(false);
           hideLoading();
-        }, 500);
+          showMessage('success', 'Máquina editada com sucesso!');
+        }, 200);
       } else if (result.status == 404) {
         window.alert("error 404!");
         hideConfirm();

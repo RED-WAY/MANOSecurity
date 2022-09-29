@@ -46,6 +46,7 @@ function addFamily() {
             setTimeout(() => {
               formView(false);
               hideLoading();
+              showMessage('success', 'Coleção adicionada com sucesso!');
             }, 500);
           } else {
             hideConfirm();

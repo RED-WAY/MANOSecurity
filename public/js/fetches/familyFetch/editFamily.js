@@ -40,6 +40,7 @@ function editFamily(idFamily) {
           setTimeout(() => {
             hideLoading();
             formView(false);
+            showMessage('success', 'Coleção editada com sucesso!');
           }, 500);
         } else {
           setTimeout(() => {

@@ -62,11 +62,6 @@ function addAccessGlobal(typeVar, nameVar, processVar) {
             addAccessCompany(res.insertId);
           }, 500);
         });
-        hideConfirm();
-        setTimeout(() => {
-          formView(false);
-          hideLoading();
-        }, 500);
       } else {
         hideConfirm();
         setTimeout(() => {
@@ -112,6 +107,7 @@ function addAccessCompany(operationId) {
           setTimeout(() => {
             formView(false);
             hideLoading();
+            showMessage('success', 'Acesso adicionado com sucesso!');
           }, 500);
         } else {
           hideConfirm();
