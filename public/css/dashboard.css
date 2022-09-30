@@ -31,7 +31,7 @@ header {
 }
 .quit-icon p {
   /* ICON SIZE */
-  font-size: 0.6em !important;
+  font-size: 0.5em !important;
 }
 .quit-icon:hover {
   /* ICON COLOR */
