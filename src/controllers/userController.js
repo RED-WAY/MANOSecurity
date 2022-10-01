@@ -152,6 +152,58 @@ function editConsumer(req, res) {
   }
 }
 
+function updateMachineAdder(req, res) {
+  const fkManagerController = req.params.fkManager;
+  const idConsumerController = req.params.idConsumer;
+
+  if (fkManagerController == undefined) {
+    console.log("consumerName is undefined");
+  } else if (idConsumerController == undefined) {
+    console.log("idConsumer is undefined");
+  } else {
+    userModel
+      .updateMachineAdder(fkManagerController, idConsumerController)
+      .then(function (result) {
+        res.json(result);
+        console.log("on userController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function updateChildrenManager(req, res) {
+  const fkManagerController = req.params.fkManager;
+  const idConsumerController = req.params.idConsumer;
+
+  if (fkManagerController == undefined) {
+    console.log("consumerName is undefined");
+  } else if (idConsumerController == undefined) {
+    console.log("idConsumer is undefined");
+  } else {
+    userModel
+      .updateChildrenManager(fkManagerController, idConsumerController)
+      .then(function (result) {
+        res.json(result);
+        console.log("on userController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
 function deleteConsumer(req, res) {
   const idConsumerController = req.params.idConsumer;
 
@@ -172,5 +224,7 @@ module.exports = {
   showConsumers,
   addConsumer,
   editConsumer,
+  updateMachineAdder,
+  updateChildrenManager,
   deleteConsumer,
 };

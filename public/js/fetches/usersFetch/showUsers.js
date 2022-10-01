@@ -16,9 +16,9 @@ function showUsers() {
           usersDisplay.innerHTML = "";
           for (var i = 0; i < users.length; i++) {
             usersDisplay.innerHTML += `
-              <tr onclick="userBtnAttributes(true, '${
-                users[i].idConsumer
-              }')" id="user${users[i].idConsumer}">
+              <tr onclick="userBtnAttributes(true, '${users[i].idConsumer}', '${
+              users[i].fkManager
+            }')" id="user${users[i].idConsumer}">
                 <td>${users[i].consumerName}</td>
                 <td>${users[i].consumerEmail}</td>
                 <td>${users[i].management}</td>

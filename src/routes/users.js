@@ -23,6 +23,14 @@ router.put("/editConsumer/:idConsumer", function (req, res) {
   userController.editConsumer(req, res);
 });
 
+router.put("/updateMachineAdder/:fkManager/:idConsumer", function (req, res) {
+  userController.updateMachineAdder(req, res);
+});
+
+router.put("/updateChildrenManager/:fkManager/:idConsumer", function (req, res) {
+  userController.updateChildrenManager(req, res);
+});
+
 router.delete("/deleteConsumer/:idConsumer", function (req, res) {
   userController.deleteConsumer(req, res);
 });

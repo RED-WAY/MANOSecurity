@@ -26,7 +26,7 @@ function showConsumers(idCompany, idConsumer) {
   const dbQuery = `
           SELECT consumer.idConsumer, consumer.consumerName, consumer.consumerEmail, 
 	          DATE_FORMAT(consumer.dtAdded, "%d/%m/%Y") AS dtAdded, 
-	          	consumer.management, manager.consumerName AS managerName 
+	          	consumer.management, manager.consumerName AS managerName, manager.idConsumer AS fkManager 
 	          		FROM consumer 
 	          			JOIN consumer AS manager ON manager.idConsumer = consumer.fkManager 
 	          				JOIN company ON idCompany = consumer.fkCompany 
@@ -91,6 +91,38 @@ function editConsumer(
   return database.executeQuery(dbQuery);
 }
 
+function updateMachineAdder(fkManager, idConsumer) {
+  console.log(
+    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function updateMachineAdder():",
+    fkManager,
+    idConsumer
+  );
+
+  const dbQuery = `
+          UPDATE machine 
+	          SET fkConsumer = ${fkManager}
+	        	  WHERE fkConsumer = ${idConsumer};
+    `;
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function updateChildrenManager(fkManager, idConsumer) {
+  console.log(
+    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function updateChildrenManager():",
+    fkManager,
+    idConsumer
+  );
+
+  const dbQuery = `
+          UPDATE consumer 
+	          SET fkManager = ${fkManager}
+	        	  WHERE fkManager = ${idConsumer};
+    `;
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
 function deleteConsumer(idConsumer) {
   console.log(
     "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteConsumer(): ",
@@ -110,5 +142,7 @@ module.exports = {
   showConsumers,
   addConsumer,
   editConsumer,
+  updateMachineAdder,
+  updateChildrenManager,
   deleteConsumer,
 };

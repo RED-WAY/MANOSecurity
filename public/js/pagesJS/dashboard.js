@@ -87,7 +87,7 @@ function verifyInputs(formParam, mode, editId, confirmTitle) {
 }
 
 // ENABLE USERS BUTTONS
-function userBtnAttributes(isEnabling, idUser) {
+function userBtnAttributes(isEnabling, idUser, fkManager) {
   const editBtn = document.querySelector("#userEditButton");
   const removeBtn = document.querySelector("#userRemoveButton");
   if (isEnabling) {
@@ -101,7 +101,7 @@ function userBtnAttributes(isEnabling, idUser) {
     );
     removeBtn.setAttribute(
       "onclick",
-      `setYes('Remover usuário', 'deleteUser', '${idUser}')`
+      `setYes('Remover usuário', 'deleteUser', ['${idUser}', '${fkManager}'])`
     );
   } else {
     editBtn.disabled = true;
