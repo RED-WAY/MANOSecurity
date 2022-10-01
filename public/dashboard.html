@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
-      content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"
+      content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"
     />
     <link rel="icon" href="assets/imgs/fingerWhite.png" />
     <title>man.OS</title>
@@ -26,15 +26,51 @@
     />
   </head>
 
-  <body onload="validateSession(), showDevices(), viewLoad('hide')">
+  <body
+    onload="validateSession(), showMachines(), viewLoad('hide'), 
+  getFamily(), showAccess(), hideLoading()"
+  >
     <!-- LOADER -->
     <div class="loader">
       <img
-        src="assets/gifs/loading4.gif"
+        src="assets/gifs/loading.gif"
         class="to-invert"
         alt="loader gif"
         draggable="false"
       />
+    </div>
+    <div class="loader load-proc invisible">
+      <img
+        src="assets/gifs/loadingRed.gif"
+        alt="loading process gif"
+        draggable="false"
+      />
+    </div>
+
+    <!-- MESSAGE -->
+    <div id="messages">
+      <div class="message-modal invisible">
+        <div id="message_bar"></div>
+        <ion-icon name="" id="message_icon"></ion-icon>
+        <p id="message_text"></p>
+        <ion-icon
+          name="close-outline"
+          class="close-form"
+          onclick="hideMessage(this)"
+          title="Fechar mensagem"
+        />
+      </div>
+    </div>
+
+    <!-- CONFIRMATION -->
+    <div class="confirmation-back invisible">
+      <div class="form-card confirmation-modal">
+        <h1 id="confirm_message">Adicionar uma nova máquina?</h1>
+        <div class="confirmation-modal--buttons">
+          <button id="yes_button">Sim</button>
+          <button id="no_button" onclick="hideConfirm()">Não</button>
+        </div>
+      </div>
     </div>
 
     <!-- HEADER -->
@@ -55,7 +91,7 @@
             onclick="showLogin()"
             onmouseenter="borderChange(this)"
             onmouseleave="resetBorder(this)"
-            title="Entrar com sua conta"
+            title="Acessar DASHBOARD"
             tabindex="4"
           >
             DASHBOARD
@@ -75,7 +111,7 @@
               href="#"
               tabindex="1"
               draggable="false"
-              onclick="showSection('#dispositivos')"
+              onclick="showSection('#dispositivos'), showMachines()"
             >
               <li>Dispositivos</li>
             </a>
@@ -83,7 +119,7 @@
               href="#"
               tabindex="2"
               draggable="false"
-              onclick="showSection('#colecoes')"
+              onclick="showSection('#colecoes'), showFamilies()"
             >
               <li>Coleções</li>
             </a>
@@ -91,7 +127,7 @@
               href="#"
               tabindex="3"
               draggable="false"
-              onclick="showSection('#acessos')"
+              onclick="showSection('#acessos'),showAccess()"
             >
               <li>Acessos</li>
             </a>
@@ -99,9 +135,18 @@
               href="#"
               tabindex="4"
               draggable="false"
-              onclick="showSection('#usuarios')"
+              onclick="showSection('#usuarios'), showUsers()"
             >
               <li>Usuários</li>
+            </a>
+            <a
+              class="quit-icon"
+              href="#"
+              draggable="false"
+              onclick="setYes('Encerrar sessão', 'cleanSession', true)"
+              title="Voltar ao início"
+            >
+              <ion-icon name="exit"></ion-icon>
             </a>
           </ul>
         </nav>
@@ -116,18 +161,28 @@
             href="#"
             tabindex="1"
             id="menu_first_item"
-            onclick="showSection('#dispositivos')"
+            onclick="showSection('#dispositivos'), showMachines()"
           >
             <li>Dispositivos</li>
           </a>
-          <a href="#" tabindex="2" onclick="showSection('#colecoes')">
+          <a href="#" tabindex="2" onclick="showSection('#colecoes'), showFamilies()">
             <li>Coleções</li>
           </a>
-          <a href="#" tabindex="3" onclick="showSection('#acessos')">
+          <a href="#" tabindex="3" onclick="showSection('#acessos'),showAccess()">
             <li>Acessos</li>
           </a>
-          <a href="#" tabindex="3" onclick="showSection('#usuarios')">
+          <a href="#" tabindex="3" onclick="showSection('#usuarios'), showUsers()">
             <li>Usuários</li>
+          </a>
+          <a
+            class="quit-icon"
+            href="#"
+            draggable="false"
+            onclick="cleanSession(), validateSession()"
+            title="Voltar ao início"
+          >
+            <ion-icon name="exit"></ion-icon>
+            <p>SAIR</p>
           </a>
         </ul>
         <ion-icon
@@ -159,9 +214,11 @@
             </button>
           </div>
         </div>
-        <div id="dispositivos_content" class="content"></div>
+        <div id="dispositivos_content" class="content">
+          <!-- ADD MACHINES HERE -->
+        </div>
       </section>
-      <!-- collections -->
+      <!-- families -->
       <section id="colecoes" class="sec">
         <div class="header">
           <h1>Coleções</h1>
@@ -169,8 +226,8 @@
             <button
               class="btn-add"
               title="Adicionar uma nova coleção"
-              onclick="formView(true, 'Adicionar coleção', 'collection', 'add', null)"
-              onkeypress="formView(true, 'Adicionar coleção', 'collection', 'add', null)"
+              onclick="formView(true, 'Adicionar coleção', 'family', 'add', null)"
+              onkeypress="formView(true, 'Adicionar coleção', 'family', 'add', null)"
             >
               <ion-icon name="add-outline"></ion-icon>
               <p>ADICIONAR</p>
@@ -178,37 +235,7 @@
           </div>
         </div>
         <div id="colecoes_content" class="content">
-          <div class="card-info" id="collection1">
-            <ion-icon name="layers-outline"></ion-icon>
-            <div class="card-buttons">
-              <button
-                onclick="formView(true, 'Editar coleção', 'collection', 'edit', 'collection1')"
-                class="btn-special"
-              >
-                <ion-icon name="create-outline"></ion-icon>
-                <p>EDITAR</p>
-              </button>
-              <button
-                onclick="removeCollection('collection1')"
-                class="btn-special"
-              >
-                <ion-icon name="trash-outline"></ion-icon>
-                <p>REMOVER</p>
-              </button>
-            </div>
-            <h3 id="level_collection1">LEVEL</h3>
-            <h2 id="name_collection1">Name</h2>
-            <p>
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-              - Lorem ipsum dolor sit, amet consectetur<br />
-            </p>
-          </div>
+          <!-- ADD FAMILIES HERE -->
         </div>
       </section>
       <!-- access -->
@@ -228,18 +255,7 @@
           </div>
         </div>
         <div id="acessos_content" class="content">
-          <div class="card-info acessos-info" id="access1">
-            <ion-icon name="lock-open-outline"></ion-icon>
-            <div class="card-buttons">
-              <button onclick="remove('access1')" class="btn-special">
-                <ion-icon name="trash-outline"></ion-icon>
-                <p>REMOVER</p>
-              </button>
-            </div>
-            <h3>TYPE</h3>
-            <h2>Name</h2>
-            <p>Process path lorem ipsum</p>
-          </div>
+          <!-- ADD ACCESS HERE -->
         </div>
       </section>
       <!-- users -->
@@ -278,17 +294,13 @@
               <tr>
                 <td>Nome</td>
                 <td>Email</td>
+                <td>Permissão</td>
                 <td>Data</td>
                 <td class="lastTdBorder">Gestor</td>
               </tr>
             </thead>
-            <tbody id="COMEÇA AQUI PEDRAO">
-              <tr onclick="userBtnAttributes(true, '10')">
-                <td>Vitor Mendes</td>
-                <td>vitormendesco.js@gmail.com</td>
-                <td>10/03/2004</td>
-                <td>Fernando Brandão</td>
-              </tr>
+            <tbody id="usersDisplay">
+              <!-- ADD USERS HERE -->
             </tbody>
           </table>
         </div>
@@ -303,8 +315,8 @@
           <!-- ACCESS -->
           <div class="form__input input-access">
             <label for="accessType">Tipo</label>
-            <select name="accessType" id="access_type">
-              <option value="browser">Web</option>
+            <select name="web" id="access_type_select">
+              <option value="web">Web</option>
               <option value="desktop">Desktop</option>
             </select>
           </div>
@@ -316,47 +328,29 @@
             <label for="accessPath">Processo</label>
             <input name="accessPath" id="access_path" type="text" />
           </div>
-          <!-- COLLECTIONS -->
-          <div class="form__input input-collection edit">
-            <label for="collectionLevel">Level</label>
-            <select name="collectionLevel" id="collection_level">
-              <option value="1">Level 1</option>
-              <option value="2">Level 2</option>
-              <option value="3">Level 3</option>
+          <!-- FAMILIES -->
+          <div class="form__input input-family edit">
+            <label for="familyLevel">Level</label>
+            <select name="familyLevel" id="family_level_select">
+              <option value="Student">Estudante</option>
+              <option value="Junior">Junior</option>
+              <option value="InCharge">InCharge</option>
+              <option value="Adm">Admin</option>
             </select>
           </div>
-          <div class="form__input input-collection edit">
-            <label for="collectionName">Nome</label>
-            <input name="collectionName" id="collection_name" type="text" />
+          <div class="form__input input-family edit">
+            <label for="familyName">Nome</label>
+            <input name="familyName" id="family_name" type="text" />
           </div>
-          <div class="form__input input-collection div-checkes edit">
-            <div class="pretty p-default p-default p-thick p-pulse manos-check">
-              <input type="checkbox" class="get-checkes" id="access1" />
-              <div class="state p-danger-o">
-                <label>Access 1 dahoralegal</label>
-              </div>
-            </div>
-
-            <div class="pretty p-default p-default p-thick p-pulse manos-check">
-              <input type="checkbox" class="get-checkes" id="access2" />
-              <div class="state p-danger-o">
-                <label>Access 2 dahorabacanaa</label>
-              </div>
-            </div>
+          <div class="form__input input-family div-checkes edit">
+            <!-- INSERT CHECKES HERE -->
           </div>
           <!-- MACHINES -->
-          <div class="form__input input-machine">
-            <label for="machineName">Token</label>
-            <input name="machineName" id="machine_token" type="text" />
-          </div>
           <div class="form__input input-machine edit">
-            <label for="machineCollection">Coleção</label>
-            <select name="machineCollection" id="machine_collection">
+            <label for="machineFamily">Coleção</label>
+            <select name="machineFamily" id="machine_family_select">
               <option value="" disabled selected>selecionar grupo</option>
-
-              <!-- <option value="fk1">Adobe</option>
-              <option value="fk2">Office</option>
-              <option value="fk3">Outros</option> -->
+              <!-- INSERT MACHINE FAMILIES HERE -->
             </select>
           </div>
           <div class="form__input input-machine edit">
@@ -374,14 +368,19 @@
           </div>
           <div class="form__input input-user edit">
             <label for="userPassword">Senha</label>
-            <input name="userPassword" id="user_password" type="password" />
+            <input
+              name="userPassword"
+              id="user_password"
+              type="password"
+              autocomplete="off"
+            />
           </div>
           <div class="form__input input-user edit">
             <label for="userOffice">Cargo</label>
             <select name="userOffice" id="user_office">
-              <option value="1">Level 1</option>
-              <option value="2">Level 2</option>
-              <option value="3">Level 3</option>
+              <option value="MASTER">MASTER</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="ANALYST">ANALISTA</option>
             </select>
           </div>
         </form>
@@ -405,6 +404,7 @@
       title="Alterar tema"
     />
     <label for="theme_changer" title="Alterar tema" class="to-invert"></label>
+
     <!-- IONICONS IMPORT -->
     <script
       type="module"
@@ -417,12 +417,27 @@
   </body>
 </html>
 
-<script src="./js/global.js"></script>
-<script src="./js/global.addons.js"></script>
-<script src="./js/fetches/addMachine.js"></script>
-<script src="./js/fetches/remove.js"></script>
-<script src="./js/fetches/edit.js"></script>
-<script src="./js/fetches/showDevices.js"></script>
-<script src="./js/fetches/showDevices.js"></script>
-<script src="./js/pagesJS/dashboard.js"></script>
-<script src="./js/pagesJS/dashboard.addons.js"></script>
+<!-- JAVASCRIPT -->
+<scripts>
+  <script src="./js/global.js"></script>
+  <script src="./js/global.addons.js"></script>
+  <script src="./js/fetches/usersFetch/login.js"></script>
+  <script src="./js/fetches/usersFetch/showUsers.js"></script>
+  <script src="./js/fetches/usersFetch/addUser.js"></script>
+  <script src="./js/fetches/usersFetch/editUser.js"></script>
+  <script src="./js/fetches/usersFetch/deleteUser.js"></script>
+  <script src="./js/fetches/machineFetch/addMachine.js"></script>
+  <script src="./js/fetches/familyFetch/getFamily.js"></script>
+  <script src="./js/fetches/familyFetch/showFamilies.js"></script>
+  <script src="./js/fetches/familyFetch/addFamily.js"></script>
+  <script src="./js/fetches/familyFetch/editFamily.js"></script>
+  <script src="./js/fetches/familyFetch/removeFamily.js"></script>
+  <script src="./js/fetches/access/addAccess.js"></script>
+  <script src="./js/fetches/access/showAccess.js"></script>
+  <script src="./js/fetches/access/removeAccess.js"></script>
+  <script src="./js/fetches/machineFetch/removeMachine.js"></script>
+  <script src="./js/fetches/machineFetch/editMachine.js"></script>
+  <script src="./js/fetches/machineFetch/showMachines.js"></script>
+  <script src="./js/pagesJS/dashboard.addons.js"></script>
+  <script src="./js/pagesJS/dashboard.js"></script>
+</scripts>

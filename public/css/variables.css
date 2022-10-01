@@ -1,12 +1,18 @@
 html {
   --white: #fff;
   --black: #222;
-  
+  --black-trans: #00000090;
+
   --gray: #888;
   --gray-dark: #5e5e5e;
   --gray-light: #aaa;
+  --gray-light2: #d5d5d5;
 
   --red-alt: #ed1440;
+
+  --msg-success: #04cf55;
+  --msg-error: #ed1440;
+  --msg-warning: #ffa500;
   
   --border1: 0.25em solid var(--red);
   --card-gradient: linear-gradient(to bottom, var(--card1), var(--card1-trans));

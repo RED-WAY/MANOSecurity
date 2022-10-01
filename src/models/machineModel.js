@@ -1,46 +1,59 @@
 const database = require("../database/config");
 const encrypter = process.env.AES_ENCRYPT;
 
-
-function addMachine(nameController, idUserController, nameUserController, colectionController, company) {
+function addMachine(
+  machineName,
+  fkConsumer,
+  fkCompany,
+  fkFamily
+) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
-    nameController,
-    idUserController,
-    nameController,
-    colectionController,
-    company
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addMachine(): ",
+    machineName,
+    fkConsumer,
+    fkCompany,
+    fkFamily
   );
   const dbQuery = `
-        insert into Machine(machineName,fkConsumerAdder, NameUserAdder, fkCompany, fkSector) values
-           ('${nameController}','${idUserController}','${nameUserController}', '${company}', ${colectionController});
-              
-          
+        INSERT INTO machine(machineName, fkConsumer, fkCompany, fkFamily) VALUES 
+           ('${machineName}','${fkConsumer}', '${fkCompany}', ${fkFamily});
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
 
-function showMachine(company) {
+function showMachines(fkCompany) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
-    company
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showMachine(): ",
+    fkCompany
+  );
+  const dbQuery = `       
+          SELECT idMachine, machineName, consumerName, familyName, idFamily, 
+            DATE_FORMAT(machine.dtAdded, '%d/%m/%Y-%H:%i') AS dtAdded 
+              FROM machine 
+                LEFT JOIN Family ON idFamily = fkFamily 
+                  JOIN consumer ON idConsumer = fkConsumer 
+                    WHERE Machine.fkCompany = ${fkCompany};
+           `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function editMachine(idMachine, machineName, fkFamily) {
+  console.log(
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function editMachine(): ",
+    idMachine,
+    machineName,
+    fkFamily
   );
   const dbQuery = `
-       
-         SELECT *, machineName AS nomeMaquina,
-          nameUserAdder AS user, 
-          sectorName AS collection,
-          YEAR(dtAdded) AS year,
-          MONTH(dtAdded) AS mounth,
-          DAY(dtAdded) As day,
-          HOUR(dtAdded) AS hour,
-          MINUTE(dtAdded) AS minut
-          FROM Machine  JOIN  Sector 
-          ON idSector = fkSector
-          WHERE fkCompany = ${company};   
-           `;
+          UPDATE Machine 
+            SET machineName = "${machineName}", 
+            fkFamily = ${fkFamily} 
+              WHERE idMachine = ${idMachine};
+         `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -48,29 +61,12 @@ function showMachine(company) {
 
 function deleteMachine(idMachine) {
   console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteMachine(): ",
     idMachine
   );
   const dbQuery = `
-        DELETE FROM Machine WHERE idMachine = ${idMachine};
-            
-        
-         `;
-
-  console.log("Executing SQL query: \n" + dbQuery);
-  return database.executeQuery(dbQuery);
-}
-
-function editMachine(idMachine, newName, newCollection){
-  console.log(
-    "ACCESSING USER MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function loginModel(): ",
-    idMachine,
-    newName,
-    newCollection
-  );
-  const dbQuery = `
-   UPDATE Machine SET machineName = "${newName}", fkSector = ${newCollection} WHERE idMachine = ${idMachine};
- 
+        DELETE FROM Machine 
+          WHERE idMachine = ${idMachine};
          `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -79,7 +75,7 @@ function editMachine(idMachine, newName, newCollection){
 
 module.exports = {
   addMachine,
-  showMachine,
+  showMachines,
+  editMachine,
   deleteMachine,
-  editMachine
 };

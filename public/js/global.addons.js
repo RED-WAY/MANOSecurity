@@ -1,6 +1,13 @@
 // THEME CHANGING
 const themeTrigger = document.querySelector("#theme_changer");
 const dataTheme = document.documentElement;
+
+// verify storaged theme
+if (localStorage.THEME === undefined) {
+  localStorage.THEME = "light";
+}
+dataTheme.setAttribute("data-theme", localStorage.THEME);
+
 // adjust at begin
 themeTrigger.checked =
   dataTheme.getAttribute("data-theme") == "light" ? false : true;
@@ -8,6 +15,7 @@ themeTrigger.checked =
 themeTrigger.addEventListener("change", function () {
   let theme = this.checked ? "dark" : "light";
   dataTheme.setAttribute("data-theme", theme);
+  localStorage.THEME = theme;
 });
 
 // RANDOMIZE CORNERS
@@ -27,4 +35,12 @@ function borderChange(element) {
 function resetBorder(element) {
   element.classList.remove(radiusCorners.at(-1));
   radiusCorners.pop();
+}
+
+// SHOW/HIDE LOADING
+function showLoading() {
+  opacityPointer(".load-proc", "show");
+}
+function hideLoading() {
+  opacityPointer(".load-proc", "hide");
 }

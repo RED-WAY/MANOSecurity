@@ -1,12 +1,16 @@
 .top--left {
+    /* BORDER */
     border-top-left-radius: 0.5em;
 }
 .top--right {
+    /* BORDER */
     border-top-right-radius: 0.5em;
 }
 .bottom--left {
+    /* BORDER */
     border-bottom-left-radius: 0.5em;
 }
 .bottom--right {
+    /* BORDER */
     border-bottom-right-radius: 0.5em;
 }

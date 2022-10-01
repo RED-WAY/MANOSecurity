@@ -8,10 +8,8 @@ function validateSession() {
   }
 }
 
-function cleanSession() {
+function cleanSession(validate) {
   sessionStorage.clear();
+
+  validate && validateSession();
 }
-
-function aguardar() {}
-
-function finalizarAguardar() {}

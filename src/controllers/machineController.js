@@ -1,27 +1,30 @@
-var machineModel = require("../models/machineModel");
-
+const machineModel = require("../models/machineModel");
 
 function addMachine(req, res) {
-  //  const tokenController = req.body.usernameServer;
-  const colectionController = req.body.collectionServer;
-  const nameController = req.body.nameServer;
-  const nameUserController = req.body.nameUserServer;
-  const idUserController = req.body.idUserServer;
-  const company = req.body.companyServer;
+  const machineNameController = req.body.machineNameServer;
+  const fkConsumerController = req.body.fkConsumerServer;
+  const fkCompanyController = req.body.fkCompanyServer;
+  const fkFamilyController = req.body.fkFamilyServer;
 
-  if (colectionController == undefined) {
-    res.status(400).send("colectionController is undefined!");
-  } else if (nameController == undefined) {
-    res.status(400).send("nameController is undefined!");
-  } else if (nameUserController == undefined) {
-    res.status(400).send("nameUserController is undefined!");
-  } else if (idUserController == undefined) {
-    res.status(400).send("idUser is undefined!");
+  if (machineNameController == undefined) {
+    res.status(400).send("machineNameController is undefined!");
+  } else if (fkConsumerController == undefined) {
+    res.status(400).send("fkConsumerController is undefined!");
+  } else if (fkCompanyController == undefined) {
+    res.status(400).send("fkCompanyController is undefined!");
+  } else if (fkFamilyController == undefined) {
+    res.status(400).send("fkFamilyController is undefined!");
   } else {
-    machineModel.addMachine(nameController, idUserController, nameUserController, colectionController, company)
+    machineModel
+      .addMachine(
+        machineNameController,
+        fkConsumerController,
+        fkCompanyController,
+        fkFamilyController
+      )
       .then(function (result) {
         res.json(result);
-        console.log('estou aqui, machineController')
+        console.log("on machineController");
       })
       .catch(function (error) {
         console.log(error);
@@ -34,18 +37,18 @@ function addMachine(req, res) {
   }
 }
 
+function showMachines(req, res) {
+  const fkCompanyController = req.body.fkCompanyServer;
 
-function showMachine(req, res) {
-  const company = req.body.companyServer;
-
-  if (company == undefined) {
-    console.log("company undefined")
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController undefined");
     return false;
   } else {
-    machineModel.showMachine(company)
+    machineModel
+      .showMachines(fkCompanyController)
       .then(function (result) {
         res.json(result);
-        console.log('estou aqui, machineController')
+        console.log("on machineController");
       })
       .catch(function (error) {
         console.log(error);
@@ -58,64 +61,59 @@ function showMachine(req, res) {
   }
 }
 
-
 function deleteMachine(req, res) {
-  const idMachine = req.params.idMachine;
+  const idMachineController = req.params.idMachine;
 
-  machineModel.deleteMachine(idMachine)
-    .then(
-      function (result) {
-        res.json(result);
-      }
-    ).catch(
-      function (error) {
-        console.log(error);
-        console.log("Delete machine has been failed: ", error.sqlMessage);
-        res.status(500).json(error.sqlMessage)
-      }
-    )
-
-
+  machineModel
+    .deleteMachine(idMachineController)
+    .then(function (result) {
+      res.json(result);
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log("Delete machine has been failed: ", error.sqlMessage);
+      res.status(500).json(error.sqlMessage);
+    });
 }
 
 function editMachine(req, res) {
-  const idMachine = req.params.idMachine;
-  const newNameMachine = req.body.newNameServer;
-  const newCollectionMachine = req.body.newCollectionServer;
-  console.log(idMachine)
-  console.log(newNameMachine)
-  console.log(newCollectionMachine)
-  
-  if (idMachine == undefined) {
-    return false;
-  } else if (newCollectionMachine == undefined ||
-    newCollectionMachine == "") {
-    return false;
-  } else if (newNameMachine == undefined ||
-    newNameMachine == "") {
-    return false;
-  }else{
+  const idMachineController = req.params.idMachine;
+  const machineNameController = req.body.machineNameServer;
+  const fkFamilyController = req.body.fkFamilyServer;
 
- machineModel.editMachine(idMachine,newNameMachine, newCollectionMachine)
-    .then(
-      function (result) {
+  if (idMachineController == undefined) {
+    console.log("idMachineController is undefined!");
+    return false;
+  } else if (
+    machineNameController == undefined ||
+    machineNameController == ""
+  ) {
+    console.log("machineNameController is undefined!");
+    return false;
+  } else if (fkFamilyController == undefined || fkFamilyController == "") {
+    console.log("fkFamilyController is undefined!");
+    return false;
+  } else {
+    machineModel
+      .editMachine(
+        idMachineController,
+        machineNameController,
+        fkFamilyController
+      )
+      .then(function (result) {
         res.json(result);
-      }
-    ).catch(
-      function (error) {
+      })
+      .catch(function (error) {
         console.log(error);
         console.log("edit machine has been failed: ", error.sqlMessage);
-        res.status(500).json(error.sqlMessage)
-      }
-    )
-    }
-
+        res.status(500).json(error.sqlMessage);
+      });
+  }
 }
-
 
 module.exports = {
   addMachine,
-  showMachine,
+  showMachines,
   deleteMachine,
-  editMachine
+  editMachine,
 };

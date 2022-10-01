@@ -1,154 +1,209 @@
 .form-card,
 .hamburguer {
-  font-size: 2rem;
+  /* SIZE */
   width: 100vw;
   height: 100vh;
+  /* POSITION */
+  position: fixed;
   padding: 2em 0;
+  z-index: 15;
+  /* DISPLAY */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  position: fixed;
+  /* TEXT */
+  font-size: 2rem;
+  /* BACKGROUND */
   background-image: var(--card-gradient);
-  z-index: 15;
+  /* BORDER */
   border-radius: 0em;
-  transition: opacity 0.2s, background-color 0.5s;
+  /* SCROLL */
   overflow: auto;
+  /* MISC */
+  transition: opacity 0.2s, background-color 0.5s;
 }
 
 .form-card h1 {
+  /* TEXT */
+  font-size: 1.3em;
   color: var(--font1);
 }
 .form-card form {
+  /* SIZE */
   width: 80%;
+  /* POSITION */
   padding: 1em 0;
-  gap: 2em;
+  /* DISPLAY */
   display: flex;
   flex-direction: column;
+  gap: 2em;
 }
 .form-card button {
-  max-width: 80%;
+  /* SIZE */
   width: 40rem;
+  max-width: 80%;
   height: 6rem;
+  /* TEXT */
   font-size: 2rem;
   font-weight: 600;
   color: var(--white);
+  /* BACKGROUND */
   background-color: var(--red-dark);
+  /* BORDER */
   border-color: var(--red-dark);
   border-radius: 0.1rem;
 }
 .form-card button:hover,
 .form-card button:focus {
+  /* SIZE */
   max-width: 100%;
+  /* BACKGROUND */
   background-color: var(--red);
-  border-color: var(--red);
   box-shadow: 0 0 0.5em var(--red-light);
+  /* BORDER */
+  border-color: var(--red);
 }
 .form-card h3 {
+  /* TEXT */
   font-size: 1.6rem;
   color: var(--font1);
-  text-align: center;
   font-weight: 400;
+  text-align: center;
 }
 h3 span {
+  /* TEXT */
   color: var(--red);
   font-weight: 1000;
+  /* MISC */
   cursor: pointer;
   transition: letter-spacing 0.4s, color 0.4s, text-shadow 0.6s;
 }
 h3 span:hover,
 h3 span:focus {
+  /* TEXT */
   letter-spacing: 0.05em;
   color: var(--red-light);
   text-shadow: 0 0 0.1em var(--red-light);
 }
 
 .form__input {
+  /* SIZE */
   width: 100%;
   height: 3em;
+  /* DISPLAY */
   display: flex;
   flex-direction: column;
 }
 .form__input div {
+  /* SIZE */
+  width: fit-content;
+  /* DISPLAY */
   display: flex;
   align-items: center;
-  width: fit-content;
 }
 .form__input label {
+  /* TEXT */
   font-size: 0.8em;
   color: var(--font1);
 }
 .form__input input,
 .form__input select {
+  /* SIZE */
   width: 100%;
   height: 110%;
+  /* POSITION */
   padding: 1em 1em;
+  /* TEXT */
   font-size: 0.8em;
   color: var(--black);
+  /* BACKGROUND */
   background-color: var(--white);
+  box-shadow: 0.1em 0.1em 0.1em var(--red-dark);
+  /* BORDER */
   border-radius: 0.05em;
   border: none;
-  box-shadow: 0.1em 0.1em 0.1em var(--red-dark);
   outline: none;
+  /* MISC */
   transition: box-shadow 0.5s;
 }
 .form__input input:not([type="checkbox"]):focus,
 .form__input select {
+  /* BACKGROUND */
   box-shadow: 0.2em 0.2em 0.2em var(--red);
 }
 .manos-check {
+  /* POSITION */
   margin: 0;
   margin-left: 5%;
   margin-top: 5%;
+  /* TEXT */
   font-size: 0.9em;
 }
 .div-checkes {
-  overflow: auto;
+  /* SIZE */
   height: 8em !important;
+  /* SCROLL */
+  overflow: auto;
 }
 
 .div-checkes::-webkit-scrollbar {
+  /* SIZE */
   width: 0.3em;
 }
 .div-checkes::-webkit-scrollbar-track {
+  /* BACKGROUND */
   background: var(--gray-light);
 }
 .div-checkes::-webkit-scrollbar-thumb {
+  /* BACKGROUND */
   background: var(--gray-dark);
 }
 
 select {
+  /* TEXT */
   font-size: 1em !important;
 }
 select option {
+  /* TEXT */
   text-align: center;
   color: var(--white);
+  /* BACKGROUND */
   background-color: var(--red);
 }
 
 .close-form {
-  font-size: 2em;
+  /* POSITION */
   position: absolute;
   top: 0.3em;
   right: 0.3em;
+  /* TEXT */
+  font-size: 2em;
   color: var(--bla);
 }
 .close-form:hover,
 .close-form:focus {
-  font-size: 2.6em;
+  /* POSITION */
   top: 0.1em;
   right: 0.1em;
+  /* TEXT */
+  font-size: 2.6em;
   color: var(--red);
 }
 
 .hamburguer ul,
 .hamburguer a {
+  /* SIZE */
   width: 90%;
-  flex-direction: column;
+  /* POSITION */
   margin: 0.5em;
+  /* DISPLAY */
+  flex-direction: column;
+  /* MISC */
   transition: background-color 0.5s ease-out;
 }
 .hamburguer a:active {
+  /* BACKGROUND */
   background-color: var(--trans3);
 }
 .hamburguer a::before {
@@ -156,15 +211,21 @@ select option {
 }
 .hamburguer a::after {
   content: "";
+  /* SIZE */
   width: 10%;
   height: 0.1em;
+  /* POSITION */
   margin: 0.2em;
+  /* BACKGROUND */
   background-color: var(--red-dark);
+  /* MISC */
   transition: height 0.3s ease-out, width 0.3s ease-out;
 }
 .hamburguer a:hover::after,
 .hamburguer a:focus::after {
+  /* SIZE */
   width: 30%;
   height: 0.2em;
+  /* TEXT */
   color: var(--font2);
 }

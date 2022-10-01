@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport"
-    content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
   <link rel="icon" href="assets/imgs/fingerWhite.png" />
   <title>man.OS</title>
 
@@ -21,15 +21,33 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body onload="cleanSession(), viewLoad('hide')">
+<body onload="cleanSession(), viewLoad('hide'), hideLoading()">
   <!-- LOADER -->
   <div class="loader">
     <img
-      src="assets/gifs/loading4.gif"
+      src="assets/gifs/loading.gif"
       class="to-invert"
       alt="loader gif"
       draggable="false"
     />
+  </div>
+  <div class="loader load-proc invisible">
+    <img
+      src="assets/gifs/loadingRed.gif"
+      alt="loading process gif"
+      draggable="false"
+    />
+  </div>
+
+  <!-- MESSAGE -->
+  <div id="messages">
+    <div class="message-modal invisible">
+      <div id="message_bar"></div>
+      <ion-icon name="" id="message_icon"></ion-icon>
+      <p id="message_text"></p>
+      <ion-icon name="close-outline" class="close-form" onclick="hideMessage(this)"
+      title="Fechar mensagem" />
+    </div>
   </div>
 
   <!-- HEADER -->
@@ -47,9 +65,6 @@
           </a>
           <a href="#redway" tabindex="2" draggable="false">
             <li>REDWAY</li>
-          </a>
-          <a href="#contato" tabindex="3" draggable="false">
-            <li>Contato</li>
           </a>
         </ul>
       </nav>
@@ -74,9 +89,6 @@
         <a href="#redway" onclick="hideMenu()" tabindex="2">
           <li>REDWAY</li>
         </a>
-        <a href="#contato" onclick="hideMenu()" tabindex="3">
-          <li>Contato</li>
-        </a>
       </ul>
       <ion-icon name="close-outline" class="close-form" onclick="hideMenu()" onkeypress="hideMenu()" title="Fechar tela"
         tabindex="4" />
@@ -94,7 +106,7 @@
         </div>
         <div class="form__input">
           <label for="password">Senha</label>
-          <input name="password" id="login_password" type="password" tabindex="6" />
+          <input name="password" id="login_password" type="password" autocomplete="on" tabindex="6" />
         </div>
         <button class="btnForm" type="button" onclick="logIn()" onmouseenter="borderChange(this)" onmouseleave="resetBorder(this)"
           tabindex="7">
@@ -248,34 +260,13 @@
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
-  <section class="section-content fourth-section" id="contato">
-    <div class="form-card signup-form" id="signup_card" data-aos="flip-up">
-      <h1>Contato</h1>
-      <form id="form_signup">
-        <div class="form__input">
-          <label for="email">E-mail</label>
-          <input name="email" id="signup_email" type="email" tabindex="9" />
-        </div>
-        <div class="form__input">
-          <label for="cnpj">CNPJ</label>
-          <input name="cnpj" id="signup_cnpj" type="text" tabindex="10" />
-        </div>
-        <button type="button" onclick="signUp()" onmouseenter="borderChange(this)" onmouseleave="resetBorder(this)"
-          tabindex="11">
-          CONTRATAR
-        </button>
-      </form>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <section>
       <div class="container">
         <div class="footer-info">
           <a href="https://github.com/RED-WAY" target="_blank"><img src="assets/imgs/RedWayIN_2.png"
-              alt="REDWAY logo" title="REDWAY Logo" /></a>
+              alt="REDWAY logo" title="REDWAY Logo" data-aos="flip-up" /></a>
           <hr />
           <p>REDWAY <span class="func-detail">©</span> 2022</a></p>
         </div>
@@ -292,16 +283,16 @@
   <!-- PARTICLES JS -->
   <script src="js/particles/particles.js"></script>
   <script src="js/particles/app.js"></script>
+  <!-- HUBSPOT CHATBOT -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/22631734.js"></script>
 </body>
 
 </html>
 
 <script src="./js/global.js"></script>
 <script src="./js/global.addons.js"></script>
-<script src="./js/fetches/signup.js"></script>
-<script src="./js/fetches/login.js"></script>
+<script src="./js/fetches/usersFetch/login.js"></script>
 <script src="./js/pagesJS/index.js"></script>
-<script src="./js/test.js"></script>
 
 <!-- AOS Animation (SCROLL ANMS) -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

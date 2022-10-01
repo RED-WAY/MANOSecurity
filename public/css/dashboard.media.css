@@ -2,45 +2,82 @@
 
 @media (min-width: 426px) {
   .card-buttons button ion-icon {
+    /* ICON SIZE */
     font-size: 3em;
   }
 
   .user-btn {
+    /* POSITION */
     margin-right: 2em;
+  }
+
+  .copy-token ion-icon {
+    /* SIZE */
+    font-size: 3.4em !important;
   }
 }
 
 @media (min-width: 769px) {
   #dispositivos .content {
+    /* DISPLAY */
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   }
 
+  #acessos_content {
+    /* DISPLAY */
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  }
+
   .btn-add p {
+    /* DISPLAY */
     display: block;
   }
   .btn-add ion-icon {
+    /* ICON SIZE */
     font-size: 1.2em;
     --ionicon-stroke-width: 3em;
   }
 
   .card-buttons {
+    /* SIZE */
     width: 100%;
   }
   .btn-special ion-icon {
+    /* ICON SIZE */
     font-size: 2em;
   }
   .btn-special p {
+    /* DISPLAY */
     display: flex;
   }
 
   .acessos-info p {
+    /* DISPLAY */
     display: block;
   }
 
+  .copy-token {
+    /* SPACING */
+    padding-right: 4em;
+  }
+  .copy-token > div {
+    /* SIZE */
+    width: 100%;
+  }
+  .copy-token > div div {
+    /* DISPLAY */
+    display: flex;
+  }
 }
 
 @media (min-width: 1441px) {
   #dispositivos .content {
+    /* DISPLAY */
     grid-template-columns: repeat(auto-fit, minmax(565px, 1fr));
+  }
+
+  .copy-token {
+    /* SPACING */
+    padding-right: 5em;
   }
 }
