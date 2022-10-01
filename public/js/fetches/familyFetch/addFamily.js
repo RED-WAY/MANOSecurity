@@ -12,7 +12,7 @@ function addFamily() {
     checkOpt.checked && accessArray.push(checkOpt.id);
   });
 
-  if (familyNameVar == undefined) {
+  if (familyNameVar == "") {
     hideLoading();
     hideConfirm();
     showMessage("warning", "Nome da coleção não foi definido!");
@@ -20,7 +20,10 @@ function addFamily() {
   } else if (familyLevelVar == "") {
     hideLoading();
     hideConfirm();
-    showMessage("warning", "Nível da coleção não foi definido!");
+    showMessage(
+      "error",
+      "Nível da coleção não foi encontrado! Contate o suporte pelo CHATBOT"
+    );
     return false;
   } else if (fkCompanyVar == "" || fkCompanyVar == undefined) {
     hideLoading();

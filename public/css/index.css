@@ -114,8 +114,8 @@ section {
 .card-info {
   /* SIZE */
   width: 80vw;
-  height: 10em;
-  max-height: 180px;
+  height: 12em;
+  max-height: 240px;
   /* DISPLAY */
   display: grid;
   align-items: center;

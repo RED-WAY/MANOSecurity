@@ -8,15 +8,15 @@ function addAccess() {
   if (typeVar == "") {
     hideLoading();
     hideConfirm();
-    showMessage("warning", "Tipo não foi escolhido!");
+    showMessage("warning", "Tipo de acesso não foi escolhido!");
   } else if (nameVar == "") {
     hideLoading();
     hideConfirm();
-    showMessage("warning", "Nome não foi definido!");
+    showMessage("warning", "Nome do acesso não foi definido!");
   } else if (processVar == "") {
     hideLoading();
     hideConfirm();
-    showMessage("warning", "Nome do processo não foi definido!");
+    showMessage("warning", "Cadastre o nome do processo no sistema!");
   } else {
     fetch(`/access/checkAccessGlobaly/${typeVar}/${nameVar}/${processVar}`, {
       method: "GET",

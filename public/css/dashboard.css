@@ -142,7 +142,7 @@ section section {
   width: 90vw;
   height: 100%;
   /* POSITION */
-  padding: 0.5em 1em;
+  padding: 1em;
   /* DISPLAY */
   display: grid;
   grid-template-columns: auto;
@@ -177,9 +177,9 @@ section section {
 
 .card-info {
   /* SIZE */
-  width: 99%;
+  width: 100%;
   /* DISPLAY */
-  grid-template-columns: 30% auto;
+  grid-template-columns: 28% auto 44%;
   grid-template-areas:
     "image sub buttons"
     "image title title"
@@ -239,6 +239,8 @@ section section {
   /* TEXT */
   text-align: center;
   font-size: 1.2em !important;
+  /* COLOR */
+  color: var(--black);
   /* SCROLL */
   overflow: hidden;
   /* MISC */
@@ -350,7 +352,7 @@ section section {
 }
 .acessos-info {
   /* SIZE */
-  width: 98%;
+  width: 100%;
   height: 100%;
   /* POSITION */
   padding: 1em;

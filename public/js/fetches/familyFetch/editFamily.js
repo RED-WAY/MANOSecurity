@@ -11,8 +11,7 @@ function editFamily(idFamily) {
     checkOpt.checked && accessArray.push(checkOpt.id);
   });
 
-  if (familyNameVar == undefined) {
-    console.log("familyNameVar is undefined");
+  if (familyNameVar == "") {
     hideLoading();
     hideConfirm();
     showMessage(
@@ -23,7 +22,10 @@ function editFamily(idFamily) {
   } else if (familyLevelVar == "") {
     hideLoading();
     hideConfirm();
-    showMessage("warning", "Nível da coleção não foi definido!");
+    showMessage(
+      "error",
+      "Nível da coleção não foi encontrado! Contate o suporte pelo CHATBOT"
+    );
     return false;
   } else {
     fetch(`/family/editFamily/${idFamily}`, {
