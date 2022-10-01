@@ -1,4 +1,4 @@
-// display flex om elements with ".invisible" clas
+// display flex on elements with ".invisible" class
 // to not flick at start
 function displayAfterStart() {
   const inv = document.querySelectorAll(".invisible");
