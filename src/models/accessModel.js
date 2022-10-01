@@ -58,7 +58,6 @@ function showAccess(fkCompany) {
   const dbQuery = `
         SELECT * FROM operation 
           JOIN companyOperations ON fkOperation = idOperation 
-            JOIN Company ON idCompany = fkCompany 
               WHERE fkCompany = ${fkCompany};
            `;
 
@@ -66,33 +65,34 @@ function showAccess(fkCompany) {
   return database.executeQuery(dbQuery);
 }
 
-function deleteAccessCompany(fkCompany, fkOperation) {
+function deleteAccessFamily(fkCompany, idCompanyOperations) {
   console.log(
-    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccessCompany(): ",
+    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccessFamily(): ",
     fkCompany,
-    fkOperation
+    idCompanyOperations
   );
   const dbQuery = `
-          DELETE FROM companyOperations 
-            WHERE fkCompany = ${fkCompany}
-              AND fkOperation = ${fkOperation};              
+          DELETE familyOperations FROM familyOperations 
+	          JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
+              JOIN operation ON idOperation = fkOperation 
+                WHERE fkCompany = ${fkCompany} 
+                  AND fkCompanyOperations = ${idCompanyOperations};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
 
-function deleteAccessFamily(fkCompany, fkOperation) {
+function deleteAccessCompany(fkCompany, idCompanyOperations) {
   console.log(
-    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccessFamily(): ",
+    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteAccessCompany(): ",
     fkCompany,
-    fkOperation
+    idCompanyOperations
   );
   const dbQuery = `
-          DELETE familyOperations FROM familyOperations 
-	          JOIN family ON fkFamily = idFamily 
-              WHERE fkCompany = ${fkCompany} 
-                AND fkOperation =${fkOperation};
+          DELETE FROM companyOperations 
+            WHERE fkCompany = ${fkCompany}
+              AND idCompanyOperations = ${idCompanyOperations};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -105,11 +105,11 @@ function verifyGlobalAccessUsing(idOperation) {
     idOperation
   );
   const dbQuery = `
-          SELECT companyOperations.fkOperation AS company, familyOperations.fkOperation AS familiesUsing 
+          SELECT companyOperations.fkOperation AS company, familyOperations.fkCompanyOperations AS familiesUsing 
             FROM companyOperations 
-	            RIGHT JOIN operation ON companyOperations.fkOperation = idOperation 
-	            	LEFT JOIN familyOperations ON familyOperations.fkOperation = idOperation 
-	            		WHERE idOperation = ${idOperation};
+              RIGHT JOIN operation ON companyOperations.fkOperation = idOperation 
+                LEFT JOIN familyOperations ON idCompanyOperations = fkCompanyOperations 
+                  WHERE idOperation = ${idOperation};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -134,8 +134,8 @@ module.exports = {
   addAccessGlobal,
   addAccessCompany,
   showAccess,
-  deleteAccessCompany,
   deleteAccessFamily,
+  deleteAccessCompany,
   verifyGlobalAccessUsing,
   deleteAccessGlobal,
 };

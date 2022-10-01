@@ -112,29 +112,12 @@ function showAccess(req, res) {
   }
 }
 
-function deleteAccessCompany(req, res) {
-  const fkCompanyController = req.params.fkCompany;
-  const fkAccessController = req.params.fkAccess;
-
-  accessModel
-    .deleteAccessCompany(fkCompanyController, fkAccessController)
-    .then(function (result) {
-      res.json(result);
-      console.log("on accessController");
-    })
-    .catch(function (error) {
-      console.log(error);
-      console.log("Delete company access has been failed: ", error.sqlMessage);
-      res.status(500).json(error.sqlMessage);
-    });
-}
-
 function deleteAccessFamily(req, res) {
-  const fkCompanyController = req.params.fkCompany;
+  const fkCompanyOperationsController = req.params.fkCompany;
   const fkAccessController = req.params.fkAccess;
 
   accessModel
-    .deleteAccessFamily(fkCompanyController, fkAccessController)
+    .deleteAccessFamily(fkCompanyOperationsController, fkAccessController)
     .then(function (result) {
       res.json(result);
       console.log("on accessController");
@@ -142,6 +125,23 @@ function deleteAccessFamily(req, res) {
     .catch(function (error) {
       console.log(error);
       console.log("Delete family access has been failed: ", error.sqlMessage);
+      res.status(500).json(error.sqlMessage);
+    });
+}
+
+function deleteAccessCompany(req, res) {
+  const fkCompanyOperationsController = req.params.idCompanyOperations;
+  const fkAccessController = req.params.fkAccess;
+
+  accessModel
+    .deleteAccessCompany(fkCompanyOperationsController, fkAccessController)
+    .then(function (result) {
+      res.json(result);
+      console.log("on accessController");
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log("Delete company access has been failed: ", error.sqlMessage);
       res.status(500).json(error.sqlMessage);
     });
 }
@@ -191,8 +191,8 @@ module.exports = {
   addAccessGlobal,
   addAccessCompany,
   showAccess,
-  deleteAccessCompany,
   deleteAccessFamily,
+  deleteAccessCompany,
   verifyGlobalAccessUsing,
   deleteAccessGlobal,
 };

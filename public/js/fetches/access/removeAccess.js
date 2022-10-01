@@ -1,9 +1,9 @@
-function deleteAccess(fkAccess) {
+function deleteAccess(fkCompanyOperations, fkAccess) {
   showLoading();
 
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/access/deleteAccessCompany/${fkCompanyVar}/${fkAccess}`, {
+  fetch(`/access/deleteAccessFamily/${fkCompanyVar}/${fkCompanyOperations}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +11,7 @@ function deleteAccess(fkAccess) {
   })
     .then(function (result) {
       if (result.ok) {
-        deleteAccessFamily(fkAccess);
+        deleteAccessCompany(fkCompanyOperations, fkAccess);
       } else if (result.status == 404) {
         window.alert("error 404!");
       } else {
@@ -32,10 +32,10 @@ function deleteAccess(fkAccess) {
     });
 }
 
-function deleteAccessFamily(fkAccess) {
+function deleteAccessCompany(fkCompanyOperations, fkAccess) {
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/access/deleteAccessFamily/${fkCompanyVar}/${fkAccess}`, {
+  fetch(`/access/deleteAccessCompany/${fkCompanyVar}/${fkCompanyOperations}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

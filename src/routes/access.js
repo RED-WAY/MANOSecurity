@@ -19,12 +19,12 @@ router.get("/showAccess/:idCompany", function (req, res) {
     accessController.showAccess(req, res);
 });
 
-router.delete("/deleteAccessCompany/:fkCompany/:fkAccess", function (req, res) {
-    accessController.deleteAccessCompany(req, res);
-});
-
 router.delete("/deleteAccessFamily/:fkCompany/:fkAccess", function (req, res) {
     accessController.deleteAccessFamily(req, res);
+});
+
+router.delete("/deleteAccessCompany/:idCompanyOperations/:fkAccess", function (req, res) {
+    accessController.deleteAccessCompany(req, res);
 });
 
 router.get("/verifyGlobalAccessUsing/:idAccess", function (req, res) {

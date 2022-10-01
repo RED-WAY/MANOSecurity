@@ -19,10 +19,11 @@ function getSpecificFamily(idFamily) {
     idFamily
   );
   const dbQuery = `
-          SELECT familyName, familyLevel, fkOperation 
+          SELECT familyName, familyLevel, idCompanyOperations 
             FROM family 
               LEFT JOIN familyOperations ON idFamily = fkFamily 
-                WHERE idFamily = ${idFamily};
+                LEFT JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
+                    WHERE idFamily = ${idFamily};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -36,10 +37,11 @@ function showFamilies(fkCompany) {
   );
   const dbQuery = `
           SELECT idFamily, familyLevel, familyName, operationName FROM Family 
-	          LEFT JOIN familyOperations ON idFamily = fkFamily 
-	          	LEFT JOIN operation ON idOperation = fkOperation 
-	          		WHERE fkCompany = ${fkCompany}
-	          			ORDER BY idFamily ASC;
+            LEFT JOIN familyOperations ON idFamily = fkFamily 
+              LEFT JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
+                LEFT JOIN operation ON idOperation = fkOperation 
+                  WHERE Family.fkCompany = ${fkCompany}
+                    ORDER BY idFamily ASC;
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -68,7 +70,7 @@ function addFamilyAccess(accessArray, fkFamily) {
     fkFamily
   );
 
-  let command = "INSERT INTO familyOperations (fkOperation, fkFamily) VALUES";
+  let command = "INSERT INTO familyOperations (fkCompanyOperations, fkFamily) VALUES";
   let insertedValues = "";
   if (accessArray.length > 0) {
     accessArray.map((idProc, i) => {

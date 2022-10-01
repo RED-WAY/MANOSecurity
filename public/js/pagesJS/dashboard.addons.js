@@ -92,7 +92,7 @@ function loadCheckes(idFamily) {
             for (const register of json) {
               Array.from(divCheck.children).map((access) => {
                 const checkOpt = access.children[0];
-                if (checkOpt.id == register.fkOperation) {
+                if (checkOpt.id == register.idCompanyOperations) {
                   checkOpt.checked = true;
                 }
               });
