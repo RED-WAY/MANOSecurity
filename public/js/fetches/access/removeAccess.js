@@ -145,7 +145,7 @@ function deleteAccessGlobal(idAccess) {
   })
     .then(function (result) {
       if (result.ok) {
-        console.log("ACCESS GLOBALY DELETED");
+        console.log("ACCESS GLOBALLY DELETED");
       } else if (result.status == 404) {
         window.alert("error 404!");
         hideLoading();

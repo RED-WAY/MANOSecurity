@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="./css/index.media.css" />
   <link rel="stylesheet" type="text/css" href="./css/popups.media.css" />
 
-  <!-- AOS Animation (SCROLL ANMS) -->
+  <!-- AOS Animation (SCROLL ANIMATIONS) -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
@@ -81,12 +81,15 @@
 
   <!-- MENU CARD -->
   <aside class="popup-aside invisible" id="aside_menu">
-    <div class="menu-nav hamburguer">
+    <div class="menu-nav hamburger">
       <ul>
-        <a href="#objetivo" onclick="hideMenu()" tabindex="1" id="menu_first_item">
+        <a href="#welcome" onclick="hideMenu()" tabindex="1" id="menu_first_item">
+          <li>Início</li>
+        </a>
+        <a href="#objetivo" onclick="hideMenu()" tabindex="2">
           <li>Objetivo</li>
         </a>
-        <a href="#redway" onclick="hideMenu()" tabindex="2">
+        <a href="#redway" onclick="hideMenu()" tabindex="3">
           <li>REDWAY</li>
         </a>
       </ul>
@@ -167,21 +170,21 @@
     </div>
   </section>
 
-  <!-- BLABLA SECTION -->
+  <!-- OBJECTIVES SECTION -->
   <section class="section-content second-section" id="objetivo">
     <div class="container">
       <div class="sec-content">
         <h1 data-aos="fade-down-right">Objetivo e Valores</h1>
         <p data-aos="fade-up-left">
           &emsp;O man.OS (Modern and Newbie Observing System), proporciona um
-          conjunto de ferramentas que busca facilitar, simultanemaente, a vida
-          dos professores e das intiuições de ensino, mas principalmente no
+          conjunto de ferramentas que busca facilitar, simultaneamente, a vida
+          dos professores e das instituições de ensino, mas principalmente no
           aluno, visando minimizar a frequente falta de foco da mais nova
           geração. <br /><br />&emsp;Geramos valor ao diminuir o risco de
           gastos com recomposição de componentes danificados, ou pior,
           vazamento de informações causadas por invasões cibernéticas. Agora,
           com os man.OS, você será capaz de gerir com mais dinamismo as
-          perissões de processos em suas máquinas!
+          permissões de processos em suas máquinas!
         </p>
       </div>
     </div>
@@ -294,7 +297,7 @@
 <script src="./js/fetches/usersFetch/login.js"></script>
 <script src="./js/pagesJS/index.js"></script>
 
-<!-- AOS Animation (SCROLL ANMS) -->
+<!-- AOS Animation (SCROLL ANIMATIONS) -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({

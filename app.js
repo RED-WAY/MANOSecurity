@@ -33,7 +33,7 @@ app.use("/access", accessRouter);
 
 app.listen(PORT, function () {
     console.log(`Server running at: http://localhost:${PORT} \n
-    Application at ${process.env.ENV} proccess mode \n
+    Application at ${process.env.ENV} process mode \n
     \t\tIf "development" => connected to local database (MySQL - Workbench). \n
     \t\tIf "production" => connected to remote database (SQL Server - Azure) \n
     \t\t\tTo SWITCH ENVIRONMENT, comment or uncomment the first 2 lines at: app.js`);

@@ -1,8 +1,8 @@
 const database = require("../database/config");
 
-function checkAccessGlobaly(operationName, operationPath, operationType) {
+function checkAccessGlobally(operationName, operationPath, operationType) {
   console.log(
-    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function checkAccessGlobaly(): ",
+    "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function checkAccessGlobally(): ",
     operationName,
     operationPath,
     operationType,
@@ -130,7 +130,7 @@ function deleteAccessGlobal(idOperation) {
 }
 
 module.exports = {
-  checkAccessGlobaly,
+  checkAccessGlobally,
   addAccessGlobal,
   addAccessCompany,
   showAccess,

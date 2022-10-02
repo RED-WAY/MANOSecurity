@@ -32,7 +32,7 @@ function resetFields() {
   user_password.value = "";
 
   // changing all process checkboxes to false
-  const divCheck = document.querySelector(".div-checkes");
+  const divCheck = document.querySelector(".div-checks");
   Array.from(divCheck.children).map((access) => {
     const checkOpt = access.children[0];
     checkOpt.checked = false;
@@ -66,7 +66,7 @@ function loadUserInputs(userId) {
   ).children[2].innerHTML;
 }
 
-function loadCheckes(idFamily) {
+function loadChecks(idFamily) {
   fetch(`/family/getSpecificFamily/${idFamily}`, {
     method: "GET",
     headers: {
@@ -82,7 +82,7 @@ function loadCheckes(idFamily) {
 
           if (json.length > 0) {
             // changing all process checkboxes to false
-            const divCheck = document.querySelector(".div-checkes");
+            const divCheck = document.querySelector(".div-checks");
             Array.from(divCheck.children).map((access) => {
               const checkOpt = access.children[0];
               checkOpt.checked = false;
@@ -99,7 +99,7 @@ function loadCheckes(idFamily) {
             }
           } else {
             // changing all process checkboxes to false
-            const divCheck = document.querySelector(".div-checkes");
+            const divCheck = document.querySelector(".div-checks");
             Array.from(divCheck.children).map((access) => {
               const checkOpt = access.children[0];
               checkOpt.checked = false;

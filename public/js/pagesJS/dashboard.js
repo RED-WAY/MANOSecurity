@@ -82,7 +82,7 @@ function verifyInputs(formParam, mode, editId, confirmTitle) {
   } else if (mode + formParam == "editUser") {
     loadUserInputs(editId);
   } else if (mode + formParam == "editFamily") {
-    loadCheckes(editId);
+    loadChecks(editId);
   }
 }
 
@@ -140,10 +140,10 @@ function copyToken(idMachine) {
 
     try {
       navigator.clipboard.writeText(token.textContent);
-      showMessage('success', 'Token copiado para sua Área de Transferência!');
+      showMessage("success", "Token copiado para sua Área de Transferência!");
     } catch (error) {
       console.log(error);
-      showMessage('error', 'Não foi possível copiar o Token')
+      showMessage("error", "Não foi possível copiar o Token");
     }
   }
 }

@@ -2,7 +2,7 @@
 const themeTrigger = document.querySelector("#theme_changer");
 const dataTheme = document.documentElement;
 
-// verify storaged theme
+// verify storage theme
 if (localStorage.THEME === undefined) {
   localStorage.THEME = "light";
 }

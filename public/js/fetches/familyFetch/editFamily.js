@@ -5,7 +5,7 @@ function editFamily(idFamily) {
   const familyLevelVar = family_level_select.value;
 
   const accessArray = [];
-  const divCheck = document.querySelector(".div-checkes");
+  const divCheck = document.querySelector(".div-checks");
   Array.from(divCheck.children).map((access) => {
     const checkOpt = access.children[0];
     checkOpt.checked && accessArray.push(checkOpt.id);

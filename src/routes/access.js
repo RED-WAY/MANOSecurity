@@ -3,8 +3,8 @@ const router = express.Router();
 
 const accessController = require("../controllers/accessController");
 
-router.get("/checkAccessGlobaly/:type/:name/:process", function (req, res) {
-    accessController.checkAccessGlobaly(req, res);
+router.get("/checkAccessGlobally/:type/:name/:process", function (req, res) {
+    accessController.checkAccessGlobally(req, res);
 });
 
 router.post("/addAccessGlobal", function (req, res) {

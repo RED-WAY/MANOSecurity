@@ -1,5 +1,5 @@
 .form-card,
-.hamburguer {
+.hamburger {
   /* SIZE */
   width: 100vw;
   height: 100vh;
@@ -140,22 +140,22 @@ h3 span:focus {
   /* TEXT */
   font-size: 0.9em;
 }
-.div-checkes {
+.div-checks {
   /* SIZE */
   height: 8em !important;
   /* SCROLL */
   overflow: auto;
 }
 
-.div-checkes::-webkit-scrollbar {
+.div-checks::-webkit-scrollbar {
   /* SIZE */
   width: 0.3em;
 }
-.div-checkes::-webkit-scrollbar-track {
+.div-checks::-webkit-scrollbar-track {
   /* BACKGROUND */
   background: var(--gray-light);
 }
-.div-checkes::-webkit-scrollbar-thumb {
+.div-checks::-webkit-scrollbar-thumb {
   /* BACKGROUND */
   background: var(--gray-dark);
 }
@@ -191,8 +191,8 @@ select option {
   color: var(--red);
 }
 
-.hamburguer ul,
-.hamburguer a {
+.hamburger ul,
+.hamburger a {
   /* SIZE */
   width: 90%;
   /* POSITION */
@@ -202,14 +202,14 @@ select option {
   /* MISC */
   transition: background-color 0.5s ease-out;
 }
-.hamburguer a:active {
+.hamburger a:active {
   /* BACKGROUND */
   background-color: var(--trans3);
 }
-.hamburguer a::before {
+.hamburger a::before {
   content: none;
 }
-.hamburguer a::after {
+.hamburger a::after {
   content: "";
   /* SIZE */
   width: 10%;
@@ -221,8 +221,8 @@ select option {
   /* MISC */
   transition: height 0.3s ease-out, width 0.3s ease-out;
 }
-.hamburguer a:hover::after,
-.hamburguer a:focus::after {
+.hamburger a:hover::after,
+.hamburger a:focus::after {
   /* SIZE */
   width: 30%;
   height: 0.2em;

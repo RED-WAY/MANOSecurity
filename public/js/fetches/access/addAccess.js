@@ -18,7 +18,7 @@ function addAccess() {
     hideConfirm();
     showMessage("warning", "Cadastre o nome do processo no sistema!");
   } else {
-    fetch(`/access/checkAccessGlobaly/${typeVar}/${nameVar}/${processVar}`, {
+    fetch(`/access/checkAccessGlobally/${typeVar}/${nameVar}/${processVar}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
