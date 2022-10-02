@@ -123,7 +123,7 @@ function editConsumer(req, res) {
   } else if (consumerEmailController == undefined) {
     console.log("consumerEmail is undefined");
   } else if (consumerPasswordController == undefined) {
-    console.log("consumerPassowrd is undefined");
+    console.log("consumerPassword is undefined");
   } else if (managementController == undefined) {
     console.log("management is undefined");
   } else if (idConsumerController == undefined) {

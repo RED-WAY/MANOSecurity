@@ -15,7 +15,7 @@ function editUser(idConsumer) {
     hideConfirm();
     showMessage("warning", "Nome do usuário não foi definido!");
     return false;
-  } else if (consumerEmailVar == "" || consumerEmailVar.match(emailRegex)) {
+  } else if (consumerEmailVar == "" || !consumerEmailVar.match(emailRegex)) {
     hideLoading();
     hideConfirm();
     showMessage("warning", "Email inválido!");
@@ -52,6 +52,7 @@ function editUser(idConsumer) {
       }),
     })
       .then(function (result) {
+        console.log(result)
         if (result.ok) {
           showUsers();
           userBtnAttributes(false);
@@ -62,29 +63,24 @@ function editUser(idConsumer) {
             showMessage("success", "Usuário editado com sucesso!");
           }, 500);
         } else {
-          hideConfirm();
-          setTimeout(() => {
-            hideLoading();
-            showMessage(
-              "error",
-              "Aconteceu algum erro enquanto editava um usuário!"
-            );
-            return false;
-          }, 800);
-          throw "There was an error while editing user!";
+          result.json().then((res) => {
+            console.log(res);
+            hideConfirm();
+            setTimeout(() => {
+              hideLoading();
+              let errorMsg =
+                "Aconteceu algum erro enquanto adicionava um usuário!";
+              if (res.match(/duplicate/i)) {
+                errorMsg = "E-mail já cadastrado no sistema! Tente novamente";
+              }
+              showMessage("error", errorMsg);
+            }, 1000);
+          });
+          throw res;
         }
       })
       .catch((error) => {
         console.log(error);
-        hideConfirm();
-        setTimeout(() => {
-          hideLoading();
-          showMessage(
-            "error",
-            "Aconteceu algum erro enquanto editava um usuário!"
-          );
-          return false;
-        }, 1000);
       });
 
     return false;
