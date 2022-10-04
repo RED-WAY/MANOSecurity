@@ -1,3 +1,20 @@
+// PERMISSION CHANGES
+// users panel
+if (sessionStorage.OFFICE_USER !== "MASTER") {
+  Array.from(
+    document.querySelectorAll(
+      `a[onclick="showSection('#usuarios'), showUsers()"]`
+    )
+  ).map((link) => {
+    link.style.display = "none";
+  });
+}
+// adding components
+sessionStorage.OFFICE_USER === "ANALYST" &&
+  Array.from(document.querySelectorAll(".btn-add")).map((button) => {
+    button.disabled = true;
+  });
+
 // THEME CHANGING
 const themeTrigger = document.querySelector("#theme_changer");
 const dataTheme = document.documentElement;

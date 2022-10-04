@@ -1,4 +1,12 @@
 function showMachines() {
+  const permission = () => {
+    return {
+      MASTER: "",
+      ADMIN: "",
+      ANALYST: "disabled",
+    }[sessionStorage.OFFICE_USER];
+  };
+
   showLoading();
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
@@ -22,14 +30,18 @@ function showMachines() {
               <div class="card-info" id="machine${json[i].idMachine}" >
               <ion-icon name="desktop-outline"></ion-icon>
               <div class="card-buttons">
-                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${
+                <button 
+                ${permission()}
+                onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${
                   json[i].idMachine
                 }')"
                 class="btn-special">
                   <ion-icon name="create-outline"></ion-icon>
                   <p>EDITAR</p>
                 </button>
-                <button onclick="setYes('Remover máquina', 'deleteMachine', '${
+                <button 
+                ${permission()}
+                onclick="setYes('Remover máquina', 'deleteMachine', '${
                   json[i].idMachine
                 }')" class="btn-special">
                   <ion-icon name="trash-outline"></ion-icon>

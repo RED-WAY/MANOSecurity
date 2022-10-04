@@ -1,6 +1,14 @@
 function showFamilies() {
+  const permission = () => {
+    return {
+      MASTER: "",
+      ADMIN: "",
+      ANALYST: "disabled",
+    }[sessionStorage.OFFICE_USER];
+  };
+
   showLoading();
-  
+
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
   fetch(`/family/showFamilies/${fkCompanyVar}`, {
@@ -22,14 +30,20 @@ function showFamilies() {
               <ion-icon name="layers-outline"></ion-icon>
               <div class="card-buttons">
                 <button
-                  onclick="formView(true, 'Editar coleção', 'family', 'edit', '${res[i].idFamily}')"
+                  ${permission()}
+                  onclick="formView(true, 'Editar coleção', 'family', 'edit', '${
+                    res[i].idFamily
+                  }')"
                   class="btn-special"
                 >
                   <ion-icon name="create-outline"></ion-icon>
                   <p>EDITAR</p>
                 </button>
                 <button
-                  onclick="setYes('Remover coleção', 'removeFamily', '${res[i].idFamily}')"
+                  ${permission()}
+                  onclick="setYes('Remover coleção', 'removeFamily', '${
+                    res[i].idFamily
+                  }')"
                   class="btn-special"
                 >
                   <ion-icon name="trash-outline"></ion-icon>
@@ -71,10 +85,7 @@ function showFamilies() {
     .catch((error) => {
       console.log(error);
       hideConfirm();
-      showMessage(
-        "error",
-        "Aconteceu algum erro enquanto exibia as coleções!"
-      );
+      showMessage("error", "Aconteceu algum erro enquanto exibia as coleções!");
     });
   setTimeout(() => {
     hideLoading();

@@ -135,6 +135,12 @@ section section {
   /* BACKGROUND */
   background-color: var(--success);
 }
+.btn-add:disabled {
+  /* TEXT */
+  text-decoration: line-through;  
+  /* MISC */
+  filter: grayscale(1);
+}
 
 /* CONTENT */
 .sec .content {

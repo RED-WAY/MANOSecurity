@@ -1,6 +1,10 @@
 // CHANGE SECTIONS VISIBILITY
 let actualSection = "#dispositivos";
 function showSection(sectionClass) {
+  if (sessionStorage.OFFICE_USER !== "MASTER" && sectionClass === "#usuarios") {
+    throw "Not allowed to access this section!";
+  }
+
   const section = document.querySelector(sectionClass);
   const sectionNow = document.querySelector(actualSection);
 

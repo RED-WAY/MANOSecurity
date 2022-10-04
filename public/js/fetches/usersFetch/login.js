@@ -26,6 +26,7 @@ function logIn() {
             sessionStorage.EMAIL_USER = json.consumerEmail;
             sessionStorage.NAME_USER = json.consumerName;
             sessionStorage.ID_USER = json.idConsumer;
+            sessionStorage.OFFICE_USER = json.management;
 
             setTimeout(function () {
               hideLoading();
