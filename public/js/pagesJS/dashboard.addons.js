@@ -22,7 +22,7 @@ function paintUsersOnClick() {
 }
 
 function resetFields() {
-  // reseting input values
+  // resetting input values
   machine_name.value = "";
   family_name.value = "";
   access_name.value = "";
@@ -30,6 +30,20 @@ function resetFields() {
   user_name.value = "";
   user_email.value = "";
   user_password.value = "";
+
+  [
+    "userName",
+    "userEmail",
+    "userPassword",
+    "accessName",
+    "accessPath",
+    "familyName",
+    "machineName",
+  ].map((id) => {
+    document
+      .querySelector(`label[for="${id}"]`)
+      .classList.remove("move-up-label");
+  });
 
   // changing all process checkboxes to false
   const divCheck = document.querySelector(".div-checks");
@@ -51,6 +65,10 @@ function loadMachineInputs(machineId) {
   } else {
     machine_family_select.value = "";
   }
+
+  ["machineName"].map((id) => {
+    document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
+  });
 }
 
 function loadUserInputs(userId) {
@@ -64,6 +82,10 @@ function loadUserInputs(userId) {
   user_office.value = document.querySelector(
     `#user${userId}`
   ).children[2].innerHTML;
+
+  ["userName", "userEmail", "userPassword"].map((id) => {
+    document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
+  });
 }
 
 function loadChecks(idFamily) {
@@ -117,5 +139,20 @@ function loadChecks(idFamily) {
       console.log(error);
     });
 
+  ["familyName"].map((id) => {
+    document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
+  });
+
   return false;
 }
+
+// animate labels
+addAnimatedLabelEvent([
+  "userName",
+  "userEmail",
+  "userPassword",
+  "accessName",
+  "accessPath",
+  "familyName",
+  "machineName",
+]);

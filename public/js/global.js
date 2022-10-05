@@ -152,3 +152,25 @@ function viewLoad(option) {
     }
   }, 1000);
 }
+
+function addAnimatedLabelEvent(array) {
+  for (const id of array) {
+    const label = document.querySelector(`label[for="${id}"]`);
+    const input = document.querySelector(`input[name="${id}"]`);
+
+    label.classList.add("animated-label");
+    input.addEventListener("focus", () => {
+      label.classList.add("move-up-label");
+    });
+
+    ["change", "blur"].map((event) => {
+      input.addEventListener(event, () => {
+        if (!input.value) {
+          label.classList.remove("move-up-label");
+        } else {
+          label.classList.add("move-up-label");
+        }
+      });
+    });
+  }
+}
