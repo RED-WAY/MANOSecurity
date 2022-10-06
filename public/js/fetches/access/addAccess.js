@@ -2,8 +2,8 @@ function addAccess() {
   showLoading();
 
   const typeVar = access_type_select.value;
-  const nameVar = access_name.value;
-  const processVar = access_path.value;
+  const nameVar = access_name.value.trimStart().trimEnd();
+  const processVar = access_path.value.trimStart().trimEnd();
 
   if (typeVar == "") {
     hideLoading();
@@ -135,7 +135,10 @@ function addAccessCompany(operationId) {
           hideConfirm();
           setTimeout(() => {
             hideLoading();
-            showMessage('error', 'Aconteceu algum erro enquanto adicionava um acesso!');
+            showMessage(
+              "error",
+              "Aconteceu algum erro enquanto adicionava um acesso!"
+            );
           }, 1000);
           throw "There was an error while adding company operation!";
         }
@@ -145,7 +148,10 @@ function addAccessCompany(operationId) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
-          showMessage('error', 'Aconteceu algum erro enquanto adicionava um acesso!');
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava um acesso!"
+          );
         }, 3000);
       });
 

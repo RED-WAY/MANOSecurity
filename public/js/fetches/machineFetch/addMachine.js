@@ -1,7 +1,7 @@
 function addMachine() {
   showLoading();
 
-  const machineNameVar = machine_name.value;
+  const machineNameVar = machine_name.value.trimStart().trimEnd();
   const fkConsumerVar = sessionStorage.ID_USER;
   const fkCompanyVar = sessionStorage.COMPANY_USER;
   const fkFamilyVar = machine_family_select.value;

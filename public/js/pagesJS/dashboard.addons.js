@@ -56,7 +56,9 @@ function resetFields() {
 function loadMachineInputs(machineId) {
   machine_name.value = document
     .querySelector(`#name_machine${machineId}`)
-    .innerHTML.replace("Name: ", "");
+    .innerHTML.replace("Name: ", "")
+    .trimStart()
+    .trimEnd();
   const selectValue = document
     .querySelector(`#machine${machineId}`)
     .children[2].id.replace("family_machine", "");

@@ -1,7 +1,7 @@
 function editFamily(idFamily) {
   showLoading();
 
-  const familyNameVar = family_name.value;
+  const familyNameVar = family_name.value.trimStart().trimEnd();
   const familyLevelVar = family_level_select.value;
 
   const accessArray = [];

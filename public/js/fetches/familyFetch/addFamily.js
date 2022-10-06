@@ -1,7 +1,7 @@
 function addFamily() {
   showLoading();
 
-  const familyNameVar = family_name.value;
+  const familyNameVar = family_name.value.trimStart().trimEnd();
   const familyLevelVar = family_level_select.value;
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
