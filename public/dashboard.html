@@ -165,13 +165,25 @@
           >
             <li>Dispositivos</li>
           </a>
-          <a href="#" tabindex="2" onclick="showSection('#colecoes'), showFamilies()">
+          <a
+            href="#"
+            tabindex="2"
+            onclick="showSection('#colecoes'), showFamilies()"
+          >
             <li>Coleções</li>
           </a>
-          <a href="#" tabindex="3" onclick="showSection('#acessos'),showAccess()">
+          <a
+            href="#"
+            tabindex="3"
+            onclick="showSection('#acessos'),showAccess()"
+          >
             <li>Acessos</li>
           </a>
-          <a href="#" tabindex="3" onclick="showSection('#usuarios'), showUsers()">
+          <a
+            href="#"
+            tabindex="3"
+            onclick="showSection('#usuarios'), showUsers()"
+          >
             <li>Usuários</li>
           </a>
           <a
@@ -309,7 +321,7 @@
 
     <!-- POPUPS -->
     <aside class="popup-form popup-aside" id="aside_forms">
-      <div class="form-card">
+      <div class="form-card" id="form_card">
         <h1 id="form_title">Adicionar acesso</h1>
         <form id="form_inputs">
           <!-- ACCESS -->
@@ -387,6 +399,16 @@
         <button type="button" id="button_form" class="btnForm">
           ADICIONAR
         </button>
+        <ion-icon
+          name="close-outline"
+          class="close-form"
+          onclick="formView(false)"
+          onkeypress="formView(false)"
+          title="Fechar tela"
+        />
+      </div>
+      <div class="dash-card" id="dash_card">
+        <div></div>
         <ion-icon
           name="close-outline"
           class="close-form"

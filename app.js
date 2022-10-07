@@ -31,6 +31,7 @@ app.use("/access", accessRouter);
 
 // ADD ROUTES HERE TOO
 
+console.clear();
 app.listen(PORT, function () {
     console.log(`Server running at: http://localhost:${PORT} \n
     Application at ${process.env.ENV} process mode \n

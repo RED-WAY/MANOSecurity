@@ -17,3 +17,8 @@ function hideLogin() {
   }, 200);
 }
 // ----------------
+// animate labels
+addAnimatedLabelEvent([
+  "email",
+  "password",
+]);

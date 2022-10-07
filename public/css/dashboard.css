@@ -118,7 +118,7 @@ section section {
   background-color: var(--success-trans);
   /* TEXT */
   font-weight: 600;
-  color: var(--white);
+  color: var(--font1);
   /* BORDER */
   border-color: var(--success);
 }
@@ -137,7 +137,7 @@ section section {
 }
 .btn-add:disabled {
   /* TEXT */
-  text-decoration: line-through;  
+  text-decoration: line-through;
   /* MISC */
   filter: grayscale(1);
 }
@@ -187,11 +187,29 @@ section section {
   /* DISPLAY */
   grid-template-columns: 28% auto 44%;
   grid-template-areas:
-    "image sub buttons"
+    "image sub buttonsTop"
     "image title title"
-    "image content token";
+    "image content buttonsBottom";
   /* MISC */
   clip-path: none;
+}
+
+.card-buttons {
+  /* SIZE */
+  width: 70%;
+  /* DISPLAY */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-buttons-top {
+  grid-area: buttonsTop;
+}
+.card-buttons-bottom {
+  /* DISPLAY */
+  grid-area: buttonsBottom;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 .copy-token {
@@ -261,7 +279,7 @@ section section {
 .copy-token ion-icon {
   /* SIZE */
   font-size: 2.5em !important;
-  height: 100%;
+  height: 0.6em;
   /* MISC */
   transition: color 0.4s;
 }
@@ -275,19 +293,6 @@ section section {
   color: var(--red-alt);
   /* MISC */
   cursor: pointer;
-}
-
-.card-buttons {
-  /* DISPLAY */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.card-buttons {
-  /* SIZE */
-  width: 70%;
-  /* DISPLAY */
-  grid-area: buttons;
 }
 
 .btn-special {

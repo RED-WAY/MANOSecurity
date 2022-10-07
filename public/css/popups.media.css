@@ -8,7 +8,7 @@
     height: 70%;
   }
 }
-@media (min-width: 426px) { 
+@media (min-width: 426px) {
   .form-card button {
     /* SIZE */
     max-width: 65%;
@@ -35,7 +35,8 @@
   }
 }
 @media (min-width: 769px) {
-  .form-card {
+  .form-card,
+  #dash_card {
     /* SIZE */
     width: 33em;
     height: fit-content;
@@ -71,6 +72,14 @@
   .form__input input {
     /* SIZE */
     height: 60%;
+  }
+
+  #dash_card {
+    /* SIZE */
+    width: 80vw;
+    height: 85vh;
+    /* SPACING */
+    padding: 2em 2em;
   }
 }
 @media (min-width: 1025px) {

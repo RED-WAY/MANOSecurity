@@ -1,4 +1,5 @@
 .form-card,
+#dash_card,
 .hamburger {
   /* SIZE */
   width: 100vw;
@@ -24,12 +25,19 @@
   transition: opacity 0.2s, background-color 0.5s;
 }
 
+#form_card,
+#dash_card {
+  /* DISPLAY */
+  display: none;
+}
+
 .form-card h1 {
   /* TEXT */
   font-size: 1.3em;
   color: var(--font1);
 }
-.form-card form {
+.form-card form,
+#dash-card > div {
   /* SIZE */
   width: 80%;
   /* POSITION */
@@ -123,7 +131,6 @@ h3 span:focus {
   color: var(--red-dark) !important;
 }
 
-
 .move-up-label {
   /* TEXT */
   font-size: 0.5em !important;
@@ -200,19 +207,19 @@ select option {
 .close-form {
   /* POSITION */
   position: absolute;
-  top: 0.3em;
-  right: 0.3em;
+  top: 0.3rem;
+  right: 0.3rem;
   /* TEXT */
-  font-size: 2em;
+  font-size: 2rem;
   color: var(--bla);
 }
 .close-form:hover,
 .close-form:focus {
   /* POSITION */
-  top: 0.1em;
-  right: 0.1em;
+  top: 0.1rem;
+  right: 0.1rem;
   /* TEXT */
-  font-size: 2.6em;
+  font-size: 2.6rem;
   color: var(--red);
 }
 
@@ -253,4 +260,13 @@ select option {
   height: 0.2em;
   /* TEXT */
   color: var(--font2);
+}
+
+#dash_card {
+}
+
+#dash_card div {
+  background-color: aliceblue;
+  width: 100%;
+  height: 100%;
 }
