@@ -73,7 +73,6 @@ function addUser() {
           }, 500);
         } else {
           result.json().then((res) => {
-            console.log(res);
             hideConfirm();
             setTimeout(() => {
               hideLoading();

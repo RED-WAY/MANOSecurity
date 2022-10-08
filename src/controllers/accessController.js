@@ -48,6 +48,7 @@ function addAccessGlobal(req, res) {
     accessModel
       .addAccessGlobal(operationNameController, operationPathController, operationTypeController)
       .then(function (result) {
+        console.log(result);
         res.json(result);
         console.log("on accessController");
       })

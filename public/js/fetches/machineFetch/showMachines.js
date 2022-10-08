@@ -55,15 +55,19 @@ function showMachines() {
                 Name: ${json[i].machineName}
               </h2>
               <p>
-                <strong>Adicionado em: </strong>${json[i].dtAdded.split("-")[0]}<br />
+                <strong>Adicionado em: </strong>${
+                  json[i].dtAdded.split("-")[0]
+                }<br />
                 <strong>Às: </strong>${json[i].dtAdded.split("-")[1]}<br />
-                <strong>Por: </strong>${json[i].consumerName || "USUÁRIO REMOVIDO"}
+                <strong>Por: </strong>${
+                  json[i].consumerName || "USUÁRIO REMOVIDO"
+                }
               </p>
               <div class="card-buttons card-buttons-bottom">
               <button 
-              onclick="formView(true, '${json[i].machineName}', 'machineDash', 'show', '${
-                json[i].idMachine
-              }')"
+              onclick="formView(true, '${
+                json[i].machineName
+              }', 'machineDash', 'show', '${json[i].idMachine}')"
               class="btn-special">
               <ion-icon name="bar-chart-outline"></ion-icon>
                 <p style="margin-left: 4%">DADOS</p>
@@ -83,7 +87,7 @@ function showMachines() {
                 </div>
               </div>
             </div> 
-         `;
+        `;
           }
         });
       } else {

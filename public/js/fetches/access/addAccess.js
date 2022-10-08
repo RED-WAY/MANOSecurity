@@ -69,11 +69,7 @@ function addAccessGlobal(typeVar, nameVar, processVar) {
   })
     .then(function (result) {
       if (result.ok) {
-        result.json().then((res) => {
-          setTimeout(() => {
-            addAccessCompany(res.insertId);
-          }, 500);
-        });
+        addAccess();
       } else {
         hideConfirm();
         setTimeout(() => {

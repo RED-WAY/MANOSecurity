@@ -6,7 +6,7 @@ function getFamily(fkCompany) {
     fkCompany
   );
   const dbQuery = `
-      SELECT * FROM family WHERE fkCompany = ${fkCompany};
+        SELECT * FROM family WHERE fkCompany = ${fkCompany};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -19,11 +19,11 @@ function getSpecificFamily(idFamily) {
     idFamily
   );
   const dbQuery = `
-          SELECT familyName, familyLevel, idCompanyOperations 
-            FROM family 
-              LEFT JOIN familyOperations ON idFamily = fkFamily 
-                LEFT JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
-                    WHERE idFamily = ${idFamily};
+        SELECT familyName, familyLevel, idCompanyOperations 
+          FROM family 
+            LEFT JOIN familyOperations ON idFamily = fkFamily 
+              LEFT JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
+                WHERE idFamily = ${idFamily};
            `;
 
   console.log("Executing SQL query: \n" + dbQuery);
