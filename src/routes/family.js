@@ -18,6 +18,11 @@ router.get("/showFamilies/:fkCompany", function (req, res) {
 router.post("/addFamily", function (req, res) {
   familyController.addFamily(req, res);
 });
+
+router.get("/getFamilyId/:familyName/:familyLevel/:fkCompany", function (req, res) {
+  familyController.getFamilyId(req, res);
+});
+
 router.post("/addFamilyAccess", function (req, res) {
   familyController.addFamilyAccess(req, res);
 });
