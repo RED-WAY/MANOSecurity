@@ -21,7 +21,7 @@ function addMachine(machineName, fkConsumer, fkCompany, fkFamily) {
 
 function showMachines(fkCompany) {
   console.log(
-    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showMachine(): ",
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showMachines(): ",
     fkCompany
   );
   let dbQuery = "";

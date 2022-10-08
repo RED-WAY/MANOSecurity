@@ -25,7 +25,6 @@ function showMachines() {
           dispositivos_content.innerHTML = "";
 
           for (var i = 0; i < json.length; i++) {
-            json[i];
             dispositivos_content.innerHTML += `             
               <div class="card-info" id="machine${json[i].idMachine}" >
               <ion-icon name="desktop-outline"></ion-icon>

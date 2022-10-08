@@ -311,12 +311,13 @@ select option {
   font-size: 1rem;
 }
 
-.constant-title {
+#constant_title {
   /* SPACING */
   margin-top: 0.8em;
   text-align: center;
 }
-.operationalSystem {
+
+#operationalSystem {
   /* SPACING */
   margin-top: 1em;
   text-align: center;

@@ -21,5 +21,4 @@ router.post("/showMachines", function (req, res) {
 });
 
 
-
 module.exports = router;
