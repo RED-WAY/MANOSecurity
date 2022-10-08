@@ -22,7 +22,7 @@ function addFamily() {
     hideConfirm();
     showMessage(
       "error",
-      "Nível da coleção não foi encontrado! Contate o suporte pelo CHATBOT"
+      "Nível da coleção não foi definido!"
     );
     return false;
   } else if (fkCompanyVar == "" || fkCompanyVar == undefined) {

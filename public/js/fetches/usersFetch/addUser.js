@@ -72,6 +72,7 @@ function addUser() {
             showMessage("success", "Usuário adicionado com sucesso!");
           }, 500);
         } else {
+          console.log(result);
           result.json().then((res) => {
             hideConfirm();
             setTimeout(() => {

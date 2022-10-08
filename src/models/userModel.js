@@ -56,7 +56,7 @@ function showConsumers(idCompany, idConsumer) {
   } else if (env === "production") {
     dbQuery = `
     SELECT consumer.idConsumer, consumer.consumerName, consumer.consumerEmail, 
-      DATE_FORMAT(consumer.dtAdded, "%d/%m/%Y") AS dtAdded, 
+      FORMAT(SWITCHOFFSET(consumer.dtAdded, '-03:00'), 'dd/MM/yyyy') AS dtAdded, 
         consumer.management, manager.consumerName AS managerName, manager.idConsumer AS fkManager 
           FROM consumer 
             JOIN consumer AS manager ON manager.idConsumer = consumer.fkManager 
@@ -103,7 +103,7 @@ function addConsumer(
   } else if (env === "production") {
     dbQuery = `
     INSERT INTO consumer(consumerName, consumerEmail, consumerPassword, management, fkManager, fkCompany) VALUES 
-      ('${consumerName}','${consumerEmail}', '${consumerPassword}', '${encrypter}', '${management}', ${fkManager}, ${fkCompany});
+      ('${consumerName}','${consumerEmail}', '${consumerPassword}', '${management}', ${fkManager}, ${fkCompany});
     `;
   } else {
     console.error(

@@ -12,23 +12,28 @@ function showUsers() {
   })
     .then(function (result) {
       if (result.ok) {
-        result.json().then((users) => {
-          usersDisplay.innerHTML = "";
-          for (var i = 0; i < users.length; i++) {
-            usersDisplay.innerHTML += `
+        usersDisplay.innerHTML = "";
+        if (result.status == 200) {
+          result.json().then((users) => {
+            for (var i = 0; i < users.length; i++) {
+              usersDisplay.innerHTML += `
               <tr onclick="userBtnAttributes(true, '${users[i].idConsumer}', '${
-              users[i].fkManager
-            }')" id="user${users[i].idConsumer}">
+                users[i].fkManager
+              }')" id="user${users[i].idConsumer}">
                 <td>${users[i].consumerName}</td>
                 <td>${users[i].consumerEmail}</td>
                 <td>${users[i].management}</td>
                 <td>${users[i].dtAdded}</td>
                 <td>${users[i].managerName || "USUÁRIO REMOVIDO"}</td>
               </tr> 
-         `;
-          }
-          paintUsersOnClick();
-        });
+        `;
+            }
+            paintUsersOnClick();
+          });
+        } else {
+          hideLoading();
+          showMessage("warning", "Nenhum usuário foi cadastrado!");
+        }
       } else {
         hideConfirm();
         showMessage(
@@ -48,6 +53,6 @@ function showUsers() {
     });
   setTimeout(() => {
     hideLoading();
-  }, 1000);
+  }, 2000);
   return false;
 }
