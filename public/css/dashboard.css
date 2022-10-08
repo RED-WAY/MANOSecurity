@@ -221,7 +221,7 @@ section section {
   /* DISPLAY */
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .copy-token > div {
   /* SIZE */

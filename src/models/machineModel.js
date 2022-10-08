@@ -37,7 +37,7 @@ function showMachines(fkCompany) {
   } else if (env === "production") {
     dbQuery = `       
     SELECT idMachine, machineName, consumerName, familyName, idFamily, 
-      FORMAT(machine.dtAdded, 'dd/MM/YY-HH:mm') AS dtAdded 
+      FORMAT(SWITCHOFFSET(machine.dtAdded, '-03:00'), 'dd/MM/yy-HH:mm') AS dtAdded
         FROM machine 
           LEFT JOIN Family ON idFamily = fkFamily 
             JOIN consumer ON idConsumer = fkConsumer 
@@ -63,7 +63,7 @@ function editMachine(idMachine, machineName, fkFamily) {
   );
   const dbQuery = `
           UPDATE Machine 
-            SET machineName = "${machineName}", 
+            SET machineName = '${machineName}', 
             fkFamily = ${fkFamily} 
               WHERE idMachine = ${idMachine};
         `;

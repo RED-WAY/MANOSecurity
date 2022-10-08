@@ -272,6 +272,12 @@ CREATE TABLE company
     CNPJ VARCHAR (14) UNIQUE
 );
 
+-- INSERT INTO company
+--     (companyName, companyEmail, CNPJ)
+-- VALUES
+--     ('SPTech', 'sptechschool@gmail.com', '12345678901234'),
+--     ('ETEC', 'etecschoo@gmail.com', '09876543210987');
+
 CREATE TABLE consumer
 (
     idConsumer INT PRIMARY KEY IDENTITY(1,1),
@@ -286,6 +292,11 @@ CREATE TABLE consumer
     fkCompany INT FOREIGN KEY REFERENCES company(idCompany)
 );
 
+-- INSERT INTO consumer(consumerName, consumerEmail, consumerPassword, management, fkCompany) VALUES 
+-- 	('test', 'test@gmail.com', '1234', 'MASTER', 1),
+--  ('test2', 'test2@gmail.com', '1234', 'MASTER', 2);
+
+
 CREATE TABLE family
 (
     idFamily INT PRIMARY KEY IDENTITY(1,1),
@@ -299,7 +310,7 @@ CREATE TABLE family
 CREATE TABLE machine
 (
     idMachine INT PRIMARY KEY IDENTITY(1,1),
-    manoCode VARCHAR (30) UNIQUE,
+    manoCode VARCHAR (30),
     machineName VARCHAR (20),
     dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
     isUsing CHAR(3) DEFAULT 'not',
@@ -365,4 +376,3 @@ CREATE TABLE operationRunning
     fkMachine INT FOREIGN KEY REFERENCES Machine(idMachine),
     fkOperation INT FOREIGN KEY REFERENCES Operation(idOperation)
 );
-

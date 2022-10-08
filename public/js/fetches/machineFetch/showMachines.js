@@ -109,6 +109,6 @@ function showMachines() {
     });
   setTimeout(() => {
     hideLoading();
-  }, 1000);
+  }, 2000);
   return false;
 }
