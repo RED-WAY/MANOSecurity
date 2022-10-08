@@ -1,7 +1,7 @@
 require('dotenv').config();
 // CHOOSE ENVIRONMENT
-process.env.ENV = "development";
-// process.env.ENV = "production";
+// process.env.ENV = "development";
+process.env.ENV = "production";
 
 const express = require("express");
 const cors = require("cors");
@@ -32,7 +32,7 @@ app.use("/access", accessRouter);
 // ADD ROUTES HERE TOO
 
 console.clear();
-app.listen(PORT, function () {
+app.listen(PORT, function () {    
     console.log(`Server running at: http://localhost:${PORT} \n
     Application at ${process.env.ENV} process mode \n
     \t\tIf "development" => connected to local database (MySQL - Workbench). \n

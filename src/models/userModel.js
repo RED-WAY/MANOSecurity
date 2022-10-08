@@ -1,5 +1,6 @@
 const database = require("../database/config");
 const encrypter = process.env.AES_ENCRYPT;
+const env = process.env.ENV;
 
 function logIn(emailModel, passwordModel) {
   console.log(
@@ -7,12 +8,29 @@ function logIn(emailModel, passwordModel) {
     emailModel,
     passwordModel
   );
-  const dbQuery = `
-        SELECT *, fkCompany as company 
-          FROM Consumer
-            WHERE consumerEmail = '${emailModel}' 
-              AND consumerPassword = AES_ENCRYPT('${passwordModel}', '${encrypter}');
-            `;
+  let dbQuery = "";
+  if (env === "development") {
+    dbQuery = `
+    SELECT *, fkCompany as company 
+      FROM Consumer
+        WHERE consumerEmail = '${emailModel}' 
+          AND consumerPassword = AES_ENCRYPT('${passwordModel}', '${encrypter}');
+    `;
+  } else if (env === "production") {
+    dbQuery = `
+    SELECT *, fkCompany as company 
+      FROM Consumer
+        WHERE consumerEmail = '${emailModel}' 
+          AND consumerPassword = '${passwordModel}';
+    `;
+  } else {
+    console.error(
+      "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"
+    );
+
+    return;
+  }
+
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }

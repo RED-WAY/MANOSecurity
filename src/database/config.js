@@ -3,10 +3,10 @@ const sql = require("mssql");
 
 // SQL SERVER - AZURE (CLOUD)
 const sqlServerConfig = {
-  server: "NAME.database.windows.net",
-  database: "DATABASE_NAME",
-  user: "ADMIN-USER",
-  password: "PASSWORD",
+  server: process.env.AZURE_SERVER,
+  database: process.env.AZURE_DATABASE,
+  user: process.env.AZURE_USER,
+  password: process.env.AZURE_PASSWORD,
   pool: {
     max: 10,
     min: 0,
