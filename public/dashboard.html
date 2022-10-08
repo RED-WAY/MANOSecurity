@@ -325,9 +325,9 @@
         <h1 id="form_title">Adicionar acesso</h1>
         <form id="form_inputs">
           <!-- ACCESS -->
-          <div class="form__input input-access">
-            <label for="accessType">Tipo</label>
+          <div class="form__input input-access">            
             <select name="web" id="access_type_select">
+              <option value="" disabled selected>selecionar tipo</option>
               <option value="web">Web</option>
               <option value="desktop">Desktop</option>
             </select>
@@ -342,8 +342,8 @@
           </div>
           <!-- FAMILIES -->
           <div class="form__input input-family edit">
-            <label for="familyLevel">Level</label>
             <select name="familyLevel" id="family_level_select">
+              <option value="" disabled selected>selecionar nível</option>
               <option value="Student">Estudante</option>
               <option value="Junior">Junior</option>
               <option value="InCharge">InCharge</option>
@@ -359,9 +359,8 @@
           </div>
           <!-- MACHINES -->
           <div class="form__input input-machine edit">
-            <label for="machineFamily">Coleção</label>
             <select name="machineFamily" id="machine_family_select">
-              <option value="" disabled selected>selecionar grupo</option>
+              <option value="" disabled selected>selecionar coleção</option>
               <!-- INSERT MACHINE FAMILIES HERE -->
             </select>
           </div>
@@ -370,6 +369,14 @@
             <input name="machineName" id="machine_name" type="text" />
           </div>
           <!-- USERS -->
+          <div class="form__input input-user edit">
+            <select name="userOffice" id="user_office">
+              <option value="" disabled selected>selecionar cargo</option>
+              <option value="MASTER">MASTER</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="ANALYST">ANALISTA</option>
+            </select>
+          </div>
           <div class="form__input input-user edit">
             <label for="userName">Nome</label>
             <input name="userName" id="user_name" type="text" />
@@ -387,14 +394,7 @@
               autocomplete="off"
             />
           </div>
-          <div class="form__input input-user edit">
-            <label for="userOffice">Cargo</label>
-            <select name="userOffice" id="user_office">
-              <option value="MASTER">MASTER</option>
-              <option value="ADMIN">ADMIN</option>
-              <option value="ANALYST">ANALISTA</option>
-            </select>
-          </div>
+
         </form>
         <button type="button" id="button_form" class="btnForm">
           ADICIONAR
