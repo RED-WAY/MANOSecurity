@@ -97,6 +97,8 @@ function verifyInputs(formParam, mode, editId, confirmTitle) {
     } else if (mode + formParam == "editFamily") {
       loadChecks(editId);
     }
+  } else {
+    machineDashContent(editId);
   }
 }
 

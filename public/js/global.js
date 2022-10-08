@@ -117,6 +117,7 @@ window.addEventListener("keydown", (event) => {
     document.querySelector("#aside_forms") !== null &&
     event.key === "Escape"
   ) {
+    hideConfirm();
     formView(false);
     hideMenu();
   }

@@ -7,6 +7,10 @@
     /* SIZE */
     height: 70%;
   }
+  .constant-info {
+    /* TEXT */
+    font-size: 1.2rem;
+  }
 }
 @media (min-width: 426px) {
   .form-card button {
@@ -81,6 +85,10 @@
     /* SPACING */
     padding: 2em 2em;
   }
+  .constant-info {
+    /* TEXT */
+    font-size: 0.85rem;
+  }
 }
 @media (min-width: 1025px) {
   .form-card {
@@ -104,5 +112,14 @@
   .form-card h3 {
     /* TEXT */
     font-size: 0.9rem;
+  }
+
+  .dash-sec {
+    /* SIZE */
+    height: 75%;
+  }
+  .constant-info {
+    /* TEXT */
+    font-size: 0.8rem;
   }
 }

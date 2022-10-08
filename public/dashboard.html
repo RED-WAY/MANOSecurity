@@ -325,7 +325,7 @@
         <h1 id="form_title">Adicionar acesso</h1>
         <form id="form_inputs">
           <!-- ACCESS -->
-          <div class="form__input input-access">            
+          <div class="form__input input-access">
             <select name="web" id="access_type_select">
               <option value="" disabled selected>selecionar tipo</option>
               <option value="web">Web</option>
@@ -394,7 +394,6 @@
               autocomplete="off"
             />
           </div>
-
         </form>
         <button type="button" id="button_form" class="btnForm">
           ADICIONAR
@@ -408,7 +407,29 @@
         />
       </div>
       <div class="dash-card" id="dash_card">
-        <div></div>
+        <div>
+          <div class="dash-sec constant-info">
+            <h1 class="constant-title">Mama1</h1>
+            <h1 class="operationalSystem">WINDOWS</h1>
+            <div class="constant-block">
+              <h1>CPU</h1>
+              <p><strong>-></strong> MODELO: <span class="cpuName">Intel maluco</span></p>
+              <p><strong>-></strong> NÚCLEOS: <span class="cpuCore">2</span></p>
+            </div>
+            <div class="constant-block">
+              <h1>RAM</h1>
+              <p><strong>-></strong> TAMANHO: <span class="ramSize">8.0GB</span></p>
+              <p><strong>-></strong> UTILIZÁVEL: <span class="ramUsable">7.8GB</span></p>
+            </div>
+            <div class="constant-block">
+              <h1>DISCO</h1>
+              <p><strong>-></strong> MODELO: <span class="diskModel">Disco crazy doido</span></p>
+              <p><strong>-></strong> TAMANHO: <span class="diskSize">2</span></p>
+            </div>
+          </div>
+          <div class="dash-sec dynamic-info"></div>
+          <!-- <div class="process-info"></div> -->
+        </div>
         <ion-icon
           name="close-outline"
           class="close-form"
@@ -460,6 +481,7 @@
   <script src="./js/fetches/machineFetch/removeMachine.js"></script>
   <script src="./js/fetches/machineFetch/editMachine.js"></script>
   <script src="./js/fetches/machineFetch/showMachines.js"></script>
+  <script src="./js/fetches/dashboardFetch/machineDashContent.js"></script>
   <script src="./js/pagesJS/dashboard.addons.js"></script>
   <script src="./js/pagesJS/dashboard.js"></script>
 </scripts>

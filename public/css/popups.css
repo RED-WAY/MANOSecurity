@@ -264,10 +264,152 @@ select option {
 }
 
 #dash_card {
+  /* SIZE */
+  height: 100%;
+  /* SPACING */
+  padding: 2em;
+  /* COLOR */
+  background-color: var(--font2);
+  color: var(--font1);
 }
 
-#dash_card div {
-  background-color: "aliceblue";
+#dash_card > div {
+  /* SIZE */
   width: 100%;
-  height: 100%;
+  height: fit-content !important;
+  /* DISPLAY */
+  display: grid;
+  align-items: center;
+  grid-template-rows: repeat(2, 100vh);
+  /* SCROLL */
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+.dash-sec {
+  /* SIZE */
+  width: 100%;
+  height: 90%;
+  /* SPACING */
+  padding: 2em 0;
+  /* DISPLAY */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* BORDER */
+  border-radius: 0.5em;
+  /* COLOR */
+  background-color: var(--back1);
+  /* SCROLL */
+  scroll-snap-align: start;
+}
+
+.constant-info {
+  /* TEXT */
+  font-size: 1rem;
+}
+
+.constant-title {
+  /* SPACING */
+  margin-top: 0.8em;
+  text-align: center;
+}
+.operationalSystem {
+  /* SPACING */
+  margin-top: 1em;
+  text-align: center;
+  /* COLOR */
+  color: var(--red-alt);
+}
+
+.constant-block {
+  /* SIZE */
+  width: 80%;
+}
+.constant-block::before {
+  content: "";
+  /* SIZE */
+  width: 100%;
+  height: 0.1em;
+  /* SPACING */
+  margin: 2em 0;
+  /* DISPLAY */
+  display: block;
+  /* COLOR */
+  background-color: var(--red-alt);
+}
+
+.constant-block h1 {
+  /* SPACING */
+  padding-left: 1em;
+  /* COLOR */
+  color: var(--red-alt);
+  /* MISC */
+  transition: padding-left 0.3s;
+}
+.constant-block h1:hover,
+.constant-block h1:active {
+  /* SPACING */
+  padding-left: 1.1em;
+  /* COLOR */
+  text-shadow: 0 0 0.05em var(--red-alt);
+}
+.constant-block h1::after {
+  content: "";
+  /* SIZE */
+  width: 1em;
+  height: 0.01em;
+  /* SPACING */
+  margin: -0.2em 0 0.5em;
+  /* DISPLAY */
+  display: block;
+  /* COLOR */
+  background-color: var(--red-dark);
+  /* MISC */
+  transition: all 0.3s;
+}
+.constant-block h1:hover::after,
+.constant-block h1:active::after {
+  /* SIZE */
+  width: 3.2em;
+  /* COLOR */
+  background-color: var(--red-alt);
+  box-shadow: 0 0 0.2em var(--red-alt);
+}
+
+.constant-block p {
+  /* SPACING */
+  padding-left: 2.4em;
+  /* TEXT */
+  font-size: 1.2em;
+  font-weight: 700;
+}
+.constant-block p:hover,
+.constant-block p:active {
+  /* SPACING */
+  padding-left: 2.8em;
+}
+
+.constant-block strong {
+  /* TEXT */
+  font-weight: 1000;
+  /* COLOR */
+  color: var(--red-dark);
+  /* MISC */
+  transition: all 0.3s;
+}
+.constant-block p:hover strong,
+.constant-block p:active strong {
+  /* COLOR */
+  color: var(--red-alt);
+}
+
+.constant-block span {
+  /* TEXT */
+  font-weight: 500;
+}
+
+.dynamic-info {
 }

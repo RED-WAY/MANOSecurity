@@ -1,7 +1,7 @@
 require('dotenv').config();
 // CHOOSE ENVIRONMENT
-// process.env.ENV = "development";
-process.env.ENV = "production";
+process.env.ENV = "development";
+// process.env.ENV = "production";
 
 const express = require("express");
 const cors = require("cors");
