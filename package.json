@@ -6,3 +6,4 @@
     "start": "node ./site/app.js",
     "postinstall": "cd site && npm install"
   }
+}
