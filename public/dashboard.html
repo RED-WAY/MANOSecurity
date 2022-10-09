@@ -8,7 +8,7 @@
       content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"
     />
     <link rel="icon" href="assets/imgs/fingerWhite.png" />
-    <title>man.OS</title>
+    <title>man.OS | DASHBOARD</title>
 
     <script src="./js/session.js"></script>
 
@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="./css/dashboard.media.css" />
     <link rel="stylesheet" type="text/css" href="./css/chart.css" />
+    <link rel="stylesheet" type="text/css" href="./css/chart.media.css" />
 
     <!-- CHECKBOXES -->
     <link
@@ -460,12 +461,10 @@
               </button>
             </div>
             <div class="graph">
-              <canvas
-                id="machineCanvas"
-                style="width: 100%;"
-              ></canvas>
+              <canvas id="machineCanvas" style="width: 100%;"></canvas>
             </div>
           </div>
+          <div style="grid-area: process"></div>
           <!-- <div class="process-info"></div> -->
         </div>
         <ion-icon
@@ -500,27 +499,37 @@
 
 <!-- JAVASCRIPT -->
 <scripts>
+  <!-- GLOBAL -->
   <script src="./js/global.js"></script>
   <script src="./js/global.addons.js"></script>
+  <!-- USERS -->
   <script src="./js/fetches/usersFetch/login.js"></script>
   <script src="./js/fetches/usersFetch/showUsers.js"></script>
   <script src="./js/fetches/usersFetch/addUser.js"></script>
   <script src="./js/fetches/usersFetch/editUser.js"></script>
   <script src="./js/fetches/usersFetch/deleteUser.js"></script>
-  <script src="./js/fetches/machineFetch/addMachine.js"></script>
+  <!-- FAMILY -->
   <script src="./js/fetches/familyFetch/getFamily.js"></script>
   <script src="./js/fetches/familyFetch/showFamilies.js"></script>
   <script src="./js/fetches/familyFetch/addFamily.js"></script>
   <script src="./js/fetches/familyFetch/editFamily.js"></script>
   <script src="./js/fetches/familyFetch/removeFamily.js"></script>
+  <!-- ACCESS -->
   <script src="./js/fetches/accessFetch/addAccess.js"></script>
   <script src="./js/fetches/accessFetch/showAccess.js"></script>
   <script src="./js/fetches/accessFetch/removeAccess.js"></script>
+  <!-- MACHINE -->
+  <script src="./js/fetches/machineFetch/addMachine.js"></script>
   <script src="./js/fetches/machineFetch/removeMachine.js"></script>
   <script src="./js/fetches/machineFetch/editMachine.js"></script>
   <script src="./js/fetches/machineFetch/showMachines.js"></script>
+  <!-- DASH -->
   <script src="./js/fetches/dashboardFetch/machineDashContent.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartUtils/styleVars.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartUtils/customProps.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartUtils/chartConfig.js"></script>
   <script src="./js/fetches/dashboardFetch/chartPlotting.js"></script>
+  <!-- PAGE -->
   <script src="./js/pagesJS/dashboard.addons.js"></script>
   <script src="./js/pagesJS/dashboard.js"></script>
 </scripts>

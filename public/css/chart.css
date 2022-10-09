@@ -1,14 +1,16 @@
 .graph {
   /* SIZE */
-  width: 90%;
-  height: 90%;
+  width: 95% !important;
+  height: 90% !important;
   /* SPACING */
-  padding: 2em 0;
+  padding: 1em 0;
   /* COLOR */
-  background-color: var(--card1);
-}
-
-.canvas {
-  display: block;
-  box-sizing: border-box;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--card1),
+    transparent
+  );
+  /* SCROLL */
+  overflow: hidden;
 }

@@ -25,9 +25,9 @@ function getMachineConstantHardware(req, res) {
 }
 
 function getStartupData(req, res) {
-  const qttDataController = 10;
   const columnController = req.params.column;
   const fkMachineController = req.params.fkMachine;
+  const qttDataController = req.params.qttData;
   console.log(`Recovering the last ${qttDataController} registers`);
   dashModel
     .getStartupData(columnController, fkMachineController, qttDataController)

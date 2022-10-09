@@ -8,7 +8,7 @@ router.get("/getMachineConstantHardware/:idMachine", function (req, res) {
     dashController.getMachineConstantHardware(req, res);
 });
 
-router.get('/getStartupData/:column/:fkMachine', function(req, res) {
+router.get('/getStartupData/:column/:fkMachine/:qttData', function(req, res) {
     dashController.getStartupData(req, res);
 });
 

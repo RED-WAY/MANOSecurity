@@ -32,16 +32,18 @@ function showMachines(fkCompany) {
         FROM machine 
           LEFT JOIN Family ON idFamily = fkFamily 
             JOIN consumer ON idConsumer = fkConsumer 
-              WHERE Machine.fkCompany = ${fkCompany};
+              WHERE Machine.fkCompany = ${fkCompany} 
+                ORDER BY dtAdded ASC;
     `;
   } else if (env === "production") {
     dbQuery = `       
     SELECT idMachine, machineName, consumerName, familyName, idFamily, 
-      FORMAT(SWITCHOFFSET(machine.dtAdded, '-03:00'), 'dd/MM/yy-HH:mm') AS dtAdded
+      FORMAT(SWITCHOFFSET(machine.dtAdded, '-03:00'), 'dd/MM/yy-HH:mm') AS dtAdded 
         FROM machine 
           LEFT JOIN Family ON idFamily = fkFamily 
             JOIN consumer ON idConsumer = fkConsumer 
-              WHERE Machine.fkCompany = ${fkCompany};
+              WHERE Machine.fkCompany = ${fkCompany} 
+                ORDER BY dtAdded ASC;
     `;
   } else {
     console.error(

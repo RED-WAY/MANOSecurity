@@ -32,7 +32,7 @@ function getStartupData(column, fkMachine, qttData) {
   let dbQuery = "";
   if (env === "development") {
     dbQuery = `
-      SELECT ${column} 
+      SELECT ${column}, DATE_FORMAT(dtAdded, '%H:%i') AS dtAdded 
         FROM dynamicHardware 
           WHERE fkMachine = ${fkMachine} 
             ORDER BY idDynamicHardware DESC 
@@ -40,10 +40,11 @@ function getStartupData(column, fkMachine, qttData) {
     `;
   } else if (env === "production") {
     dbQuery = `
-      SELECT TOP ${qttData} ${column} 
-        FROM dynamicHardware 
-          WHERE fkMachine = ${fkMachine} 
-            ORDER BY idDynamicHardware DESC;
+      SELECT TOP ${qttData} ${column}, 
+        FORMAT(SWITCHOFFSET(dtAdded, '-03:00'), 'HH:mm') AS dtAdded 
+          FROM dynamicHardware 
+            WHERE fkMachine = ${fkMachine} 
+              ORDER BY idDynamicHardware DESC;
     `;
   } else {
     console.error(
@@ -65,18 +66,19 @@ function getCurrentData(column, fkMachine) {
   let dbQuery = "";
   if (env === "development") {
     dbQuery = `
-      SELECT ${column} 
+      SELECT ${column}, DATE_FORMAT(dtAdded, '%H:%i') AS dtAdded 
         FROM dynamicHardware 
           WHERE fkMachine = ${fkMachine} 
-            ORDER BY idDynamicHardware DESC
+            ORDER BY idDynamicHardware DESC 
               LIMIT 1;
     `;
   } else if (env === "production") {
     dbQuery = `
-      SELECT TOP 1 ${column} 
-        FROM dynamicHardware 
-          WHERE fkMachine = ${fkMachine} 
-            ORDER BY idDynamicHardware DESC;
+      SELECT TOP 1 ${column}, 
+        FORMAT(SWITCHOFFSET(dtAdded, '-03:00'), 'HH:mm') AS dtAdded 
+          FROM dynamicHardware 
+            WHERE fkMachine = ${fkMachine} 
+              ORDER BY idDynamicHardware DESC;
     `;
   } else {
     console.error(
