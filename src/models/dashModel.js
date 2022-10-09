@@ -22,6 +22,75 @@ function getMachineConstantHardware(idMachine) {
   return database.executeQuery(dbQuery);
 }
 
+function getStartupData(column, fkMachine, qttData) {
+  console.log(
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getStartupData(): ",
+    column,
+    fkMachine,
+    qttData
+  );
+  let dbQuery = "";
+  if (env === "development") {
+    dbQuery = `
+      SELECT ${column} 
+        FROM dynamicHardware 
+          WHERE fkMachine = ${fkMachine} 
+            ORDER BY idDynamicHardware DESC 
+              LIMIT ${qttData};
+    `;
+  } else if (env === "production") {
+    dbQuery = `
+      SELECT TOP ${qttData} ${column} 
+        FROM dynamicHardware 
+          WHERE fkMachine = ${fkMachine} 
+            ORDER BY idDynamicHardware DESC;
+    `;
+  } else {
+    console.error(
+      "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function getCurrentData(column, fkMachine) {
+  console.log(
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getCurrentData(): ",
+    column,
+    fkMachine
+  );
+  let dbQuery = "";
+  if (env === "development") {
+    dbQuery = `
+      SELECT ${column} 
+        FROM dynamicHardware 
+          WHERE fkMachine = ${fkMachine} 
+            ORDER BY idDynamicHardware DESC
+              LIMIT 1;
+    `;
+  } else if (env === "production") {
+    dbQuery = `
+      SELECT TOP 1 ${column} 
+        FROM dynamicHardware 
+          WHERE fkMachine = ${fkMachine} 
+            ORDER BY idDynamicHardware DESC;
+    `;
+  } else {
+    console.error(
+      "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
 module.exports = {
   getMachineConstantHardware,
+  getStartupData,
+  getCurrentData,
 };

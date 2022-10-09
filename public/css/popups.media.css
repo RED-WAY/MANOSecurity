@@ -156,7 +156,6 @@
     grid-template-columns: 22% auto;
   }
 }
-
 @media (min-width: 1840px) {
   .constant-info {
     /* TEXT */

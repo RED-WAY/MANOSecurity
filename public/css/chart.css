@@ -1,0 +1,14 @@
+.graph {
+  /* SIZE */
+  width: 90%;
+  height: 90%;
+  /* SPACING */
+  padding: 2em 0;
+  /* COLOR */
+  background-color: var(--card1);
+}
+
+.canvas {
+  display: block;
+  box-sizing: border-box;
+}

@@ -448,7 +448,7 @@ select option {
   /* SIZE */
   height: 75%;
   /* DISPLAY */
-  justify-content: flex-start;
+  gap: 1em;
   /* BORDER */
   border-radius: 0.2em;
 }

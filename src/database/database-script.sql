@@ -135,7 +135,7 @@ DESC constantHardware;
 /*Creation of DynamicHardware table*/
 CREATE TABLE dynamicHardware (
 	idDynamicHardware INT PRIMARY KEY AUTO_INCREMENT,
-	cpu VARCHAR(80),
+	cpu INT,
 	ram INT,
 	activityTime INT,
 	fkMachine INT,
@@ -336,7 +336,7 @@ CREATE TABLE constantHardware
 CREATE TABLE dynamicHardware
 (
     idDynamicHardware INT PRIMARY KEY IDENTITY(1,1),
-    cpu VARCHAR(80),
+    cpu INT,
     ram INT,
     activityTime INT,
     fkMachine INT FOREIGN KEY REFERENCES machine(idMachine)

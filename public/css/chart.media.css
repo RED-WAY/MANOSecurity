@@ -1,0 +1,43 @@
+
+@media (max-width: 376px) {
+  .graph {
+    width: 262px;
+    height: 506px;
+  }
+}
+@media (max-width: 426px) {
+  .graph {
+    width: 306px;
+    height: 506px;
+  }
+}
+@media (max-width: 769px) {
+  .graph {
+    width: 615.5px;
+    height: 506.5px;
+  }
+}
+@media (max-width: 1025px) {
+  .graph {
+    width: 673px;
+    height: 517px;
+  }
+}
+@media (max-width: 1441px) {
+  .graph {
+    width: 641px;
+    height: 413.5px;
+  }
+}
+@media (max-width: 1921px) {
+  .graph {
+    width: 975.5px;
+    height: 593px;
+  }
+}
+@media (max-width: 2561px) {
+  .graph {
+    width: 1323.5px;
+    height: 577.5px;
+  }
+}

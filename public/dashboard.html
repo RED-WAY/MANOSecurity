@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="./css/popups.css" />
     <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="./css/dashboard.media.css" />
+    <link rel="stylesheet" type="text/css" href="./css/chart.css" />
 
     <!-- CHECKBOXES -->
     <link
@@ -24,8 +25,10 @@
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"
     />
-  </head>
 
+    <!-- CHART.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
   <body
     onload="validateSession(), showMachines(), viewLoad('hide'), 
   getFamily(), showAccess(), hideLoading()"
@@ -415,17 +418,29 @@
             <div class="constant-block">
               <h1>CPU</h1>
               <p><strong>-></strong> MODELO:&ensp;<span id="cpuName"></span></p>
-              <p><strong>-></strong> NÚCLEOS:&ensp;<span id="cpuCore"></span></p>
+              <p>
+                <strong>-></strong> NÚCLEOS:&ensp;<span id="cpuCore"></span>
+              </p>
             </div>
             <div class="constant-block">
               <h1>RAM</h1>
-              <p><strong>-></strong> TAMANHO:&ensp;<span id="ramSize"></span></p>
-              <p><strong>-></strong> UTILIZÁVEL:&ensp;<span id="ramUsable"></span></p>
+              <p>
+                <strong>-></strong> TAMANHO:&ensp;<span id="ramSize"></span>
+              </p>
+              <p>
+                <strong>-></strong> UTILIZÁVEL:&ensp;<span
+                  id="ramUsable"
+                ></span>
+              </p>
             </div>
             <div class="constant-block">
               <h1>DISCO</h1>
-              <p><strong>-></strong> MODELO:&ensp;<span id="diskModel"></span></p>
-              <p><strong>-></strong> TAMANHO:&ensp;<span id="diskSize"></span></p>
+              <p>
+                <strong>-></strong> MODELO:&ensp;<span id="diskModel"></span>
+              </p>
+              <p>
+                <strong>-></strong> TAMANHO:&ensp;<span id="diskSize"></span>
+              </p>
             </div>
           </div>
           <!-- DYNAMIC -->
@@ -445,8 +460,11 @@
               </button>
             </div>
             <div class="graph">
-              <canvas id="canvas_grafico"></canvas>
-          </div>
+              <canvas
+                id="machineCanvas"
+                style="width: 100%;"
+              ></canvas>
+            </div>
           </div>
           <!-- <div class="process-info"></div> -->
         </div>
@@ -495,13 +513,14 @@
   <script src="./js/fetches/familyFetch/addFamily.js"></script>
   <script src="./js/fetches/familyFetch/editFamily.js"></script>
   <script src="./js/fetches/familyFetch/removeFamily.js"></script>
-  <script src="./js/fetches/access/addAccess.js"></script>
-  <script src="./js/fetches/access/showAccess.js"></script>
-  <script src="./js/fetches/access/removeAccess.js"></script>
+  <script src="./js/fetches/accessFetch/addAccess.js"></script>
+  <script src="./js/fetches/accessFetch/showAccess.js"></script>
+  <script src="./js/fetches/accessFetch/removeAccess.js"></script>
   <script src="./js/fetches/machineFetch/removeMachine.js"></script>
   <script src="./js/fetches/machineFetch/editMachine.js"></script>
   <script src="./js/fetches/machineFetch/showMachines.js"></script>
   <script src="./js/fetches/dashboardFetch/machineDashContent.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartPlotting.js"></script>
   <script src="./js/pagesJS/dashboard.addons.js"></script>
   <script src="./js/pagesJS/dashboard.js"></script>
 </scripts>
