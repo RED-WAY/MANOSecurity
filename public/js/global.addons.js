@@ -33,6 +33,12 @@ themeTrigger.addEventListener("change", function () {
   let theme = this.checked ? "dark" : "light";
   dataTheme.setAttribute("data-theme", theme);
   localStorage.THEME = theme;
+
+  if (chartMachine) {
+    const button = document.querySelector('.sub-activated');
+    button.classList.remove('sub-activated')
+    button.click()
+  }
 });
 
 // RANDOMIZE CORNERS

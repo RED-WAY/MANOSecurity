@@ -1,8 +1,10 @@
 const PLOT_DELAY = 2000;
 let timeoutUpdate;
+let timeoutPlot;
 
 let savedStartup = [];
 function getStartupData(column, fkMachine) {
+  showLoading();
   savedStartup = [column, fkMachine];
   if (timeoutUpdate != undefined) {
     clearTimeout(timeoutUpdate);
@@ -13,7 +15,6 @@ function getStartupData(column, fkMachine) {
     .then(function (result) {
       if (result.ok) {
         result.json().then(function (result) {
-          console.log(`Data received: ${JSON.stringify(result)}`);
           result.reverse();
           plotGraph(result, column, fkMachine);
         });
@@ -29,7 +30,6 @@ function getStartupData(column, fkMachine) {
 let configChart = {};
 let chartMachine = null;
 function plotGraph(startupData, column, fkMachine) {
-  console.log("starting chart plotting...");
   const data = chartData(column);
   for (i = 0; i < startupData.length; i++) {
     data.labels.push(startupData[i].dtAdded);
@@ -44,7 +44,13 @@ function plotGraph(startupData, column, fkMachine) {
     document.getElementById("machineCanvas"),
     configChart
   );
-  setTimeout(() => updateChart(column, fkMachine, data), PLOT_DELAY);
+  setTimeout(() => {
+    hideLoading();
+  }, 500);
+  timeoutPlot = setTimeout(
+    () => updateChart(column, fkMachine, data),
+    PLOT_DELAY
+  );
 }
 let test = null;
 function updateChart(column, fkMachine, data) {
@@ -52,27 +58,18 @@ function updateChart(column, fkMachine, data) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (newData) {
-          console.log(`Dados recebidos: ${JSON.stringify(newData)}`);
-          console.log(`Dados atuais do gráfico: ${data}`);
+          data.labels.shift();
+          data.labels.push(newData[0].dtAdded);
+          data.datasets[0].data.shift();
+          data.datasets[0].data.push(newData[0][column]);
 
-          // tirando e colocando valores no gráfico
-          data.labels.shift(); // apagar o primeiro
-          data.labels.push(newData[0].dtAdded); // incluir um novo momento
-
-          data.datasets[0].data.shift(); // apagar o primeiro de umidade
-          data.datasets[0].data.push(newData[0][column]); // incluir uma nova medida de umidade
-
-          chartMachine.update();
-
-          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          timeoutUpdate = setTimeout(
-            () => updateChart(column, fkMachine, data),
-            PLOT_DELAY
-          );
+          timeoutUpdate = setTimeout(() => {
+            chartMachine.update();
+            updateChart(column, fkMachine, data);
+          }, PLOT_DELAY);
         });
       } else {
         console.error("No data was found at the API!");
-        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
         timeoutUpdate = setTimeout(
           () => updateChart(column, fkMachine, data),
           PLOT_DELAY
@@ -86,17 +83,19 @@ function updateChart(column, fkMachine, data) {
 
 let isResizing = false;
 window.addEventListener("resize", () => {
-  // verify if chart exists and if is current resizing
-  if (chartMachine?.canvas != null && !isResizing) {
-    chartMachine.destroy();
-    // wait to adapt to user quickly
-    setTimeout(() => {
-      isResizing = true;
-      getStartupData(...savedStartup, selectQttData());
+  if (chartMachine) {
+    // verify if chart exists and if is current resizing
+    if (chartMachine?.canvas != null && !isResizing) {
+      chartMachine.destroy();
+      // wait to adapt to user quickly
       setTimeout(() => {
-        isResizing = false;
-      }, 1000);
-    }, 500);
+        isResizing = true;
+        getStartupData(...savedStartup, selectQttData());
+        setTimeout(() => {
+          isResizing = false;
+        }, 1000);
+      }, 500);
+    }
   }
 });
 

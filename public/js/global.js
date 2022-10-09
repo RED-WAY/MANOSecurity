@@ -120,6 +120,9 @@ window.addEventListener("keydown", (event) => {
     hideConfirm();
     formView(false);
     hideMenu();
+    if (chartMachine?.canvas) {
+      closeMachineDash();
+    }
   }
 });
 

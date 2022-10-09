@@ -447,15 +447,15 @@
           <!-- DYNAMIC -->
           <div class="dash-sec dynamic-info">
             <div class="sub-sections">
-              <button>
+              <button id="CPU">
                 <ion-icon name="hardware-chip"></ion-icon>
                 <p>CPU</p>
               </button>
-              <button>
+              <button id="RAM">
                 <ion-icon name="file-tray-full"></ion-icon>
                 <p>RAM</p>
               </button>
-              <button>
+              <button id="PROCESSOS">
                 <ion-icon name="finger-print"></ion-icon>
                 <p>PROCESSOS</p>
               </button>
@@ -470,8 +470,8 @@
         <ion-icon
           name="close-outline"
           class="close-form"
-          onclick="formView(false)"
-          onkeypress="formView(false)"
+          onclick="formView(false), closeMachineDash()"
+          onkeypress="formView(false), closeMachineDash()"
           title="Fechar tela"
         />
       </div>
@@ -524,11 +524,13 @@
   <script src="./js/fetches/machineFetch/editMachine.js"></script>
   <script src="./js/fetches/machineFetch/showMachines.js"></script>
   <!-- DASH -->
+  <script src="./js/fetches/dashboardFetch/chartUtils/closeMachineDash.js"></script>
   <script src="./js/fetches/dashboardFetch/machineDashContent.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/styleVars.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/customProps.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/chartConfig.js"></script>
   <script src="./js/fetches/dashboardFetch/chartPlotting.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartUtils/changeMachineDash.js"></script>
   <!-- PAGE -->
   <script src="./js/pagesJS/dashboard.addons.js"></script>
   <script src="./js/pagesJS/dashboard.js"></script>

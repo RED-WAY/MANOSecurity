@@ -10,17 +10,6 @@ function machineDashContent(idMachine) {
       if (result.ok) {
         result.json().then((json) => {
           if (!Object.values(json[0]).includes(null)) {
-            // const json = [
-            //   {
-            //     machineName: "m1",
-            //     operationalSystem: "WINDOWS",
-            //     cpuName: "Intel(R) Core(TM) i5-9300H CPU @ 2.40GHz",
-            //     cpuCore: 2,
-            //     ramUsable: 15.8,
-            //     diskModel: "M.2 NVMe Heatsink",
-            //     diskSize: 496.24
-            //   },
-            // ];
             constant_title.innerHTML = json[0].machineName;
             operationalSystem.innerHTML = json[0].operationalSystem;
             cpuName.innerHTML = json[0].cpuName;
@@ -29,6 +18,9 @@ function machineDashContent(idMachine) {
             ramUsable.innerHTML = json[0].ramUsable + " GB";
             diskModel.innerHTML = json[0].diskModel;
             diskSize.innerHTML = json[0].diskSize + " GB";
+
+            initializeMachineDashButtons(idMachine);
+            getStartupData("CPU", idMachine);
           } else {
             formView(false);
             showMessage(
@@ -58,4 +50,19 @@ function machineDashContent(idMachine) {
   hideLoading();
   // }, 2000);
   return false;
+}
+
+function initializeMachineDashButtons(idMachine) {
+  const buttons = document.querySelector(".sub-sections").children;
+  for (const button of buttons) {
+    button.setAttribute(
+      "onclick",
+      `changeMachineDash('${button.id}', ${idMachine})`
+    );
+    if (button.id === "CPU") {
+      button.classList.add("sub-activated");
+    } else {
+      button.classList.remove("sub-activated");
+    }
+  }
 }
