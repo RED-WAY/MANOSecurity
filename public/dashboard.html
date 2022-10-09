@@ -408,26 +408,46 @@
       </div>
       <div class="dash-card" id="dash_card">
         <div>
+          <!-- CONSTANT -->
           <div class="dash-sec constant-info">
             <h1 id="constant_title">Mama1</h1>
             <h1 id="operationalSystem">WINDOWS</h1>
             <div class="constant-block">
               <h1>CPU</h1>
-              <p><strong>-></strong> MODELO: <span id="cpuName"></span></p>
-              <p><strong>-></strong> NÚCLEOS: <span id="cpuCore"></span></p>
+              <p><strong>-></strong> MODELO:&ensp;<span id="cpuName"></span></p>
+              <p><strong>-></strong> NÚCLEOS:&ensp;<span id="cpuCore"></span></p>
             </div>
             <div class="constant-block">
               <h1>RAM</h1>
-              <p><strong>-></strong> TAMANHO: <span id="ramSize"></span></p>
-              <p><strong>-></strong> UTILIZÁVEL: <span id="ramUsable"></span></p>
+              <p><strong>-></strong> TAMANHO:&ensp;<span id="ramSize"></span></p>
+              <p><strong>-></strong> UTILIZÁVEL:&ensp;<span id="ramUsable"></span></p>
             </div>
             <div class="constant-block">
               <h1>DISCO</h1>
-              <p><strong>-></strong> MODELO: <span id="diskModel"></span></p>
-              <p><strong>-></strong> TAMANHO: <span id="diskSize"></span></p>
+              <p><strong>-></strong> MODELO:&ensp;<span id="diskModel"></span></p>
+              <p><strong>-></strong> TAMANHO:&ensp;<span id="diskSize"></span></p>
             </div>
           </div>
-          <div class="dash-sec dynamic-info"></div>
+          <!-- DYNAMIC -->
+          <div class="dash-sec dynamic-info">
+            <div class="sub-sections">
+              <button>
+                <ion-icon name="hardware-chip"></ion-icon>
+                <p>CPU</p>
+              </button>
+              <button>
+                <ion-icon name="file-tray-full"></ion-icon>
+                <p>RAM</p>
+              </button>
+              <button>
+                <ion-icon name="finger-print"></ion-icon>
+                <p>PROCESSOS</p>
+              </button>
+            </div>
+            <div class="graph">
+              <canvas id="canvas_grafico"></canvas>
+          </div>
+          </div>
           <!-- <div class="process-info"></div> -->
         </div>
         <ion-icon

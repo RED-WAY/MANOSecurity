@@ -27,7 +27,7 @@ function showMachines(fkCompany) {
   let dbQuery = "";
   if (env === "development") {
     dbQuery = `       
-    SELECT idMachine, machineName, consumerName, familyName, idFamily, 
+    SELECT idMachine, machineName, isUsing, consumerName, familyName, idFamily, 
       DATE_FORMAT(machine.dtAdded, '%d/%m/%Y-%H:%i') AS dtAdded 
         FROM machine 
           LEFT JOIN Family ON idFamily = fkFamily 

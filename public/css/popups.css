@@ -280,10 +280,15 @@ select option {
   /* DISPLAY */
   display: grid;
   align-items: center;
+  justify-content: center;
   grid-template-rows: repeat(2, 100vh);
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "constant"
+    "dynamic";
   /* SCROLL */
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
 }
@@ -291,7 +296,8 @@ select option {
 .dash-sec {
   /* SIZE */
   width: 100%;
-  height: 90%;
+  min-height: 90%;
+  height: fit-content;
   /* SPACING */
   padding: 2em 0;
   /* DISPLAY */
@@ -305,21 +311,45 @@ select option {
   /* SCROLL */
   scroll-snap-align: start;
 }
+.dash-sec::-webkit-scrollbar,
+#dash_card > div::-webkit-scrollbar {
+  /* SIZE */
+  width: 4px;
+  height: 4px;
+  /* SCROLL */
+  scroll-behavior: smooth;
+}
+.dash-sec::-webkit-scrollbar-track,
+#dash_card > div::-webkit-scrollbar-track {
+  /* BACKGROUND */
+  background: var(--white);
+}
+.dash-sec::-webkit-scrollbar-thumb,
+#dash_card > div::-webkit-scrollbar-thumb {
+  /* BACKGROUND */
+  background: var(--gray);
+}
+.dash-sec::-webkit-scrollbar-thumb:hover,
+#dash_card > div::-webkit-scrollbar-thumb:hover {
+  /* BACKGROUND */
+  background: var(--red-alt);
+}
 
 .constant-info {
+  grid-area: constant;
   /* TEXT */
   font-size: 1rem;
 }
 
 #constant_title {
   /* SPACING */
-  margin-top: 0.8em;
   text-align: center;
+  /* TEXT */
+  font-size: 3em;
 }
 
 #operationalSystem {
   /* SPACING */
-  margin-top: 1em;
   text-align: center;
   /* COLOR */
   color: var(--red-alt);
@@ -335,7 +365,7 @@ select option {
   width: 100%;
   height: 0.1em;
   /* SPACING */
-  margin: 2em 0;
+  margin: 1em 0;
   /* DISPLAY */
   display: block;
   /* COLOR */
@@ -382,6 +412,7 @@ select option {
 
 .constant-block p {
   /* SPACING */
+  margin-top: 0.4em;
   padding-left: 2.4em;
   /* TEXT */
   font-size: 1.2em;
@@ -413,4 +444,66 @@ select option {
 }
 
 .dynamic-info {
+  grid-area: dynamic;
+  /* SIZE */
+  height: 75%;
+  /* DISPLAY */
+  justify-content: flex-start;
+  /* BORDER */
+  border-radius: 0.2em;
+}
+
+.sub-sections {
+  /* SIZE */
+  width: 90%;
+  /* SPACING */
+  padding: 0;
+  /* DISPLAY */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+  gap: 0.5em;
+}
+
+.sub-sections button {
+  /* SIZE */
+  min-width: 100px;
+  width: 100%;
+  /* DISPLAY */
+  gap: 0.8em;
+  transition: all 0.3s;
+}
+.sub-sections button:hover {
+  gap: 1em;
+  /* COLOR */
+  color: var(--white);
+  background-color: var(--red-dark);
+  border-color: var(--red-dark);
+}
+.sub-sections button:active {
+  gap: 0.6em;
+  /* COLOR */
+  color: var(--white);
+  background-color: var(--red-alt);
+  border-color: var(--red-alt);
+}
+.sub-activated {
+  /* COLOR */
+  color: var(--font2);
+  background-color: var(--font1);
+  border-color: var(--font1);
+}
+
+.sub-sections button ion-icon {
+  /* SIZE */
+  font-size: 2em;
+  /* SPACING */
+  margin: 0;
+}
+
+.sub-sections button p {
+  /* SPACING */
+  margin: 0;
+  /* TEXT */
+  font-size: 0.8em;
+  font-weight: 600;
 }

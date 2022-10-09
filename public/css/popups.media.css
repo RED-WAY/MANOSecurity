@@ -107,6 +107,43 @@
     /* TEXT */
     font-size: 1.1rem;
   }
+
+  #dash_card > div {
+    /* SIZE */
+    height: 100% !important;
+    /* DISPLAY */
+    justify-content: stretch;
+    grid-template-rows: min-content auto;
+    grid-template-columns: 30% auto;
+    grid-template-areas:
+      "constant dynamic"
+      "process dynamic";
+    gap: 0.4em;
+    /* SCROLL */
+    overflow: auto;
+  }
+
+  .dash-sec {
+    /* SIZE */
+    height: 100%;
+    /* SPACING */
+    padding: 2em 0 1.5em;
+    /* DISPLAY */
+    justify-content: flex-start;
+  }
+
+  .constant-info {
+    /* TEXT */
+    font-size: 0.4rem;
+    /* SCROLL */
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .dynamic-info {
+    /* SPACING */
+    padding: 1.5em 0.5em;
+  }
 }
 @media (min-width: 1441px) {
   .form-card h3 {
@@ -114,12 +151,15 @@
     font-size: 0.9rem;
   }
 
-  .dash-sec {
-    /* SIZE */
-    height: 75%;
+  #dash_card > div {
+    /* DISPLAY */
+    grid-template-columns: 22% auto;
   }
+}
+
+@media (min-width: 1840px) {
   .constant-info {
     /* TEXT */
-    font-size: 0.8rem;
+    font-size: 0.5rem;
   }
 }

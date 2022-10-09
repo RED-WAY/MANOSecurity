@@ -15,7 +15,7 @@ function getMachineConstantHardware(idMachine) {
             diskModel, 
             diskSize 
         FROM machine 
-          JOIN constantHardware ON idMachine = fkMachine 
+          LEFT JOIN constantHardware ON idMachine = fkMachine 
             WHERE idMachine = ${idMachine};
     `;
   console.log("Executing SQL query: \n" + dbQuery);

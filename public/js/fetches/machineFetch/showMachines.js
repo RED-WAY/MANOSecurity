@@ -25,6 +25,7 @@ function showMachines() {
           dispositivos_content.innerHTML = "";
 
           for (var i = 0; i < json.length; i++) {
+            const disableData = json[i].isUsing === "not" && "disabled";
             dispositivos_content.innerHTML += `             
               <div class="card-info" id="machine${json[i].idMachine}" >
               <ion-icon name="desktop-outline"></ion-icon>
@@ -67,7 +68,7 @@ function showMachines() {
               onclick="formView(true, '${
                 json[i].machineName
               }', 'machineDash', 'show', '${json[i].idMachine}')"
-              class="btn-special">
+              class="btn-special" ${disableData}>
               <ion-icon name="bar-chart-outline"></ion-icon>
                 <p style="margin-left: 4%">DADOS</p>
               </button>

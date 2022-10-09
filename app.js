@@ -8,14 +8,14 @@ const cors = require("cors");
 const path = require("path");
 const PORT = process.env.PORT;
 
-var app = express();
+const app = express();
 
-var indexRouter = require("./src/routes/index");
-var userRouter = require("./src/routes/users");
-var machineRouter = require("./src/routes/machine");
-var familyRouter = require("./src/routes/family");
-var accessRouter = require("./src/routes/access");
-var dashRouter = require("./src/routes/dash");
+const indexRouter = require("./src/routes/index");
+const userRouter = require("./src/routes/users");
+const machineRouter = require("./src/routes/machine");
+const familyRouter = require("./src/routes/family");
+const accessRouter = require("./src/routes/access");
+const dashRouter = require("./src/routes/dash");
 // ADD ROUTES HERE
 
 app.use(express.json());

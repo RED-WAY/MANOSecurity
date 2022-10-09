@@ -158,3 +158,16 @@ addAnimatedLabelEvent([
   "familyName",
   "machineName",
 ]);
+
+function initializeMachineDashButtons() {
+  const buttons = document.querySelector(".sub-sections").children;
+  for (const button of buttons) {
+    button.addEventListener("click", () => {
+      // remove class from other buttons
+      Array.from(buttons).map((btn) => btn.classList.remove("sub-activated"));
+
+      button.classList.add("sub-activated");
+    });
+  }
+};
+initializeMachineDashButtons();
