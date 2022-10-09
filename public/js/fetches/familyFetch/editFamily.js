@@ -1,11 +1,11 @@
 function editFamily(idFamily) {
   showLoading();
 
-  const familyNameVar = family_name.value;
+  const familyNameVar = family_name.value.trimStart().trimEnd();
   const familyLevelVar = family_level_select.value;
 
   const accessArray = [];
-  const divCheck = document.querySelector(".div-checkes");
+  const divCheck = document.querySelector(".div-checks");
   Array.from(divCheck.children).map((access) => {
     const checkOpt = access.children[0];
     checkOpt.checked && accessArray.push(checkOpt.id);
@@ -53,19 +53,27 @@ function editFamily(idFamily) {
             showMessage("success", "Coleção editada com sucesso!");
           }, 500);
         } else {
+          hideConfirm();
           setTimeout(() => {
             hideLoading();
-            formView(false);
-          }, 500);
+            showMessage(
+              "error",
+              "Aconteceu algum erro enquanto editava uma coleção!"
+            );
+          }, 1000);
           throw "There was an error while editing a family!";
         }
       })
       .catch((error) => {
         console.log(error);
+        hideConfirm();
         setTimeout(() => {
           hideLoading();
-          formView(false);
-        }, 500);
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava uma coleção!"
+          );
+        }, 700);
       });
 
     return false;

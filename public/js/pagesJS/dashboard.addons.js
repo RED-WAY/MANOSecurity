@@ -22,7 +22,7 @@ function paintUsersOnClick() {
 }
 
 function resetFields() {
-  // reseting input values
+  // resetting input values
   machine_name.value = "";
   family_name.value = "";
   access_name.value = "";
@@ -31,8 +31,22 @@ function resetFields() {
   user_email.value = "";
   user_password.value = "";
 
+  [
+    "userName",
+    "userEmail",
+    "userPassword",
+    "accessName",
+    "accessPath",
+    "familyName",
+    "machineName",
+  ].map((id) => {
+    document
+      .querySelector(`label[for="${id}"]`)
+      .classList.remove("move-up-label");
+  });
+
   // changing all process checkboxes to false
-  const divCheck = document.querySelector(".div-checkes");
+  const divCheck = document.querySelector(".div-checks");
   Array.from(divCheck.children).map((access) => {
     const checkOpt = access.children[0];
     checkOpt.checked = false;
@@ -42,7 +56,9 @@ function resetFields() {
 function loadMachineInputs(machineId) {
   machine_name.value = document
     .querySelector(`#name_machine${machineId}`)
-    .innerHTML.replace("Name: ", "");
+    .innerHTML.replace("Name: ", "")
+    .trimStart()
+    .trimEnd();
   const selectValue = document
     .querySelector(`#machine${machineId}`)
     .children[2].id.replace("family_machine", "");
@@ -51,6 +67,10 @@ function loadMachineInputs(machineId) {
   } else {
     machine_family_select.value = "";
   }
+
+  ["machineName"].map((id) => {
+    document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
+  });
 }
 
 function loadUserInputs(userId) {
@@ -64,9 +84,13 @@ function loadUserInputs(userId) {
   user_office.value = document.querySelector(
     `#user${userId}`
   ).children[2].innerHTML;
+
+  ["userName", "userEmail", "userPassword"].map((id) => {
+    document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
+  });
 }
 
-function loadCheckes(idFamily) {
+function loadChecks(idFamily) {
   fetch(`/family/getSpecificFamily/${idFamily}`, {
     method: "GET",
     headers: {
@@ -82,7 +106,7 @@ function loadCheckes(idFamily) {
 
           if (json.length > 0) {
             // changing all process checkboxes to false
-            const divCheck = document.querySelector(".div-checkes");
+            const divCheck = document.querySelector(".div-checks");
             Array.from(divCheck.children).map((access) => {
               const checkOpt = access.children[0];
               checkOpt.checked = false;
@@ -99,7 +123,7 @@ function loadCheckes(idFamily) {
             }
           } else {
             // changing all process checkboxes to false
-            const divCheck = document.querySelector(".div-checkes");
+            const divCheck = document.querySelector(".div-checks");
             Array.from(divCheck.children).map((access) => {
               const checkOpt = access.children[0];
               checkOpt.checked = false;
@@ -117,5 +141,20 @@ function loadCheckes(idFamily) {
       console.log(error);
     });
 
+  ["familyName"].map((id) => {
+    document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
+  });
+
   return false;
 }
+
+// animate labels
+addAnimatedLabelEvent([
+  "userName",
+  "userEmail",
+  "userPassword",
+  "accessName",
+  "accessPath",
+  "familyName",
+  "machineName",
+]);

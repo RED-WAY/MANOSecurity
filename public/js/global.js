@@ -117,8 +117,12 @@ window.addEventListener("keydown", (event) => {
     document.querySelector("#aside_forms") !== null &&
     event.key === "Escape"
   ) {
+    hideConfirm();
     formView(false);
     hideMenu();
+    if (chartMachine?.canvas) {
+      closeMachineDash();
+    }
   }
 });
 
@@ -151,4 +155,26 @@ function viewLoad(option) {
       document.querySelector("body").style.overflowY = "hidden";
     }
   }, 1000);
+}
+
+function addAnimatedLabelEvent(array) {
+  for (const id of array) {
+    const label = document.querySelector(`label[for="${id}"]`);
+    const input = document.querySelector(`input[name="${id}"]`);
+
+    label.classList.add("animated-label");
+    input.addEventListener("focus", () => {
+      label.classList.add("move-up-label");
+    });
+
+    ["change", "blur"].map((event) => {
+      input.addEventListener(event, () => {
+        if (!input.value) {
+          label.classList.remove("move-up-label");
+        } else {
+          label.classList.add("move-up-label");
+        }
+      });
+    });
+  }
 }

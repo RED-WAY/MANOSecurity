@@ -72,27 +72,24 @@ function addUser() {
             showMessage("success", "Usuário adicionado com sucesso!");
           }, 500);
         } else {
-          hideConfirm();
-          setTimeout(() => {
-            hideLoading();
-            showMessage(
-              "error",
-              "Aconteceu algum erro enquanto adicionava um usuário!"
-            );
-          }, 1000);
-          throw "There was an error while adding a user!";
+          console.log(result);
+          result.json().then((res) => {
+            hideConfirm();
+            setTimeout(() => {
+              hideLoading();
+              let errorMsg =
+                "Aconteceu algum erro enquanto adicionava um usuário!";
+              if (res.match(/duplicate/i)) {
+                errorMsg = "E-mail já cadastrado no sistema! Tente novamente";
+              }
+              showMessage("error", errorMsg);
+            }, 1000);
+          });
+          throw res;
         }
       })
       .catch((error) => {
         console.log(error);
-        hideConfirm();
-        setTimeout(() => {
-          hideLoading();
-          showMessage(
-            "error",
-            "Aconteceu algum erro enquanto adicionava um usuário!"
-          );
-        }, 3000);
       });
 
     return false;

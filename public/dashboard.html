@@ -8,7 +8,7 @@
       content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"
     />
     <link rel="icon" href="assets/imgs/fingerWhite.png" />
-    <title>man.OS</title>
+    <title>man.OS | DASHBOARD</title>
 
     <script src="./js/session.js"></script>
 
@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="./css/popups.css" />
     <link rel="stylesheet" type="text/css" href="./css/dashboard.css" />
     <link rel="stylesheet" type="text/css" href="./css/dashboard.media.css" />
+    <link rel="stylesheet" type="text/css" href="./css/chart.css" />
+    <link rel="stylesheet" type="text/css" href="./css/chart.media.css" />
 
     <!-- CHECKBOXES -->
     <link
@@ -24,8 +26,10 @@
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"
     />
-  </head>
 
+    <!-- CHART.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
   <body
     onload="validateSession(), showMachines(), viewLoad('hide'), 
   getFamily(), showAccess(), hideLoading()"
@@ -155,7 +159,7 @@
 
     <!-- MENU CARD -->
     <aside class="popup-aside invisible" id="aside_menu">
-      <div class="menu-nav hamburguer">
+      <div class="menu-nav hamburger">
         <ul>
           <a
             href="#"
@@ -165,13 +169,25 @@
           >
             <li>Dispositivos</li>
           </a>
-          <a href="#" tabindex="2" onclick="showSection('#colecoes'), showFamilies()">
+          <a
+            href="#"
+            tabindex="2"
+            onclick="showSection('#colecoes'), showFamilies()"
+          >
             <li>Coleções</li>
           </a>
-          <a href="#" tabindex="3" onclick="showSection('#acessos'),showAccess()">
+          <a
+            href="#"
+            tabindex="3"
+            onclick="showSection('#acessos'),showAccess()"
+          >
             <li>Acessos</li>
           </a>
-          <a href="#" tabindex="3" onclick="showSection('#usuarios'), showUsers()">
+          <a
+            href="#"
+            tabindex="3"
+            onclick="showSection('#usuarios'), showUsers()"
+          >
             <li>Usuários</li>
           </a>
           <a
@@ -309,13 +325,13 @@
 
     <!-- POPUPS -->
     <aside class="popup-form popup-aside" id="aside_forms">
-      <div class="form-card">
+      <div class="form-card" id="form_card">
         <h1 id="form_title">Adicionar acesso</h1>
         <form id="form_inputs">
           <!-- ACCESS -->
           <div class="form__input input-access">
-            <label for="accessType">Tipo</label>
             <select name="web" id="access_type_select">
+              <option value="" disabled selected>selecionar tipo</option>
               <option value="web">Web</option>
               <option value="desktop">Desktop</option>
             </select>
@@ -330,8 +346,8 @@
           </div>
           <!-- FAMILIES -->
           <div class="form__input input-family edit">
-            <label for="familyLevel">Level</label>
             <select name="familyLevel" id="family_level_select">
+              <option value="" disabled selected>selecionar nível</option>
               <option value="Student">Estudante</option>
               <option value="Junior">Junior</option>
               <option value="InCharge">InCharge</option>
@@ -342,14 +358,13 @@
             <label for="familyName">Nome</label>
             <input name="familyName" id="family_name" type="text" />
           </div>
-          <div class="form__input input-family div-checkes edit">
-            <!-- INSERT CHECKES HERE -->
+          <div class="form__input input-family div-checks edit">
+            <!-- INSERT CHECKS HERE -->
           </div>
           <!-- MACHINES -->
           <div class="form__input input-machine edit">
-            <label for="machineFamily">Coleção</label>
             <select name="machineFamily" id="machine_family_select">
-              <option value="" disabled selected>selecionar grupo</option>
+              <option value="" disabled selected>selecionar coleção</option>
               <!-- INSERT MACHINE FAMILIES HERE -->
             </select>
           </div>
@@ -358,6 +373,14 @@
             <input name="machineName" id="machine_name" type="text" />
           </div>
           <!-- USERS -->
+          <div class="form__input input-user edit">
+            <select name="userOffice" id="user_office">
+              <option value="" disabled selected>selecionar cargo</option>
+              <option value="MASTER">MASTER</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="ANALYST">ANALISTA</option>
+            </select>
+          </div>
           <div class="form__input input-user edit">
             <label for="userName">Nome</label>
             <input name="userName" id="user_name" type="text" />
@@ -375,14 +398,6 @@
               autocomplete="off"
             />
           </div>
-          <div class="form__input input-user edit">
-            <label for="userOffice">Cargo</label>
-            <select name="userOffice" id="user_office">
-              <option value="MASTER">MASTER</option>
-              <option value="ADMIN">ADMIN</option>
-              <option value="ANALYST">ANALISTA</option>
-            </select>
-          </div>
         </form>
         <button type="button" id="button_form" class="btnForm">
           ADICIONAR
@@ -392,6 +407,71 @@
           class="close-form"
           onclick="formView(false)"
           onkeypress="formView(false)"
+          title="Fechar tela"
+        />
+      </div>
+      <div class="dash-card" id="dash_card">
+        <div>
+          <!-- CONSTANT -->
+          <div class="dash-sec constant-info">
+            <h1 id="constant_title">Mama1</h1>
+            <h1 id="operationalSystem">WINDOWS</h1>
+            <div class="constant-block">
+              <h1>CPU</h1>
+              <p><strong>-></strong> MODELO:&ensp;<span id="cpuName"></span></p>
+              <p>
+                <strong>-></strong> NÚCLEOS:&ensp;<span id="cpuCore"></span>
+              </p>
+            </div>
+            <div class="constant-block">
+              <h1>RAM</h1>
+              <p>
+                <strong>-></strong> TAMANHO:&ensp;<span id="ramSize"></span>
+              </p>
+              <p>
+                <strong>-></strong> UTILIZÁVEL:&ensp;<span
+                  id="ramUsable"
+                ></span>
+              </p>
+            </div>
+            <div class="constant-block">
+              <h1>DISCO</h1>
+              <p>
+                <strong>-></strong> MODELO:&ensp;<span id="diskModel"></span>
+              </p>
+              <p>
+                <strong>-></strong> TAMANHO:&ensp;<span id="diskSize"></span>
+              </p>
+            </div>
+          </div>
+          <!-- DYNAMIC -->
+          <div class="dash-sec dynamic-info">
+            <div class="sub-sections">
+              <button id="CPU">
+                <ion-icon name="hardware-chip"></ion-icon>
+                <p>CPU</p>
+              </button>
+              <button id="RAM">
+                <ion-icon name="file-tray-full"></ion-icon>
+                <p>RAM</p>
+              </button>
+              <button id="PROCESSOS">
+                <ion-icon name="finger-print"></ion-icon>
+                <p>PROCESSOS</p>
+              </button>
+            </div>
+            <div class="graph">
+              <canvas id="machineCanvas" style="width: 100%;"></canvas>
+            </div>
+          </div>
+          <div style="grid-area: process"></div>
+          <!-- <div class="process-info"></div> -->
+        </div>
+        <ion-icon
+          name="close-outline"
+          class="close-form"
+          onclick="formView(false), closeMachineDash()"
+          onkeypress="formView(false), closeMachineDash()"
           title="Fechar tela"
         />
       </div>
@@ -419,25 +499,39 @@
 
 <!-- JAVASCRIPT -->
 <scripts>
+  <!-- GLOBAL -->
   <script src="./js/global.js"></script>
   <script src="./js/global.addons.js"></script>
+  <!-- USERS -->
   <script src="./js/fetches/usersFetch/login.js"></script>
   <script src="./js/fetches/usersFetch/showUsers.js"></script>
   <script src="./js/fetches/usersFetch/addUser.js"></script>
   <script src="./js/fetches/usersFetch/editUser.js"></script>
   <script src="./js/fetches/usersFetch/deleteUser.js"></script>
-  <script src="./js/fetches/machineFetch/addMachine.js"></script>
+  <!-- FAMILY -->
   <script src="./js/fetches/familyFetch/getFamily.js"></script>
   <script src="./js/fetches/familyFetch/showFamilies.js"></script>
   <script src="./js/fetches/familyFetch/addFamily.js"></script>
   <script src="./js/fetches/familyFetch/editFamily.js"></script>
   <script src="./js/fetches/familyFetch/removeFamily.js"></script>
-  <script src="./js/fetches/access/addAccess.js"></script>
-  <script src="./js/fetches/access/showAccess.js"></script>
-  <script src="./js/fetches/access/removeAccess.js"></script>
+  <!-- ACCESS -->
+  <script src="./js/fetches/accessFetch/addAccess.js"></script>
+  <script src="./js/fetches/accessFetch/showAccess.js"></script>
+  <script src="./js/fetches/accessFetch/removeAccess.js"></script>
+  <!-- MACHINE -->
+  <script src="./js/fetches/machineFetch/addMachine.js"></script>
   <script src="./js/fetches/machineFetch/removeMachine.js"></script>
   <script src="./js/fetches/machineFetch/editMachine.js"></script>
   <script src="./js/fetches/machineFetch/showMachines.js"></script>
+  <!-- DASH -->
+  <script src="./js/fetches/dashboardFetch/chartUtils/closeMachineDash.js"></script>
+  <script src="./js/fetches/dashboardFetch/machineDashContent.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartUtils/styleVars.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartUtils/customProps.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartUtils/chartConfig.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartPlotting.js"></script>
+  <script src="./js/fetches/dashboardFetch/chartUtils/changeMachineDash.js"></script>
+  <!-- PAGE -->
   <script src="./js/pagesJS/dashboard.addons.js"></script>
   <script src="./js/pagesJS/dashboard.js"></script>
 </scripts>

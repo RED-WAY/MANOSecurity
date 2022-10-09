@@ -85,7 +85,47 @@ function addFamily(req, res) {
     res.status(400).send("fkCompanyController is undefined!");
   } else {
     familyModel
-      .addFamily(familyNameController, familyLevelController, fkCompanyController)
+      .addFamily(
+        familyNameController,
+        familyLevelController,
+        fkCompanyController
+      )
+      .then(function (result) {
+        res.json(result);
+        console.log("on familyController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function getFamilyId(req, res) {
+  const familyNameController = req.params.familyName;
+  const familyLevelController = req.params.familyLevel;
+  const fkCompanyController = req.params.fkCompany;
+
+  if (familyNameController == undefined) {
+    console.log("familyNameController is undefined");
+    return false;
+  } else if (familyLevelController == undefined) {
+    console.log("familyLevelController is undefined");
+    return false;
+  } else if (fkCompanyController == undefined) {
+    console.log("fkCompanyController is undefined");
+    return false;
+  } else {
+    familyModel
+      .getFamilyId(
+        familyNameController,
+        familyLevelController,
+        fkCompanyController
+      )
       .then(function (result) {
         res.json(result);
         console.log("on familyController");
@@ -143,7 +183,11 @@ function editFamily(req, res) {
     return false;
   } else {
     familyModel
-      .editFamily(idFamilyController, familyNameController, familyLevelController)
+      .editFamily(
+        idFamilyController,
+        familyNameController,
+        familyLevelController
+      )
       .then(function (result) {
         res.json(result);
         console.log("on familyController");
@@ -220,6 +264,7 @@ module.exports = {
   getSpecificFamily,
   showFamilies,
   addFamily,
+  getFamilyId,
   addFamilyAccess,
   editFamily,
   editMachineFamilies,

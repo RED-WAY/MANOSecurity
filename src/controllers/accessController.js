@@ -1,6 +1,6 @@
 const accessModel = require("../models/accessModel");
 
-function checkAccessGlobaly(req, res) {
+function checkAccessGlobally(req, res) {
   const operationNameController = req.params.name;
   const operationPathController = req.params.process;
   const operationTypeController = req.params.type;
@@ -13,7 +13,7 @@ function checkAccessGlobaly(req, res) {
     res.status(400).send("operationTypeController is undefined");
   } else {
     accessModel
-      .checkAccessGlobaly(
+      .checkAccessGlobally(
         operationNameController,
         operationPathController,
         operationTypeController
@@ -48,6 +48,7 @@ function addAccessGlobal(req, res) {
     accessModel
       .addAccessGlobal(operationNameController, operationPathController, operationTypeController)
       .then(function (result) {
+        console.log(result);
         res.json(result);
         console.log("on accessController");
       })
@@ -187,7 +188,7 @@ function deleteAccessGlobal(req, res) {
 }
 
 module.exports = {
-  checkAccessGlobaly,
+  checkAccessGlobally,
   addAccessGlobal,
   addAccessCompany,
   showAccess,

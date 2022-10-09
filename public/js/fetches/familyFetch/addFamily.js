@@ -1,12 +1,12 @@
 function addFamily() {
   showLoading();
 
-  const familyNameVar = family_name.value;
+  const familyNameVar = family_name.value.trimStart().trimEnd();
   const familyLevelVar = family_level_select.value;
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
   const accessArray = [];
-  const divCheck = document.querySelector(".div-checkes");
+  const divCheck = document.querySelector(".div-checks");
   Array.from(divCheck.children).map((access) => {
     const checkOpt = access.children[0];
     checkOpt.checked && accessArray.push(checkOpt.id);
@@ -22,7 +22,7 @@ function addFamily() {
     hideConfirm();
     showMessage(
       "error",
-      "Nível da coleção não foi encontrado! Contate o suporte pelo CHATBOT"
+      "Nível da coleção não foi definido!"
     );
     return false;
   } else if (fkCompanyVar == "" || fkCompanyVar == undefined) {
@@ -46,38 +46,41 @@ function addFamily() {
       }),
     })
       .then(function (result) {
-        const idPromise = result.json();
-        idPromise.then((res) => {
-          if (result.ok) {
-            if (accessArray.length > 0) {
-              addFamilyAccess([accessArray, res.insertId]);
-            }
+        if (result.ok) {
+          if (accessArray.length > 0) {
+            getFamilyId(
+              familyNameVar,
+              familyLevelVar,
+              fkCompanyVar,
+              accessArray
+            );
+          } else {
             showFamilies();
-            getFamily(fkCompanyVar);
             hideConfirm();
             setTimeout(() => {
               formView(false);
               hideLoading();
               showMessage("success", "Coleção adicionada com sucesso!");
             }, 500);
-          } else {
-            hideConfirm();
-            setTimeout(() => {
-              hideLoading();
-              showMessage(
-                "error",
-                "Aconteceu algum erro enquanto adicionava uma coleção!"
-              );
-            }, 1000);
+          }
+          getFamily(fkCompanyVar);
+        } else {
+          hideConfirm();
+          setTimeout(() => {
             hideLoading();
-            hideConfirm();
             showMessage(
               "error",
               "Aconteceu algum erro enquanto adicionava uma coleção!"
             );
-            throw "There was an error while you´re add a family!";
-          }
-        });
+          }, 1000);
+          hideLoading();
+          hideConfirm();
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava uma coleção!"
+          );
+          throw "There was an error while you´re add a family!";
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -94,6 +97,41 @@ function addFamily() {
 
     return false;
   }
+}
+
+function getFamilyId(familyNameVar, familyLevelVar, fkCompanyVar, accessArray) {
+  fetch(
+    `/family/getFamilyId/${familyNameVar}/${familyLevelVar}/${fkCompanyVar}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then(function (result) {
+      if (result.ok) {
+        result.json().then((data) => {
+          addFamilyAccess([accessArray, data[0].idFamily]);
+        });
+      } else {
+        hideLoading();
+        hideConfirm();
+        showMessage(
+          "error",
+          "Aconteceu algum erro enquanto adicionava uma coleção!"
+        );
+        throw "There was an error while getting the specific family id";
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      hideConfirm();
+      setTimeout(() => {
+        hideLoading();
+      }, 3000);
+    });
+  return false;
 }
 
 function addFamilyAccess([accessArray, fkFamily]) {
@@ -128,6 +166,12 @@ function addFamilyAccess([accessArray, fkFamily]) {
       .then(function (result) {
         if (result.ok) {
           showFamilies();
+          hideConfirm();
+          setTimeout(() => {
+            formView(false);
+            hideLoading();
+            showMessage("success", "Coleção adicionada com sucesso!");
+          }, 500);
         } else {
           hideLoading();
           hideConfirm();

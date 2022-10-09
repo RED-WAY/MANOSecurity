@@ -6,8 +6,8 @@ function getFamily(fkCompany) {
     fkCompany
   );
   const dbQuery = `
-      SELECT * FROM family WHERE fkCompany = ${fkCompany};
-           `;
+        SELECT * FROM family WHERE fkCompany = ${fkCompany};
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -19,12 +19,12 @@ function getSpecificFamily(idFamily) {
     idFamily
   );
   const dbQuery = `
-          SELECT familyName, familyLevel, idCompanyOperations 
-            FROM family 
-              LEFT JOIN familyOperations ON idFamily = fkFamily 
-                LEFT JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
-                    WHERE idFamily = ${idFamily};
-           `;
+        SELECT familyName, familyLevel, idCompanyOperations 
+          FROM family 
+            LEFT JOIN familyOperations ON idFamily = fkFamily 
+              LEFT JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
+                WHERE idFamily = ${idFamily};
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -36,13 +36,13 @@ function showFamilies(fkCompany) {
     fkCompany
   );
   const dbQuery = `
-          SELECT idFamily, familyLevel, familyName, operationName FROM Family 
-            LEFT JOIN familyOperations ON idFamily = fkFamily 
-              LEFT JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
-                LEFT JOIN operation ON idOperation = fkOperation 
-                  WHERE Family.fkCompany = ${fkCompany}
-                    ORDER BY idFamily ASC;
-           `;
+        SELECT idFamily, familyLevel, familyName, operationName FROM Family 
+          LEFT JOIN familyOperations ON idFamily = fkFamily 
+            LEFT JOIN companyOperations ON idCompanyOperations = fkCompanyOperations 
+              LEFT JOIN operation ON idOperation = fkOperation 
+                WHERE Family.fkCompany = ${fkCompany}
+                  ORDER BY idFamily ASC;
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -56,13 +56,33 @@ function addFamily(familyName, familyLevel, fkCompany) {
     fkCompany
   );
   const dbQuery = `
-      INSERT INTO family (familyName, familyLevel, fkCompany) VALUES
-     ('${familyName}', '${familyLevel}', ${fkCompany});                          
-             `;
+        INSERT INTO family (familyName, familyLevel, fkCompany) VALUES
+          ('${familyName}', '${familyLevel}', ${fkCompany});                          
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
+
+function getFamilyId(familyName, familyLevel, fkCompany) {
+  console.log(
+    "ACCESSING FAMILY MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getFamilyId(): ",
+    familyName,
+    familyLevel,
+    fkCompany
+  );
+  const dbQuery = `
+        SELECT idFamily 
+          FROM family             
+            WHERE familyName = '${familyName}'
+              AND familyLevel = '${familyLevel}' 
+                AND fkCompany = ${fkCompany};
+        `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
 function addFamilyAccess(accessArray, fkFamily) {
   console.log(
     "ACCESSING FAMILY MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addFamilyAccess(): ",
@@ -70,11 +90,12 @@ function addFamilyAccess(accessArray, fkFamily) {
     fkFamily
   );
 
-  let command = "INSERT INTO familyOperations (fkCompanyOperations, fkFamily) VALUES";
+  let command =
+    "INSERT INTO familyOperations (fkCompanyOperations, fkFamily) VALUES";
   let insertedValues = "";
   if (accessArray.length > 0) {
     accessArray.map((idProc, i) => {
-      insertedValues += `('${idProc}', '${fkFamily}')`;
+      insertedValues += `(${idProc}, ${fkFamily})`;
       if (i + 1 === accessArray.length) {
         insertedValues += ";";
       } else {
@@ -87,9 +108,9 @@ function addFamilyAccess(accessArray, fkFamily) {
   }
 
   const dbQuery = `
-      ${command} 
-     ${insertedValues}
-             `;
+        ${command} 
+          ${insertedValues}
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -103,10 +124,10 @@ function editFamily(idFamily, familyName, familyLevel) {
     familyLevel
   );
   const dbQuery = `
-          UPDATE Family 
-            SET familyName = "${familyName}", familyLevel = "${familyLevel}" 
-              WHERE idFamily = ${idFamily};
-           `;
+        UPDATE Family 
+          SET familyName = '${familyName}', familyLevel = '${familyLevel}' 
+            WHERE idFamily = ${idFamily};
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -121,7 +142,7 @@ function editMachineFamilies(idFamily) {
         UPDATE machine 
           SET fkFamily = null 
             WHERE fkFamily = ${idFamily}
-           `;
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -133,9 +154,9 @@ function removeFromFamilyOperations(fkFamily) {
     fkFamily
   );
   const dbQuery = `
-          DELETE FROM familyOperations 
-              WHERE fkFamily = ${fkFamily};            
-           `;
+        DELETE FROM familyOperations 
+            WHERE fkFamily = ${fkFamily};            
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -147,9 +168,9 @@ function deleteFamily(idFamily) {
     idFamily
   );
   const dbQuery = `
-          DELETE FROM family 
-              WHERE idFamily = ${idFamily};            
-           `;
+        DELETE FROM family 
+            WHERE idFamily = ${idFamily};            
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -160,6 +181,7 @@ module.exports = {
   getSpecificFamily,
   showFamilies,
   addFamily,
+  getFamilyId,
   addFamilyAccess,
   editFamily,
   editMachineFamilies,

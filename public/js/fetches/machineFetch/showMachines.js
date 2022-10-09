@@ -1,4 +1,12 @@
 function showMachines() {
+  const permission = () => {
+    return {
+      MASTER: "",
+      ADMIN: "",
+      ANALYST: "disabled",
+    }[sessionStorage.OFFICE_USER];
+  };
+
   showLoading();
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
@@ -17,31 +25,35 @@ function showMachines() {
           dispositivos_content.innerHTML = "";
 
           for (var i = 0; i < json.length; i++) {
-            json[i];
+            const disableData = json[i].isUsing === "not" && "disabled";
             dispositivos_content.innerHTML += `             
               <div class="card-info" id="machine${json[i].idMachine}" >
               <ion-icon name="desktop-outline"></ion-icon>
-              <div class="card-buttons">
-                <button onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${
+              <div class="card-buttons card-buttons-top">
+                <button 
+                ${permission()}
+                onclick="formView(true, 'Editar máquina', 'machine', 'edit', '${
                   json[i].idMachine
                 }')"
                 class="btn-special">
                   <ion-icon name="create-outline"></ion-icon>
                   <p>EDITAR</p>
                 </button>
-                <button onclick="setYes('Remover máquina', 'deleteMachine', '${
+                <button 
+                ${permission()}
+                onclick="setYes('Remover máquina', 'deleteMachine', '${
                   json[i].idMachine
                 }')" class="btn-special">
                   <ion-icon name="trash-outline"></ion-icon>
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="family_machine${json[i].idFamily}">COLLECTION: ${
-              json[i].familyName || "não adicionada"
-            }</h3>
-              <h2 id="name_machine${json[i].idMachine}">Name: ${
-              json[i].machineName
-            }</h2>
+              <h3 id="family_machine${json[i].idFamily}">
+                COLLECTION: ${json[i].familyName || "não adicionada"}
+              </h3>
+              <h2 id="name_machine${json[i].idMachine}">
+                Name: ${json[i].machineName}
+              </h2>
               <p>
                 <strong>Adicionado em: </strong>${
                   json[i].dtAdded.split("-")[0]
@@ -51,20 +63,31 @@ function showMachines() {
                   json[i].consumerName || "USUÁRIO REMOVIDO"
                 }
               </p>
-              <div class="copy-token">
-                <div>
+              <div class="card-buttons card-buttons-bottom">
+              <button 
+              onclick="formView(true, '${
+                json[i].machineName
+              }', 'machineDash', 'show', '${json[i].idMachine}')"
+              class="btn-special" ${disableData}>
+              <ion-icon name="bar-chart-outline"></ion-icon>
+                <p style="margin-left: 4%">DADOS</p>
+              </button>
+                <div class="copy-token">
                   <div>
-                    <p class="token-blur" id="token${json[i].idMachine}">${
-              json[i].idMachine
-            }</p>
-                  </div>                  
-                  <ion-icon name="key-outline" onclick="copyToken(${
-                    json[i].idMachine
-                  })" id="key${json[i].idMachine}"></ion-icon>
+                    <div>
+                      <p class="token-blur" id="token${json[i].idMachine}">
+                        ${json[i].idMachine}
+                      </p>
+                    </div>                  
+                    <ion-icon name="key-outline" 
+                      onclick="copyToken(${json[i].idMachine})" 
+                      id="key${json[i].idMachine}">
+                    </ion-icon>
+                  </div>
                 </div>
               </div>
             </div> 
-         `;
+        `;
           }
         });
       } else {
@@ -86,6 +109,6 @@ function showMachines() {
     });
   setTimeout(() => {
     hideLoading();
-  }, 1000);
+  }, 2000);
   return false;
 }

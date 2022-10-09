@@ -1,5 +1,6 @@
 .form-card,
-.hamburguer {
+#dash_card,
+.hamburger {
   /* SIZE */
   width: 100vw;
   height: 100vh;
@@ -24,12 +25,19 @@
   transition: opacity 0.2s, background-color 0.5s;
 }
 
+#form_card,
+#dash_card {
+  /* DISPLAY */
+  display: none;
+}
+
 .form-card h1 {
   /* TEXT */
   font-size: 1.3em;
   color: var(--font1);
 }
-.form-card form {
+.form-card form,
+#dash-card > div {
   /* SIZE */
   width: 80%;
   /* POSITION */
@@ -106,16 +114,40 @@ h3 span:focus {
   /* TEXT */
   font-size: 0.8em;
   color: var(--font1);
+  /* MISC */
+  pointer-events: none;
+}
+.animated-label {
+  /* SPACING */
+  padding: 0 1em;
+  margin-left: 0.5em;
+  margin-top: 0.8em;
+  position: absolute;
+  /* TEXT */
+  text-align: center;
+  font-size: 1em !important;
+  font-weight: 600;
+  /* COLOR */
+  color: var(--red-dark) !important;
+}
+
+.move-up-label {
+  /* TEXT */
+  font-size: 0.5em !important;
+  font-weight: 600;
+  /* COLOR */
+  color: var(--red-alt) !important;
 }
 .form__input input,
 .form__input select {
   /* SIZE */
   width: 100%;
-  height: 110%;
-  /* POSITION */
+  height: 115%;
+  /* SPACING */
   padding: 1em 1em;
+  padding-top: 1.5em;
   /* TEXT */
-  font-size: 0.8em;
+  font-size: 0.7em;
   color: var(--black);
   /* BACKGROUND */
   background-color: var(--white);
@@ -128,10 +160,11 @@ h3 span:focus {
   transition: box-shadow 0.5s;
 }
 .form__input input:not([type="checkbox"]):focus,
-.form__input select {
+.form__input select:focus {
   /* BACKGROUND */
   box-shadow: 0.2em 0.2em 0.2em var(--red);
 }
+
 .manos-check {
   /* POSITION */
   margin: 0;
@@ -140,22 +173,22 @@ h3 span:focus {
   /* TEXT */
   font-size: 0.9em;
 }
-.div-checkes {
+.div-checks {
   /* SIZE */
   height: 8em !important;
   /* SCROLL */
   overflow: auto;
 }
 
-.div-checkes::-webkit-scrollbar {
+.div-checks::-webkit-scrollbar {
   /* SIZE */
   width: 0.3em;
 }
-.div-checkes::-webkit-scrollbar-track {
+.div-checks::-webkit-scrollbar-track {
   /* BACKGROUND */
   background: var(--gray-light);
 }
-.div-checkes::-webkit-scrollbar-thumb {
+.div-checks::-webkit-scrollbar-thumb {
   /* BACKGROUND */
   background: var(--gray-dark);
 }
@@ -175,24 +208,24 @@ select option {
 .close-form {
   /* POSITION */
   position: absolute;
-  top: 0.3em;
-  right: 0.3em;
+  top: 0.3rem;
+  right: 0.3rem;
   /* TEXT */
-  font-size: 2em;
+  font-size: 2rem;
   color: var(--bla);
 }
 .close-form:hover,
 .close-form:focus {
   /* POSITION */
-  top: 0.1em;
-  right: 0.1em;
+  top: 0.1rem;
+  right: 0.1rem;
   /* TEXT */
-  font-size: 2.6em;
+  font-size: 2.6rem;
   color: var(--red);
 }
 
-.hamburguer ul,
-.hamburguer a {
+.hamburger ul,
+.hamburger a {
   /* SIZE */
   width: 90%;
   /* POSITION */
@@ -202,14 +235,14 @@ select option {
   /* MISC */
   transition: background-color 0.5s ease-out;
 }
-.hamburguer a:active {
+.hamburger a:active {
   /* BACKGROUND */
   background-color: var(--trans3);
 }
-.hamburguer a::before {
+.hamburger a::before {
   content: none;
 }
-.hamburguer a::after {
+.hamburger a::after {
   content: "";
   /* SIZE */
   width: 10%;
@@ -221,11 +254,256 @@ select option {
   /* MISC */
   transition: height 0.3s ease-out, width 0.3s ease-out;
 }
-.hamburguer a:hover::after,
-.hamburguer a:focus::after {
+.hamburger a:hover::after,
+.hamburger a:focus::after {
   /* SIZE */
   width: 30%;
   height: 0.2em;
   /* TEXT */
   color: var(--font2);
+}
+
+#dash_card {
+  /* SIZE */
+  height: 100%;
+  /* SPACING */
+  padding: 2em;
+  /* COLOR */
+  background-color: var(--font2);
+  color: var(--font1);
+}
+
+#dash_card > div {
+  /* SIZE */
+  width: 100%;
+  height: fit-content !important;
+  /* DISPLAY */
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-rows: repeat(2, 100vh);
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "constant"
+    "dynamic";
+  /* SCROLL */
+  overflow: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+.dash-sec {
+  /* SIZE */
+  width: 100%;
+  min-height: 90%;
+  height: fit-content;
+  /* SPACING */
+  padding: 2em 0;
+  /* DISPLAY */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* BORDER */
+  border-radius: 0.5em;
+  /* COLOR */
+  background-color: var(--back1);
+  /* SCROLL */
+  scroll-snap-align: start;
+}
+.dash-sec::-webkit-scrollbar,
+#dash_card > div::-webkit-scrollbar {
+  /* SIZE */
+  width: 4px;
+  height: 4px;
+  /* SCROLL */
+  scroll-behavior: smooth;
+}
+.dash-sec::-webkit-scrollbar-track,
+#dash_card > div::-webkit-scrollbar-track {
+  /* BACKGROUND */
+  background: var(--white);
+}
+.dash-sec::-webkit-scrollbar-thumb,
+#dash_card > div::-webkit-scrollbar-thumb {
+  /* BACKGROUND */
+  background: var(--gray);
+}
+.dash-sec::-webkit-scrollbar-thumb:hover,
+#dash_card > div::-webkit-scrollbar-thumb:hover {
+  /* BACKGROUND */
+  background: var(--red-alt);
+}
+
+.constant-info {
+  grid-area: constant;
+  /* TEXT */
+  font-size: 1rem;
+}
+
+#constant_title {
+  /* SPACING */
+  text-align: center;
+  /* TEXT */
+  font-size: 3em;
+}
+
+#operationalSystem {
+  /* SPACING */
+  text-align: center;
+  /* COLOR */
+  color: var(--red-alt);
+}
+
+.constant-block {
+  /* SIZE */
+  width: 80%;
+}
+.constant-block::before {
+  content: "";
+  /* SIZE */
+  width: 100%;
+  height: 0.1em;
+  /* SPACING */
+  margin: 1em 0;
+  /* DISPLAY */
+  display: block;
+  /* COLOR */
+  background-color: var(--red-alt);
+}
+
+.constant-block h1 {
+  /* SPACING */
+  padding-left: 1em;
+  /* COLOR */
+  color: var(--red-alt);
+  /* MISC */
+  transition: padding-left 0.3s;
+}
+.constant-block h1:hover,
+.constant-block h1:active {
+  /* SPACING */
+  padding-left: 1.1em;
+  /* COLOR */
+  text-shadow: 0 0 0.05em var(--red-alt);
+}
+.constant-block h1::after {
+  content: "";
+  /* SIZE */
+  width: 1em;
+  height: 0.01em;
+  /* SPACING */
+  margin: -0.2em 0 0.5em;
+  /* DISPLAY */
+  display: block;
+  /* COLOR */
+  background-color: var(--red-dark);
+  /* MISC */
+  transition: all 0.3s;
+}
+.constant-block h1:hover::after,
+.constant-block h1:active::after {
+  /* SIZE */
+  width: 3.2em;
+  /* COLOR */
+  background-color: var(--red-alt);
+  box-shadow: 0 0 0.2em var(--red-alt);
+}
+
+.constant-block p {
+  /* SPACING */
+  margin-top: 0.4em;
+  padding-left: 2.4em;
+  /* TEXT */
+  font-size: 1.2em;
+  font-weight: 700;
+}
+.constant-block p:hover,
+.constant-block p:active {
+  /* SPACING */
+  padding-left: 2.8em;
+}
+
+.constant-block strong {
+  /* TEXT */
+  font-weight: 1000;
+  /* COLOR */
+  color: var(--red-dark);
+  /* MISC */
+  transition: all 0.3s;
+}
+.constant-block p:hover strong,
+.constant-block p:active strong {
+  /* COLOR */
+  color: var(--red-alt);
+}
+
+.constant-block span {
+  /* TEXT */
+  font-weight: 500;
+}
+
+.dynamic-info {
+  grid-area: dynamic;
+  /* SIZE */
+  height: 75%;
+  /* DISPLAY */
+  gap: 1em;
+  /* BORDER */
+  border-radius: 0.2em;
+}
+
+.sub-sections {
+  /* SIZE */
+  width: 90%;
+  /* SPACING */
+  padding: 0;
+  /* DISPLAY */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+  gap: 0.5em;
+}
+
+.sub-sections button {
+  /* SIZE */
+  min-width: 100px;
+  width: 100%;
+  /* DISPLAY */
+  gap: 0.8em;
+  transition: all 0.3s;
+}
+.sub-sections button:hover {
+  gap: 1em;
+  /* COLOR */
+  color: var(--white);
+  background-color: var(--red-dark);
+  border-color: var(--red-dark);
+}
+.sub-sections button:active {
+  gap: 0.6em;
+  /* COLOR */
+  color: var(--white);
+  background-color: var(--red-alt);
+  border-color: var(--red-alt);
+}
+.sub-activated {
+  /* COLOR */
+  color: var(--font2);
+  background-color: var(--font1);
+  border-color: var(--font1);
+}
+
+.sub-sections button ion-icon {
+  /* SIZE */
+  font-size: 2em;
+  /* SPACING */
+  margin: 0;
+}
+
+.sub-sections button p {
+  /* SPACING */
+  margin: 0;
+  /* TEXT */
+  font-size: 0.8em;
+  font-weight: 600;
 }

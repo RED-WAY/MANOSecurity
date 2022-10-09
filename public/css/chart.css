@@ -1,0 +1,16 @@
+.graph {
+  /* SIZE */
+  width: 95% !important;
+  height: 90% !important;
+  /* SPACING */
+  padding: 1em 0;
+  /* COLOR */
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--card1),
+    transparent
+  );
+  /* SCROLL */
+  overflow: hidden;
+}

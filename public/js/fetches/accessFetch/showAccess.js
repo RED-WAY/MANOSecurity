@@ -1,4 +1,12 @@
 function showAccess() {
+  const permission = () => {
+    return {
+      MASTER: "",
+      ADMIN: "",
+      ANALYST: "disabled",
+    }[sessionStorage.OFFICE_USER];
+  };
+
   showLoading();
 
   const idCompany = sessionStorage.COMPANY_USER;
@@ -18,7 +26,12 @@ function showAccess() {
                 <div class="card-info acessos-info" id="${json[i].idOperation}">
                 <ion-icon name="lock-open-outline"></ion-icon>
                 <div class="card-buttons">
-                  <button onclick="setYes('Remover acesso', 'deleteAccess', ['${json[i].idCompanyOperations}', '${json[i].idOperation}'])" class="btn-special">
+                  <button 
+                    ${permission()}
+                    onclick="setYes('Remover acesso', 'deleteAccess', ['${
+                      json[i].idCompanyOperations
+                    }', '${json[i].idOperation}'])" 
+                    class="btn-special">
                     <ion-icon name="trash-outline"></ion-icon>
                     <p>REMOVER</p>
                   </button>
@@ -30,12 +43,12 @@ function showAccess() {
            `;
           }
 
-          const divCheck = document.querySelector(".div-checkes");
+          const divCheck = document.querySelector(".div-checks");
           divCheck.innerHTML = "";
           for (var i = 0; i < json.length; i++) {
             divCheck.innerHTML += `
             <div class="pretty p-default p-default p-thick p-pulse manos-check">
-                      <input type="checkbox" class="get-checkes" id="${json[i].idCompanyOperations}" />
+                      <input type="checkbox" class="get-checks" id="${json[i].idCompanyOperations}" />
                       <div class="state p-danger-o">
                         <label>${json[i].operationName}</label>
                       </div>

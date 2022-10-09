@@ -7,8 +7,12 @@
     /* SIZE */
     height: 70%;
   }
+  .constant-info {
+    /* TEXT */
+    font-size: 1.2rem;
+  }
 }
-@media (min-width: 426px) { 
+@media (min-width: 426px) {
   .form-card button {
     /* SIZE */
     max-width: 65%;
@@ -31,11 +35,12 @@
   }
   .form__input input {
     /* TEXT */
-    font-size: 1em;
+    font-size: 0.9em;
   }
 }
 @media (min-width: 769px) {
-  .form-card {
+  .form-card,
+  #dash_card {
     /* SIZE */
     width: 33em;
     height: fit-content;
@@ -72,6 +77,18 @@
     /* SIZE */
     height: 60%;
   }
+
+  #dash_card {
+    /* SIZE */
+    width: 80vw;
+    height: 85vh;
+    /* SPACING */
+    padding: 2em 2em;
+  }
+  .constant-info {
+    /* TEXT */
+    font-size: 0.85rem;
+  }
 }
 @media (min-width: 1025px) {
   .form-card {
@@ -90,10 +107,58 @@
     /* TEXT */
     font-size: 1.1rem;
   }
+
+  #dash_card > div {
+    /* SIZE */
+    height: 100% !important;
+    /* DISPLAY */
+    justify-content: stretch;
+    grid-template-rows: auto 40%;
+    grid-template-columns: 30% auto;
+    grid-template-areas:
+      "constant dynamic"
+      "process dynamic";
+    gap: 0.4em;
+    /* SCROLL */
+    overflow: auto;
+  }
+
+  .dash-sec {
+    /* SIZE */
+    height: 100%;
+    /* SPACING */
+    padding: 2em 0 1.5em;
+    /* DISPLAY */
+    justify-content: flex-start;
+  }
+
+  .constant-info {
+    /* TEXT */
+    font-size: 0.4rem;
+    /* SCROLL */
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .dynamic-info {
+    /* SPACING */
+    padding: 1.5em 0.5em;
+  }
 }
 @media (min-width: 1441px) {
   .form-card h3 {
     /* TEXT */
     font-size: 0.9rem;
+  }
+
+  #dash_card > div {
+    /* DISPLAY */
+    grid-template-columns: 22% auto;
+  }
+}
+@media (min-width: 1840px) {
+  .constant-info {
+    /* TEXT */
+    font-size: 0.5rem;
   }
 }

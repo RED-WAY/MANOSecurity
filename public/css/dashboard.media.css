@@ -56,10 +56,6 @@
     display: block;
   }
 
-  .copy-token {
-    /* SPACING */
-    padding-right: 4em;
-  }
   .copy-token > div {
     /* SIZE */
     width: 100%;
@@ -74,10 +70,5 @@
   #dispositivos .content {
     /* DISPLAY */
     grid-template-columns: repeat(auto-fit, minmax(565px, 1fr));
-  }
-
-  .copy-token {
-    /* SPACING */
-    padding-right: 5em;
   }
 }

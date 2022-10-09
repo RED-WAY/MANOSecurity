@@ -1,6 +1,10 @@
 // CHANGE SECTIONS VISIBILITY
 let actualSection = "#dispositivos";
 function showSection(sectionClass) {
+  if (sessionStorage.OFFICE_USER !== "MASTER" && sectionClass === "#usuarios") {
+    throw "Not allowed to access this section!";
+  }
+
   const section = document.querySelector(sectionClass);
   const sectionNow = document.querySelector(actualSection);
 
@@ -22,23 +26,31 @@ function showSection(sectionClass) {
 
 // CHANGE FORM VISIBILITY
 function formView(isOpening, formTitle, formParam, mode, editId) {
-  const form = document.querySelector("#aside_forms");
+  const hiddenDiv = document.querySelector("#aside_forms");
+  const formOrDash = document.querySelector(
+    `#${mode === "show" ? "dash_card" : "form_card"}`
+  );
 
   // display with fade
   if (isOpening) {
+    formOrDash.style.display = "flex";
+
     // changing form title
     const title = document.querySelector("#form_title");
     title.textContent = formTitle;
+
     // change inputs
     verifyInputs(formParam, mode, editId, formTitle);
-    form.style.display = "flex";
+    hiddenDiv.style.display = "flex";
     setTimeout(() => {
-      form.style.opacity = "1";
+      hiddenDiv.style.opacity = "1";
     }, 0);
   } else {
-    form.style.opacity = "0";
+    hiddenDiv.style.opacity = "0";
     setTimeout(() => {
-      form.style.display = "none";
+      hiddenDiv.style.display = "none";
+      formOrDash.style.display = "none";
+      document.querySelector("#dash_card").style.display = "none";
     }, 500);
   }
 }
@@ -58,31 +70,35 @@ function verifyInputs(formParam, mode, editId, confirmTitle) {
     }
   }
 
-  // if editing, just show editable inputs
-  if (mode == "edit") {
-    for (const child of form.children) {
-      if (child.className.indexOf(mode) == -1) {
-        child.style.display = "none";
+  if (mode != "show") {
+    // if editing, just show editable inputs
+    if (mode == "edit") {
+      for (const child of form.children) {
+        if (child.className.indexOf(mode) == -1) {
+          child.style.display = "none";
+        }
       }
     }
-  }
 
-  // add correct function to add
-  formParam = formParam.replace(formParam[0], formParam[0].toUpperCase());
-  button.textContent = mode == "add" ? "ADICIONAR" : "EDITAR";
-  button.setAttribute(
-    "onclick",
-    `setYes('${confirmTitle}', '${mode + formParam}', ${editId})`
-  );
+    // add correct function to add
+    formParam = formParam.replace(formParam[0], formParam[0].toUpperCase());
+    button.textContent = mode == "add" ? "ADICIONAR" : "EDITAR";
+    button.setAttribute(
+      "onclick",
+      `setYes('${confirmTitle}', '${mode + formParam}', ${editId})`
+    );
 
-  if (mode == "add") {
-    resetFields();
-  } else if (mode + formParam == "editMachine") {
-    loadMachineInputs(editId);
-  } else if (mode + formParam == "editUser") {
-    loadUserInputs(editId);
-  } else if (mode + formParam == "editFamily") {
-    loadCheckes(editId);
+    if (mode == "add") {
+      resetFields();
+    } else if (mode + formParam == "editMachine") {
+      loadMachineInputs(editId);
+    } else if (mode + formParam == "editUser") {
+      loadUserInputs(editId);
+    } else if (mode + formParam == "editFamily") {
+      loadChecks(editId);
+    }
+  } else {
+    machineDashContent(editId);
   }
 }
 
@@ -140,10 +156,10 @@ function copyToken(idMachine) {
 
     try {
       navigator.clipboard.writeText(token.textContent);
-      showMessage('success', 'Token copiado para sua Área de Transferência!');
+      showMessage("success", "Token copiado para sua Área de Transferência!");
     } catch (error) {
       console.log(error);
-      showMessage('error', 'Não foi possível copiar o Token')
+      showMessage("error", "Não foi possível copiar o Token");
     }
   }
 }

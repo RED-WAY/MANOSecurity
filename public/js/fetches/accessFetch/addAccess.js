@@ -2,8 +2,8 @@ function addAccess() {
   showLoading();
 
   const typeVar = access_type_select.value;
-  const nameVar = access_name.value;
-  const processVar = access_path.value;
+  const nameVar = access_name.value.trimStart().trimEnd();
+  const processVar = access_path.value.trimStart().trimEnd();
 
   if (typeVar == "") {
     hideLoading();
@@ -18,7 +18,7 @@ function addAccess() {
     hideConfirm();
     showMessage("warning", "Cadastre o nome do processo no sistema!");
   } else {
-    fetch(`/access/checkAccessGlobaly/${typeVar}/${nameVar}/${processVar}`, {
+    fetch(`/access/checkAccessGlobally/${typeVar}/${nameVar}/${processVar}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -69,11 +69,7 @@ function addAccessGlobal(typeVar, nameVar, processVar) {
   })
     .then(function (result) {
       if (result.ok) {
-        result.json().then((res) => {
-          setTimeout(() => {
-            addAccessCompany(res.insertId);
-          }, 500);
-        });
+        addAccess();
       } else {
         hideConfirm();
         setTimeout(() => {
@@ -135,7 +131,10 @@ function addAccessCompany(operationId) {
           hideConfirm();
           setTimeout(() => {
             hideLoading();
-            showMessage('error', 'Aconteceu algum erro enquanto adicionava um acesso!');
+            showMessage(
+              "error",
+              "Aconteceu algum erro enquanto adicionava um acesso!"
+            );
           }, 1000);
           throw "There was an error while adding company operation!";
         }
@@ -145,7 +144,10 @@ function addAccessCompany(operationId) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
-          showMessage('error', 'Aconteceu algum erro enquanto adicionava um acesso!');
+          showMessage(
+            "error",
+            "Aconteceu algum erro enquanto adicionava um acesso!"
+          );
         }, 3000);
       });
 

@@ -1,8 +1,25 @@
+// PERMISSION CHANGES
+// users panel
+if (sessionStorage.OFFICE_USER !== "MASTER") {
+  Array.from(
+    document.querySelectorAll(
+      `a[onclick="showSection('#usuarios'), showUsers()"]`
+    )
+  ).map((link) => {
+    link.style.display = "none";
+  });
+}
+// adding components
+sessionStorage.OFFICE_USER === "ANALYST" &&
+  Array.from(document.querySelectorAll(".btn-add")).map((button) => {
+    button.disabled = true;
+  });
+
 // THEME CHANGING
 const themeTrigger = document.querySelector("#theme_changer");
 const dataTheme = document.documentElement;
 
-// verify storaged theme
+// verify storage theme
 if (localStorage.THEME === undefined) {
   localStorage.THEME = "light";
 }
@@ -16,6 +33,12 @@ themeTrigger.addEventListener("change", function () {
   let theme = this.checked ? "dark" : "light";
   dataTheme.setAttribute("data-theme", theme);
   localStorage.THEME = theme;
+
+  if (chartMachine) {
+    const button = document.querySelector('.sub-activated');
+    button.classList.remove('sub-activated')
+    button.click()
+  }
 });
 
 // RANDOMIZE CORNERS

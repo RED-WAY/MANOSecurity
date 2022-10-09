@@ -1,8 +1,8 @@
 function editMachine(idMachine) {
   showLoading();
 
-  const machineNameVar = machine_name.value;
-  const fkFamilyVar =  machine_family_select.value;
+  const machineNameVar = machine_name.value.trimStart().trimEnd();
+  const fkFamilyVar = machine_family_select.value;
 
   fetch(`/machine/editMachine/${idMachine}`, {
     method: "PUT",
@@ -21,7 +21,7 @@ function editMachine(idMachine) {
         setTimeout(() => {
           formView(false);
           hideLoading();
-          showMessage('success', 'Máquina editada com sucesso!');
+          showMessage("success", "Máquina editada com sucesso!");
         }, 200);
       } else if (result.status == 404) {
         window.alert("error 404!");
