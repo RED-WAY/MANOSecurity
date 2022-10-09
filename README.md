@@ -1,6 +1,6 @@
 # **man.OS Security**
 <div align="center">
-<img alt="prints" width="90%" src="public\assets\gifs\manosGlitch.gif" alt="arkade intro">
+<img alt="prints" width="90%" src="site\public\assets\gifs\manosGlitch.gif" alt="arkade intro">
 </div>
 
 #
