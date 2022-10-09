@@ -6,7 +6,7 @@ process.env.ENV = "production";
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const PORT = process.env.PORT;
+const PORT = process.env.PORT == "development" ? 3333 : 8080;
 
 const app = express();
 
