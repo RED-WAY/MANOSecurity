@@ -1,5 +1,4 @@
 const database = require("../database/config");
-const encrypter = process.env.AES_ENCRYPT;
 const env = process.env.ENV;
 
 function logIn(emailModel, passwordModel) {
