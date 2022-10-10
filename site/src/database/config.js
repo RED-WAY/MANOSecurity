@@ -3,10 +3,10 @@ const sql = require("mssql");
 
 // SQL SERVER - AZURE (CLOUD)
 const sqlServerConfig = {
-  server: "svr-manosecurity.database.windows.net",
-  database: "db-azure-manosecurity",
-  user: "admin-manosecurity",
-  password: "#Gfgrupo6",
+  server: process.env.AZURE_SERVER,
+  database: process.env.AZURE_DATABASE,
+  user: process.env.AZURE_USER,
+  password: process.env.AZURE_PASSWORD,
   pool: {
     max: 10,
     min: 0,
@@ -19,10 +19,10 @@ const sqlServerConfig = {
 
 // MYSQL WORKBENCH (LOCAL)
 const mySqlConfig = {
-  // host: process.env.MYSQL_HOST,
-  // database: process.env.MYSQL_DATABASE,
-  // user: process.env.MYSQL_USER,
-  // password: process.env.MYSQL_PASSWORD,
+  host: process.env.MYSQL_HOST,
+  database: process.env.MYSQL_DATABASE,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
 };
 
 function executeQuery(modelQuery) {
