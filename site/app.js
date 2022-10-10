@@ -1,4 +1,3 @@
-require("dotenv").config();
 // CHOOSE ENVIRONMENT
 // process.env.ENV = "development";
 process.env.ENV = "production";
@@ -6,7 +5,7 @@ process.env.ENV = "production";
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const PORT = process.env.ENV == "development" ? process.env.PORT : 8080;
+const PORT = process.env.ENV == "development" ? 1900 : 8080;
 
 const app = express();
 
