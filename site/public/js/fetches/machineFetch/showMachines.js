@@ -24,7 +24,7 @@ function showMachines() {
         result.json().then((json) => {
           dispositivos_content.innerHTML = "";
 
-          for (var i = 0; i < json.length; i++) {
+          for (let i = 0; i < json.length; i++) {
             const disableData = json[i].isUsing === "not" && "disabled";
             dispositivos_content.innerHTML += `             
               <div class="card-info" id="machine${json[i].idMachine}" >

@@ -30,19 +30,19 @@ function showMachines(fkCompany) {
     SELECT idMachine, machineName, isUsing, consumerName, familyName, idFamily, 
       DATE_FORMAT(machine.dtAdded, '%d/%m/%Y-%H:%i') AS dtAdded 
         FROM machine 
-          LEFT JOIN Family ON idFamily = fkFamily 
+          LEFT JOIN family ON idFamily = fkFamily 
             JOIN consumer ON idConsumer = fkConsumer 
-              WHERE Machine.fkCompany = ${fkCompany} 
+              WHERE machine.fkCompany = ${fkCompany} 
                 ORDER BY dtAdded ASC;
     `;
   } else if (env === "production") {
     dbQuery = `       
-    SELECT idMachine, machineName, consumerName, familyName, idFamily, 
+    SELECT idMachine, machineName, isUsing, consumerName, familyName, idFamily, 
       FORMAT(SWITCHOFFSET(machine.dtAdded, '-03:00'), 'dd/MM/yy-HH:mm') AS dtAdded 
         FROM machine 
-          LEFT JOIN Family ON idFamily = fkFamily 
+          LEFT JOIN family ON idFamily = fkFamily 
             JOIN consumer ON idConsumer = fkConsumer 
-              WHERE Machine.fkCompany = ${fkCompany} 
+              WHERE machine.fkCompany = ${fkCompany} 
                 ORDER BY dtAdded ASC;
     `;
   } else {
@@ -64,7 +64,7 @@ function editMachine(idMachine, machineName, fkFamily) {
     fkFamily
   );
   const dbQuery = `
-          UPDATE Machine 
+          UPDATE machine 
             SET machineName = '${machineName}', 
             fkFamily = ${fkFamily} 
               WHERE idMachine = ${idMachine};
@@ -80,8 +80,23 @@ function deleteMachine(idMachine) {
     idMachine
   );
   const dbQuery = `
-        DELETE FROM Machine 
+        DELETE FROM machine 
           WHERE idMachine = ${idMachine};
+        `;
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
+function deleteMachineHardware(hardwareType, fkMachine) {
+  console.log(
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function deleteMachineHardware(): ",
+    hardwareType,
+    fkMachine
+  );
+  const dbQuery = `
+        DELETE FROM ${hardwareType} 
+          WHERE fkMachine = ${fkMachine};
         `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -93,4 +108,5 @@ module.exports = {
   showMachines,
   editMachine,
   deleteMachine,
+  deleteMachineHardware,
 };

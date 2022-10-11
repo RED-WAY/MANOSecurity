@@ -62,12 +62,18 @@ function showMachines(req, res) {
 }
 
 function deleteMachine(req, res) {
-  const idMachineController = req.params.idMachine;
+  const fkMachineController = req.params.idMachine;
 
   machineModel
-    .deleteMachine(idMachineController)
+    .deleteMachineHardware("dynamicHardware", fkMachineController)
     .then(function (result) {
-      res.json(result);
+      machineModel
+        .deleteMachineHardware("constantHardware", fkMachineController)
+        .then((_) => {
+          machineModel.deleteMachine(fkMachineController).then((result) => {
+            res.json(result);
+          });
+        });
     })
     .catch(function (error) {
       console.log(error);
