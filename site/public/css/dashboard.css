@@ -78,6 +78,9 @@ section section {
   /* MISC */
   transition: opacity 0.2s;
 }
+.sec-main {
+  scroll-snap-align: none !important;
+}
 
 /* SECTIONS HEADER */
 .header {

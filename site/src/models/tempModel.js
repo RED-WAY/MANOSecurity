@@ -114,7 +114,7 @@ function latestModel(idParamModel, linesModel) {
             (--column1--), (--column2), (--dateColumn--), 
                 DATE_FORMAT((--dateColumn--),'%H:%i:%s') AS dateColumnFormatted 
                     FROM (--TABLE--) 
-                       WHERE (--fkColumn--) = ${idParamModel} 
+                      WHERE (--fkColumn--) = ${idParamModel} 
                             ORDER BY (--idColumn--) DESC LIMIT ${linesModel};
     `;
   } else {
