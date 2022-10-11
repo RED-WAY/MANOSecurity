@@ -1,3 +1,4 @@
+require("dotenv").config();
 // CHOOSE ENVIRONMENT
 // process.env.ENV = "development";
 process.env.ENV = "production";
