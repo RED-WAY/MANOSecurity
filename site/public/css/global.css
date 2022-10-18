@@ -17,6 +17,7 @@
   /* MISC */
   transition: all 0.1s;
   caret-color: var(--red-alt);
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {

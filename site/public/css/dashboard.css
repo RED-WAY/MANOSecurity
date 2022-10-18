@@ -188,13 +188,18 @@ section section {
   /* SIZE */
   width: 100%;
   /* DISPLAY */
-  grid-template-columns: 28% auto 44%;
+  grid-template-columns: 38% auto 28%;
   grid-template-areas:
     "image sub buttonsTop"
     "image title title"
     "image content buttonsBottom";
   /* MISC */
   clip-path: none;
+}
+
+.card-info p {
+  /* SIZE */
+  height: 6.4em;
 }
 
 .card-buttons {
@@ -351,8 +356,13 @@ section section {
   /* DISPLAY */
   grid-area: image;
   /* TEXT */
-  font-size: 8vw;
+  font-size: 5em;
   color: var(--font1);
+}
+
+.card-buttons button ion-icon {
+  /* ICON SIZE */
+  font-size: 3em;
 }
 
 .card-info:hover {
@@ -429,4 +439,68 @@ section section {
   max-height: 70vh;
   /* SCROLL */
   overflow-y: auto;
+}
+
+.div-mini-hard {
+  /* SIZE */
+  width: 100%;
+  max-width: 70px;
+  /* SPACING */
+  margin-top: -17.5em;
+  /* DISPLAY */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mini-hard {
+  /* SIZE */
+  font-size: 1.4em !important;
+  /* SPACING */
+  margin: 0;
+}
+
+.mini-hard-disabled {
+  /* COLOR */
+  color: var(--font-gray) !important;
+}
+
+.mini-hard-success {
+  /* MISC */
+  animation: popSuccess 2s alternate-reverse infinite;
+}
+
+.mini-hard-warning {
+  /* MISC */
+  animation: popWarning 1s alternate-reverse infinite;
+}
+
+.mini-hard-danger {
+  /* MISC */
+  animation: popDanger 0.5s alternate-reverse infinite;
+}
+
+@keyframes popSuccess {
+  from {
+    color: var(--success);
+  }
+  to {
+    color: var(--success-light);
+  }
+}
+@keyframes popWarning {
+  from {
+    color: var(--warning);
+  }
+  to {
+    color: var(--warning-light);
+  }
+}
+@keyframes popDanger {
+  from {
+    color: var(--red-dark);
+  }
+  to {
+    color: var(--red-light);
+  }
 }

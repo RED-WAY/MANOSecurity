@@ -55,6 +55,22 @@ function showMachines(fkCompany) {
   return database.executeQuery(dbQuery);
 }
 
+function getMachinesData(fkCompany) {
+  console.log(
+    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getMachinesData(): ",
+    fkCompany
+  );
+  let dbQuery = `
+      SELECT fkMachine, cpu, ram 
+        FROM dynamicHardware 
+          JOIN machine ON idMachine = fkMachine 
+            WHERE fkCompany = ${fkCompany} 
+              ORDER BY dynamicHardware.dtAdded DESC;
+  `;
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
 function editMachine(idMachine, machineName, fkFamily) {
   console.log(
     "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function editMachine(): ",
@@ -105,6 +121,7 @@ function deleteMachineHardware(hardwareType, fkMachine) {
 module.exports = {
   addMachine,
   showMachines,
+  getMachinesData,
   editMachine,
   deleteMachine,
   deleteMachineHardware,

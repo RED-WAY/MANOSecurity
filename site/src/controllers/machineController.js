@@ -61,6 +61,30 @@ function showMachines(req, res) {
   }
 }
 
+function getMachinesData(req, res) {
+  const fkCompanyController = req.params.fkCompany;
+
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController undefined");
+    return false;
+  } else {
+    machineModel
+      .getMachinesData(fkCompanyController)
+      .then(function (result) {
+        res.json(result);
+        console.log("on machineController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
 function deleteMachine(req, res) {
   const fkMachineController = req.params.idMachine;
 
@@ -120,6 +144,7 @@ function editMachine(req, res) {
 module.exports = {
   addMachine,
   showMachines,
+  getMachinesData,
   deleteMachine,
   editMachine,
 };
