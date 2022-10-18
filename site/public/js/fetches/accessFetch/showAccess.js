@@ -36,11 +36,10 @@ function showAccess() {
                     <p>REMOVER</p>
                   </button>
                 </div>
-                <h3>TYPE: ${json[i].operationType}</h3>
-                <h2>Name: ${json[i].operationName}</h2>
-                <p>Process path: ${json[i].operationPath}</p>
+                <h3>TIPO: ${json[i].operationType}</h3>
+                <h2>${json[i].operationName}</h2>
               </div>              
-           `;
+          `;
           }
 
           const divCheck = document.querySelector(".div-checks");

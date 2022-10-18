@@ -52,7 +52,7 @@ function showMachines() {
                 COLLECTION: ${json[i].familyName || "não adicionada"}
               </h3>
               <h2 id="name_machine${json[i].idMachine}">
-                Name: ${json[i].machineName}
+                nome: ${json[i].machineName}
               </h2>
               <p>
                 <strong>Adicionado em: </strong>${

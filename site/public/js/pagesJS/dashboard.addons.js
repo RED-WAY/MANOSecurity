@@ -26,7 +26,6 @@ function resetFields() {
   machine_name.value = "";
   family_name.value = "";
   access_name.value = "";
-  access_path.value = "";
   user_name.value = "";
   user_email.value = "";
   user_password.value = "";
@@ -36,7 +35,6 @@ function resetFields() {
     "userEmail",
     "userPassword",
     "accessName",
-    "accessPath",
     "familyName",
     "machineName",
   ].map((id) => {
@@ -154,7 +152,6 @@ addAnimatedLabelEvent([
   "userEmail",
   "userPassword",
   "accessName",
-  "accessPath",
   "familyName",
   "machineName",
 ]);

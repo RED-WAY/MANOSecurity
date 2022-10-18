@@ -1,33 +1,30 @@
 const database = require("../database/config");
 
-function checkAccessGlobally(operationName, operationPath, operationType) {
+function checkAccessGlobally(operationName, operationType) {
   console.log(
     "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function checkAccessGlobally(): ",
     operationName,
-    operationPath,
     operationType
   );
   const dbQuery = `
         SELECT idOperation FROM operation
           WHERE operationName = '${operationName}' 
-            AND operationPath = '${operationPath}' 
-              AND operationType = '${operationType}';
+            AND operationType = '${operationType}';
         `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
 }
 
-function addAccessGlobal(operationName, operationPath, operationType) {
+function addAccessGlobal(operationName, operationType) {
   console.log(
     "ACCESSING ACCESS MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addAccessGlobal(): ",
     operationName,
-    operationPath,
     operationType
   );
   const dbQuery = `
-        INSERT INTO operation (operationName, operationPath, operationType) VALUES 
-          ('${operationName}','${operationPath}','${operationType}');
+        INSERT INTO operation (operationName, operationType) VALUES 
+          ('${operationName}','${operationType}');
         `;
 
   console.log("Executing SQL query: \n" + dbQuery);
