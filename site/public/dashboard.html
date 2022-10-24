@@ -8,7 +8,7 @@
       content=" user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"
     />
     <link rel="icon" href="assets/imgs/fingerWhite.png" />
-    <title>man.OS | DASHBOARD</title>
+    <title>DASHBOARD</title>
 
     <script src="./js/session.js"></script>
 
@@ -31,7 +31,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body
-    onload="validateSession(), showMachines(), viewLoad('hide'), 
+    onload="validateSession(), showKilledProcesses('idMachine'), viewLoad('hide'), 
   getFamily(), showAccess(), hideLoading()"
   >
     <!-- LOADER -->
@@ -92,7 +92,7 @@
         <div class="wrapper-buttons">
           <button
             type="button"
-            onclick="showLogin()"
+            onclick="showSection('#processes'), showKilledProcesses('idMachine')"
             onmouseenter="borderChange(this)"
             onmouseleave="resetBorder(this)"
             title="Acessar DASHBOARD"
@@ -164,7 +164,6 @@
           <a
             href="#"
             tabindex="1"
-            id="menu_first_item"
             onclick="showSection('#dispositivos'), showMachines()"
           >
             <li>Dispositivos</li>
@@ -214,6 +213,26 @@
 
     <!-- SECTION CONTENTS -->
     <section class="sec-main">
+      <!-- processes -->
+      <section id="processes" class="sec">
+        <div class="header">
+          <h1>Processos Mortos</h1>
+        </div>
+        <div class="content table-content">
+          <table class="main-table">
+            <thead>
+              <tr>
+                <td>Processo</td>
+                <td>Máquina</td>
+                <td class="lastTdBorder">Horário</td>
+              </tr>
+            </thead>
+            <tbody id="processesDisplay">
+              <!-- ADD PROCESSES HERE -->
+            </tbody>
+          </table>
+        </div>
+      </section>
       <!-- machines -->
       <section id="dispositivos" class="sec">
         <div class="header">
@@ -340,10 +359,6 @@
             <label for="accessName">Nome</label>
             <input name="accessName" id="access_name" type="text" />
           </div>
-          <div class="form__input input-access">
-            <label for="accessPath">Processo</label>
-            <input name="accessPath" id="access_path" type="text" />
-          </div>
           <!-- FAMILIES -->
           <div class="form__input input-family edit">
             <select name="familyLevel" id="family_level_select">
@@ -461,10 +476,25 @@
               </button>
             </div>
             <div class="graph">
-              <canvas id="machineCanvas" style="width: 100%;"></canvas>
+              <canvas id="machineCanvas" style="width: 100%"></canvas>
+              <div id="machine_processes">
+                <div class="content table-content">
+                  <table class="main-table machine-table">
+                    <thead>
+                      <tr>
+                        <td>Processo</td>
+                        <td>Máquina</td>
+                        <td class="lastTdBorder">Horário</td>
+                      </tr>
+                    </thead>
+                    <tbody id="machineProcessesDisplay">
+                      <!-- ADD PROCESSES HERE -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-          <div style="grid-area: process"></div>
           <!-- <div class="process-info"></div> -->
         </div>
         <ion-icon
@@ -523,7 +553,9 @@
   <script src="./js/fetches/machineFetch/removeMachine.js"></script>
   <script src="./js/fetches/machineFetch/editMachine.js"></script>
   <script src="./js/fetches/machineFetch/showMachines.js"></script>
+  <script src="./js/fetches/machineFetch/getMachinesData.js"></script>
   <!-- DASH -->
+  <script src="./js/fetches/dashboardFetch/showKilledProcesses.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/closeMachineDash.js"></script>
   <script src="./js/fetches/dashboardFetch/machineDashContent.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/styleVars.js"></script>

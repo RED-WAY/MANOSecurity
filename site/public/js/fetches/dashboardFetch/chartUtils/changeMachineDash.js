@@ -8,6 +8,14 @@ function changeMachineDash(component, fkMachine) {
     button.classList.add("sub-activated");
 
     closeMachineDash();
-    getStartupData(component, fkMachine);
+    if (button.id !== "PROCESSOS") {
+      machineCanvas.style.display = "flex";
+      machine_processes.style.display = "none";
+      getStartupData(component, fkMachine);
+    } else {
+      machineCanvas.style.display = "none";
+      machine_processes.style.display = "flex";
+      showKilledProcesses(fkMachine);      
+    }
   }
 }

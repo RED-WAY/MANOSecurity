@@ -13,7 +13,7 @@ function logIn(emailModel, passwordModel) {
     SELECT *, fkCompany as company 
       FROM Consumer
         WHERE consumerEmail = '${emailModel}' 
-          AND consumerPassword = AES_ENCRYPT('${passwordModel}', '${encrypter}');
+          AND consumerPassword = '${passwordModel}';
     `;
   } else if (env === "production") {
     dbQuery = `
@@ -97,7 +97,7 @@ function addConsumer(
   if (env === "development") {
     dbQuery = `
     INSERT INTO consumer(consumerName, consumerEmail, consumerPassword, management, fkManager, fkCompany) VALUES 
-      ("${consumerName}","${consumerEmail}", AES_ENCRYPT('${consumerPassword}', '${encrypter}'), "${management}", ${fkManager}, ${fkCompany});
+      ("${consumerName}","${consumerEmail}", '${consumerPassword}', "${management}", ${fkManager}, ${fkCompany});
     `;
   } else if (env === "production") {
     dbQuery = `

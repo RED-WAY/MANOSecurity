@@ -61,18 +61,46 @@ function showMachines(req, res) {
   }
 }
 
+function getMachinesData(req, res) {
+  const fkCompanyController = req.params.fkCompany;
+
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController undefined");
+    return false;
+  } else {
+    machineModel
+      .getMachinesData(fkCompanyController)
+      .then(function (result) {
+        res.json(result);
+        console.log("on machineController");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
 function deleteMachine(req, res) {
   const fkMachineController = req.params.idMachine;
 
   machineModel
-    .deleteMachineHardware("dynamicHardware", fkMachineController)
+    .deleteMachineHardware("operationKilled", fkMachineController)
     .then(function (result) {
       machineModel
-        .deleteMachineHardware("constantHardware", fkMachineController)
-        .then((_) => {
-          machineModel.deleteMachine(fkMachineController).then((result) => {
-            res.json(result);
-          });
+        .deleteMachineHardware("dynamicHardware", fkMachineController)
+        .then(function (result) {
+          machineModel
+            .deleteMachineHardware("constantHardware", fkMachineController)
+            .then((_) => {
+              machineModel.deleteMachine(fkMachineController).then((result) => {
+                res.json(result);
+              });
+            });
         });
     })
     .catch(function (error) {
@@ -90,13 +118,10 @@ function editMachine(req, res) {
   if (idMachineController == undefined) {
     console.log("idMachineController is undefined!");
     return false;
-  } else if (
-    machineNameController == undefined ||
-    machineNameController == ""
-  ) {
+  } else if (machineNameController == undefined) {
     console.log("machineNameController is undefined!");
     return false;
-  } else if (fkFamilyController == undefined || fkFamilyController == "") {
+  } else if (fkFamilyController == undefined) {
     console.log("fkFamilyController is undefined!");
     return false;
   } else {
@@ -120,6 +145,7 @@ function editMachine(req, res) {
 module.exports = {
   addMachine,
   showMachines,
+  getMachinesData,
   deleteMachine,
   editMachine,
 };

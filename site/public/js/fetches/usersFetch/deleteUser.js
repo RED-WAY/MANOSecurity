@@ -11,7 +11,6 @@ function updateMachineAdder(fkManager, idConsumer) {
   })
     .then(function (result) {
       if (result.ok) {
-        showMachines();
         updateChildrenManager(fkManager, idConsumer);
       } else if (result.status == 404) {
         window.alert("error 404!");

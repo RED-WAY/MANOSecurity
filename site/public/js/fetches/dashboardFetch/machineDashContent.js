@@ -45,10 +45,8 @@ function machineDashContent(idMachine) {
         "error",
         "Aconteceu algum erro enquanto carregavam os dados da máquina!"
       );
-    });
-  // setTimeout(() => {
+    });  
   hideLoading();
-  // }, 2000);
   return false;
 }
 

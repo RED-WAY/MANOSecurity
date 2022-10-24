@@ -1,9 +1,51 @@
 const database = require("../database/config");
 const env = process.env.ENV;
 
+function showKilledProcesses(idCompany, idMachine) {
+  console.log(
+    "ACCESSING DASH MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function showKilledProcesses()",
+    idCompany,
+    idMachine
+  );
+  let dbQuery = "";
+  if (env === "development") {
+    dbQuery = `
+    SELECT operationName, fkMachine, machineName, 
+      DATE_FORMAT(operationKilled.dtAdded, '%d/%m/%Y-%H:%i') AS dtAdded, 
+        FROM operationKilled JOIN operation ON idOperation = fkOperation 
+          JOIN machine ON idMachine = fkMachine 
+            WHERE fkCompany = ${idCompany} 
+              AND fkMachine = ${
+                typeof idMachine === "string" ? idMachine : `'${idMachine}'`
+              } 
+                ORDER BY dtAdded DESC;
+      `;
+  } else if (env === "production") {
+    dbQuery = `
+    SELECT operationName, fkMachine, machineName, 
+      FORMAT(SWITCHOFFSET(operationKilled.dtAdded, '-03:00'), 'dd/MM/yy-HH:mm') AS dtAdded 
+        FROM operationKilled JOIN operation ON idOperation = fkOperation 
+          JOIN machine ON idMachine = fkMachine 
+            WHERE fkCompany = ${idCompany} 
+              AND fkMachine = ${
+                typeof idMachine === "string" ? idMachine : `'${idMachine}'`
+              } 
+                ORDER BY dtAdded DESC;
+    `;
+  } else {
+    console.error(
+      "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executing SQL query: \n" + dbQuery);
+  return database.executeQuery(dbQuery);
+}
+
 function getMachineConstantHardware(idMachine) {
   console.log(
-    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getMachineConstantHardware(): ",
+    "ACCESSING DASH MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getMachineConstantHardware(): ",
     idMachine
   );
   const dbQuery = `       
@@ -24,7 +66,7 @@ function getMachineConstantHardware(idMachine) {
 
 function getStartupData(column, fkMachine, qttData) {
   console.log(
-    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getStartupData(): ",
+    "ACCESSING DASH MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getStartupData(): ",
     column,
     fkMachine,
     qttData
@@ -59,7 +101,7 @@ function getStartupData(column, fkMachine, qttData) {
 
 function getCurrentData(column, fkMachine) {
   console.log(
-    "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getCurrentData(): ",
+    "ACCESSING DASH MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function getCurrentData(): ",
     column,
     fkMachine
   );
@@ -92,6 +134,7 @@ function getCurrentData(column, fkMachine) {
 }
 
 module.exports = {
+  showKilledProcesses,
   getMachineConstantHardware,
   getStartupData,
   getCurrentData,

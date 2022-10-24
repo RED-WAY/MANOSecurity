@@ -1,5 +1,5 @@
 // CHANGE SECTIONS VISIBILITY
-let actualSection = "#dispositivos";
+let actualSection = "#processes";
 function showSection(sectionClass) {
   if (sessionStorage.OFFICE_USER !== "MASTER" && sectionClass === "#usuarios") {
     throw "Not allowed to access this section!";

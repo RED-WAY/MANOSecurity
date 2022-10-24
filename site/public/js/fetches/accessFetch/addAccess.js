@@ -1,34 +1,32 @@
 function addAccess() {
   showLoading();
 
-  const typeVar = access_type_select.value;
-  const nameVar = access_name.value.trimStart().trimEnd();
-  const processVar = access_path.value.trimStart().trimEnd();
+  const operationNameVar = access_name.value.toUpperCase().replace(/\s+/g, "");
+  const operationTypeVar = access_type_select.value;
 
-  if (typeVar == "") {
-    hideLoading();
-    hideConfirm();
-    showMessage("warning", "Tipo de acesso não foi escolhido!");
-  } else if (nameVar == "") {
+  if (operationNameVar == "") {
     hideLoading();
     hideConfirm();
     showMessage("warning", "Nome do acesso não foi definido!");
-  } else if (processVar == "") {
+  } else if (operationTypeVar == "") {
     hideLoading();
     hideConfirm();
-    showMessage("warning", "Cadastre o nome do processo no sistema!");
+    showMessage("warning", "Tipo de acesso não foi escolhido!");
   } else {
-    fetch(`/access/checkAccessGlobally/${typeVar}/${nameVar}/${processVar}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `/access/checkAccessGlobally/${operationNameVar}/${operationTypeVar}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then(function (result) {
         if (result.ok) {
           result.json().then((data) => {
             if (data.length == 0) {
-              addAccessGlobal(typeVar, nameVar, processVar);
+              addAccessGlobal(operationNameVar, operationTypeVar);
             } else {
               addAccessCompany(data[0].idOperation);
             }
@@ -55,16 +53,15 @@ function addAccess() {
   }
 }
 
-function addAccessGlobal(typeVar, nameVar, processVar) {
+function addAccessGlobal(operationNameVar, operationTypeVar) {
   fetch("/access/addAccessGlobal", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      typeServer: typeVar,
-      nameServer: nameVar,
-      processServer: processVar,
+      operationNameServer: operationNameVar,
+      operationTypeServer: operationTypeVar,
     }),
   })
     .then(function (result) {

@@ -153,7 +153,7 @@
 
   #dash_card > div {
     /* DISPLAY */
-    grid-template-columns: 22% auto;
+    grid-template-columns: 36% auto;
   }
 }
 @media (min-width: 1840px) {

@@ -25,7 +25,7 @@ function showFamilies() {
           for (let i = 0; i < res.length; i++) {
             if (i == 0 || res[i].idFamily != res[i - 1].idFamily) {
               colecoes_content.innerHTML += `
-               
+              
               <div class="card-info" id="${res[i].idFamily}">
               <ion-icon name="layers-outline"></ion-icon>
               <div class="card-buttons">
@@ -51,7 +51,7 @@ function showFamilies() {
                 </button>
               </div>
               <h3 id="level_family1">LEVEL: ${res[i].familyLevel}</h3>
-              <h2 id="name_family1">Name: ${res[i].familyName}</h2>
+              <h2 id="name_family1">nome: ${res[i].familyName}</h2>
                 <p id="access_preview_${res[i].idFamily}">
                     
                 </p>

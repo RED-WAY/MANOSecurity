@@ -1,23 +1,16 @@
 const accessModel = require("../models/accessModel");
 
 function checkAccessGlobally(req, res) {
-  const operationNameController = req.params.name;
-  const operationPathController = req.params.process;
-  const operationTypeController = req.params.type;
+  const operationNameController = req.params.operationName;
+  const operationTypeController = req.params.operationType;
 
   if (operationNameController == undefined) {
     res.status(400).send("operationNameController is undefined!");
-  } else if (operationPathController == undefined) {
-    res.status(400).send("operationPathController is undefined!");
   } else if (operationTypeController == undefined) {
     res.status(400).send("operationTypeController is undefined");
   } else {
     accessModel
-      .checkAccessGlobally(
-        operationNameController,
-        operationPathController,
-        operationTypeController
-      )
+      .checkAccessGlobally(operationNameController, operationTypeController)
       .then(function (result) {
         res.json(result);
         console.log("on accessController");
@@ -34,21 +27,17 @@ function checkAccessGlobally(req, res) {
 }
 
 function addAccessGlobal(req, res) {
-  const operationNameController = req.body.nameServer;
-  const operationPathController = req.body.processServer;
-  const operationTypeController = req.body.typeServer;
+  const operationNameController = req.body.operationNameServer;
+  const operationTypeController = req.body.operationTypeServer;
 
   if (operationNameController == undefined) {
     res.status(400).send("operationNameController is undefined!");
-  } else if (operationPathController == undefined) {
-    res.status(400).send("operationPathController is undefined!");
   } else if (operationTypeController == undefined) {
     res.status(400).send("operationTypeController is undefined");
   } else {
     accessModel
-      .addAccessGlobal(operationNameController, operationPathController, operationTypeController)
+      .addAccessGlobal(operationNameController, operationTypeController)
       .then(function (result) {
-        console.log(result);
         res.json(result);
         console.log("on accessController");
       })

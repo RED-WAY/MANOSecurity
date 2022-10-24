@@ -40,7 +40,11 @@ html[data-theme="light"] {
   --font-gray: #747474;
 
   --success: #04cf55;
+  --success-light: #1ec762;
   --success-trans: #04cf5599;
+
+  --warning: #ffa500;
+  --warning-light: #ffb224; 
 
   --table-hover: #aaa;
 
@@ -70,7 +74,11 @@ html[data-theme="dark"] {
   --font-gray: #919191;
 
   --success: #007E33;
+  --success-light: #00b549;
   --success-trans: #007E3350;
+
+  --warning: #9b6400;
+  --warning-light: #eba018; 
 
   --table-hover: #5f5f5f;
 

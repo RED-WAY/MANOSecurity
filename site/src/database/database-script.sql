@@ -48,16 +48,16 @@ DESC Consumer;
 
 /*Consumer data insertion*/
 INSERT INTO consumer VALUES 
-    (NULL, 'test', 'test@gmail.com', AES_ENCRYPT("1234", "corinthians"), 'MASTER', DEFAULT, NULL, 1),
-    (NULL, 'test2', 'test2@gmail.com', AES_ENCRYPT("1234", "corinthians"), 'MASTER', DEFAULT, NULL, 2);
+    (NULL, 'test', 'test@gmail.com', "1234", 'MASTER', DEFAULT, NULL, 1),
+    (NULL, 'test2', 'test2@gmail.com', "1234", 'MASTER', DEFAULT, NULL, 2);
 -- INSERT INTO consumer VALUES 
--- 	(null, "test", "test@gmail.com", AES_ENCRYPT("1234", "corinthians"), "MASTER", default, null, 1),
---     (null, "test2", "test2@gmail.com", AES_ENCRYPT("1234", "corinthians"), "MASTER", default, null, 2),
---     (null, "Danillo Borba", "danborba@gmail.com", AES_ENCRYPT("Baa34569034", "corinthians"), "MASTER", default, 1, 1),
---     (null, "Paulo Ranea", "paulogono@hotmail.com", AES_ENCRYPT("UUU38535850", "corinthians"), "ADMIN", default, 2, 2),
---     (null, "Andrey Gigabyte", "andgiga@gmail.com", AES_ENCRYPT("Dew255948947", "corinthians"), "ADMIN", default, 3, 1),
---     (null, "Arthur Itaquerense", "artitaq@gmail.com", AES_ENCRYPT("bwf36234366", "corinthians"), "ANALYST", default, 1, 1),
---     (null, "Vinicius Mengo", "vinicinho@gmail.com", AES_ENCRYPT("Ab45579021", "corinthians"), "ANALYST", default, null, 3);
+-- 	(null, "test", "test@gmail.com", "1234", "MASTER", default, null, 1),
+--     (null, "test2", "test2@gmail.com", "1234", "MASTER", default, null, 2),
+--     (null, "Danillo Borba", "danborba@gmail.com", "Baa34569034", "MASTER", default, 1, 1),
+--     (null, "Paulo Ranea", "paulogono@hotmail.com", "UUU38535850", "ADMIN", default, 2, 2),
+--     (null, "Andrey Gigabyte", "andgiga@gmail.com", "Dew255948947", "ADMIN", default, 3, 1),
+--     (null, "Arthur Itaquerense", "artitaq@gmail.com", "bwf36234366", "ANALYST", default, 1, 1),
+--     (null, "Vinicius Mengo", "vinicinho@gmail.com", "Ab45579021", "ANALYST", default, null, 3);
 
 /*Creation of Family table*/
 CREATE TABLE family (
@@ -85,7 +85,7 @@ DESC family;
 /*Creation of Machine table*/
 CREATE TABLE machine (
 	idMachine INT PRIMARY KEY AUTO_INCREMENT,
-    manoCode VARCHAR (30),
+    manoCode VARCHAR (60),
     machineName VARCHAR (20),
     dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
     isUsing CHAR(3) DEFAULT 'not', CONSTRAINT chkMachineUse CHECK 
@@ -137,7 +137,6 @@ CREATE TABLE dynamicHardware (
 	idDynamicHardware INT PRIMARY KEY AUTO_INCREMENT,
 	cpu INT,
 	ram INT,
-	activityTime VARCHAR(30),
     dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
 	fkMachine INT,
 	FOREIGN KEY (fkMachine) REFERENCES machine(idMachine)
@@ -154,8 +153,7 @@ DESC dynamicHardware;
 /*Creation of Operation table*/
 CREATE TABLE operation (
 	idOperation INT PRIMARY KEY AUTO_INCREMENT,
-	operationName VARCHAR (50),
-	operationPath VARCHAR (300),
+	operationName VARCHAR (100) NOT NULL UNIQUE,
 	operationType CHAR (7), CONSTRAINT chkOperationType CHECK 
 	(operationType = "web" or operationType = "desktop")
 );
@@ -223,16 +221,13 @@ DESC familyOperations;
 
 
 /*Creation of OperationRunning table*/
-CREATE TABLE operationRunning (
+CREATE TABLE operationKilled (
 	idOperationRunning INT AUTO_INCREMENT,
+    dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
 	fkMachine INT,
 	FOREIGN KEY (fkMachine) REFERENCES Machine(idMachine),
     fkOperation INT,
-    FOREIGN KEY (fkOperation) REFERENCES Operation(idOperation),
-    PRIMARY KEY (idOperationRunning, fkMachine, fkOperation),
-    operationStats CHAR (7), CONSTRAINT chkOperationStats CHECK 
-	(operationStats = "running" or operationStats = "stopped"),
-    lastUsed DATETIME DEFAULT CURRENT_TIMESTAMP
+    FOREIGN KEY (fkOperation) REFERENCES Operation(idOperation)
 );
 
 /*Description of OperationRunning table*/
@@ -255,7 +250,7 @@ SELECT * FROM consumer;
 SELECT * FROM company;
 SELECT * FROM machine;
 SELECT * FROM hardware;
-SELECT * FROM operationRunning;
+SELECT * FROM operationKilled;
 SELECT * FROM operation;
 SELECT * FROM family;
 SELECT * FROM familyOperations;
@@ -311,7 +306,7 @@ CREATE TABLE family
 CREATE TABLE machine
 (
     idMachine INT PRIMARY KEY IDENTITY(1,1),
-    manoCode VARCHAR (30),
+    manoCode VARCHAR (60),
     machineName VARCHAR (20),
     dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
     isUsing CHAR(3) DEFAULT 'not',
@@ -339,7 +334,6 @@ CREATE TABLE dynamicHardware
     idDynamicHardware INT PRIMARY KEY IDENTITY(1,1),
     cpu INT,
     ram INT,
-    activityTime VARCHAR(30),
     dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
     fkMachine INT FOREIGN KEY REFERENCES machine(idMachine)
 );
@@ -347,8 +341,8 @@ CREATE TABLE dynamicHardware
 CREATE TABLE operation
 (
     idOperation INT PRIMARY KEY IDENTITY(1,1),
-    operationName VARCHAR (50),
-    operationPath VARCHAR (150),
+    operationName VARCHAR (100) NOT NULL,
+    CONSTRAINT UQ_OperationName UNIQUE (operationName),
     operationType CHAR (7),
     CONSTRAINT chkOperationType CHECK 
 	(operationType = 'web' or operationType = 'desktop')
@@ -368,13 +362,10 @@ CREATE TABLE familyOperations
     fkFamily INT FOREIGN KEY REFERENCES family(idFamily)
 );
 
-CREATE TABLE operationRunning
+CREATE TABLE operationKilled
 (
-    idOperationRunning INT PRIMARY KEY IDENTITY(1,1),
-    operationStats CHAR (7),
-    CONSTRAINT chkOperationStats CHECK 
-	(operationStats = 'running' or operationStats = 'stopped'),
-    lastUsed DATETIME DEFAULT CURRENT_TIMESTAMP,
+    idOperationKilled INT PRIMARY KEY IDENTITY(1,1),
+    dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
     fkMachine INT FOREIGN KEY REFERENCES Machine(idMachine),
     fkOperation INT FOREIGN KEY REFERENCES Operation(idOperation)
 );

@@ -1,6 +1,6 @@
-function paintUsersOnClick() {
+function paintRowsOnClick() {
   // users select interaction
-  const rows = document.querySelector("tbody").children;
+  const rows = document.querySelector("#usersDisplay").children;
   for (const tr of rows) {
     tr.addEventListener("click", function () {
       // verify if it's the same selected
@@ -26,7 +26,6 @@ function resetFields() {
   machine_name.value = "";
   family_name.value = "";
   access_name.value = "";
-  access_path.value = "";
   user_name.value = "";
   user_email.value = "";
   user_password.value = "";
@@ -36,7 +35,6 @@ function resetFields() {
     "userEmail",
     "userPassword",
     "accessName",
-    "accessPath",
     "familyName",
     "machineName",
   ].map((id) => {
@@ -56,7 +54,7 @@ function resetFields() {
 function loadMachineInputs(machineId) {
   machine_name.value = document
     .querySelector(`#name_machine${machineId}`)
-    .innerHTML.replace("Name: ", "")
+    .innerHTML.replace("nome: ", "")
     .trimStart()
     .trimEnd();
   const selectValue = document
@@ -154,7 +152,6 @@ addAnimatedLabelEvent([
   "userEmail",
   "userPassword",
   "accessName",
-  "accessPath",
   "familyName",
   "machineName",
 ]);

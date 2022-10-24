@@ -1,11 +1,6 @@
 @import "./variables.css";
 
 @media (min-width: 426px) {
-  .card-buttons button ion-icon {
-    /* ICON SIZE */
-    font-size: 3em;
-  }
-
   .user-btn {
     /* POSITION */
     margin-right: 2em;
@@ -14,6 +9,11 @@
   .copy-token ion-icon {
     /* SIZE */
     font-size: 3.4em !important;
+  }
+
+  .div-mini-hard {
+    /* SIZE */
+    max-width: 58px;
   }
 }
 
@@ -66,9 +66,31 @@
   }
 }
 
+@media (min-width: 1025px) {
+  .card-info {
+    /* DISPLAY */
+    grid-template-columns: 28% auto 52%;
+  }
+
+  .div-mini-hard {
+    /* SIZE */
+    max-width: 70px;
+  }
+}
+
 @media (min-width: 1441px) {
+  .card-info {
+    /* DISPLAY */
+    grid-template-columns: 28% auto 44%;
+  }
+
   #dispositivos .content {
     /* DISPLAY */
     grid-template-columns: repeat(auto-fit, minmax(565px, 1fr));
+  }
+
+  .div-mini-hard {
+    /* SIZE */
+    max-width: 76px;
   }
 }
