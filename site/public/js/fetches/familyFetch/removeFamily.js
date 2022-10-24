@@ -12,7 +12,6 @@ function removeFamily(fkFamily) {
   })
     .then(function (result) {
       if (result.ok) {
-        showMachines();
         removeFromFamilyOperations(fkFamily, removeFromFamily, fkFamily);
       } else if (result.status == 404) {
         window.alert("error 404!");

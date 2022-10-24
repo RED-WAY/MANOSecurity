@@ -1,5 +1,35 @@
 const dashModel = require("../models/dashModel");
 
+function showKilledProcesses(req, res) {
+  const fkCompanyController = req.params.fkCompany;
+  const idMachineController = req.params.idMachine;
+
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController is undefined!");
+    return false;
+  } else if (idMachineController == undefined) {
+    console.log("idMachineController is undefined!");
+  } else {
+    dashModel
+      .showKilledProcesses(fkCompanyController, idMachineController)
+      .then(function (result) {
+        if (result.length > 0) {
+          res.status(200).json(result);
+        } else {
+          res.status(204).send("No processes was killed!");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
 function getMachineConstantHardware(req, res) {
   const idMachineController = req.params.idMachine;
 
@@ -72,6 +102,7 @@ function getCurrentData(req, res) {
 }
 
 module.exports = {
+  showKilledProcesses,
   getMachineConstantHardware,
   getStartupData,
   getCurrentData,

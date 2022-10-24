@@ -164,22 +164,22 @@ section section {
   overflow-x: hidden;
 }
 
-.sec .content::-webkit-scrollbar {
+.sec .content .graph::-webkit-scrollbar {
   /* SIZE */
   width: 4px;
   height: 4px;
   /* SCROLL */
   scroll-behavior: smooth;
 }
-.sec .content::-webkit-scrollbar-track {
+.sec .content .graph::-webkit-scrollbar-track {
   /* BACKGROUND */
   background: var(--white);
 }
-.sec .content::-webkit-scrollbar-thumb {
+.sec .content .graph::-webkit-scrollbar-thumb {
   /* BACKGROUND */
   background: var(--gray);
 }
-.sec .content::-webkit-scrollbar-thumb:hover {
+.sec .content .graph::-webkit-scrollbar-thumb:hover {
   /* BACKGROUND */
   background: var(--red-alt);
 }
@@ -381,7 +381,7 @@ section section {
   /* POSITION */
   padding: 1em;
   /* DISPLAY */
-  grid-template-columns: auto;
+  grid-template-columns: auto !important;
   grid-template-areas:
     "image"
     "sub "
@@ -408,8 +408,13 @@ section section {
 
 /* TABLE */
 .table-content {
+  /* SIZE */
+  width: 100%;
   /* POSITION */
+  margin: 0;
   padding: 0 !important;
+  /* TEXT */
+  text-align: center;
   /* BORDER */
   border-radius: 0 !important;
   /* SCROLL */
@@ -421,8 +426,22 @@ section section {
   width: 99.8%;
 }
 
+.machine-table td {
+  /* SPACING */
+  padding: 0.3em;
+}
+.machine-table thead td {
+  /* TEXT */
+  font-size: 1em;
+}
+.machine-table tbody td {
+  /* TEXT */
+  font-size: 0.8em;
+}
+
 /* SECTIONS */
-/* #dispositivos, */
+/* #processes, */
+#dispositivos,
 #colecoes,
 #acessos,
 #usuarios,
@@ -503,4 +522,8 @@ section section {
   to {
     color: var(--red-light);
   }
+}
+
+#machine_processes {
+  display: none;
 }

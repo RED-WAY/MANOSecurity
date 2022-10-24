@@ -4,10 +4,7 @@ function getFamily() {
   if (idCompanyVar == undefined) {
     hideLoading();
     hideConfirm();
-    showMessage(
-      "warning",
-      "ID da empresa não foi definida!"
-    );
+    showMessage("warning", "ID da empresa não foi definida!");
     return false;
   } else {
     fetch(`/family/getFamily/${idCompanyVar}`, {
@@ -21,7 +18,7 @@ function getFamily() {
           result.json().then((json) => {
             machine_family_select.innerHTML =
               "<option value='' disabled selected>selecionar grupo</option>";
-            for (var i = 0; i < json.length; i++) {
+            for (let i = 0; i < json.length; i++) {
               machine_family_select.innerHTML += `<option value="${json[i].idFamily}">${json[i].familyName}</option>`;
             }
           });

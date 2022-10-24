@@ -89,14 +89,18 @@ function deleteMachine(req, res) {
   const fkMachineController = req.params.idMachine;
 
   machineModel
-    .deleteMachineHardware("dynamicHardware", fkMachineController)
+    .deleteMachineHardware("operationKilled", fkMachineController)
     .then(function (result) {
       machineModel
-        .deleteMachineHardware("constantHardware", fkMachineController)
-        .then((_) => {
-          machineModel.deleteMachine(fkMachineController).then((result) => {
-            res.json(result);
-          });
+        .deleteMachineHardware("dynamicHardware", fkMachineController)
+        .then(function (result) {
+          machineModel
+            .deleteMachineHardware("constantHardware", fkMachineController)
+            .then((_) => {
+              machineModel.deleteMachine(fkMachineController).then((result) => {
+                res.json(result);
+              });
+            });
         });
     })
     .catch(function (error) {
@@ -114,13 +118,10 @@ function editMachine(req, res) {
   if (idMachineController == undefined) {
     console.log("idMachineController is undefined!");
     return false;
-  } else if (
-    machineNameController == undefined ||
-    machineNameController == ""
-  ) {
+  } else if (machineNameController == undefined) {
     console.log("machineNameController is undefined!");
     return false;
-  } else if (fkFamilyController == undefined || fkFamilyController == "") {
+  } else if (fkFamilyController == undefined) {
     console.log("fkFamilyController is undefined!");
     return false;
   } else {

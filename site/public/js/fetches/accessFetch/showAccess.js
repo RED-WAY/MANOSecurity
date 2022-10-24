@@ -21,7 +21,7 @@ function showAccess() {
       if (result.ok) {
         result.json().then((json) => {
           acessos_content.innerHTML = "";
-          for (var i = 0; i < json.length; i++) {
+          for (let i = 0; i < json.length; i++) {
             acessos_content.innerHTML += `               
                 <div class="card-info acessos-info" id="${json[i].idOperation}">
                 <ion-icon name="lock-open-outline"></ion-icon>
@@ -44,7 +44,7 @@ function showAccess() {
 
           const divCheck = document.querySelector(".div-checks");
           divCheck.innerHTML = "";
-          for (var i = 0; i < json.length; i++) {
+          for (let i = 0; i < json.length; i++) {
             divCheck.innerHTML += `
             <div class="pretty p-default p-default p-thick p-pulse manos-check">
                       <input type="checkbox" class="get-checks" id="${json[i].idCompanyOperations}" />

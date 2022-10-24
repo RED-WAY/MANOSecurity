@@ -15,7 +15,7 @@ function showUsers() {
         usersDisplay.innerHTML = "";
         if (result.status == 200) {
           result.json().then((users) => {
-            for (var i = 0; i < users.length; i++) {
+            for (let i = 0; i < users.length; i++) {
               usersDisplay.innerHTML += `
               <tr onclick="userBtnAttributes(true, '${users[i].idConsumer}', '${
                 users[i].fkManager
@@ -28,7 +28,7 @@ function showUsers() {
               </tr> 
         `;
             }
-            paintUsersOnClick();
+            paintRowsOnClick();
           });
         } else {
           hideLoading();
