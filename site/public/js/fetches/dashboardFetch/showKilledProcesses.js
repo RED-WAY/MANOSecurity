@@ -13,7 +13,6 @@ function showKilledProcesses(idMachine) {
       if (result.ok) {
         if (result.status == 200) {
           result.json().then((processes) => {
-            console.log("AAA");
             if (typeof idMachine === "string") {
               processesDisplay.innerHTML = "";
               for (let i = 0; i < processes.length; i++) {
