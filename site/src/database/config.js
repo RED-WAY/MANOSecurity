@@ -18,12 +18,12 @@ const sqlServerConfig = {
 };
 
 // MYSQL WORKBENCH (LOCAL)
-const mySqlConfig = {
-  host: process.env.MYSQL_HOST,
-  database: process.env.MYSQL_DATABASE,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-};
+// const mySqlConfig = {
+//   host: process.env.MYSQL_HOST,
+//   database: process.env.MYSQL_DATABASE,
+//   user: process.env.MYSQL_USER,
+//   password: process.env.MYSQL_PASSWORD,
+// };
 
 function executeQuery(modelQuery) {
   if (process.env.ENV == "production") {
