@@ -43,7 +43,7 @@ function showKilledProcesses(idMachine) {
         } else {
           processesDisplay.innerHTML = "";
           hideLoading();
-          showMessage("warning", "Nenhum processo foi morto!");
+          showMessage("warning", "Nenhum processo morto foi encontrado!");
         }
       } else {
         hideConfirm();

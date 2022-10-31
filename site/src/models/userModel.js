@@ -93,23 +93,10 @@ function addConsumer(
     fkCompany
   );
 
-  let dbQuery = "";
-  if (env === "development") {
-    dbQuery = `
-    INSERT INTO consumer(consumerName, consumerEmail, consumerPassword, management, fkManager, fkCompany) VALUES 
-      ("${consumerName}","${consumerEmail}", '${consumerPassword}', "${management}", ${fkManager}, ${fkCompany});
-    `;
-  } else if (env === "production") {
-    dbQuery = `
+  const dbQuery = `
     INSERT INTO consumer(consumerName, consumerEmail, consumerPassword, management, fkManager, fkCompany) VALUES 
       ('${consumerName}','${consumerEmail}', '${consumerPassword}', '${management}', ${fkManager}, ${fkCompany});
     `;
-  } else {
-    console.error(
-      "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"
-    );
-    return;
-  }
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -131,29 +118,13 @@ function editConsumer(
     idConsumer
   );
 
-  let dbQuery = "";
-  if (env === "development") {
-    dbQuery = `
-    UPDATE consumer 
-      SET consumerName = "${consumerName}", consumerEmail = "${consumerEmail}", 
-        consumerPassword = AES_ENCRYPT('${consumerPassword}', '${encrypter}'),  
-          management = "${management}" 
-            WHERE idConsumer = ${idConsumer};
-    `;
-  } else if (env === "production") {
-    dbQuery = `
+  const dbQuery = `
     UPDATE consumer 
       SET consumerName = '${consumerName}', consumerEmail = '${consumerEmail}', 
         consumerPassword = '${consumerPassword}',  
           management = '${management}' 
             WHERE idConsumer = ${idConsumer};
     `;
-  } else {
-    console.error(
-      "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"
-    );
-    return;
-  }
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);
@@ -199,7 +170,7 @@ function deleteConsumer(idConsumer) {
   const dbQuery = `
         DELETE FROM consumer 
           WHERE idConsumer = ${idConsumer};
-         `;
+        `;
 
   console.log("Executing SQL query: \n" + dbQuery);
   return database.executeQuery(dbQuery);

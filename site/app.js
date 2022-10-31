@@ -1,4 +1,3 @@
-require("dotenv").config();
 // CHOOSE ENVIRONMENT
 // process.env.ENV = "development";
 process.env.ENV = "production";
@@ -41,3 +40,5 @@ app.listen(PORT, function () {
     \t\tIf "production" => connected to remote database (SQL Server - Azure) \n
     \t\t\tTo SWITCH ENVIRONMENT, comment or uncomment the first 2 lines at: app.js`);
 });
+
+const telegram = require("./telegram.js");

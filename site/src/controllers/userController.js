@@ -1,6 +1,7 @@
 const userModel = require("../models/userModel");
 
 function logIn(req, res) {
+  console.log(req.body);
   const emailController = req.body.emailServer;
   const passwordController = req.body.passwordServer;
 
@@ -79,7 +80,7 @@ function addConsumer(req, res) {
   } else if (consumerEmailController == undefined) {
     console.log("consumerEmail is undefined");
   } else if (consumerPasswordController == undefined) {
-    console.log("consumerPassowrd is undefined");
+    console.log("consumerPassword is undefined");
   } else if (managementController == undefined) {
     console.log("management is undefined");
   } else if (managerController == undefined) {
