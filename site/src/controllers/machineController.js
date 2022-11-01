@@ -2,12 +2,15 @@ const machineModel = require("../models/machineModel");
 
 function addMachine(req, res) {
   const machineNameController = req.body.machineNameServer;
+  const machineClassroomController = req.body.machineClassroomServer;
   const fkConsumerController = req.body.fkConsumerServer;
   const fkCompanyController = req.body.fkCompanyServer;
   const fkFamilyController = req.body.fkFamilyServer;
 
   if (machineNameController == undefined) {
     res.status(400).send("machineNameController is undefined!");
+  } else if (machineClassroomController == undefined) {
+    res.status(400).send("machineClassroomController is undefined!");
   } else if (fkConsumerController == undefined) {
     res.status(400).send("fkConsumerController is undefined!");
   } else if (fkCompanyController == undefined) {
@@ -18,6 +21,7 @@ function addMachine(req, res) {
     machineModel
       .addMachine(
         machineNameController,
+        machineClassroomController,
         fkConsumerController,
         fkCompanyController,
         fkFamilyController
@@ -113,6 +117,7 @@ function deleteMachine(req, res) {
 function editMachine(req, res) {
   const idMachineController = req.params.idMachine;
   const machineNameController = req.body.machineNameServer;
+  const machineClassroomController = req.body.machineClassroomServer;
   const fkFamilyController = req.body.fkFamilyServer;
 
   if (idMachineController == undefined) {
@@ -120,6 +125,9 @@ function editMachine(req, res) {
     return false;
   } else if (machineNameController == undefined) {
     console.log("machineNameController is undefined!");
+    return false;
+  } else if (machineClassroomController == undefined) {
+    console.log("machineClassroomController is undefined!");
     return false;
   } else if (fkFamilyController == undefined) {
     console.log("fkFamilyController is undefined!");
@@ -129,6 +137,7 @@ function editMachine(req, res) {
       .editMachine(
         idMachineController,
         machineNameController,
+        machineClassroomController,
         fkFamilyController
       )
       .then(function (result) {

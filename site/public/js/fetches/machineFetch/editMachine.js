@@ -2,8 +2,27 @@ function editMachine(idMachine) {
   showLoading();
 
   const machineNameVar = machine_name.value.trimStart().trimEnd();
+  const machineClassroomVar = Number(machine_classroom.value.trimStart().trimEnd());
   const fkFamilyVar = machine_family_select.value;
-
+  if (machineNameVar == "") {
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Nome da máquina não foi definido!");
+    return false;
+  } else if (machineClassroomVar == "" || isNaN(machineClassroomVar)) {
+    hideLoading();
+    hideConfirm();
+    showMessage(
+      "warning",
+      "Sala do dispositivo não digitada!"
+    );
+    return false;
+  } else if (fkFamilyVar == "" || fkFamilyVar == undefined) {
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Coleção não existe!");
+    return false;
+  } else {
   fetch(`/machine/editMachine/${idMachine}`, {
     method: "PUT",
     headers: {
@@ -11,6 +30,7 @@ function editMachine(idMachine) {
     },
     body: JSON.stringify({
       machineNameServer: machineNameVar,
+      machineClassroomServer: machineClassroomVar,
       fkFamilyServer: fkFamilyVar,
     }),
   })
@@ -56,4 +76,5 @@ function editMachine(idMachine) {
         );
       }, 3000);
     });
+  }
 }

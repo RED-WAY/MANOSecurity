@@ -1,17 +1,18 @@
 const database = require("../database/config");
 const env = process.env.ENV;
 
-function addMachine(machineName, fkConsumer, fkCompany, fkFamily) {
+function addMachine(machineName, classroom, fkConsumer, fkCompany, fkFamily) {
   console.log(
     "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function addMachine(): ",
     machineName,
+    classroom,
     fkConsumer,
     fkCompany,
     fkFamily
   );
   const dbQuery = `
-        INSERT INTO machine(machineName, fkConsumer, fkCompany, fkFamily) VALUES 
-          ('${machineName}','${fkConsumer}', '${fkCompany}', ${fkFamily});
+        INSERT INTO machine(machineName, fkConsumer, fkCompany, fkFamily, classroom) VALUES 
+          ('${machineName}','${fkConsumer}', '${fkCompany}', ${fkFamily}, ${classroom});
         `;
 
   console.log("Executing SQL query: \n" + dbQuery);
@@ -26,7 +27,7 @@ function showMachines(fkCompany) {
   let dbQuery = "";
   if (env === "development") {
     dbQuery = `       
-    SELECT idMachine, machineName, isUsing, consumerName, familyName, idFamily, 
+    SELECT idMachine, machineName, classroom, isUsing, consumerName, familyName, idFamily, 
       DATE_FORMAT(machine.dtAdded, '%d/%m/%Y-%H:%i') AS dtAdded 
         FROM machine 
           LEFT JOIN family ON idFamily = fkFamily 
@@ -71,16 +72,18 @@ function getMachinesData(fkCompany) {
   return database.executeQuery(dbQuery);
 }
 
-function editMachine(idMachine, machineName, fkFamily) {
+function editMachine(idMachine, machineName, classroom, fkFamily) {
   console.log(
     "ACCESSING MACHINE MODEL! \n \n\t\t >> If 'Error: connect ECONNREFUSED',\n \t\t >> verify database credentials\n \t\t >> also verify if database server is running properly! \n\n function editMachine(): ",
     idMachine,
     machineName,
+    classroom,
     fkFamily
   );
   const dbQuery = `
           UPDATE machine 
             SET machineName = '${machineName}', 
+            classroom = ${classroom}, 
             fkFamily = ${fkFamily} 
               WHERE idMachine = ${idMachine};
         `;

@@ -217,6 +217,9 @@
       <section id="processes" class="sec">
         <div class="header">
           <h1>Processos Mortos</h1>
+        
+
+
         </div>
         <div class="content table-content">
           <table class="main-table">
@@ -224,7 +227,8 @@
               <tr>
                 <td>Processo</td>
                 <td>Máquina</td>
-                <td class="lastTdBorder">Horário</td>
+                <td>Horário</td>
+                <td class="lastTdBorder">Sala</td>
               </tr>
             </thead>
             <tbody id="processesDisplay">
@@ -233,6 +237,7 @@
           </table>
         </div>
       </section>
+
       <!-- machines -->
       <section id="dispositivos" class="sec">
         <div class="header">
@@ -386,6 +391,10 @@
           <div class="form__input input-machine edit">
             <label for="machineName">Nome</label>
             <input name="machineName" id="machine_name" type="text" />
+          </div>
+          <div class="form__input input-machine edit machine-classroom">
+            <label for="machineClassroom">Sala</label>
+            <input name="machineClassroom" id="machine_classroom" type="number" />
           </div>
           <!-- USERS -->
           <div class="form__input input-user edit">

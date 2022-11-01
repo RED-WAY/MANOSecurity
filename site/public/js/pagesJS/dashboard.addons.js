@@ -23,7 +23,9 @@ function paintRowsOnClick() {
 
 function resetFields() {
   // resetting input values
+  machine_family_select.value = "";
   machine_name.value = "";
+  machine_classroom.value = "";
   family_name.value = "";
   access_name.value = "";
   user_name.value = "";
@@ -37,6 +39,7 @@ function resetFields() {
     "accessName",
     "familyName",
     "machineName",
+    "machineClassroom",
   ].map((id) => {
     document
       .querySelector(`label[for="${id}"]`)
@@ -52,11 +55,20 @@ function resetFields() {
 }
 
 function loadMachineInputs(machineId) {
+  setTimeout(() => {
+    machine_family_select.value = document.querySelector(
+      `#family_machine${machineId}`
+    ).className;
+  }, 0);
+
   machine_name.value = document
     .querySelector(`#name_machine${machineId}`)
     .innerHTML.replace("nome: ", "")
     .trimStart()
     .trimEnd();
+  machine_classroom.value = Number(
+    document.querySelector(`#classroom_machine${machineId}`).innerHTML
+  );
   const selectValue = document
     .querySelector(`#machine${machineId}`)
     .children[2].id.replace("family_machine", "");
@@ -66,7 +78,7 @@ function loadMachineInputs(machineId) {
     machine_family_select.value = "";
   }
 
-  ["machineName"].map((id) => {
+  ["machineName", "machineClassroom"].map((id) => {
     document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
   });
 }
@@ -154,4 +166,5 @@ addAnimatedLabelEvent([
   "accessName",
   "familyName",
   "machineName",
+  "machineClassroom",
 ]);

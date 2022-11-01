@@ -96,7 +96,8 @@ CREATE TABLE machine (
 	fkCompany INT,
 	FOREIGN KEY (fkCompany) REFERENCES company(idCompany),
 	fkFamily INT,
-    FOREIGN KEY (fkFamily) REFERENCES family(idFamily)
+    FOREIGN KEY (fkFamily) REFERENCES family(idFamily),
+    classroom INT NOT NULL
 );
 
 /*Description of Machine table*/
@@ -105,13 +106,12 @@ DESC machine;
 /*Machine data insertion*/
 
 -- INSERT INTO machine VALUES
---	(null, "Chrome01", NOW(), DEFAULT, 1, 2, 2),
---	(null, "Chrome02", NOW(), DEFAULT, 2, 2, 3),
---	(null, "Chrome03", NOW(), DEFAULT, 2, 2, 4),
---	(null, "Chrome04", NOW(), DEFAULT, 3, 2, 5),
---	(null, "Dell01", NOW(), DEFAULT, 4, 1, 3),
---	(null, "Samsung03", NOW(), DEFAULT, 1, 5, 2),
---	(null, "Samsung06", NOW(), DEFAULT, 2, 5, 3);
+-- (null, null, "m1", null, DEFAULT, 1, 1, null, 1),
+-- (null, null, "m2", null, DEFAULT, 1, 1, null, 1),
+-- (null, null, "m3", null, DEFAULT, 1, 1, null, 2),
+-- (null, null, "m1", null, DEFAULT, 2, 2, null, 1),
+-- (null, null, "m2", null, DEFAULT, 2, 2, null, 1),
+-- (null, null, "m3", null, DEFAULT, 2, 2, null, 2);
 
 
 /*Creation of ConstantHardware table*/
@@ -240,9 +240,7 @@ DESC operationKilled;
 -- 	(null, null, 1, 1),
 --     (null, null, 1, 2),
 --     (null, null, 2, 1),
---     (null, null, 2, 2),
-
-
+--     (null, null, 2, 2);
 
 /*Beginning of the selects (data showing):*/
 
@@ -315,7 +313,8 @@ CREATE TABLE machine
 	(isUsing = 'yes' OR isUsing = 'not'),
     fkConsumer INT FOREIGN KEY REFERENCES consumer(idConsumer),
     fkCompany INT FOREIGN KEY REFERENCES company(idCompany),
-    fkFamily INT FOREIGN KEY REFERENCES family(idFamily)
+    fkFamily INT FOREIGN KEY REFERENCES family(idFamily),
+    classroom INT NOT NULL
 );
 
 CREATE TABLE constantHardware

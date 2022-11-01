@@ -22,6 +22,7 @@ function showKilledProcesses(idMachine) {
                   <td>${processes[i].operationName}</td>
                   <td>${processes[i].machineName}</td>
                   <td>${processes[i].dtAdded}</td>
+                  <td>${processes[i].classroom}</td>
                 </tr> 
                 `;
               }

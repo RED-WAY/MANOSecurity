@@ -460,6 +460,14 @@ section section {
   overflow-y: auto;
 }
 
+.machine-classroom {
+  /* SIZE */
+  max-width: 5em;
+}
+.machine-classroom input {
+  text-align: center;
+}
+
 .div-mini-hard {
   /* SIZE */
   width: 100%;
