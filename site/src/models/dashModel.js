@@ -11,7 +11,7 @@ function showKilledProcesses(idCompany, idMachine) {
   if (env === "development") {
     dbQuery = `
     SELECT operationName, fkMachine, machineName, 
-      DATE_FORMAT(operationKilled.dtAdded, '%d/%m/%Y-%H:%i') AS dtAdded, 
+      DATE_FORMAT(operationKilled.dtAdded, '%d/%m/%Y-%H:%i') AS dtAdded 
         FROM operationKilled JOIN operation ON idOperation = fkOperation 
           JOIN machine ON idMachine = fkMachine 
             WHERE fkCompany = ${idCompany} 

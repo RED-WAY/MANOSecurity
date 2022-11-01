@@ -40,7 +40,8 @@ CREATE TABLE consumer (
 	fkManager INT,
 	FOREIGN KEY (fkManager) REFERENCES consumer(idConsumer),
     fkCompany INT,
-	FOREIGN KEY (fkCompany) REFERENCES company(idCompany)
+	FOREIGN KEY (fkCompany) REFERENCES company(idCompany),
+    telegramId VARCHAR (20)
 );
 
 /*Description of Consumer table*/
@@ -48,8 +49,8 @@ DESC Consumer;
 
 /*Consumer data insertion*/
 INSERT INTO consumer VALUES 
-    (NULL, 'test', 'test@gmail.com', "1234", 'MASTER', DEFAULT, NULL, 1),
-    (NULL, 'test2', 'test2@gmail.com', "1234", 'MASTER', DEFAULT, NULL, 2);
+    (NULL, 'test', 'test@gmail.com', "1234", 'MASTER', DEFAULT, NULL, 1, NULL),
+    (NULL, 'test2', 'test2@gmail.com', "1234", 'MASTER', DEFAULT, NULL, 2, NULL);
 -- INSERT INTO consumer VALUES 
 -- 	(null, "test", "test@gmail.com", "1234", "MASTER", default, null, 1),
 --     (null, "test2", "test2@gmail.com", "1234", "MASTER", default, null, 2),
@@ -222,7 +223,7 @@ DESC familyOperations;
 
 /*Creation of OperationRunning table*/
 CREATE TABLE operationKilled (
-	idOperationRunning INT AUTO_INCREMENT,
+	idOperationRunning INT PRIMARY KEY AUTO_INCREMENT,
     dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
 	fkMachine INT,
 	FOREIGN KEY (fkMachine) REFERENCES Machine(idMachine),
@@ -230,18 +231,17 @@ CREATE TABLE operationKilled (
     FOREIGN KEY (fkOperation) REFERENCES Operation(idOperation)
 );
 
-/*Description of OperationRunning table*/
-DESC operationRunning;
+/*Description of OperationKilled table*/
+DESC operationKilled;
 
 /*OperationRunning data insertion*/
 
--- INSERT INTO operationRunning VALUES
--- 	(null, 1, 4, "running", NOW()),
---     (null, 2, 3, "stopped", NOW()),
---     (null, 3, 2, "running", NOW()),
---     (null, 4, 4, "running", NOW()),
---     (null, 5, 5, "stopped", NOW()),
---     (null, 6, 2, "running", NOW());
+-- INSERT INTO operationKilled VALUES
+-- 	(null, null, 1, 1),
+--     (null, null, 1, 2),
+--     (null, null, 2, 1),
+--     (null, null, 2, 2),
+
 
 
 /*Beginning of the selects (data showing):*/
@@ -285,7 +285,8 @@ CREATE TABLE consumer
 	(management = 'MASTER' or management = 'ADMIN' or management = 'ANALYST'),
     dtAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
     fkManager INT FOREIGN KEY REFERENCES consumer(idConsumer),
-    fkCompany INT FOREIGN KEY REFERENCES company(idCompany)
+    fkCompany INT FOREIGN KEY REFERENCES company(idCompany),
+    telegramId VARCHAR (20)
 );
 
 -- INSERT INTO consumer(consumerName, consumerEmail, consumerPassword, management, fkCompany) VALUES 
