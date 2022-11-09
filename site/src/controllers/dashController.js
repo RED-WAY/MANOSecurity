@@ -30,6 +30,87 @@ function showKilledProcesses(req, res) {
   }
 }
 
+function showMachineRank(req, res) {
+  const fkCompanyController = req.params.fkCompany;
+
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController is undefined!");
+    return false;
+  } else {
+    dashModel
+      .showMachineRank(fkCompanyController)
+      .then(function (result) {
+        if (result.length > 0) {
+          res.status(200).json(result);
+        } else {
+          res.status(204).send("No machine history was found!");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function showClassroomRank(req, res) {
+  const fkCompanyController = req.params.fkCompany;
+
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController is undefined!");
+    return false;
+  } else {
+    dashModel
+      .showClassroomRank(fkCompanyController)
+      .then(function (result) {
+        if (result.length > 0) {
+          res.status(200).json(result);
+        } else {
+          res.status(204).send("No classroom was found!");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
+function showProcessRank(req, res) {
+  const fkCompanyController = req.params.fkCompany;
+
+  if (fkCompanyController == undefined) {
+    console.log("fkCompanyController is undefined!");
+    return false;
+  } else {
+    dashModel
+      .showProcessRank(fkCompanyController)
+      .then(function (result) {
+        if (result.length > 0) {
+          res.status(200).json(result);
+        } else {
+          res.status(204).send("No process was found!");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.error(
+          "\nThere was an error executing the query!\nERROR: ",
+          error.sqlMessage
+        );
+        res.status(500).json(error.sqlMessage);
+      });
+  }
+}
+
 function getMachineConstantHardware(req, res) {
   const idMachineController = req.params.idMachine;
 
@@ -103,6 +184,9 @@ function getCurrentData(req, res) {
 
 module.exports = {
   showKilledProcesses,
+  showMachineRank,
+  showClassroomRank,
+  showProcessRank,
   getMachineConstantHardware,
   getStartupData,
   getCurrentData,

@@ -31,7 +31,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body
-    onload="validateSession(), showKilledProcesses('idMachine'), viewLoad('hide'), 
+    onload="validateSession(), changeDashTable('right'), viewLoad('hide'), 
   getFamily(), showAccess(), hideLoading()"
   >
     <!-- LOADER -->
@@ -92,13 +92,13 @@
         <div class="wrapper-buttons">
           <button
             type="button"
-            onclick="showSection('#processes'), showKilledProcesses('idMachine')"
+            onclick="showSection('#resume'), showResume()"
             onmouseenter="borderChange(this)"
             onmouseleave="resetBorder(this)"
-            title="Acessar DASHBOARD"
-            tabindex="4"
+            title="Acessar RESUMO"
+            tabindex="7"
           >
-            DASHBOARD
+            RESUMO
           </button>
           <ion-icon
             name="menu-outline"
@@ -106,7 +106,7 @@
             title="Abrir menu"
             onclick="showMenu()"
             onkeypress="showMenu()"
-            tabindex="4"
+            tabindex="6"
           />
         </div>
         <nav class="menu-nav dashboard">
@@ -115,13 +115,21 @@
               href="#"
               tabindex="1"
               draggable="false"
+              onclick="showSection('#tables'), showKilledProcesses('idMachine')"
+            >
+              <li>Tabelas</li>
+            </a>
+            <a
+              href="#"
+              tabindex="2"
+              draggable="false"
               onclick="showSection('#dispositivos'), showMachines()"
             >
               <li>Dispositivos</li>
             </a>
             <a
               href="#"
-              tabindex="2"
+              tabindex="3"
               draggable="false"
               onclick="showSection('#colecoes'), showFamilies()"
             >
@@ -129,7 +137,7 @@
             </a>
             <a
               href="#"
-              tabindex="3"
+              tabindex="4"
               draggable="false"
               onclick="showSection('#acessos'),showAccess()"
             >
@@ -137,7 +145,7 @@
             </a>
             <a
               href="#"
-              tabindex="4"
+              tabindex="5"
               draggable="false"
               onclick="showSection('#usuarios'), showUsers()"
             >
@@ -161,6 +169,13 @@
     <aside class="popup-aside invisible" id="aside_menu">
       <div class="menu-nav hamburger">
         <ul>
+          <a
+            href="#"
+            tabindex="1"
+            onclick="showSection('#tables'), showKilledProcesses('idMachine')"
+            >
+            <li>Tabelas</li>
+          </a>
           <a
             href="#"
             tabindex="1"
@@ -213,25 +228,40 @@
 
     <!-- SECTION CONTENTS -->
     <section class="sec-main">
+      <!-- resume -->
+      <section id="resume" class="sec">
+        <div class="header" style="display: flex; justify-content: center">
+          <h1>Resumo</h1>
+        </div>
+        <div id="dispositivos_content" class="content">
+          <!-- ADD MACHINES HERE -->
+        </div>
+      </section>
+
       <!-- processes -->
-      <section id="processes" class="sec">
+      <section id="tables" class="sec">
         <div class="header">
-          <h1>Processos Mortos</h1>
-        
-
-
+          <div class="header-tables">
+            <ion-icon
+              name="chevron-back-outline"
+              class="tables-arrows"
+              onclick="changeDashTable('left')"
+            ></ion-icon>
+            <h2 id="tables_title">Rank de Processos</h2>
+            <ion-icon
+              name="chevron-forward-outline"
+              class="tables-arrows"
+              onclick="changeDashTable('right')"
+            ></ion-icon>
+          </div>
         </div>
         <div class="content table-content">
           <table class="main-table">
             <thead>
-              <tr>
-                <td>Processo</td>
-                <td>Máquina</td>
-                <td>Horário</td>
-                <td class="lastTdBorder">Sala</td>
+              <tr id="tables_thead_tds">
               </tr>
             </thead>
-            <tbody id="processesDisplay">
+            <tbody id="mainDisplay">
               <!-- ADD PROCESSES HERE -->
             </tbody>
           </table>
@@ -242,7 +272,7 @@
       <section id="dispositivos" class="sec">
         <div class="header">
           <h1>Dispositivos</h1>
-          <div>
+          <div class="header-options">
             <button
               class="btn-add"
               title="Adicionar uma nova máquina"
@@ -258,11 +288,12 @@
           <!-- ADD MACHINES HERE -->
         </div>
       </section>
+
       <!-- families -->
       <section id="colecoes" class="sec">
         <div class="header">
           <h1>Coleções</h1>
-          <div>
+          <div class="header-options">
             <button
               class="btn-add"
               title="Adicionar uma nova coleção"
@@ -278,11 +309,12 @@
           <!-- ADD FAMILIES HERE -->
         </div>
       </section>
+
       <!-- access -->
       <section id="acessos" class="sec">
         <div class="header">
           <h1>Acessos</h1>
-          <div>
+          <div class="header-options">
             <button
               class="btn-add"
               title="Adicionar uma nova permissão"
@@ -298,11 +330,12 @@
           <!-- ADD ACCESS HERE -->
         </div>
       </section>
+      
       <!-- users -->
       <section id="usuarios" class="sec">
         <div class="header">
           <h1>Usuários</h1>
-          <div>
+          <div class="header-options">
             <button
               onclick="formView(true, 'Editar usuário', 'user', 'edit', 'idUser')"
               id="userEditButton"
@@ -331,12 +364,12 @@
         <div class="content table-content">
           <table class="main-table">
             <thead>
-              <tr>
-                <td>Nome</td>
-                <td>Email</td>
-                <td>Permissão</td>
-                <td>Data</td>
-                <td class="lastTdBorder">Gestor</td>
+              <tr class="tables-column-users">
+                <td><p>Nome</p></td>
+                <td><p>Email</p></td>
+                <td><p>Permissão</p></td>
+                <td><p>Data de Adição</p></td>
+                <td class="lastTdBorder"><p>Gestor</p></td>
               </tr>
             </thead>
             <tbody id="usersDisplay">
@@ -394,7 +427,11 @@
           </div>
           <div class="form__input input-machine edit machine-classroom">
             <label for="machineClassroom">Sala</label>
-            <input name="machineClassroom" id="machine_classroom" type="number" />
+            <input
+              name="machineClassroom"
+              id="machine_classroom"
+              type="number"
+            />
           </div>
           <!-- USERS -->
           <div class="form__input input-user edit">
@@ -490,10 +527,11 @@
                 <div class="content table-content">
                   <table class="main-table machine-table">
                     <thead>
-                      <tr>
-                        <td>Processo</td>
-                        <td>Máquina</td>
-                        <td class="lastTdBorder">Horário</td>
+                      <tr class="tables-column-killed-processes-machine">
+                        <td><p>Processo</p></td>
+                        <td><p>Máquina</p></td>
+                        <td><p>Horário</p></td>
+                        <td class="lastTdBorder"><p></p></td>
                       </tr>
                     </thead>
                     <tbody id="machineProcessesDisplay">
@@ -565,6 +603,9 @@
   <script src="./js/fetches/machineFetch/getMachinesData.js"></script>
   <!-- DASH -->
   <script src="./js/fetches/dashboardFetch/showKilledProcesses.js"></script>
+  <script src="./js/fetches/dashboardFetch/showMachineRank.js"></script>
+  <script src="./js/fetches/dashboardFetch/showClassroomRank.js"></script>
+  <script src="./js/fetches/dashboardFetch/showProcessRank.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/closeMachineDash.js"></script>
   <script src="./js/fetches/dashboardFetch/machineDashContent.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/styleVars.js"></script>

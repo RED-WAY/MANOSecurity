@@ -228,6 +228,7 @@ select option {
 .hamburger a {
   /* SIZE */
   width: 90%;
+  height: 100%;
   /* POSITION */
   margin: 0.5em;
   /* DISPLAY */

@@ -31,6 +31,7 @@ function resetFields() {
   user_name.value = "";
   user_email.value = "";
   user_password.value = "";
+  user_office.value = "";
 
   [
     "userName",
@@ -86,17 +87,19 @@ function loadMachineInputs(machineId) {
 function loadUserInputs(userId) {
   user_name.value = document.querySelector(
     `#user${userId}`
-  ).children[0].innerHTML;
+  ).children[0].children[0].innerHTML;
   user_email.value = document.querySelector(
     `#user${userId}`
-  ).children[1].innerHTML;
+  ).children[1].children[0].innerHTML;
   user_password.value = "";
   user_office.value = document.querySelector(
     `#user${userId}`
-  ).children[2].innerHTML;
+  ).children[2].children[0].innerHTML;
 
   ["userName", "userEmail", "userPassword"].map((id) => {
-    document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
+    document
+      .querySelector(`label[for="${id}"]`)
+      .classList[id === "userPassword" ? "remove" : "add"]("move-up-label");
   });
 }
 

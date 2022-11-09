@@ -14,15 +14,15 @@ function showKilledProcesses(idMachine) {
         if (result.status == 200) {
           result.json().then((processes) => {
             if (typeof idMachine === "string") {
-              processesDisplay.innerHTML = "";
+              mainDisplay.innerHTML = "";
               for (let i = 0; i < processes.length; i++) {
-                processesDisplay.innerHTML += `
-                <tr onclick="formView(true, '${processes[i].machineName}', 'machineDash', 'show', '${processes[i].fkMachine}'), 
-                setTimeout(changeMachineDash('PROCESSOS', ${processes[i].fkMachine}), 4000)">
-                  <td>${processes[i].operationName}</td>
-                  <td>${processes[i].machineName}</td>
-                  <td>${processes[i].dtAdded}</td>
-                  <td>${processes[i].classroom}</td>
+                mainDisplay.innerHTML += `
+                <tr onclick="formView(true, '${processes[i].machineName}', 'machineDash', 'show', '${processes[i].fkMachine}')" class="tables-column-killed-processes">
+                  <td><p>${processes[i].operationName}</p></td>
+                  <td><p>${processes[i].machineName}</p></td>
+                  <td><p>${processes[i].dtAdded}</p></td>
+                  <td><p>${processes[i].classroom}</p></td>
+                  <td><p></p></td>
                 </tr> 
                 `;
               }
@@ -30,10 +30,11 @@ function showKilledProcesses(idMachine) {
               machineProcessesDisplay.innerHTML = "";
               for (let i = 0; i < processes.length; i++) {
                 machineProcessesDisplay.innerHTML += `
-                <tr>
-                  <td>${processes[i].operationName}</td>
-                  <td>${processes[i].machineName}</td>
-                  <td>${processes[i].dtAdded}</td>
+                <tr class="tables-column-killed-processes-machine">
+                  <td><p>${processes[i].operationName}</p></td>
+                  <td><p>${processes[i].machineName}</p></td>
+                  <td><p>${processes[i].dtAdded}</p></td>
+                  <td><p></p></td>
                 </tr> 
                 `;
               }
@@ -42,7 +43,7 @@ function showKilledProcesses(idMachine) {
             typeof idMachine === "string" && paintRowsOnClick();
           });
         } else {
-          processesDisplay.innerHTML = "";
+          mainDisplay.innerHTML = "";
           hideLoading();
           showMessage("warning", "Nenhum processo morto foi encontrado!");
         }
@@ -60,7 +61,7 @@ function showKilledProcesses(idMachine) {
       hideConfirm();
       showMessage(
         "error",
-        "Aconteceu algum erro enquanto carregavam os usuários!"
+        "Aconteceu algum erro enquanto carregavam os processos!"
       );
     });
   setTimeout(() => {

@@ -529,15 +529,23 @@ thead tr {
   background-color: var(--bla);
 }
 
-thead td {
-  /* POSITION */
-  padding: 1em;
-  /* TEXT */
-  font-size: 1.5em;
-  color: var(--font2);
-  font-weight: 700;
+thead td, tbody td {
+  /* SIZE */
+  width: 100%;
+  height: 12vh;
+  padding: 0 !important;
+  /* DISPLAY */
+  display: grid;
+  align-items: center;
   /* BORDER */
   border-right: 1px solid var(--font2);
+}
+
+thead td p {
+  /* TEXT */
+  color: var(--font2);
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 tbody {
@@ -581,8 +589,6 @@ tbody tr[class="tr-clicked"]:hover {
 }
 
 tbody td {
-  /* POSITION */
-  padding: 1em;
   /* BORDER */
   border: 1px solid var(--bla);
 }

@@ -59,7 +59,7 @@ body {
 section {
   /* SIZE */
   width: 100vw;
-  height: 90vh;
+  height: 88vh;
   /* DISPLAY */
   display: flex;
   justify-content: center;
@@ -93,7 +93,7 @@ section section {
   /* DISPLAY */
   display: grid;
   align-items: center;
-  grid-template-columns: max-content auto;
+  grid-template-columns: auto auto;
   /* TEXT */
   color: var(--font1);
   /* BORDER */
@@ -103,12 +103,93 @@ section section {
   /* POSITION */
   margin: 0;
 }
-.header div {
+
+.header-tables {
+  /* SIZE */
+  min-width: 202px;
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  /* DISPLAY */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#tables_title {
+  width: 100%;
+  text-align: center;
+}
+
+#tables_thead_tds {
+  /* MISC */
+  transition: grid-template-columns 2s;
+}
+
+.tables-column-users {
+  display: grid;
+  grid-template-columns: 20% 30% 10% 20% 20%;
+}
+.tables-column-killed-processes-machine {
+  display: grid;
+  grid-template-columns: 35% 30% 35% 0%;
+}
+.tables-column-killed-processes {
+  display: grid;
+  grid-template-columns: 30% 30% 25% 15% 0%;
+}
+.tables-column-machine-ranking {
+  display: grid;
+  grid-template-columns: 30% 15% 15% 20% 20%;
+}
+.tables-column-classroom-ranking {
+  display: grid;
+  grid-template-columns: 15% 30% 15% 20% 20%;
+}
+.tables-column-process-ranking {
+  display: grid;
+  grid-template-columns: 30% 20% 20% 30% 0%;
+}
+
+.tables-arrows {
+  /* SIZE */
+  width: 10%;
+  height: 100%;
+  max-height: 70px;
+  font-size: 1em !important;
+  /* MISC */
+  transition: color 0.3s;
+}
+.tables-arrows:hover {
+  /* COLOR */
+  color: var(--red-alt);
+  /* MISC */
+  cursor: pointer;
+}
+
+.header-options {
   /* SIZE */
   width: auto;
   /* DISPLAY */
   display: flex;
   justify-content: flex-end;
+}
+
+.td-arrow {
+  /* SIZE */
+  width: 100%;
+  height: 100%;
+  /* SPACING */
+  margin: 0.5em 0;
+  /* COLOR */
+  color: var(--font2);
+  /* MISC */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.td-arrow:hover {
+  color: var(--red-alt);
 }
 
 .btn-add {
@@ -440,7 +521,8 @@ section section {
 }
 
 /* SECTIONS */
-/* #processes, */
+/* #resume, */
+#tables,
 #dispositivos,
 #colecoes,
 #acessos,

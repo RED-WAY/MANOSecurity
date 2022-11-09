@@ -1,5 +1,5 @@
 // CHANGE SECTIONS VISIBILITY
-let actualSection = "#processes";
+let actualSection = "#resume";
 function showSection(sectionClass) {
   if (sessionStorage.OFFICE_USER !== "MASTER" && sectionClass === "#usuarios") {
     throw "Not allowed to access this section!";
@@ -188,4 +188,129 @@ function highlightToken(element) {
   range.selectNodeContents(element);
   selection.removeAllRanges();
   selection.addRange(range);
+}
+
+function changeDashTable(direction) {
+  const arrow = (dir, func, params) => {
+    return `
+            <ion-icon 
+              name="chevron-${dir}-outline" 
+              class="td-arrow" 
+              onclick="${func}(${params.join(", ")})"
+            ></ion-icon>
+          `;
+  }
+
+  const tables = [
+    {
+      title: "Processos Mortos",
+      tbody: function () {
+        showKilledProcesses("idMachine");
+      },
+      thead: `
+        <td><p>Processo</p></td>
+        <td><p>Máquina</p></td>
+        <td><p>Horário (Últimos 7 dias)</p></td>
+        <td><p>Sala</p></td>
+        <td class="lastTdBorder"><p></p></td>
+      `,
+      columns: "tables-column-killed-processes",
+    },
+    {
+      title: "Rank de Máquinas",
+      tbody: function () {
+        showMachineRank('desc', 'processKilled');
+      },
+      thead: `
+        <td><p>Máquina</p></td>
+        <td><p>Sala</p></td>
+        <td>
+          ${arrow("up", "showMachineRank", ["'asc', 'processKilled'"])}
+          <p style="cursor: pointer" onclick="showMachineRank('desc', 'processKilled')">Processos Mortos</p>
+          ${arrow("down", "showMachineRank", ["'desc', 'processKilled'"])}
+        </td>
+        <td>
+          ${arrow("up", "showMachineRank", ["'asc', 'cpuAvg'"])}
+          <p style="cursor: pointer" onclick="showMachineRank('desc', 'cpuAvg')">Média da CPU (24h)</p>
+          ${arrow("down", "showMachineRank", ["'desc', 'cpuAvg'"])}
+        </td>
+        <td class="lastTdBorder">        
+          ${arrow("up", "showMachineRank", ["'asc', 'ramAvg'"])}
+          <p style="cursor: pointer" onclick="showMachineRank('desc', 'ramAvg')">Média da RAM (24h)</p>
+          ${arrow("down", "showMachineRank", ["'desc', 'ramAvg'"])}
+        </td>
+      `,
+      columns: "tables-column-machine-ranking",
+      a: this.tbody,
+    },
+    {
+      title: "Rank de Salas",
+      tbody: function () {
+        showClassroomRank('desc', 'processKilled');
+      },
+      thead: `
+        <td><p>Sala</p></td>
+        <td><p>Máquinas</p></td>
+        <td>
+          ${arrow("up", "showClassroomRank", ["'asc', 'processKilled'"])}
+          <p style="cursor: pointer" onclick="showClassroomRank('desc', 'processKilled')">Processos Mortos</p>
+          ${arrow("down", "showClassroomRank", ["'desc', 'processKilled'"])}        
+        </td>
+        <td>
+          ${arrow("up", "showClassroomRank", ["'asc', 'cpuAvg'"])}
+          <p style="cursor: pointer" onclick="showClassroomRank('desc', 'cpuAvg')">Média da CPU (24h)</p>
+          ${arrow("down", "showClassroomRank", ["'desc', 'cpuAvg'"])}        
+        </td>
+        <td class="lastTdBorder">
+          ${arrow("up", "showClassroomRank", ["'asc', 'ramAvg'"])}
+          <p style="cursor: pointer" onclick="showClassroomRank('desc', 'ramAvg')">Média da RAM (24h)</p>
+          ${arrow("down", "showClassroomRank", ["'desc', 'ramAvg'"])}        
+        </td>
+      `,
+      columns: "tables-column-classroom-ranking",
+    },
+    {
+      title: "Rank de Processos",
+      tbody: function () {
+        showProcessRank('desc', 'detections');
+      },
+      thead: `        
+        <td><p>Processo</p></td>
+        <td>
+          ${arrow("up", "showProcessRank", ["'asc', 'detections'"])}
+          <p style="cursor: pointer" onclick="showProcessRank('desc', 'detections')">Detecções</p>
+          ${arrow("down", "showProcessRank", ["'desc', 'detections'"])}        
+        </td>
+        <td><p>Sala Crítica</p></td>
+        <td><p>Máquina Crítica</p></td>
+        <td class="lastTdBorder"><p></p></td>
+      `,
+      columns: "tables-column-process-ranking",
+    },
+  ];
+  const title = document.querySelector("#tables_title");
+  const thead_tds = document.querySelector("#tables_thead_tds");
+
+  for (let i = 0; i < tables.length; i++) {
+    const table = tables[i];
+
+    if (table.title.match(title.innerHTML)) {
+      let index = i;
+      switch (direction) {
+        case "right":
+          index = i + 1 >= tables.length ? 0 : i + 1;
+          break;
+        case "left":
+          index = i - 1 < 0 ? tables.length - 1 : i - 1;
+          break;
+      }
+
+      title.innerHTML = tables[index].title;
+      thead_tds.innerHTML = tables[index].thead;
+      thead_tds.className = tables[index].columns;
+      mainDisplay.innerHTML = "";
+      tables[index].tbody();
+      break;
+    }
+  }
 }

@@ -37,7 +37,7 @@ function showMachines(fkCompany) {
     `;
   } else if (env === "production") {
     dbQuery = `       
-    SELECT idMachine, machineName, isUsing, consumerName, familyName, idFamily, 
+    SELECT idMachine, machineName, classroom, isUsing, consumerName, familyName, idFamily, 
       FORMAT(SWITCHOFFSET(machine.dtAdded, '-03:00'), 'dd/MM/yy-HH:mm') AS dtAdded 
         FROM machine 
           LEFT JOIN family ON idFamily = fkFamily 
