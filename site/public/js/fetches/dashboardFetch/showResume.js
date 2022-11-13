@@ -18,8 +18,16 @@ function fetchMachines() {
         if (resultMachine.status == 200) {
           resultMachine.json().then((listMachine) => {
             const machine = getAverage(sorts(fillMachineArray(listMachine)));
-            plotData(machine);
-            fetchClassroom();
+            console.log(machine);
+            if (!(
+              machine[0].processKilled > 0 &&
+              machine[0].cpuAvg > 0 &&
+              machine[0].ramAvg > 0
+            )) {
+              document.querySelector(".no-data-content").remove();
+              plotData(machine);
+              fetchClassroom();
+            }
           });
         } else {
           showMessage(
@@ -198,7 +206,7 @@ const addTotal = (array) => {
   for (const obj of array) {
     const total = Number(
       (
-        getProcessKilledPercent(obj.processKilled) +
+        (obj.processKilled ? getProcessKilledPercent(obj.processKilled) : 0) +
         (obj.cpuAvg ? getAvgPercent(obj.cpuAvg, cpuAvgWeight) : 0) +
         (obj.ramAvg ? getAvgPercent(obj.ramAvg, ramAvgWeight) : 0)
       ).toFixed(2)
@@ -328,10 +336,13 @@ function plotStatus(array) {
       const statusText = document.querySelector("#resume-general-status");
       const value = this.getMacroSituation();
       if (value > 60) {
+        statusText.style.color = "var(--msg-error)";
         statusText.innerHTML = "PERIGO";
       } else if (value > 40) {
+        statusText.style.color = "var(--msg-warning)";
         statusText.innerHTML = "ALERTA";
       } else {
+        statusText.style.color = "var(--msg-success)";
         statusText.innerHTML = "OK";
       }
 

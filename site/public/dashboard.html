@@ -233,21 +233,24 @@
         <div class="header resume-header">
           <h1>Resumo</h1>
         </div>
+        <div class="content no-data-content">
+          <h1>Sem dados encontrados para um resumo.</h1>
+        </div>
         <div class="content resume-content">
           <div class="general-resume details-resume">
             <h2>Geral</h2>
             <div>
               <div class="resume-general-card">
-                <h1 id="resume-general-status">OK</h1>
+                <h1 id="resume-general-status"></h1>
                 <h3>Situação</h3>
               </div>
               <div class="resume-general-card">
-                <h1 id="resume-general-processKilled">X</h1>
+                <h1 id="resume-general-processKilled"></h1>
                 <h3>Processos Mortos</h3>
               </div>
               <div class="resume-general-card">
-                <h1 id="resume-general-machines">X</h1>
-                <h3>Máquinas Conectadas</h3>
+                <h1 id="resume-general-machines"></h1>
+                <h3>Máquinas Analisadas</h3>
               </div>
             </div>
           </div>
@@ -260,7 +263,7 @@
               <div class="resume-machine-card"></div>
             </div>
           </div>
-          <div class="classroom-resume details-resume">
+          <div class="micro-resume classroom-resume details-resume">
             <h2>Sala Crítica</h2>
             <div>
               <h2 style="grid-area: title">
@@ -273,18 +276,21 @@
                 <span id="classroom_processKilled_resume"></span> processos
                 mortos
               </h3>
-              <h3 style="grid-area: cpuAvg">
-                <span id="classroom_cpuAvg_resume"></span>%
-              </h3>
-              <h3 style="grid-area: ramAvg">
-                <span id="classroom_ramAvg_resume"></span>%
-              </h3>
-              <h3 style="grid-area: total">
-                <span id="classroom_total_resume"></span>/10
-              </h3>
+              <div class="resume-micro-card" style="grid-area: cpuAvg">
+                <h3><span id="classroom_cpuAvg_resume"></span>%</h3>
+                <h4>Média de CPU</h4>
+              </div>
+              <div class="resume-micro-card" style="grid-area: ramAvg">
+                <h3><span id="classroom_ramAvg_resume"></span>%</h3>
+                <h4>Média de RAM</h4>
+              </div>
+              <div class="resume-micro-card" style="grid-area: total">
+                <h3><span id="classroom_total_resume"></span>/10</h3>
+                <h4>Criticidade</h4>
+              </div>
             </div>
           </div>
-          <div class="machine-resume details-resume">
+          <div class="micro-resume machine-resume details-resume">
             <h2>Máquina Crítica</h2>
             <div>
               <h2 style="grid-area: title">
@@ -296,15 +302,18 @@
               <h3 style="grid-area: processKilled">
                 <span id="machine_processKilled_resume"></span> processos mortos
               </h3>
-              <h3 style="grid-area: cpuAvg">
-                <span id="machine_cpuAvg_resume"></span>%
-              </h3>
-              <h3 style="grid-area: ramAvg">
-                <span id="machine_ramAvg_resume"></span>%
-              </h3>
-              <h3 style="grid-area: total">
-                <span id="machine_total_resume"></span>/10
-              </h3>
+              <div class="resume-micro-card" style="grid-area: cpuAvg">
+                <h3><span id="machine_cpuAvg_resume"></span>%</h3>
+                <h4>Média de CPU</h4>
+              </div>
+              <div class="resume-micro-card" style="grid-area: ramAvg">
+                <h3><span id="machine_ramAvg_resume"></span>%</h3>
+                <h4>Média de RAM</h4>
+              </div>
+              <div class="resume-micro-card" style="grid-area: total">
+                <h3><span id="machine_total_resume"></span>/10</h3>
+                <h4>Criticidade</h4>
+              </div>
             </div>
           </div>
         </div>

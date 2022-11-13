@@ -249,6 +249,19 @@ section section {
   overflow: auto;
 }
 
+.no-data-content {
+  /* SIZE */
+  height: 80% !important;
+  /* DISPLAY */
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  place-self: flex-start;
+  /* TEXT */
+  color: var(--font1);
+  text-align: center;
+}
+
 .resume-header {
   /* DISPLAY */
   display: flex;
@@ -256,7 +269,9 @@ section section {
 }
 
 .resume-content {
-  background-color: red;
+  /* SIZE */
+  width: 89.8vw !important;
+  height: 99.5% !important;
   /* SPACING */
   padding: 0 !important;
   /* DISPLAY */
@@ -268,9 +283,12 @@ section section {
     "status"
     "classroom"
     "machine";
+  /* BORDER */
+  border-radius: 0 !important;
   /* SCROLL */
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
+  border-collapse: collapse;
 }
 
 .general-resume {
@@ -287,7 +305,7 @@ section section {
 }
 
 .resume-content > div {
-  background-color: green;
+  background-color: var(--card1);
   /* SIZE */
   width: 100%;
   /* SPACING */
@@ -297,6 +315,8 @@ section section {
   grid-template-columns: 100%;
   grid-template-rows: 10% 90%;
   align-items: flex-end;
+  /* TEXT */
+  color: var(--font1);
 }
 .resume-content > div > h1 {
   /* SIZE */
@@ -308,8 +328,19 @@ section section {
   /* SCROLL */
   scroll-snap-align: start;
 }
+.details-resume h1,
+.details-resume span {
+  color: var(--red-alt);
+  cursor: default;
+}
+.details-resume h1:hover,
+.details-resume span:hover {
+  color: var(--red-light);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 0.1em var(--red-light);
+}
 .details-resume > div {
-  background-color: blue;
+  background-color: var(--card1-trans);
   /* SIZE */
   font-size: 0.9em;
   width: 100%;
@@ -319,8 +350,7 @@ section section {
   /* DISPLAY */
   align-items: center;
 }
-.classroom-resume > div,
-.machine-resume > div {
+.micro-resume > div {
   /* DISPLAY */
   display: grid;
   grid-template-areas:
@@ -330,43 +360,38 @@ section section {
   grid-template-rows: 20% 80%;
   border-collapse: collapse;
 }
-.classroom-resume > div *:not(span),
-.machine-resume > div *:not(span) {
+
+.micro-resume > div > * {
   /* SIZE */
   width: 100%;
   height: 100%;
-  /* SPACING */
-  margin: 0;
   /* DISPLAY */
-  display: flex;
   justify-content: center;
   align-items: center;
-  /* TEXT */
-  overflow: hidden;
   /* BORDER */
   border: 0.1em solid;
 }
-.classroom-resume > div span,
-.machine-resume > div span {
+
+.micro-resume > div > *:not(div) {
+  display: flex;
+}
+
+.micro-resume > div span {
   /* SPACING */
   margin: 0 4px;
 }
 
 .general-resume > div,
 .status-resume > div {
-  background-color: yellow;
   /* SIZE */
   width: 100%;
   height: 100%;
-  /* SPACING */
-  padding: 1em;
   /* DISPLAY */
   display: flex;
-  gap: 1em;
 }
 
+.resume-micro-card,
 .resume-general-card {
-  background-color: red;
   /* SIZE */
   width: 100%;
   height: 100%;
@@ -375,7 +400,7 @@ section section {
   grid-template-columns: 100%;
   grid-template-rows: 65% 35%;
   /* BORDER */
-  border: 0.2em solid;
+  border: 0.1em solid;
 }
 
 .resume-general-card h3 {
@@ -389,7 +414,6 @@ section section {
 }
 
 .resume-machine-card {
-  background-color: red;
   /* SIZE */
   width: 100%;
   height: 100%;
@@ -399,7 +423,7 @@ section section {
   grid-template-rows: 20% 60% 20%;
   align-items: center;
   /* BORDER */
-  border: 0.2em solid;
+  border: 0.1em solid;
 }
 
 .resume-machine-card h3 {
@@ -412,7 +436,6 @@ section section {
   font-size: 3em;
 }
 .resume-machine-card > div {
-  background-color: blue;
   align-self: flex-start;
   /* SIZE */
   width: 100%;
@@ -428,19 +451,35 @@ section section {
 }
 
 .resume-progress {
+  /* SIZE */
   width: 100%;
   height: 100%;
+  /* DISPLAY */
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  border: 0.1em solid;
+  /* BORDER */
+  border: 0.05em solid;
 }
 .resume-progress div {
-  background-color: pink;
+  background-color: var(--red-alt);
   /* SIZE */
   height: 100%;
   /* SPACING */
   margin: 0;
+}
+
+
+.resume-micro-card {
+  grid-template-rows: 60% 40%;
+}
+.resume-micro-card > h3 {
+  font-size: 1.8em;
+  align-self: flex-end;
+}
+.resume-micro-card > h4 {
+  font-size: 1.2em;
+  align-self: flex-start;
 }
 
 .sec::-webkit-scrollbar,
