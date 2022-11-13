@@ -310,7 +310,7 @@ header {
 /* NAVBAR */
 nav {
   /* SIZE */
-  width: 65%;
+  width: 85%;
   /* DISPLAY */
   display: none;
 }
@@ -404,7 +404,8 @@ button {
 
 header button:hover,
 header button:focus,
-.button--enter {
+.button--enter,
+.btn_resume_active {
   /* TEXT */
   font-size: 1.1rem;
   color: var(--white);
@@ -529,7 +530,8 @@ thead tr {
   background-color: var(--bla);
 }
 
-thead td, tbody td {
+thead td,
+tbody td {
   /* SIZE */
   width: 100%;
   height: 12vh;

@@ -106,6 +106,7 @@ function showMachines() {
         `;
           }
           dispositivos.style.display = "grid";
+          getFamily();
           getMachinesData(fkCompanyVar);
         });
       } else {

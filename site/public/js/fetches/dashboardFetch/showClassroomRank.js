@@ -19,24 +19,43 @@ function showClassroomRank(order, sortOption) {
             for (let i = 0; i < list.length; i++) {
               const el = list[i];
 
-              if ((i + 1) % 3 === 0) {
-                rank.push({
-                  ...obj,
-                  cpuAvg: el.data1,
-                  ramAvg: el.data2,
-                });
-                obj = {};
+              if (
+                i > 0 &&
+                obj.classroom !== undefined &&
+                el.classroom !== obj.classroom
+              ) {
+                obj.processKilled = obj.processKilled || 0;
+                obj.cpuAvg = obj.cpuAvg || undefined;
+                obj.ramAvg = obj.ramAvg || undefined;
+                rank.push(obj);
+                obj = {
+                  classroom: el.classroom,
+                  machines: el.data1,
+                };
               } else {
                 if (obj.classroom === undefined) {
                   obj = {
                     classroom: el.classroom,
                     machines: el.data1,
                   };
-                } else {
+                } else if (el.data2 === "processKilled") {
                   obj.processKilled = el.data1;
+                } else {
+                  obj.processKilled = obj.processKilled || 0;
+                  rank.push({
+                    ...obj,
+                    cpuAvg: el.data1,
+                    ramAvg: Number(el.data2),
+                  });
+                  obj = {};
                 }
               }
             }
+
+            obj.processKilled = obj.processKilled || 0;
+            obj.cpuAvg = obj.cpuAvg || undefined;
+            obj.ramAvg = obj.ramAvg || undefined;
+            obj.classroom && rank.push(obj);
 
             rank.sort((a, b) => {
               return order === "asc"
@@ -48,9 +67,9 @@ function showClassroomRank(order, sortOption) {
 
             const noData =
               "<span style='color: var(--red-alt) !important'>SEM DADOS NAS ÚLTIMAS 24 HORAS</span>";
-            mainDisplay.innerHTML = "";
+            tablesBody.innerHTML = "";
             for (const el of rank) {
-              mainDisplay.innerHTML += `
+              tablesBody.innerHTML += `
                 <tr class="tables-column-classroom-ranking">
                   <td><p>${el.classroom}</p></td>
                   <td><p>${el.machines}</p></td>
@@ -62,7 +81,7 @@ function showClassroomRank(order, sortOption) {
             }
           });
         } else {
-          mainDisplay.innerHTML = "";
+          tablesBody.innerHTML = "";
           hideLoading();
           showMessage("warning", "Nenhuma sala foi encontrada!");
         }

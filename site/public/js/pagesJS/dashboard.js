@@ -199,13 +199,14 @@ function changeDashTable(direction) {
               onclick="${func}(${params.join(", ")})"
             ></ion-icon>
           `;
-  }
+  };
 
   const tables = [
     {
       title: "Processos Mortos",
+      func: ["showKilledProcesses", "('idMachine')"],
       tbody: function () {
-        showKilledProcesses("idMachine");
+        eval(this.func.join(""));
       },
       thead: `
         <td><p>Processo</p></td>
@@ -218,8 +219,9 @@ function changeDashTable(direction) {
     },
     {
       title: "Rank de Máquinas",
+      func: ["showMachineRank", "('desc', 'processKilled')"],
       tbody: function () {
-        showMachineRank('desc', 'processKilled');
+        eval(this.func.join(""));
       },
       thead: `
         <td><p>Máquina</p></td>
@@ -245,8 +247,9 @@ function changeDashTable(direction) {
     },
     {
       title: "Rank de Salas",
+      func: ["showClassroomRank", "('desc', 'processKilled')"],
       tbody: function () {
-        showClassroomRank('desc', 'processKilled');
+        eval(this.func.join(""));
       },
       thead: `
         <td><p>Sala</p></td>
@@ -254,7 +257,9 @@ function changeDashTable(direction) {
         <td>
           ${arrow("up", "showClassroomRank", ["'asc', 'processKilled'"])}
           <p style="cursor: pointer" onclick="showClassroomRank('desc', 'processKilled')">Processos Mortos</p>
-          ${arrow("down", "showClassroomRank", ["'desc', 'processKilled'"])}        
+          ${arrow("down", "showClassroomRank", [
+            "'desc', 'processKilled'",
+          ])}        
         </td>
         <td>
           ${arrow("up", "showClassroomRank", ["'asc', 'cpuAvg'"])}
@@ -271,8 +276,9 @@ function changeDashTable(direction) {
     },
     {
       title: "Rank de Processos",
+      func: ["showProcessRank", "('desc', 'detections')"],
       tbody: function () {
-        showProcessRank('desc', 'detections');
+        eval(this.func.join(""));
       },
       thead: `        
         <td><p>Processo</p></td>
@@ -290,6 +296,7 @@ function changeDashTable(direction) {
   ];
   const title = document.querySelector("#tables_title");
   const thead_tds = document.querySelector("#tables_thead_tds");
+  const reloadButton = document.querySelector("#reload_button");
 
   for (let i = 0; i < tables.length; i++) {
     const table = tables[i];
@@ -308,7 +315,8 @@ function changeDashTable(direction) {
       title.innerHTML = tables[index].title;
       thead_tds.innerHTML = tables[index].thead;
       thead_tds.className = tables[index].columns;
-      mainDisplay.innerHTML = "";
+      reloadButton.setAttribute("onclick", tables[index].func.join(""));
+      tablesBody.innerHTML = "";
       tables[index].tbody();
       break;
     }

@@ -14,9 +14,9 @@ function showKilledProcesses(idMachine) {
         if (result.status == 200) {
           result.json().then((processes) => {
             if (typeof idMachine === "string") {
-              mainDisplay.innerHTML = "";
+              tablesBody.innerHTML = "";
               for (let i = 0; i < processes.length; i++) {
-                mainDisplay.innerHTML += `
+                tablesBody.innerHTML += `
                 <tr onclick="formView(true, '${processes[i].machineName}', 'machineDash', 'show', '${processes[i].fkMachine}')" class="tables-column-killed-processes">
                   <td><p>${processes[i].operationName}</p></td>
                   <td><p>${processes[i].machineName}</p></td>
@@ -43,7 +43,7 @@ function showKilledProcesses(idMachine) {
             typeof idMachine === "string" && paintRowsOnClick();
           });
         } else {
-          mainDisplay.innerHTML = "";
+          tablesBody.innerHTML = "";
           hideLoading();
           showMessage("warning", "Nenhum processo morto foi encontrado!");
         }

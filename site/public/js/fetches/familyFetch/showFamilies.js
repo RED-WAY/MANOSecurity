@@ -73,6 +73,7 @@ function showFamilies() {
             }
           }
         });
+        showAccess();
       } else {
         hideConfirm();
         showMessage(

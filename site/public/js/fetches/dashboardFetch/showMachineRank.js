@@ -17,35 +17,39 @@ function showMachineRank(order, sortOption) {
             let obj = {};
             for (let i = 0; i < list.length; i++) {
               const el = list[i];
-              if (
-                i > 0 &&
-                obj.machineName !== undefined &&
-                el.machineName !== obj.machineName &&
-                obj.cpuAvg === undefined
-              ) {
+              if (i > 0 && obj.machine !== undefined && el.machineName !== obj.machine) {
+                obj.processKilled = obj.processKilled || 0;
+                obj.cpuAvg = obj.cpuAvg || undefined;
+                obj.ramAvg = obj.ramAvg || undefined;
                 rank.push(obj);
                 obj = {
-                  machineName: el.machineName,
+                  machine: el.machineName,
                   classroom: el.data1,
-                  processKilled: el.data2,
                 };
               } else {
-                if (obj.machineName === undefined) {
+                if (obj.machine === undefined) {
                   obj = {
-                    machineName: el.machineName,
+                    machine: el.machineName,
                     classroom: el.data1,
-                    processKilled: el.data2,
                   };
+                } else if (el.data2 === "processKilled") {
+                  obj.processKilled = el.data1;
                 } else {
+                  obj.processKilled = obj.processKilled || 0;
                   rank.push({
                     ...obj,
                     cpuAvg: el.data1,
-                    ramAvg: el.data2,
+                    ramAvg: Number(el.data2),
                   });
                   obj = {};
                 }
               }
             }
+          
+            obj.processKilled = obj.processKilled || 0;
+            obj.cpuAvg = obj.cpuAvg || undefined;
+            obj.ramAvg = obj.ramAvg || undefined;
+            obj.machine && rank.push(obj);
 
             rank.sort((a, b) => {
               return order === "asc"
@@ -57,11 +61,11 @@ function showMachineRank(order, sortOption) {
 
             const noData =
               "<span style='color: var(--red-alt) !important'>SEM DADOS NAS ÚLTIMAS 24 HORAS</span>";
-            mainDisplay.innerHTML = "";
+            tablesBody.innerHTML = "";
             for (const el of rank) {
-              mainDisplay.innerHTML += `
+              tablesBody.innerHTML += `
                 <tr class="tables-column-machine-ranking">
-                  <td><p>${el.machineName}</p></td>
+                  <td><p>${el.machine}</p></td>
                   <td><p>${el.classroom}</p></td>
                   <td><p>${el.processKilled}</p></td>
                   <td><p>${el.cpuAvg ? el.cpuAvg + "%" : noData}</p></td>
@@ -71,7 +75,7 @@ function showMachineRank(order, sortOption) {
             }
           });
         } else {
-          mainDisplay.innerHTML = "";
+          tablesBody.innerHTML = "";
           hideLoading();
           showMessage(
             "warning",

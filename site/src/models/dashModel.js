@@ -68,19 +68,24 @@ function showMachineRank(idCompany) {
       `;
   } else if (env === "production") {
     dbQuery = `
-    SELECT machineName, classroom AS data1, COUNT(fkMachine) AS data2  
+    SELECT machineName, classroom AS data1, 'classroom' AS data2 
+      FROM machine 
+        WHERE fkCompany = ${idCompany} 
+    UNION 
+    SELECT machineName, COUNT(fkMachine), 'processKilled' 
       FROM operationKilled 
         JOIN machine ON idMachine = fkMachine 
           WHERE fkCompany = ${idCompany} 
-            GROUP BY machineName, classroom 
-    UNION
-    SELECT machineName, AVG(cpu) AS data1, AVG(ram) AS data2 
+            AND FORMAT(SWITCHOFFSET(operationKilled.dtAdded, '-03:00'), 'dd/MM/yy') = FORMAT(SWITCHOFFSET(GETDATE(), '-03:00'), 'dd/MM/yy')
+              GROUP BY machineName
+    UNION 
+    SELECT machineName, AVG(cpu), CONVERT(VARCHAR(10), AVG(ram)) 
       FROM machine 
         JOIN dynamicHardware ON idMachine = fkMachine 
           WHERE fkCompany = ${idCompany} 
-            AND dynamicHardware.dtAdded >= DATEADD(day, -1, GETDATE()) 
+            AND FORMAT(SWITCHOFFSET(dynamicHardware.dtAdded, '-03:00'), 'dd/MM/yy') = FORMAT(SWITCHOFFSET(GETDATE(), '-03:00'), 'dd/MM/yy')
               GROUP BY machineName;
-    `;
+          `;
   } else {
     console.error(
       "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"
@@ -120,24 +125,25 @@ function showClassroomRank(idCompany) {
       `;
   } else if (env === "production") {
     dbQuery = `
-    SELECT classroom, COUNT(idMachine) AS data1, COUNT(idMachine) AS data2 
+    SELECT classroom, COUNT(idMachine) AS data1, 'machines'  AS data2 
     FROM machine 
         WHERE fkCompany = ${idCompany} 
             GROUP BY classroom 
     UNION 
-    SELECT classroom, COUNT(fkMachine) AS data1, COUNT(fkMachine) AS data2 
+    SELECT classroom, COUNT(fkMachine), 'processKilled' 
       FROM operationKilled 
         JOIN machine ON idMachine = fkMachine 
           WHERE fkCompany = ${idCompany} 
-            GROUP BY classroom 
+            AND FORMAT(SWITCHOFFSET(operationKilled.dtAdded, '-03:00'), 'dd/MM/yy') = FORMAT(SWITCHOFFSET(GETDATE(), '-03:00'), 'dd/MM/yy') 
+              GROUP BY classroom 
     UNION 
-    SELECT classroom, AVG(cpu) AS data1, AVG(ram) AS data2 
+    SELECT classroom, AVG(cpu), CONVERT(VARCHAR (10), AVG(ram)) 
       FROM dynamicHardware 
         JOIN machine ON idMachine = fkMachine 
           WHERE fkCompany = ${idCompany} 
-            AND dynamicHardware.dtAdded >= DATEADD(day, -1, GETDATE()) 
+            AND FORMAT(SWITCHOFFSET(dynamicHardware.dtAdded, '-03:00'), 'dd/MM/yy') = FORMAT(SWITCHOFFSET(GETDATE(), '-03:00'), 'dd/MM/yy') 
               GROUP BY classroom;
-    `;
+          `;
   } else {
     console.error(
       "\nENVIRONMENT (development | production) WAS NOT DEFINED AT: app.js\n"

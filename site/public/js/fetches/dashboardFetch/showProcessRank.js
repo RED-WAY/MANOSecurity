@@ -44,9 +44,9 @@ function showProcessRank(order, sortOption) {
                     a[sortOption || "detections"];
             });
 
-            mainDisplay.innerHTML = "";
+            tablesBody.innerHTML = "";
             for (const el of rank) {
-              mainDisplay.innerHTML += `
+              tablesBody.innerHTML += `
                 <tr class="tables-column-process-ranking">
                   <td><p>${el.process}</p></td>
                   <td><p>${el.detections}</p></td>
@@ -57,7 +57,7 @@ function showProcessRank(order, sortOption) {
             }
           });
         } else {
-          mainDisplay.innerHTML = "";
+          tablesBody.innerHTML = "";
           hideLoading();
           showMessage("warning", "Nenhum processo foi encontrada!");
         }
