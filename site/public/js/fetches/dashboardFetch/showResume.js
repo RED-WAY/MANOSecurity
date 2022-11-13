@@ -18,12 +18,12 @@ function fetchMachines() {
         if (resultMachine.status == 200) {
           resultMachine.json().then((listMachine) => {
             const machine = getAverage(sorts(fillMachineArray(listMachine)));
-            console.log(machine);
-            if (!(
-              machine[0].processKilled > 0 &&
-              machine[0].cpuAvg > 0 &&
-              machine[0].ramAvg > 0
-            )) {
+            if (
+              machine[0].processKilled === 0 &&
+              machine[0].cpuAvg === 0 &&
+              machine[0].ramAvg === 0
+            ) {
+            } else {
               document.querySelector(".no-data-content").remove();
               plotData(machine);
               fetchClassroom();
