@@ -2,6 +2,9 @@ function addMachine() {
   showLoading();
 
   const machineNameVar = machine_name.value.trimStart().trimEnd();
+  const machineClassroomVar = Number(
+    machine_classroom.value.trimStart().trimEnd()
+  );
   const fkConsumerVar = sessionStorage.ID_USER;
   const fkCompanyVar = sessionStorage.COMPANY_USER;
   const fkFamilyVar = machine_family_select.value;
@@ -10,6 +13,11 @@ function addMachine() {
     hideLoading();
     hideConfirm();
     showMessage("warning", "Nome da máquina não foi definido!");
+    return false;
+  } else if (machineClassroomVar == "" || isNaN(machineClassroomVar)) {
+    hideLoading();
+    hideConfirm();
+    showMessage("warning", "Sala do dispositivo não digitada!");
     return false;
   } else if (fkConsumerVar == "" || fkConsumerVar == undefined) {
     hideLoading();
@@ -40,6 +48,7 @@ function addMachine() {
       },
       body: JSON.stringify({
         machineNameServer: machineNameVar,
+        machineClassroomServer: machineClassroomVar,
         fkConsumerServer: fkConsumerVar,
         fkCompanyServer: fkCompanyVar,
         fkFamilyServer: fkFamilyVar,

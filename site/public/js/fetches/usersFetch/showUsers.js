@@ -19,12 +19,12 @@ function showUsers() {
               usersDisplay.innerHTML += `
               <tr onclick="userBtnAttributes(true, '${users[i].idConsumer}', '${
                 users[i].fkManager
-              }')" id="user${users[i].idConsumer}">
-                <td>${users[i].consumerName}</td>
-                <td>${users[i].consumerEmail}</td>
-                <td>${users[i].management}</td>
-                <td>${users[i].dtAdded}</td>
-                <td>${users[i].managerName || "USUÁRIO REMOVIDO"}</td>
+              }')" id="user${users[i].idConsumer}" class="tables-column-users">
+                <td><p>${users[i].consumerName}</p></td>
+                <td><p>${users[i].consumerEmail}</p></td>
+                <td><p>${users[i].management}</p></td>
+                <td><p>${users[i].dtAdded}</p></td>
+                <td><p>${users[i].managerName || "USUÁRIO REMOVIDO"}</p></td>
               </tr> 
         `;
             }

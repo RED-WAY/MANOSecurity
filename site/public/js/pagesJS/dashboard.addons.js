@@ -23,12 +23,15 @@ function paintRowsOnClick() {
 
 function resetFields() {
   // resetting input values
+  machine_family_select.value = "";
   machine_name.value = "";
+  machine_classroom.value = "";
   family_name.value = "";
   access_name.value = "";
   user_name.value = "";
   user_email.value = "";
   user_password.value = "";
+  user_office.value = "";
 
   [
     "userName",
@@ -37,6 +40,7 @@ function resetFields() {
     "accessName",
     "familyName",
     "machineName",
+    "machineClassroom",
   ].map((id) => {
     document
       .querySelector(`label[for="${id}"]`)
@@ -52,11 +56,20 @@ function resetFields() {
 }
 
 function loadMachineInputs(machineId) {
+  setTimeout(() => {
+    machine_family_select.value = document.querySelector(
+      `#family_machine${machineId}`
+    ).className;
+  }, 0);
+
   machine_name.value = document
     .querySelector(`#name_machine${machineId}`)
     .innerHTML.replace("nome: ", "")
     .trimStart()
     .trimEnd();
+  machine_classroom.value = Number(
+    document.querySelector(`#classroom_machine${machineId}`).innerHTML
+  );
   const selectValue = document
     .querySelector(`#machine${machineId}`)
     .children[2].id.replace("family_machine", "");
@@ -66,7 +79,7 @@ function loadMachineInputs(machineId) {
     machine_family_select.value = "";
   }
 
-  ["machineName"].map((id) => {
+  ["machineName", "machineClassroom"].map((id) => {
     document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
   });
 }
@@ -74,17 +87,19 @@ function loadMachineInputs(machineId) {
 function loadUserInputs(userId) {
   user_name.value = document.querySelector(
     `#user${userId}`
-  ).children[0].innerHTML;
+  ).children[0].children[0].innerHTML;
   user_email.value = document.querySelector(
     `#user${userId}`
-  ).children[1].innerHTML;
+  ).children[1].children[0].innerHTML;
   user_password.value = "";
   user_office.value = document.querySelector(
     `#user${userId}`
-  ).children[2].innerHTML;
+  ).children[2].children[0].innerHTML;
 
   ["userName", "userEmail", "userPassword"].map((id) => {
-    document.querySelector(`label[for="${id}"]`).classList.add("move-up-label");
+    document
+      .querySelector(`label[for="${id}"]`)
+      .classList[id === "userPassword" ? "remove" : "add"]("move-up-label");
   });
 }
 
@@ -154,4 +169,5 @@ addAnimatedLabelEvent([
   "accessName",
   "familyName",
   "machineName",
+  "machineClassroom",
 ]);

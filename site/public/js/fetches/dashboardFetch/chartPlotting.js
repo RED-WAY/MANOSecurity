@@ -19,10 +19,12 @@ function getStartupData(column, fkMachine) {
           plotGraph(result, column, fkMachine);
         });
       } else {
+        hideLoading();
         console.error("No data found at API!");
       }
     })
     .catch(function (error) {
+      hideLoading();
       console.error(`Error at obtaining startup graph data: ${error.message}`);
     });
 }
@@ -52,7 +54,7 @@ function plotGraph(startupData, column, fkMachine) {
     PLOT_DELAY
   );
 }
-let test = null;
+
 function updateChart(column, fkMachine, data) {
   fetch(`/dash/getCurrentData/${column}/${fkMachine}`, { cache: "no-store" })
     .then(function (response) {

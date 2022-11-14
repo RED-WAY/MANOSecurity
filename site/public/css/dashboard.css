@@ -54,12 +54,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: hidden !important;
 }
 
 section {
   /* SIZE */
   width: 100vw;
-  height: 90vh;
+  height: 78vh;
   /* DISPLAY */
   display: flex;
   justify-content: center;
@@ -93,7 +94,7 @@ section section {
   /* DISPLAY */
   display: grid;
   align-items: center;
-  grid-template-columns: max-content auto;
+  grid-template-columns: auto auto;
   /* TEXT */
   color: var(--font1);
   /* BORDER */
@@ -103,12 +104,97 @@ section section {
   /* POSITION */
   margin: 0;
 }
-.header div {
+
+.header-tables {
+  /* SIZE */
+  min-width: 202px;
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  /* DISPLAY */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#tables_title {
+  width: 100%;
+  text-align: center;
+}
+
+#tables_thead_tds {
+  /* MISC */
+  transition: grid-template-columns 2s;
+}
+
+.tables-column-users {
+  display: grid;
+  grid-template-columns: 20% 30% 10% 20% 20%;
+}
+.tables-column-killed-processes-machine {
+  display: grid;
+  grid-template-columns: 35% 30% 35% 0%;
+}
+.tables-column-killed-processes {
+  display: grid;
+  grid-template-columns: 30% 30% 25% 15% 0%;
+}
+.tables-column-machine-ranking {
+  display: grid;
+  grid-template-columns: 30% 15% 15% 20% 20%;
+}
+.tables-column-classroom-ranking {
+  display: grid;
+  grid-template-columns: 15% 30% 15% 20% 20%;
+}
+.tables-column-process-ranking {
+  display: grid;
+  grid-template-columns: 30% 20% 20% 30% 0%;
+}
+
+.tables-arrows {
+  /* SIZE */
+  width: 10%;
+  height: 100%;
+  max-height: 70px;
+  font-size: 1em !important;
+  /* MISC */
+  transition: color 0.3s;
+}
+.tables-arrows:hover {
+  /* COLOR */
+  color: var(--red-alt);
+  /* MISC */
+  cursor: pointer;
+}
+
+.header-options {
   /* SIZE */
   width: auto;
   /* DISPLAY */
   display: flex;
   justify-content: flex-end;
+}
+
+.header-options button p {
+  margin-left: 0.6em;
+}
+
+.td-arrow {
+  /* SIZE */
+  width: 100%;
+  height: 100%;
+  /* SPACING */
+  margin: 0.5em 0;
+  /* COLOR */
+  color: var(--font2);
+  /* MISC */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.td-arrow:hover {
+  color: var(--red-alt);
 }
 
 .btn-add {
@@ -160,28 +246,268 @@ section section {
   /* BORDER */
   border-radius: 0.5em;
   /* SCROLL */
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
 }
 
-.sec .content .graph::-webkit-scrollbar {
+.no-data-content {
   /* SIZE */
-  width: 4px;
-  height: 4px;
+  height: 80% !important;
+  /* DISPLAY */
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  place-self: flex-start;
+  /* TEXT */
+  color: var(--font1);
+  text-align: center;
+}
+
+.resume-header {
+  /* DISPLAY */
+  display: flex;
+  justify-content: center;
+}
+
+.resume-content {
+  /* SIZE */
+  width: 89.8vw !important;
+  height: 99.5% !important;
+  /* SPACING */
+  padding: 0 !important;
+  /* DISPLAY */
+  gap: 0 !important;
+  grid-template-columns: 100% !important;
+  grid-template-rows: repeat(4, 100%);
+  grid-template-areas:
+    "general"
+    "status"
+    "classroom"
+    "machine";
+  /* BORDER */
+  border-radius: 0 !important;
   /* SCROLL */
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  border-collapse: collapse;
 }
-.sec .content .graph::-webkit-scrollbar-track {
-  /* BACKGROUND */
-  background: var(--white);
+
+.general-resume {
+  grid-area: general;
 }
-.sec .content .graph::-webkit-scrollbar-thumb {
-  /* BACKGROUND */
-  background: var(--gray);
+.status-resume {
+  grid-area: status;
 }
-.sec .content .graph::-webkit-scrollbar-thumb:hover {
+.classroom-resume {
+  grid-area: classroom;
+}
+.machine-resume {
+  grid-area: machine;
+}
+
+.resume-content > div {
+  background-color: var(--card1);
+  /* SIZE */
+  width: 100%;
+  /* SPACING */
+  padding: 1em;
+  /* DISPLAY */
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 90%;
+  align-items: flex-end;
+  /* TEXT */
+  color: var(--font1);
+}
+.resume-content > div > h1 {
+  /* SIZE */
+  width: 100%;
+  /* TEXT */
+  text-align: center;
+}
+.details-resume {
+  /* SCROLL */
+  scroll-snap-align: start;
+}
+.details-resume h1,
+.details-resume span {
+  color: var(--red-alt);
+  cursor: default;
+}
+.details-resume h1:hover,
+.details-resume span:hover {
+  color: var(--red-light);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 0.1em var(--red-light);
+}
+.details-resume > div {
+  background-color: var(--card1-trans);
+  /* SIZE */
+  font-size: 0.9em;
+  width: 100%;
+  height: 100%;
+  /* SPACING */
+  padding: 0;
+  /* DISPLAY */
+  align-items: center;
+}
+.micro-resume > div {
+  /* DISPLAY */
+  display: grid;
+  grid-template-areas:
+    "title sub processKilled"
+    "total cpuAvg ramAvg";
+  grid-template-columns: 26% 34% 40%;
+  grid-template-rows: 20% 80%;
+  border-collapse: collapse;
+}
+
+.micro-resume > div > * {
+  /* SIZE */
+  width: 100%;
+  height: 100%;
+  /* DISPLAY */
+  justify-content: center;
+  align-items: center;
+  /* BORDER */
+  border: 0.1em solid;
+}
+
+.micro-resume > div > *:not(div) {
+  display: flex;
+}
+
+.micro-resume > div span {
+  /* SPACING */
+  margin: 0 4px;
+}
+
+.general-resume > div,
+.status-resume > div {
+  /* SIZE */
+  width: 100%;
+  height: 100%;
+  /* DISPLAY */
+  display: flex;
+}
+
+.resume-micro-card,
+.resume-general-card {
+  /* SIZE */
+  width: 100%;
+  height: 100%;
+  /* DISPLAY */
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 65% 35%;
+  /* BORDER */
+  border: 0.1em solid;
+}
+
+.resume-general-card h3 {
+  font-size: 1em;
+  text-align: center;
+}
+
+.resume-general-card h1 {
+  align-self: flex-end;
+  font-size: 3em;
+}
+
+.resume-machine-card {
+  /* SIZE */
+  width: 100%;
+  height: 100%;
+  /* DISPLAY */
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20% 60% 20%;
+  align-items: center;
+  /* BORDER */
+  border: 0.1em solid;
+}
+
+.resume-machine-card h3 {
+  align-self: flex-end;
+  font-size: 0.9em;
+  text-align: center;
+}
+.resume-machine-card h1 {
+  align-self: center;
+  font-size: 3em;
+}
+.resume-machine-card > div {
+  align-self: flex-start;
+  /* SIZE */
+  width: 100%;
+  height: 80%;
+  max-height: 40px;
+  /* DISPLAY */
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  align-items: center;
+}
+.resume-machine-card div h4 {
+  font-size: 0.5em;
+}
+
+.resume-progress {
+  /* SIZE */
+  width: 100%;
+  height: 100%;
+  /* DISPLAY */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* BORDER */
+  border: 0.05em solid;
+}
+.resume-progress div {
+  background-color: var(--red-alt);
+  /* SIZE */
+  height: 100%;
+  /* SPACING */
+  margin: 0;
+}
+
+
+.resume-micro-card {
+  grid-template-rows: 60% 40%;
+}
+.resume-micro-card > h3 {
+  font-size: 1.8em;
+  align-self: flex-end;
+}
+.resume-micro-card > h4 {
+  font-size: 1.2em;
+  align-self: flex-start;
+}
+
+.sec::-webkit-scrollbar,
+.graph::-webkit-scrollbar,
+.content::-webkit-scrollbar {
+  /* SIZE */
+  width: 4px !important;
+  height: 4px !important;
+  /* SCROLL */
+  scroll-behavior: smooth !important;
+}
+.sec::-webkit-scrollbar-track,
+.graph::-webkit-scrollbar-track,
+.content::-webkit-scrollbar-track {
   /* BACKGROUND */
-  background: var(--red-alt);
+  background: var(--white) !important;
+}
+.sec::-webkit-scrollbar-thumb,
+.graph::-webkit-scrollbar-thumb,
+.content::-webkit-scrollbar-thumb {
+  /* BACKGROUND */
+  background: var(--gray) !important;
+}
+.sec::-webkit-scrollbar-thumb:hover,
+.graph::-webkit-scrollbar-thumb:hover,
+.content::-webkit-scrollbar-thumb:hover {
+  /* BACKGROUND */
+  background: var(--red-alt) !important;
 }
 
 .card-info {
@@ -417,13 +743,11 @@ section section {
   text-align: center;
   /* BORDER */
   border-radius: 0 !important;
-  /* SCROLL */
-  overflow: auto !important;
 }
 
 .main-table {
   /* SIZE */
-  width: 99.8%;
+  width: 99.4%;
 }
 
 .machine-table td {
@@ -440,7 +764,8 @@ section section {
 }
 
 /* SECTIONS */
-/* #processes, */
+/* #resume, */
+#tables,
 #dispositivos,
 #colecoes,
 #acessos,
@@ -458,6 +783,14 @@ section section {
   max-height: 70vh;
   /* SCROLL */
   overflow-y: auto;
+}
+
+.machine-classroom {
+  /* SIZE */
+  max-width: 5em;
+}
+.machine-classroom input {
+  text-align: center;
 }
 
 .div-mini-hard {

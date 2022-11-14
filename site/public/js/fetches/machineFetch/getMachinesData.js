@@ -33,7 +33,7 @@ function getMachinesData() {
 
                 let strCpu;
                 switch (true) {
-                  case reg.cpu < 50:
+                  case reg.cpu <= 50:
                     strCpu = "success";
                     break;
                   case reg.cpu < 90:
@@ -47,7 +47,7 @@ function getMachinesData() {
 
                 let strRam;
                 switch (true) {
-                  case reg.ram < 80:
+                  case reg.ram <= 70:
                     strRam = "success";
                     break;
                   case reg.ram < 90:

@@ -28,7 +28,9 @@ function showMachines() {
             const disableData = json[i].isUsing === "not" && "disabled";
             const classIsUsing = json[i].isUsing === "yes" && ".isUsing";
             dispositivos_content.innerHTML += `             
-              <div class="card-info ${classIsUsing}" id="machine${json[i].idMachine}">
+              <div class="card-info ${classIsUsing}" id="machine${
+              json[i].idMachine
+            }">
               
               <div class="div-mini-hard">
                 <ion-icon name="hardware-chip" class="mini-hard mini-hard-disabled" id="cpu${
@@ -59,13 +61,16 @@ function showMachines() {
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="family_machine${json[i].idFamily}">
+              <h3 id="family_machine${json[i].idMachine}" class="${json[i].idFamily}">
                 COLEÇÃO: ${json[i].familyName || "não adicionada"}
               </h3>
               <h2 id="name_machine${json[i].idMachine}">
                 nome: ${json[i].machineName}
               </h2>
               <p>
+                <strong>Sala: </strong><span id="classroom_machine${
+                  json[i].idMachine
+                }">${json[i].classroom}</span><br />
                 <strong>Adicionado em: </strong>${
                   json[i].dtAdded.split("-")[0]
                 }<br />
@@ -101,6 +106,7 @@ function showMachines() {
         `;
           }
           dispositivos.style.display = "grid";
+          getFamily();
           getMachinesData(fkCompanyVar);
         });
       } else {

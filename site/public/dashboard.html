@@ -31,8 +31,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body
-    onload="validateSession(), showKilledProcesses('idMachine'), viewLoad('hide'), 
-  getFamily(), showAccess(), hideLoading()"
+    onload="validateSession(), viewLoad('hide'), hideLoading(), showResume()"
   >
     <!-- LOADER -->
     <div class="loader">
@@ -91,14 +90,15 @@
         </a>
         <div class="wrapper-buttons">
           <button
+            id="btn_resume"
             type="button"
-            onclick="showSection('#processes'), showKilledProcesses('idMachine')"
+            onclick="showSection('#resume'), showResume()"
             onmouseenter="borderChange(this)"
             onmouseleave="resetBorder(this)"
-            title="Acessar DASHBOARD"
-            tabindex="4"
+            title="Acessar RESUMO"
+            tabindex="7"
           >
-            DASHBOARD
+            RESUMO
           </button>
           <ion-icon
             name="menu-outline"
@@ -106,7 +106,7 @@
             title="Abrir menu"
             onclick="showMenu()"
             onkeypress="showMenu()"
-            tabindex="4"
+            tabindex="6"
           />
         </div>
         <nav class="menu-nav dashboard">
@@ -115,13 +115,21 @@
               href="#"
               tabindex="1"
               draggable="false"
+              onclick="showSection('#tables'), changeDashTable('up')"
+            >
+              <li>Tabelas</li>
+            </a>
+            <a
+              href="#"
+              tabindex="2"
+              draggable="false"
               onclick="showSection('#dispositivos'), showMachines()"
             >
               <li>Dispositivos</li>
             </a>
             <a
               href="#"
-              tabindex="2"
+              tabindex="3"
               draggable="false"
               onclick="showSection('#colecoes'), showFamilies()"
             >
@@ -129,7 +137,7 @@
             </a>
             <a
               href="#"
-              tabindex="3"
+              tabindex="4"
               draggable="false"
               onclick="showSection('#acessos'),showAccess()"
             >
@@ -137,7 +145,7 @@
             </a>
             <a
               href="#"
-              tabindex="4"
+              tabindex="5"
               draggable="false"
               onclick="showSection('#usuarios'), showUsers()"
             >
@@ -161,6 +169,13 @@
     <aside class="popup-aside invisible" id="aside_menu">
       <div class="menu-nav hamburger">
         <ul>
+          <a
+            href="#"
+            tabindex="1"
+            onclick="showSection('#tables'), changeDashTable('up')"
+          >
+            <li>Tabelas</li>
+          </a>
           <a
             href="#"
             tabindex="1"
@@ -213,31 +228,137 @@
 
     <!-- SECTION CONTENTS -->
     <section class="sec-main">
-      <!-- processes -->
-      <section id="processes" class="sec">
+      <!-- resume -->
+      <section id="resume" class="sec">
+        <div class="header resume-header">
+          <h1>Resumo</h1>
+        </div>
+        <div class="content no-data-content">
+          <h1>Sem dados encontrados para um resumo.</h1>
+        </div>
+        <div class="content resume-content">
+          <div class="general-resume details-resume">
+            <h2>Geral</h2>
+            <div>
+              <div class="resume-general-card">
+                <h1 id="resume-general-status"></h1>
+                <h3>Situação</h3>
+              </div>
+              <div class="resume-general-card">
+                <h1 id="resume-general-processKilled"></h1>
+                <h3>Processos Mortos</h3>
+              </div>
+              <div class="resume-general-card">
+                <h1 id="resume-general-machines"></h1>
+                <h3>Máquinas Analisadas</h3>
+              </div>
+            </div>
+          </div>
+          <div class="status-resume details-resume">
+            <h2>Máquinas em:</h2>
+            <div id="status_resume_cards">
+              <div class="resume-machine-card"></div>
+              <div class="resume-machine-card"></div>
+              <div class="resume-machine-card"></div>
+              <div class="resume-machine-card"></div>
+            </div>
+          </div>
+          <div class="micro-resume classroom-resume details-resume">
+            <h2>Sala Crítica</h2>
+            <div>
+              <h2 style="grid-area: title">
+                Sala <span id="classroom_resume"></span>
+              </h2>
+              <h3 style="grid-area: sub">
+                <span id="classroom_sub_resume"></span> máquinas
+              </h3>
+              <h3 style="grid-area: processKilled">
+                <span id="classroom_processKilled_resume"></span> processos
+                mortos
+              </h3>
+              <div class="resume-micro-card" style="grid-area: cpuAvg">
+                <h3><span id="classroom_cpuAvg_resume"></span>%</h3>
+                <h4>Média de CPU</h4>
+              </div>
+              <div class="resume-micro-card" style="grid-area: ramAvg">
+                <h3><span id="classroom_ramAvg_resume"></span>%</h3>
+                <h4>Média de RAM</h4>
+              </div>
+              <div class="resume-micro-card" style="grid-area: total">
+                <h3><span id="classroom_total_resume"></span>/10</h3>
+                <h4>Criticidade</h4>
+              </div>
+            </div>
+          </div>
+          <div class="micro-resume machine-resume details-resume">
+            <h2>Máquina Crítica</h2>
+            <div>
+              <h2 style="grid-area: title">
+                <span id="machine_resume"></span>
+              </h2>
+              <h3 style="grid-area: sub">
+                Sala: <span id="machine_sub_resume"></span>
+              </h3>
+              <h3 style="grid-area: processKilled">
+                <span id="machine_processKilled_resume"></span> processos mortos
+              </h3>
+              <div class="resume-micro-card" style="grid-area: cpuAvg">
+                <h3><span id="machine_cpuAvg_resume"></span>%</h3>
+                <h4>Média de CPU</h4>
+              </div>
+              <div class="resume-micro-card" style="grid-area: ramAvg">
+                <h3><span id="machine_ramAvg_resume"></span>%</h3>
+                <h4>Média de RAM</h4>
+              </div>
+              <div class="resume-micro-card" style="grid-area: total">
+                <h3><span id="machine_total_resume"></span>/10</h3>
+                <h4>Criticidade</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- tables -->
+      <section id="tables" class="sec">
         <div class="header">
-          <h1>Processos Mortos</h1>
+          <div class="header-tables">
+            <ion-icon
+              name="chevron-back-outline"
+              class="tables-arrows"
+              onclick="changeDashTable('left')"
+            ></ion-icon>
+            <h2 id="tables_title"></h2>
+            <ion-icon
+              name="chevron-forward-outline"
+              class="tables-arrows"
+              onclick="changeDashTable('right')"
+            ></ion-icon>
+          </div>
+          <div class="header-options">
+            <button id="reload_button" class="btn-special user-btn">
+              <ion-icon name="reload-outline"></ion-icon>
+              <p>RECARREGAR</p>
+            </button>
+          </div>
         </div>
         <div class="content table-content">
           <table class="main-table">
             <thead>
-              <tr>
-                <td>Processo</td>
-                <td>Máquina</td>
-                <td class="lastTdBorder">Horário</td>
-              </tr>
+              <tr id="tables_thead_tds"></tr>
             </thead>
-            <tbody id="processesDisplay">
-              <!-- ADD PROCESSES HERE -->
+            <tbody id="tablesBody">
+              <!-- ADD TABLES HERE -->
             </tbody>
           </table>
         </div>
       </section>
+
       <!-- machines -->
       <section id="dispositivos" class="sec">
         <div class="header">
           <h1>Dispositivos</h1>
-          <div>
+          <div class="header-options">
             <button
               class="btn-add"
               title="Adicionar uma nova máquina"
@@ -253,11 +374,12 @@
           <!-- ADD MACHINES HERE -->
         </div>
       </section>
+
       <!-- families -->
       <section id="colecoes" class="sec">
         <div class="header">
           <h1>Coleções</h1>
-          <div>
+          <div class="header-options">
             <button
               class="btn-add"
               title="Adicionar uma nova coleção"
@@ -273,11 +395,12 @@
           <!-- ADD FAMILIES HERE -->
         </div>
       </section>
+
       <!-- access -->
       <section id="acessos" class="sec">
         <div class="header">
           <h1>Acessos</h1>
-          <div>
+          <div class="header-options">
             <button
               class="btn-add"
               title="Adicionar uma nova permissão"
@@ -293,11 +416,12 @@
           <!-- ADD ACCESS HERE -->
         </div>
       </section>
+
       <!-- users -->
       <section id="usuarios" class="sec">
         <div class="header">
           <h1>Usuários</h1>
-          <div>
+          <div class="header-options">
             <button
               onclick="formView(true, 'Editar usuário', 'user', 'edit', 'idUser')"
               id="userEditButton"
@@ -326,12 +450,12 @@
         <div class="content table-content">
           <table class="main-table">
             <thead>
-              <tr>
-                <td>Nome</td>
-                <td>Email</td>
-                <td>Permissão</td>
-                <td>Data</td>
-                <td class="lastTdBorder">Gestor</td>
+              <tr class="tables-column-users">
+                <td><p>Nome</p></td>
+                <td><p>Email</p></td>
+                <td><p>Permissão</p></td>
+                <td><p>Data de Adição</p></td>
+                <td class="lastTdBorder"><p>Gestor</p></td>
               </tr>
             </thead>
             <tbody id="usersDisplay">
@@ -386,6 +510,14 @@
           <div class="form__input input-machine edit">
             <label for="machineName">Nome</label>
             <input name="machineName" id="machine_name" type="text" />
+          </div>
+          <div class="form__input input-machine edit machine-classroom">
+            <label for="machineClassroom">Sala</label>
+            <input
+              name="machineClassroom"
+              id="machine_classroom"
+              type="number"
+            />
           </div>
           <!-- USERS -->
           <div class="form__input input-user edit">
@@ -481,10 +613,11 @@
                 <div class="content table-content">
                   <table class="main-table machine-table">
                     <thead>
-                      <tr>
-                        <td>Processo</td>
-                        <td>Máquina</td>
-                        <td class="lastTdBorder">Horário</td>
+                      <tr class="tables-column-killed-processes-machine">
+                        <td><p>Processo</p></td>
+                        <td><p>Máquina</p></td>
+                        <td><p>Horário</p></td>
+                        <td class="lastTdBorder"><p></p></td>
                       </tr>
                     </thead>
                     <tbody id="machineProcessesDisplay">
@@ -555,7 +688,11 @@
   <script src="./js/fetches/machineFetch/showMachines.js"></script>
   <script src="./js/fetches/machineFetch/getMachinesData.js"></script>
   <!-- DASH -->
+  <script src="./js/fetches/dashboardFetch/showResume.js"></script>
   <script src="./js/fetches/dashboardFetch/showKilledProcesses.js"></script>
+  <script src="./js/fetches/dashboardFetch/showMachineRank.js"></script>
+  <script src="./js/fetches/dashboardFetch/showClassroomRank.js"></script>
+  <script src="./js/fetches/dashboardFetch/showProcessRank.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/closeMachineDash.js"></script>
   <script src="./js/fetches/dashboardFetch/machineDashContent.js"></script>
   <script src="./js/fetches/dashboardFetch/chartUtils/styleVars.js"></script>

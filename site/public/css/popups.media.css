@@ -1,15 +1,17 @@
 @media (min-width: 376px) {
-  .form__input {
-    /* SIZE */
-    height: 5em;
-  }
   .form__input input {
     /* SIZE */
-    height: 70%;
+    font-size: 0.8em;
+    height: 100%;
   }
   .constant-info {
     /* TEXT */
     font-size: 1.2rem;
+  }
+  .animated-label {
+    /* SPACING */
+    margin-left: 0.2em;
+    margin-top: 1.1em;
   }
 }
 @media (min-width: 426px) {
@@ -89,6 +91,7 @@
     /* TEXT */
     font-size: 0.85rem;
   }
+  
 }
 @media (min-width: 1025px) {
   .form-card {
