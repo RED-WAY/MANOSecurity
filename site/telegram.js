@@ -9,7 +9,6 @@ const emailRegex = new RegExp(
 
 bot.on("message", (message) => {
   const chatId = message.chat.id;
-  console.log(message);
   const msg = message.text
     .toLowerCase()
     .trimStart()
@@ -45,10 +44,10 @@ bot.on("message", (message) => {
     );
 
     const dbQuery = `
-        UPDATE consumer
-          SET telegramId = '${chatId}'
-            WHERE consumerEmail = '${splitMsg[0]}'
-              AND consumerPassword = '${splitMsg[1]}';
+          UPDATE consumer
+            SET telegramId = '${chatId}'
+              WHERE consumerEmail = '${splitMsg[0]}'
+                AND consumerPassword = '${splitMsg[1]}';
   `;
     database.executeQuery(dbQuery);
 
@@ -74,9 +73,9 @@ bot.on("message", (message) => {
     );
 
     const dbQuery = `
-        UPDATE consumer
-          SET telegramId = NULL
-            WHERE telegramId = '${chatId}';
+          UPDATE consumer
+            SET telegramId = NULL
+              WHERE telegramId = '${chatId}';
   `;
     database.executeQuery(dbQuery);
 
@@ -94,6 +93,13 @@ bot.on("message", (message) => {
         bot.sendMessage(chatId, message);
       });
     }, 5000);
+  } else if (msg === "/resumo") {
+    bot.sendMessage(
+      chatId,
+      `Analisando dados...
+      \nEsse processo pode ser um pouco mais demorado.
+      \nPor favor, aguarde alguns segundos...`
+    );
   } else {
     bot.sendMessage(
       chatId,

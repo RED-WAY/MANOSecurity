@@ -351,5 +351,4 @@ function plotStatus(array) {
   };
 
   status.plotCards();
-  test = status;
 }
