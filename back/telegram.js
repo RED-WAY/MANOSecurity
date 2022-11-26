@@ -1,5 +1,5 @@
 const TelegramBot = require("node-telegram-bot-api");
-const token = "5785472072:AAG2umyIttkO1Hyyc6-k3-8ETNQr9sU3AX4";
+const token = "5755430418:AAGFotEAQ8i8ErqknS7jC67NutoGpGv77YE";
 const bot = new TelegramBot(token, { polling: true });
 
 const database = require("./src/database/config");
@@ -23,18 +23,46 @@ bot.on("message", (message) => {
     bot.sendMessage(
       chatId,
       `Olá, ${firstName}. Eu sou o manoBOT!
-      \nPara começar, faça o LogIn com a mesma conta do site do man.OS para receber notificações das suas máquinas registradas!
+      \nPara começar, faça o **Log In** com a mesma conta do site do **[man.OS](manosecurity.sytes.net)** para receber notificações das suas máquinas registradas!
       \nDigite /login para começar o processo :)
-      `
+      `,
+      {
+        parse_mode: "MARKDOWN",
+      }
+    );
+  } else if (msg === "/help") {
+    bot.sendMessage(
+      chatId,
+      `*Lista de Comandos*
+      /help - Listagem dos comandos disponíveis.
+      /start - Instruções iniciais.
+      /manos - Link do site oficial.
+      /login - Entre com sua conta man.OS e receba notificações :)
+      /logout - Desconecte o contato com qualquer conta man.OS.
+      `,
+      {
+        parse_mode: "MARKDOWN",
+      }
+    );
+  } else if (msg === "/manos") {
+    bot.sendMessage(
+      chatId,
+      `Site do MANOSecurity: **[manosecurity.sytes.net](manosecurity.sytes.net)**`,
+      {
+        parse_mode: "MARKDOWN",
+      }
     );
   } else if (msg === "/login") {
     bot.sendMessage(
       chatId,
       `
       Para iniciarmos, me informe seu E-mail e senha em uma única mensagem, da seguinte forma:
-      \nexemplo@email.com\nsenhadomanOS
-      \n* É obrigatório as quebras de linha. 
-      `
+      <code><b>\nexemplo@email.com\nsenhadomanOS</b></code>
+      \n<b>É obrigatório as quebras de linha.</b>
+      `,
+      {
+        parse_mode: "HTML",
+      }
     );
   } else if (splitMsg.length === 2 && splitMsg[0].match(emailRegex)) {
     bot.sendMessage(
