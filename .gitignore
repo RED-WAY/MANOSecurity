@@ -1,10 +1,4 @@
-node_modules
+*/node_modules
 .github
 
-.env
-
-config.js
-app.js
-
 package-lock.json
-package.json
