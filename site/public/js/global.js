@@ -1,4 +1,4 @@
-const IP = "127.0.0.1";
+const IP = "3.215.54.30";
 const PORT = "8082";
 const baseURL = `http://${IP}:${PORT}`;
 
