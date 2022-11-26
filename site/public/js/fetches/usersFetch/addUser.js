@@ -49,7 +49,7 @@ function addUser() {
     );
     return false;
   } else {
-    fetch(`/users/addUser/${companyVar}`, {
+    fetch(`${baseURL}/users/addUser/${companyVar}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

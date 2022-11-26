@@ -3,12 +3,15 @@ function deleteAccess(fkCompanyOperations, fkAccess) {
 
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/access/deleteAccessFamily/${fkCompanyVar}/${fkCompanyOperations}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  fetch(
+    `${baseURL}/access/deleteAccessFamily/${fkCompanyVar}/${fkCompanyOperations}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
     .then(function (result) {
       if (result.ok) {
         deleteAccessCompany(fkCompanyOperations, fkAccess);
@@ -35,12 +38,15 @@ function deleteAccess(fkCompanyOperations, fkAccess) {
 function deleteAccessCompany(fkCompanyOperations, fkAccess) {
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/access/deleteAccessCompany/${fkCompanyVar}/${fkCompanyOperations}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  fetch(
+    `${baseURL}/access/deleteAccessCompany/${fkCompanyVar}/${fkCompanyOperations}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
     .then(function (result) {
       if (result.ok) {
         showFamilies();
@@ -90,7 +96,7 @@ function verifyGlobalAccessUsing(idAccess) {
   if (idAccess == "") {
     console.log("idAccess is undefined");
   } else {
-    fetch(`/access/verifyGlobalAccessUsing/${idAccess}`, {
+    fetch(`${baseURL}/access/verifyGlobalAccessUsing/${idAccess}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -137,7 +143,7 @@ function verifyGlobalAccessUsing(idAccess) {
 }
 
 function deleteAccessGlobal(idAccess) {
-  fetch(`/access/deleteAccessGlobal/${idAccess}`, {
+  fetch(`${baseURL}/access/deleteAccessGlobal/${idAccess}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

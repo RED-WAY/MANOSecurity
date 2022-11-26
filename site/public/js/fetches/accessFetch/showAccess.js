@@ -11,7 +11,7 @@ function showAccess() {
 
   const idCompany = sessionStorage.COMPANY_USER;
 
-  fetch(`/access/showAccess/${idCompany}`, {
+  fetch(`${baseURL}/access/showAccess/${idCompany}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

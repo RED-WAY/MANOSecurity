@@ -4,7 +4,7 @@ function showUsers() {
   const fkCompany = sessionStorage.COMPANY_USER;
   const idConsumer = sessionStorage.ID_USER;
 
-  fetch(`/users/showConsumers/${fkCompany}/${idConsumer}`, {
+  fetch(`${baseURL}/users/showConsumers/${fkCompany}/${idConsumer}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

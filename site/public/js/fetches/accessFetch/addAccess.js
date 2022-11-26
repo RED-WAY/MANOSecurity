@@ -14,7 +14,7 @@ function addAccess() {
     showMessage("warning", "Tipo de acesso não foi escolhido!");
   } else {
     fetch(
-      `/access/checkAccessGlobally/${operationNameVar}/${operationTypeVar}`,
+      `${baseURL}/access/checkAccessGlobally/${operationNameVar}/${operationTypeVar}`,
       {
         method: "GET",
         headers: {
@@ -54,7 +54,7 @@ function addAccess() {
 }
 
 function addAccessGlobal(operationNameVar, operationTypeVar) {
-  fetch("/access/addAccessGlobal", {
+  fetch(`${baseURL}/access/addAccessGlobal`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -105,7 +105,7 @@ function addAccessCompany(operationId) {
   } else if (companyVar == undefined) {
     console.log("companyVar is undefined");
   } else {
-    fetch("/access/addAccessCompany", {
+    fetch(`${baseURL}/access/addAccessCompany`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

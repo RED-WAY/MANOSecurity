@@ -4,7 +4,7 @@ function showClassroomRank(order, sortOption) {
 
   const fkCompany = sessionStorage.COMPANY_USER;
 
-  fetch(`/dash/showClassroomRank/${fkCompany}`, {
+  fetch(`${baseURL}/dash/showClassroomRank/${fkCompany}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

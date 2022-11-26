@@ -39,7 +39,7 @@ function editUser(idConsumer) {
     );
     return false;
   } else {
-    fetch(`/users/editConsumer/${idConsumer}`, {
+    fetch(`${baseURL}/users/editConsumer/${idConsumer}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 function removeFamily(fkFamily) {
   showLoading();
 
-  fetch(`/family/editMachineFamilies`, {
+  fetch(`${baseURL}/family/editMachineFamilies`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function removeFamily(fkFamily) {
 }
 
 function removeFromFamilyOperations(fkFamily, postFunc, parameters) {
-  fetch(`/family/removeFromFamilyOperations/${fkFamily}`, {
+  fetch(`${baseURL}/family/removeFromFamilyOperations/${fkFamily}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -95,7 +95,7 @@ function removeFromFamilyOperations(fkFamily, postFunc, parameters) {
 }
 
 function removeFromFamily(idFamily) {
-  fetch(`/family/deleteFamily/${idFamily}`, {
+  fetch(`${baseURL}/family/deleteFamily/${idFamily}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

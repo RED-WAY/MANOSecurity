@@ -1,7 +1,7 @@
 function deleteMachine(idMachine) {
   showLoading();
 
-  fetch(`/machine/deleteMachine/${idMachine}`, {
+  fetch(`${baseURL}/machine/deleteMachine/${idMachine}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -13,7 +13,7 @@ function deleteMachine(idMachine) {
         hideConfirm();
         setTimeout(() => {
           hideLoading();
-          showMessage('success', 'Máquina removida com sucesso!');
+          showMessage("success", "Máquina removida com sucesso!");
         }, 500);
       } else if (result.status == 404) {
         window.alert("Error 404!");

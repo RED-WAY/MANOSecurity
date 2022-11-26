@@ -3,7 +3,7 @@ function showProcessRank(order, sortOption) {
 
   const fkCompany = sessionStorage.COMPANY_USER;
 
-  fetch(`/dash/showProcessRank/${fkCompany}`, {
+  fetch(`${baseURL}/dash/showProcessRank/${fkCompany}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -38,10 +38,8 @@ function showProcessRank(order, sortOption) {
 
             rank.sort((a, b) => {
               return order === "asc"
-                ? a[sortOption || "detections"] -
-                    b[sortOption || "detections"]
-                : b[sortOption || "detections"] -
-                    a[sortOption || "detections"];
+                ? a[sortOption || "detections"] - b[sortOption || "detections"]
+                : b[sortOption || "detections"] - a[sortOption || "detections"];
             });
 
             tablesBody.innerHTML = "";

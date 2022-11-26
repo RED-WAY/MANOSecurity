@@ -1,6 +1,6 @@
 function machineDashContent(idMachine) {
   showLoading();
-  fetch(`/dash/getMachineConstantHardware/${idMachine}`, {
+  fetch(`${baseURL}/dash/getMachineConstantHardware/${idMachine}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function machineDashContent(idMachine) {
         "error",
         "Aconteceu algum erro enquanto carregavam os dados da máquina!"
       );
-    });  
+    });
   hideLoading();
   return false;
 }

@@ -3,7 +3,7 @@ function showKilledProcesses(idMachine) {
 
   const fkCompany = sessionStorage.COMPANY_USER;
 
-  fetch(`/dash/showKilledProcesses/${fkCompany}/${idMachine}`, {
+  fetch(`${baseURL}/dash/showKilledProcesses/${fkCompany}/${idMachine}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

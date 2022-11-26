@@ -28,7 +28,7 @@ function editFamily(idFamily) {
     );
     return false;
   } else {
-    fetch(`/family/editFamily/${idFamily}`, {
+    fetch(`${baseURL}/family/editFamily/${idFamily}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

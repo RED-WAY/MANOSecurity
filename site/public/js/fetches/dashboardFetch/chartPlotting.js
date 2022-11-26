@@ -1,4 +1,4 @@
-const PLOT_DELAY = 2000;
+const PLOT_DELAY = 5000;
 let timeoutUpdate;
 let timeoutPlot;
 
@@ -9,9 +9,12 @@ function getStartupData(column, fkMachine) {
   if (timeoutUpdate != undefined) {
     clearTimeout(timeoutUpdate);
   }
-  fetch(`/dash/getStartupData/${column}/${fkMachine}/${selectQttData()}`, {
-    cache: "no-store",
-  })
+  fetch(
+    `${baseURL}/dash/getStartupData/${column}/${fkMachine}/${selectQttData()}`,
+    {
+      cache: "no-store",
+    }
+  )
     .then(function (result) {
       if (result.ok) {
         result.json().then(function (result) {
@@ -56,7 +59,9 @@ function plotGraph(startupData, column, fkMachine) {
 }
 
 function updateChart(column, fkMachine, data) {
-  fetch(`/dash/getCurrentData/${column}/${fkMachine}`, { cache: "no-store" })
+  fetch(`${baseURL}/dash/getCurrentData/${column}/${fkMachine}`, {
+    cache: "no-store",
+  })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (newData) {

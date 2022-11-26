@@ -1,3 +1,7 @@
+const IP = "127.0.0.1";
+const PORT = "8082";
+const baseURL = `http://${IP}:${PORT}`;
+
 // display flex on elements with ".invisible" class
 // to not flick at start
 function displayAfterStart() {

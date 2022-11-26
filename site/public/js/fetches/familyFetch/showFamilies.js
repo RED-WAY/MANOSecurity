@@ -11,7 +11,7 @@ function showFamilies() {
 
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/family/showFamilies/${fkCompanyVar}`, {
+  fetch(`${baseURL}/family/showFamilies/${fkCompanyVar}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

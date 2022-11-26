@@ -3,7 +3,7 @@ function deleteUser(idConsumer, fkManager) {
 }
 
 function updateMachineAdder(fkManager, idConsumer) {
-  fetch(`/users/updateMachineAdder/${fkManager}/${idConsumer}`, {
+  fetch(`${baseURL}/users/updateMachineAdder/${fkManager}/${idConsumer}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +42,7 @@ function updateMachineAdder(fkManager, idConsumer) {
 }
 
 function updateChildrenManager(fkManager, idConsumer) {
-  fetch(`/users/updateChildrenManager/${fkManager}/${idConsumer}`, {
+  fetch(`${baseURL}/users/updateChildrenManager/${fkManager}/${idConsumer}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -83,7 +83,7 @@ function updateChildrenManager(fkManager, idConsumer) {
 function deleteUserFinal(idConsumer) {
   showLoading();
 
-  fetch(`/users/deleteConsumer/${idConsumer}`, {
+  fetch(`${baseURL}/users/deleteConsumer/${idConsumer}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

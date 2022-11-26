@@ -7,7 +7,7 @@ function showResume() {
 }
 
 function fetchMachines() {
-  fetch(`/dash/showMachineRank/${sessionStorage.COMPANY_USER}`, {
+  fetch(`${baseURL}/dash/showMachineRank/${sessionStorage.COMPANY_USER}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -56,7 +56,7 @@ function fetchMachines() {
 }
 
 function fetchClassroom() {
-  fetch(`/dash/showClassroomRank/${sessionStorage.COMPANY_USER}`, {
+  fetch(`${baseURL}/dash/showClassroomRank/${sessionStorage.COMPANY_USER}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -251,7 +251,7 @@ const plotData = (objs) => {
     "total_resume",
   ].map((htmlId, i) => {
     document.querySelector(`#${type}_${htmlId}`).innerHTML =
-      value[i] + (i === 2 ? `/${processKilled}` : "");
+      value[i] + (i === 2 ? `${baseURL}/${processKilled}` : "");
   });
 
   Object.keys(objs[0])[0] === "machine" && plotStatus(objs);

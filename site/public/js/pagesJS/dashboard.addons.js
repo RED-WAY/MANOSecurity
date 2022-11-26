@@ -104,7 +104,7 @@ function loadUserInputs(userId) {
 }
 
 function loadChecks(idFamily) {
-  fetch(`/family/getSpecificFamily/${idFamily}`, {
+  fetch(`${baseURL}/family/getSpecificFamily/${idFamily}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

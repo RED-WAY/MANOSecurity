@@ -41,7 +41,7 @@ function addMachine() {
     showMessage("warning", "Coleção não existe!");
     return false;
   } else {
-    fetch("/machine/addMachine", {
+    fetch(`${baseURL}/machine/addMachine`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

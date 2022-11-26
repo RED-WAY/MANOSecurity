@@ -3,7 +3,7 @@ function showMachineRank(order, sortOption) {
 
   const fkCompany = sessionStorage.COMPANY_USER;
 
-  fetch(`/dash/showMachineRank/${fkCompany}`, {
+  fetch(`${baseURL}/dash/showMachineRank/${fkCompany}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +17,11 @@ function showMachineRank(order, sortOption) {
             let obj = {};
             for (let i = 0; i < list.length; i++) {
               const el = list[i];
-              if (i > 0 && obj.machine !== undefined && el.machineName !== obj.machine) {
+              if (
+                i > 0 &&
+                obj.machine !== undefined &&
+                el.machineName !== obj.machine
+              ) {
                 obj.processKilled = obj.processKilled || 0;
                 obj.cpuAvg = obj.cpuAvg || undefined;
                 obj.ramAvg = obj.ramAvg || undefined;
@@ -45,7 +49,7 @@ function showMachineRank(order, sortOption) {
                 }
               }
             }
-          
+
             obj.processKilled = obj.processKilled || 0;
             obj.cpuAvg = obj.cpuAvg || undefined;
             obj.ramAvg = obj.ramAvg || undefined;

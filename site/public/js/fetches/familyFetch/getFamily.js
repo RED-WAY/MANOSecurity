@@ -7,7 +7,7 @@ function getFamily() {
     showMessage("warning", "ID da empresa não foi definida!");
     return false;
   } else {
-    fetch(`/family/getFamily/${idCompanyVar}`, {
+    fetch(`${baseURL}/family/getFamily/${idCompanyVar}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

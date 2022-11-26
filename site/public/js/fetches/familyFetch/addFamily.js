@@ -20,10 +20,7 @@ function addFamily() {
   } else if (familyLevelVar == "") {
     hideLoading();
     hideConfirm();
-    showMessage(
-      "error",
-      "Nível da coleção não foi definido!"
-    );
+    showMessage("error", "Nível da coleção não foi definido!");
     return false;
   } else if (fkCompanyVar == "" || fkCompanyVar == undefined) {
     hideLoading();
@@ -34,7 +31,7 @@ function addFamily() {
     );
     return false;
   } else {
-    fetch("/family/addFamily", {
+    fetch(`${baseURL}/family/addFamily`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,7 +98,7 @@ function addFamily() {
 
 function getFamilyId(familyNameVar, familyLevelVar, fkCompanyVar, accessArray) {
   fetch(
-    `/family/getFamilyId/${familyNameVar}/${familyLevelVar}/${fkCompanyVar}`,
+    `${baseURL}/family/getFamilyId/${familyNameVar}/${familyLevelVar}/${fkCompanyVar}`,
     {
       method: "GET",
       headers: {
@@ -153,7 +150,7 @@ function addFamilyAccess([accessArray, fkFamily]) {
       "Aconteceu algum erro enquanto adicionava uma coleção!"
     );
   } else {
-    fetch("/family/addFamilyAccess", {
+    fetch(`${baseURL}/family/addFamilyAccess`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

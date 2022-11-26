@@ -9,7 +9,7 @@ function logIn() {
     hideLoading();
     return false;
   } else {
-    fetch("/users/logIn", {
+    fetch(`${baseURL}/users/logIn`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

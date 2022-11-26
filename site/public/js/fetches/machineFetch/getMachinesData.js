@@ -2,7 +2,7 @@ const data = [];
 function getMachinesData() {
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch(`/machine/getMachinesData/${fkCompanyVar}`, {
+  fetch(`${baseURL}/machine/getMachinesData/${fkCompanyVar}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

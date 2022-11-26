@@ -10,7 +10,7 @@ function showMachines() {
   showLoading();
   const fkCompanyVar = sessionStorage.COMPANY_USER;
 
-  fetch("/machine/showMachines", {
+  fetch(`${baseURL}/machine/showMachines`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -61,7 +61,9 @@ function showMachines() {
                   <p>REMOVER</p>
                 </button>
               </div>
-              <h3 id="family_machine${json[i].idMachine}" class="${json[i].idFamily}">
+              <h3 id="family_machine${json[i].idMachine}" class="${
+              json[i].idFamily
+            }">
                 COLEÇÃO: ${json[i].familyName || "não adicionada"}
               </h3>
               <h2 id="name_machine${json[i].idMachine}">
