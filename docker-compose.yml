@@ -7,6 +7,8 @@ services:
     container_name: "manos-back"
     ports:
       - "8082:8082"
+    networks:
+      - manos
 
   front:
     build:
@@ -17,3 +19,8 @@ services:
       - "3000:3000"
     depends_on:
       - back
+    networks:
+      - manos
+
+networks:
+  manos: {}
