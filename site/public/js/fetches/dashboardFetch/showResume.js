@@ -251,7 +251,7 @@ const plotData = (objs) => {
     "total_resume",
   ].map((htmlId, i) => {
     document.querySelector(`#${type}_${htmlId}`).innerHTML =
-      value[i] + (i === 2 ? `${baseURL}/${processKilled}` : "");
+      value[i] + (i === 2 ? `/${processKilled}` : "");
   });
 
   Object.keys(objs[0])[0] === "machine" && plotStatus(objs);
