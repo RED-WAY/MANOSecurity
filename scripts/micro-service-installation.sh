@@ -42,13 +42,21 @@ sudo echo "alias rm-back='sudo docker rm -f manos-back'" >>$HOME/.bash_aliases
 sudo echo "alias rm-front='sudo docker rm -f manos-front'" >>$HOME/.bash_aliases
 sudo echo "alias rm-all='rm-back && rm-front'" >>$HOME/.bash_aliases
 
+sudo echo "alias rmi-back='sudo docker rmi -f mendesco/manos-node-back${BACK_VERSION}'" >>$HOME/.bash_aliases
+sudo echo "alias rmi-front='sudo docker rmi -f mendesco/manos-node-front${FRONT_VERSION}'" >>$HOME/.bash_aliases
+sudo echo "alias rmi-all='rmi-back && rmi-front'" >>$HOME/.bash_aliases
+
 sudo echo "alias clean-port-back='sudo kill -9 $(sudo lsof -t -i:8082)'" >>$HOME/.bash_aliases
 sudo echo "alias clean-port-front='sudo kill -9 $(sudo lsof -t -i:3000)'" >>$HOME/.bash_aliases
 sudo echo "alias clean-port-all='clean-port-back && clean-port-front'" >>$HOME/.bash_aliases
 
-sudo echo "alias run-back='rm-back && clean-port-back && sudo docker run -tdp 8082:8082 --name manos-back mendesco/manos-node-back:${BACK_VERSION}'" >>$HOME/.bash_aliases
-sudo echo "alias run-front='rm-front && clean-port-front && sudo docker run -tdp 3000:3000 --name manos-front mendesco/manos-node-front:${FRONT_VERSION}'" >>$HOME/.bash_aliases
+sudo echo "alias run-back='sudo docker run -tdp 8082:8082 --name manos-back mendesco/manos-node-back:${BACK_VERSION}'" >>$HOME/.bash_aliases
+sudo echo "alias run-front='sudo docker run -tdp 3000:3000 --name manos-front mendesco/manos-node-front:${FRONT_VERSION}'" >>$HOME/.bash_aliases
 sudo echo "alias run-all='run-back && run-front'" >>$HOME/.bash_aliases
+
+sudo echo "alias clean-run-back='rm-back && clean-port-back && run-back'" >>$HOME/.bash_aliases
+sudo echo "alias clean-run-front='rm-front && clean-port-front && run-front'" >>$HOME/.bash_aliases
+sudo echo "alias clean-run-all='rm-all && clean-port-all && run-all'" >>$HOME/.bash_aliases
 
 sudo echo "alias manos-help='
 echo ""stop-back -\> stops manos-back container""
@@ -60,12 +68,18 @@ echo ""start-all -\> start all containers""
 echo ""rm-back -\> removes manos-back container""
 echo ""rm-front -\> removes manos-front container""
 echo ""rm-all -\> remove all containers""
+echo ""rmi-back -\> removes manos-back image""
+echo ""rmi-front -\> removes manos-front image""
+echo ""rmi-all -\> remove all images""
 echo ""clean-port-back -\> clean back port from other processes""
 echo ""clean-port-front -\> clean front port from other processes""
 echo ""clean-port-all -\> clean all ports to be used""
 echo ""run-back -\> runs manos-back container""
 echo ""run-front -\> runs manos-front container""
 echo ""run-all -\> run all containers""
+echo ""clean-run-back -\> cleaning runs manos-back container""
+echo ""clean-run-front -\> cleaning runs manos-front container""
+echo ""clean-run-all -\> cleaning run all containers""
 '" >>$HOME/.bash_aliases
 
 echo "use 'manos-help' to list commands"

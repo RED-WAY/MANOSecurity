@@ -7,7 +7,7 @@ sudo apt-get install curl -y
 sudo apt install nodejs -y
 sudo ln -s "$(which node)" /usr/bin/node
 
-sudo git clone --branch main --single-branch https://redway-admin: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@github.com/RED-WAY/MANOSite.git $HOME/REDWAY/MANOSite
+sudo git clone --branch main --single-branch https://$1:$2@github.com/RED-WAY/MANOSite.git $HOME/REDWAY/MANOSite
 sudo apt-get install git -y
 
 sudo apt install npm -y
