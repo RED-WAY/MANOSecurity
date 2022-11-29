@@ -5,7 +5,8 @@
 /* REFACTOR */
 header {
   /* POSITION */
-  position: inherit;
+  position: fixed;
+  top: 0;
   /* MISC */
   backdrop-filter: none;
   box-shadow: 0 0.05em 10px var(--bla);
@@ -69,7 +70,9 @@ section {
 section section {
   /* SIZE */
   width: 90%;
-  height: 90%;
+  position: absolute;
+  top: 20%;
+  height: 70%;
   /* DISPLAY */
   display: grid;
   grid-template-rows: 14% 86%;
