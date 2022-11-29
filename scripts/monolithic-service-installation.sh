@@ -44,7 +44,7 @@ sudo echo "alias rm-all-nginx='rm-mono && rm-nginx'" >>$HOME/.bash_aliases
 
 sudo echo "alias rmi-mono='sudo docker rmi -f mendesco/manos-node-mono:${MONO_VERSION}'" >>$HOME/.bash_aliases
 sudo echo "alias rmi-nginx='sudo docker rmi -f mendesco/manos-nginx-webserver:${NGINX_VERSION}'" >>$HOME/.bash_aliases
-sudo echo "alias rmi-all-nginx='rmi-mono && rmi-nginx'" >>$HOME/.bash_aliases
+sudo echo "alias rmi-all-nginx='rmi-mono && rmi-nginx && sudo docker image prune --filter="dangling=true"'" >>$HOME/.bash_aliases
 
 sudo echo "alias clean-port-mono='sudo kill -9 $(sudo lsof -t -i:3000)'" >>$HOME/.bash_aliases
 sudo echo "alias clean-port-nginx='sudo kill -9 $(sudo lsof -t -i:80)'" >>$HOME/.bash_aliases

@@ -56,9 +56,9 @@ sudo echo "alias rm-all-nginx='rm-back && rm-front && rm-nginx'" >>$HOME/.bash_a
 
 sudo echo "alias rmi-back='sudo docker rmi -f mendesco/manos-node-back:${BACK_VERSION}'" >>$HOME/.bash_aliases
 sudo echo "alias rmi-front='sudo docker rmi -f mendesco/manos-node-front:${FRONT_VERSION}'" >>$HOME/.bash_aliases
-sudo echo "alias rmi-all='rmi-back && rmi-front'" >>$HOME/.bash_aliases
+sudo echo "alias rmi-all='rmi-back && rmi-front && sudo docker image prune --filter="dangling=true"'" >>$HOME/.bash_aliases
 sudo echo "alias rmi-nginx='sudo docker rmi -f mendesco/manos-nginx-webserver:${NGINX_VERSION}'" >>$HOME/.bash_aliases
-sudo echo "alias rmi-all-nginx='rmi-back && rmi-front && rmi-nginx'" >>$HOME/.bash_aliases
+sudo echo "alias rmi-all-nginx='rmi-back && rmi-front && rmi-nginx && sudo docker image prune --filter="dangling=true"'" >>$HOME/.bash_aliases
 
 sudo echo "alias clean-port-back='sudo kill -9 $(sudo lsof -t -i:8082)'" >>$HOME/.bash_aliases
 sudo echo "alias clean-port-front='sudo kill -9 $(sudo lsof -t -i:3000)'" >>$HOME/.bash_aliases
