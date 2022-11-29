@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BACK_VERSION=1.0.0
-FRONT_VERSION=1.0.1
+FRONT_VERSION=1.0.2
 NGINX_VERSION=1.0.0
 
 echo "updating system..."
