@@ -4,6 +4,18 @@ BACK_VERSION=1.0.0
 FRONT_VERSION=1.0.2
 NGINX_VERSION=1.0.0
 
+echo "
+
+███╗   ███╗ █████╗ ███╗   ██╗    ██████╗ ███████╗
+████╗ ████║██╔══██╗████╗  ██║   ██╔═══██╗██╔════╝
+██╔████╔██║███████║██╔██╗ ██║   ██║   ██║███████╗
+██║╚██╔╝██║██╔══██║██║╚██╗██║   ██║   ██║╚════██║
+██║ ╚═╝ ██║██║  ██║██║ ╚████║██╗╚██████╔╝███████║
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝ ╚═════╝ ╚══════╝                                                 
+
+"
+sleep 1
+
 echo "updating system..."
 sudo apt update && sudo apt upgrade -y
 
@@ -32,6 +44,28 @@ sudo docker start manos-front
 sudo kill -9 $(sudo lsof -t -i:80)
 sudo docker run -tdp 80:80 --name manos-nginx mendesco/manos-nginx-webserver:${NGINX_VERSION}
 sudo docker start manos-nginx
+
+clear
+echo "creating services..."
+sudo echo "
+Description=manos-web-service
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/sudo /usr/bin/docker start manos-back
+ExecStart=/usr/bin/sudo /usr/bin/docker start manos-front
+ExecStartPost=/usr/bin/sudo /usr/bin/docker start manos-nginx
+Restart=on-failure
+RestartSec=60
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target" >/etc/systemd/system/manos.service
+sudo systemctl enable manos.service
+sudo systemctl start manos.service
 
 clear
 echo "creating aliases..."
